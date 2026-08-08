@@ -552,6 +552,147 @@ export function synthesizeDFAContains(substring: string, alphabet: string[] = ['
   };
 }
 
+export function synthesizeDFAStartsWith(pattern: string, alphabet: string[] = ['0', '1']): SolvedQuestionResult {
+  const cleanPat = pattern.trim();
+  const n = cleanPat.length;
+  const states = [];
+  const stateMeanings = [];
+
+  for (let i = 0; i <= n; i++) {
+    const matched = cleanPat.slice(0, i);
+    const id = `q${i}`;
+    const isAccept = i === n;
+    const label = `q${i} (${isAccept ? 'Accepted' : matched ? `"${matched}"` : 'start'})`;
+    const meaning = isAccept ? `Absorbing accept state: prefix "${cleanPat}" matched` : `Matched prefix length ${i} ("${matched}")`;
+    states.push({
+      id,
+      label,
+      isInitial: i === 0,
+      isAccept,
+      x: 100 + i * 160,
+      y: 200,
+    });
+    stateMeanings.push({ stateId: id, label, meaning });
+  }
+
+  // Dead / trap state for mismatching prefixes
+  const deadId = 'q_trap';
+  states.push({
+    id: deadId,
+    label: 'q_trap (Dead)',
+    isInitial: false,
+    isAccept: false,
+    x: 100 + (n / 2) * 160,
+    y: 350,
+  });
+  stateMeanings.push({ stateId: deadId, label: 'q_trap (Dead)', meaning: 'Trap state: string does not start with target prefix' });
+
+  const transitions: { id: string; from: string; to: string; symbol: string }[] = [];
+  const transitionTable: { from: string; read: string; to: string }[] = [];
+
+  for (let i = 0; i < n; i++) {
+    const expectedSym = cleanPat[i];
+    for (const sym of alphabet) {
+      const nextTarget = sym === expectedSym ? `q${i + 1}` : deadId;
+      transitions.push({ id: `t_${i}_${sym}`, from: `q${i}`, to: nextTarget, symbol: sym });
+      transitionTable.push({ from: `q${i}`, read: sym, to: nextTarget });
+    }
+  }
+
+  // Accept state self-loops on all symbols
+  for (const sym of alphabet) {
+    transitions.push({ id: `t_accept_${sym}`, from: `q${n}`, to: `q${n}`, symbol: sym });
+    transitionTable.push({ from: `q${n}`, read: sym, to: `q${n}` });
+  }
+
+  // Trap state self-loops on all symbols
+  for (const sym of alphabet) {
+    transitions.push({ id: `t_trap_${sym}`, from: deadId, to: deadId, symbol: sym });
+    transitionTable.push({ from: deadId, read: sym, to: deadId });
+  }
+
+  const machine: DFAMachine = {
+    type: 'DFA',
+    name: `DFA: Starts with "${cleanPat}"`,
+    description: `Deterministic Finite Automaton accepting strings beginning with "${cleanPat}" over Σ = {${alphabet.join(', ')}}.`,
+    alphabet,
+    states,
+    startState: 'q0',
+    acceptStates: [`q${n}`],
+    transitions,
+  };
+
+  return {
+    id: `sol_dfa_starts_${cleanPat}`,
+    question: `Design a DFA over {${alphabet.join(', ')}} that accepts strings starting with "${cleanPat}".`,
+    title: `DFA: Strings starting with "${cleanPat}"`,
+    machineType: 'DFA',
+    module: 'Module 1',
+    languageDescription: `L = { w ∈ {${alphabet.join(', ')}}* | w starts with prefix "${cleanPat}" }`,
+    formalDefinition: `L = { "${cleanPat}" x | x ∈ {${alphabet.join(', ')}}* }`,
+    regularExpressionOrGrammar: `${cleanPat}(${alphabet.join('|')})*`,
+    formalTuples: {
+      states: states.map(s => s.id),
+      alphabet,
+      startState: 'q0',
+      acceptStates: [`q${n}`],
+      transitionTable,
+    },
+    stateMeanings,
+    constructionSteps: [
+      `1. Construct ${n + 1} progression states q0, ..., q${n} to verify each character of the prefix "${cleanPat}".`,
+      `2. State q${n} is the accepting state which absorbs all remaining input symbols.`,
+      `3. Any prefix mismatch redirects immediately to trap state q_trap.`,
+    ],
+    machine,
+    testCases: [
+      { input: cleanPat, expected: true, reason: `Exact prefix match "${cleanPat}".` },
+      { input: cleanPat + alphabet[0] + alphabet[alphabet.length - 1], expected: true, reason: `Starts with "${cleanPat}".` },
+      { input: (alphabet.find(s => s !== cleanPat[0]) || '1') + cleanPat, expected: false, reason: `Wrong initial character.` },
+    ],
+    confidenceScore: 0.99,
+  };
+}
+
+export function synthesizeDFANotContains(substring: string, alphabet: string[] = ['0', '1']): SolvedQuestionResult {
+  const base = synthesizeDFAContains(substring, alphabet);
+  const baseDFA = base.machine as DFAMachine;
+  const n = substring.trim().length;
+  // Invert accept states: q0..q_{n-1} are accept, q_n is reject/trap
+  const newAccepts = baseDFA.states.filter(s => s.id !== `q${n}`).map(s => s.id);
+  const updatedStates = baseDFA.states.map(s => ({
+    ...s,
+    isAccept: s.id !== `q${n}`,
+    label: s.id === `q${n}` ? `q${n} (Trap/Reject)` : s.label.replace('(Accepted)', '(Valid)'),
+  }));
+
+  const machine: DFAMachine = {
+    ...baseDFA,
+    name: `DFA: Does NOT Contain "${substring}"`,
+    description: `DFA accepting strings that do NOT contain "${substring}" as a substring.`,
+    states: updatedStates,
+    acceptStates: newAccepts,
+  };
+
+  return {
+    ...base,
+    id: `sol_dfa_not_contains_${substring}`,
+    title: `DFA: Strings NOT containing "${substring}"`,
+    question: `Design a DFA over {${alphabet.join(', ')}} that does NOT contain "${substring}".`,
+    languageDescription: `L = { w ∈ {${alphabet.join(', ')}}* | "${substring}" is not a substring of w }`,
+    formalTuples: {
+      ...base.formalTuples,
+      acceptStates: newAccepts,
+    },
+    machine,
+    testCases: [
+      { input: '', expected: true, reason: 'Empty string does not contain substring.' },
+      { input: substring, expected: false, reason: `Contains forbidden substring "${substring}".` },
+      { input: alphabet[0], expected: !alphabet[0].includes(substring), reason: 'Single character check.' },
+    ],
+  };
+}
+
 // ============================================================================
 // NATURAL LANGUAGE QUESTION SOLVER (Pattern Matcher & Dispatcher)
 // ============================================================================
@@ -567,15 +708,31 @@ export function solveTOCQuestion(userPrompt: string): SolvedQuestionResult {
     return generateFromQuestionBankItem(qbMatch);
   }
 
-  // 2. DFA: Ends with pattern (e.g. "ends with 01", "ending in 101", "ends with ab")
-  const endsWithMatch = query.match(/(?:ends?\s+(?:with|in))\s+["']?([01ab]+)["']?/i);
+  // 2. DFA: Starts with pattern (e.g. "starts with 01", "begins with 10", "starting with ab")
+  const startsWithMatch = query.match(/(?:starts?\s+(?:with|in)|begins?\s+with|starting\s+with)\s+["']?([01ab]+)["']?/i);
+  if (startsWithMatch) {
+    const pat = startsWithMatch[1];
+    const alpha = pat.includes('a') || pat.includes('b') ? ['a', 'b'] : ['0', '1'];
+    return synthesizeDFAStartsWith(pat, alpha);
+  }
+
+  // 3. DFA: Does NOT contain substring (e.g. "not contain 00", "without 11")
+  const notContainMatch = query.match(/(?:not\s+contain(?:ing)?|does\s+not\s+contain|without)\s+["']?([01ab]+)["']?/i);
+  if (notContainMatch) {
+    const sub = notContainMatch[1];
+    const alpha = sub.includes('a') || sub.includes('b') ? ['a', 'b'] : ['0', '1'];
+    return synthesizeDFANotContains(sub, alpha);
+  }
+
+  // 4. DFA: Ends with pattern (e.g. "ends with 01", "ending in 101", "ends with ab")
+  const endsWithMatch = query.match(/(?:ends?\s+(?:with|in)|ending\s+(?:with|in))\s+["']?([01ab]+)["']?/i);
   if (endsWithMatch) {
     const pat = endsWithMatch[1];
     const alpha = pat.includes('a') || pat.includes('b') ? ['a', 'b'] : ['0', '1'];
     return synthesizeDFAEndsWith(pat, alpha);
   }
 
-  // 3. DFA: Divisible by / Modulo k (e.g. "divisible by 3", "mod 4", "multiple of 5")
+  // 5. DFA: Divisible by / Modulo k (e.g. "divisible by 3", "mod 4", "multiple of 5")
   const modMatch = query.match(/(?:divisible\s+by|mod(?:ulo)?|multiple\s+of)\s+(\d+)/i);
   if (modMatch) {
     const k = parseInt(modMatch[1], 10);
@@ -584,7 +741,7 @@ export function solveTOCQuestion(userPrompt: string): SolvedQuestionResult {
     }
   }
 
-  // 4. DFA: Parity of 0s and 1s
+  // 6. DFA: Parity of 0s and 1s
   const hasEven0 = query.includes('even') && (query.includes('0') || query.includes('zero'));
   const hasOdd0 = query.includes('odd') && (query.includes('0') || query.includes('zero'));
   const hasEven1 = query.includes('even') && (query.includes('1') || query.includes('one'));
@@ -596,15 +753,15 @@ export function solveTOCQuestion(userPrompt: string): SolvedQuestionResult {
     return synthesizeDFAParity(zParity, oParity);
   }
 
-  // 5. DFA / NFA: Contains substring (e.g. "contains 101", "substring 010")
-  const containsMatch = query.match(/(?:contains?|substring)\s+["']?([01ab]+)["']?/i);
+  // 7. DFA / NFA: Contains substring (e.g. "contains 101", "substring 010")
+  const containsMatch = query.match(/(?:contains?|substring|having)\s+["']?([01ab]+)["']?/i);
   if (containsMatch) {
     const sub = containsMatch[1];
     const alpha = sub.includes('a') || sub.includes('b') ? ['a', 'b'] : ['0', '1'];
     return synthesizeDFAContains(sub, alpha);
   }
 
-  // 6. PDA: a^n b^n or a^n b^2n or Palindromes or Balanced Parentheses
+  // 8. PDA: a^n b^n or a^n b^2n or Palindromes or Balanced Parentheses
   if (query.includes('pda') || query.includes('pushdown') || query.includes('stack') || query.includes('a^n b^n') || query.includes('an bn')) {
     if (query.includes('2n') || query.includes('twice')) {
       const qb = TOC_QUESTION_BANK.find(q => q.id === 'qb_pda_an_b2n')!;
@@ -622,7 +779,7 @@ export function solveTOCQuestion(userPrompt: string): SolvedQuestionResult {
     return generateFromQuestionBankItem(qb);
   }
 
-  // 7. TM: Turing Machine questions (0^n 1^n, Incrementer, Complement, a^n b^n c^n)
+  // 9. TM: Turing Machine questions (0^n 1^n, Incrementer, Complement, a^n b^n c^n)
   if (query.includes('tm') || query.includes('turing') || query.includes('tape') || query.includes('0^n 1^n') || query.includes('a^n b^n c^n') || query.includes('increment')) {
     if (query.includes('increment') || query.includes('x+1') || query.includes('add 1') || query.includes('plus 1')) {
       const qb = TOC_QUESTION_BANK.find(q => q.id === 'qb_tm_binary_incrementer')!;
@@ -638,6 +795,15 @@ export function solveTOCQuestion(userPrompt: string): SolvedQuestionResult {
     }
     const qb = TOC_QUESTION_BANK.find(q => q.id === 'qb_tm_0n_1n')!;
     return generateFromQuestionBankItem(qb);
+  }
+
+  // 10. Fallback fuzzy search: Find closest Question Bank item
+  const fuzzyMatch = TOC_QUESTION_BANK.find(q => {
+    const qWords = q.question.toLowerCase().split(/\s+/);
+    return qWords.filter(w => w.length > 3 && query.includes(w)).length >= 2;
+  });
+  if (fuzzyMatch) {
+    return generateFromQuestionBankItem(fuzzyMatch);
   }
 
   // Fallback: Default to Ends with 01 DFA with high relevance

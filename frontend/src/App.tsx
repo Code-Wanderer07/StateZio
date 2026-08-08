@@ -28,9 +28,12 @@ export const App: React.FC = () => {
   const { machine, setMachineType } = useAutomataStore();
   const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
-  const handleLaunchSimulator = (type?: MachineType) => {
+  const handleLaunchSimulator = (type?: MachineType, openSolver: boolean = false) => {
     if (type) {
       setMachineType(type);
+    }
+    if (openSolver) {
+      setIsSolverOpen(true);
     }
     setCurrentView('simulator');
   };
@@ -39,6 +42,7 @@ export const App: React.FC = () => {
     return (
       <LandingPage
         onLaunchSimulator={handleLaunchSimulator}
+        onOpenSolver={() => handleLaunchSimulator(undefined, true)}
       />
     );
   }

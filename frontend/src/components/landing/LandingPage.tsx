@@ -19,12 +19,14 @@ import { LinkedInIcon } from '../ui/LinkedInIcon';
 import { MachineType } from '../../types/automata';
 
 interface LandingPageProps {
-  onLaunchSimulator: (type?: MachineType) => void;
+  onLaunchSimulator: (type?: MachineType, openSolver?: boolean) => void;
+  onOpenSolver?: () => void;
   onOpenPreset?: (presetId: string) => void;
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({
   onLaunchSimulator,
+  onOpenSolver,
 }) => {
   const [copiedCode, setCopiedCode] = useState(false);
   const [activeCodeTab, setActiveCodeTab] = useState<'python' | 'json' | 'tuples'>('python');
@@ -660,6 +662,69 @@ Transition Function δ:
                 className="mt-6 w-full py-2.5 bg-cyan-600/20 hover:bg-cyan-600 text-cyan-200 hover:text-white font-bold text-xs rounded-xl border border-cyan-500/30 transition-all cursor-pointer"
               >
                 Launch Turing Machine
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Question Solver Showcase Section */}
+      <section id="solver" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-[#1E112A] via-[#161226] to-[#0f1424] border border-sky-500/30 text-white shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div className="max-w-3xl relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 backdrop-blur-xs border border-sky-500/40">
+              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+              <span>Instant Formal Synthesizer</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+              TOC AI Question Solver
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Ask any Theory of Computation exam problem in plain English. StateZio automatically generates the formal 5-tuple proof, step-by-step invariant logic, comprehensive test suite, and lets you load it directly onto the interactive canvas with one click.
+            </p>
+
+            {/* Quick Example Chips */}
+            <div className="mt-6">
+              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2.5">
+                Popular Exam Questions:
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'DFA: Ends with "01"',
+                  'DFA: Binary Modulo 3',
+                  'DFA: Even 0s & Odd 1s',
+                  'DFA: Contains "101"',
+                  'PDA: aⁿ bⁿ (n ≥ 0)',
+                  'TM: Binary Incrementer (x + 1)',
+                  'TM: 1\'s Complement',
+                ].map((sample, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      if (onOpenSolver) onOpenSolver();
+                      else onLaunchSimulator(undefined, true);
+                    }}
+                    className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/15 border border-sky-500/30 hover:border-sky-400 text-sky-200 hover:text-white text-xs font-medium transition-colors cursor-pointer"
+                  >
+                    {sample}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => {
+                  if (onOpenSolver) onOpenSolver();
+                  else onLaunchSimulator(undefined, true);
+                }}
+                className="px-6 py-3 bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-sky-950/50 transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2"
+              >
+                <Zap className="w-4 h-4 text-white" />
+                <span>Launch Question Solver</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
