@@ -90,14 +90,36 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
     setActiveSolution(solution);
   };
 
-  const handleSolveCustom = async (e?: React.FormEvent) => {
+  const handleSolveCustom = async (e?: React.FormEvent, overridePrompt?: string) => {
     if (e) e.preventDefault();
-    if (!customPrompt.trim()) return;
+    const prompt = overridePrompt !== undefined ? overridePrompt : customPrompt;
+    if (!prompt.trim()) return;
 
     setErrorMessage(null);
 
     if (engineMode === 'LOCAL') {
-      const solution = solveTOCQuestion(customPrompt);
+      // Try local synthesizer — detect whether it genuinely matched or silently fell back
+      const query = prompt.trim().toLowerCase();
+      const hasKnownPattern =
+        /(?:starts?\s+(?:with|in)|begins?\s+with|starting\s+with)\s+["']?([01ab]+)["']?/i.test(query) ||
+        /(?:not\s+contain(?:ing)?|does\s+not\s+contain|without)\s+["']?([01ab]+)["']?/i.test(query) ||
+        /(?:ends?\s+(?:with|in)|ending\s+(?:with|in))\s+["']?([01ab]+)["']?/i.test(query) ||
+        /(?:divisible\s+by|mod(?:ulo)?|multiple\s+of)\s+(\d+)/i.test(query) ||
+        /(?:contains?|substring|having)\s+["']?([01ab]+)["']?/i.test(query) ||
+        TOC_QUESTION_BANK.some(q => q.id === prompt || q.question.toLowerCase() === query || q.title.toLowerCase() === query) ||
+        TOC_QUESTION_BANK.some(q => q.question.toLowerCase().split(/\s+/).filter(w => w.length > 3 && query.includes(w)).length >= 2) ||
+        query.includes('even') || query.includes('odd') ||
+        query.includes('pda') || query.includes('pushdown') || query.includes('palindrome') || query.includes('balanced') ||
+        query.includes('tm') || query.includes('turing') || query.includes('increment') || query.includes('complement');
+
+      if (!hasKnownPattern) {
+        setErrorMessage(
+          '⚡ Local Synthesizer cannot solve this question — it only handles specific patterns. Switch to 🤖 Gemini AI mode above to solve any TOC problem automatically.'
+        );
+        return;
+      }
+
+      const solution = solveTOCQuestion(prompt);
       setActiveSolution(solution);
       return;
     }
@@ -116,7 +138,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
       setTimeout(() => setLoadingStep('Synthesizing state transitions & 5-tuple...'), 800);
       setTimeout(() => setLoadingStep('Running local verification & simulation tests...'), 1600);
 
-      const solution = await solveQuestionWithGemini(customPrompt, key);
+      const solution = await solveQuestionWithGemini(prompt, key);
       setActiveSolution(solution);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Failed to generate solution with Gemini AI.';
@@ -368,10 +390,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 onClick={() => {
                   setCustomPrompt(p.q);
                   setErrorMessage(null);
-                  if (engineMode === 'LOCAL') {
-                    const sol = solveTOCQuestion(p.q);
-                    setActiveSolution(sol);
-                  }
+                  // Always trigger solve immediately (respects current engine mode)
+                  handleSolveCustom(undefined, p.q);
                 }}
                 className="px-2.5 py-1 rounded-lg bg-[#271C1C] hover:bg-[#3D2C2C] border border-sky-500/30 hover:border-sky-400 text-sky-200 hover:text-white text-[11px] font-medium transition-colors shrink-0 whitespace-nowrap shadow-xs cursor-pointer"
               >
