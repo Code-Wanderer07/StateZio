@@ -27,6 +27,9 @@ import {
   solveQuestionWithGemini,
   getStoredGeminiApiKey,
   saveStoredGeminiApiKey,
+  getRemainingUses,
+  isClientRateLimited,
+  getResetTimeString,
 } from '../../services/geminiSolverService';
 import {
   SolvedQuestionResult,
@@ -54,6 +57,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [remainingUses, setRemainingUses] = useState(() => getRemainingUses());
+  const [clientLimited, setClientLimited] = useState(() => isClientRateLimited());
 
   const [activeSolution, setActiveSolution] = useState<SolvedQuestionResult | null>(() => {
     return solveTOCQuestion('qb_dfa_ends_01');
@@ -124,10 +129,12 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
       return;
     }
 
-    // Gemini Mode
-    const key = getStoredGeminiApiKey();
-    if (!key) {
-      setShowKeyModal(true);
+    // Gemini Mode — client-limit guard (users without own key)
+    const userKey = getStoredGeminiApiKey();
+    if (!userKey && clientLimited) {
+      setErrorMessage(
+        `Daily limit reached (5 free AI solves). Resets ${getResetTimeString()}. Add your own 🔑 Gemini key for unlimited access.`
+      );
       return;
     }
 
@@ -138,8 +145,11 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
       setTimeout(() => setLoadingStep('Synthesizing state transitions & 5-tuple...'), 800);
       setTimeout(() => setLoadingStep('Running local verification & simulation tests...'), 1600);
 
-      const solution = await solveQuestionWithGemini(prompt, key);
+      const solution = await solveQuestionWithGemini(prompt, userKey || undefined);
       setActiveSolution(solution);
+      // Refresh usage display
+      setRemainingUses(getRemainingUses());
+      setClientLimited(isClientRateLimited());
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Failed to generate solution with Gemini AI.';
       setErrorMessage(msg);
@@ -278,7 +288,6 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   <button
                     onClick={() => {
                       setEngineMode('GEMINI');
-                      if (!hasApiKey) setShowKeyModal(true);
                     }}
                     className={`px-2.5 py-1 rounded-md text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer ${
                       engineMode === 'GEMINI'
@@ -287,6 +296,15 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     }`}
                   >
                     <Bot className="w-3 h-3" /> Gemini AI
+                    {engineMode === 'GEMINI' && !hasApiKey && (
+                      <span className={`ml-1 text-[10px] font-mono px-1 rounded ${
+                        clientLimited
+                          ? 'bg-rose-500/30 text-rose-300'
+                          : 'bg-purple-500/30 text-purple-200'
+                      }`}>
+                        {clientLimited ? '0/5' : `${remainingUses}/5 free`}
+                      </span>
+                    )}
                   </button>
                 </div>
               </div>

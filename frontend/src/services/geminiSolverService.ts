@@ -14,6 +14,56 @@ import { simulateTM } from '../engine/tmEngine';
 
 const GEMINI_STORAGE_KEY = 'statezio_gemini_api_key';
 
+// ── Client-side usage tracking (5 AI solves per 24h per browser) ─────────────
+const USAGE_STORAGE_KEY = 'statezio_gemini_usage';
+const CLIENT_DAILY_LIMIT = 5;
+
+interface UsageRecord {
+  count: number;
+  resetAt: number; // Unix ms timestamp
+}
+
+export function getUsageRecord(): UsageRecord {
+  try {
+    const raw = localStorage.getItem(USAGE_STORAGE_KEY);
+    if (!raw) return { count: 0, resetAt: Date.now() + 86_400_000 };
+    const record = JSON.parse(raw) as UsageRecord;
+    // Reset if window has expired
+    if (Date.now() > record.resetAt) {
+      const fresh = { count: 0, resetAt: Date.now() + 86_400_000 };
+      localStorage.setItem(USAGE_STORAGE_KEY, JSON.stringify(fresh));
+      return fresh;
+    }
+    return record;
+  } catch {
+    return { count: 0, resetAt: Date.now() + 86_400_000 };
+  }
+}
+
+export function incrementUsage(): UsageRecord {
+  const record = getUsageRecord();
+  const updated = { ...record, count: record.count + 1 };
+  localStorage.setItem(USAGE_STORAGE_KEY, JSON.stringify(updated));
+  return updated;
+}
+
+export function isClientRateLimited(): boolean {
+  const record = getUsageRecord();
+  return record.count >= CLIENT_DAILY_LIMIT;
+}
+
+export function getRemainingUses(): number {
+  const record = getUsageRecord();
+  return Math.max(0, CLIENT_DAILY_LIMIT - record.count);
+}
+
+export function getResetTimeString(): string {
+  const record = getUsageRecord();
+  const msLeft = record.resetAt - Date.now();
+  const hoursLeft = Math.ceil(msLeft / 3_600_000);
+  return hoursLeft <= 1 ? 'in less than an hour' : `in ${hoursLeft} hours`;
+}
+
 export function getStoredGeminiApiKey(): string {
   const localKey = localStorage.getItem(GEMINI_STORAGE_KEY) || '';
   if (localKey.trim()) return localKey.trim();
@@ -28,6 +78,7 @@ export function saveStoredGeminiApiKey(key: string): void {
 export function clearStoredGeminiApiKey(): void {
   localStorage.removeItem(GEMINI_STORAGE_KEY);
 }
+
 
 const SYSTEM_INSTRUCTION = `You are a World-Class Professor of Automata Theory and Formal Languages (TOC).
 Given a user's question or problem statement, synthesize a formally rigorous, complete, and mathematically exact state machine (DFA, NFA, PDA, or TM).
@@ -101,7 +152,17 @@ export async function solveQuestionWithGemini(
   prompt: string,
   apiKey?: string
 ): Promise<SolvedQuestionResult> {
+  // ── Client-side daily limit check ─────────────────────────────────────────
   const userKey = apiKey || getStoredGeminiApiKey();
+  // Skip client limit if user has their own API key (they pay their own quota)
+  if (!userKey && isClientRateLimited()) {
+    throw new Error(
+      `Daily limit reached (5 AI solves per 24 hours). Resets ${getResetTimeString()}. You can add your own Gemini API key via the 🔑 button for unlimited access.`
+    );
+  }
+
+  // ── Prompt length guard ────────────────────────────────────────────────────
+  const trimmedPrompt = prompt.trim().slice(0, 2000);
 
   // ── Strategy: try the server-side proxy first (key hidden from browser) ──
   // If that fails (e.g. no server key set), fall back to direct API call with user's own key
@@ -111,26 +172,28 @@ export async function solveQuestionWithGemini(
   // 1. Try the Vercel serverless proxy (/api/gemini)
   try {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-    // Send user key as optional override header (proxy still prefers server env key)
     if (userKey) headers['x-gemini-key'] = userKey;
 
     const proxyRes = await fetch('/api/gemini', {
       method: 'POST',
       headers,
-      body: JSON.stringify({ prompt, systemInstruction: SYSTEM_INSTRUCTION }),
+      body: JSON.stringify({ prompt: trimmedPrompt, systemInstruction: SYSTEM_INSTRUCTION }),
     });
 
     if (proxyRes.ok) {
       const data = await proxyRes.json();
-      if (data?.result) {
-        rawText = data.result;
-      }
+      if (data?.result) rawText = data.result;
     } else {
-      // Proxy returned an error - read it but keep going to direct fallback
       const errData = await proxyRes.json().catch(() => null);
+      // Re-throw rate limit errors directly — don't fall through to direct call
+      if (proxyRes.status === 429) {
+        throw new Error(errData?.error || 'Server rate limit reached. Please try again later.');
+      }
       lastErrorMsg = errData?.error || `Proxy returned HTTP ${proxyRes.status}`;
     }
-  } catch {
+  } catch (e: unknown) {
+    // Re-throw if it's our own thrown error (rate limit)
+    if (e instanceof Error && e.message.includes('rate limit')) throw e;
     lastErrorMsg = 'Could not reach /api/gemini proxy - trying direct API...';
   }
 
@@ -143,20 +206,20 @@ export async function solveQuestionWithGemini(
       );
     }
 
-    const candidateModels = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
+    const candidateModels = ['gemini-1.5-flash', 'gemini-2.0-flash-lite', 'gemini-2.0-flash'];
     const requestBody = {
       contents: [
         {
           role: 'user',
           parts: [
             {
-              text: `Problem: ${prompt}\n\nPlease generate the complete, formally verified Automata solution matching the JSON specification.`,
+              text: `Problem: ${trimmedPrompt}\n\nPlease generate the complete, formally verified Automata solution matching the JSON specification.`,
             },
           ],
         },
       ],
       systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
-      generationConfig: { temperature: 0.1, responseMimeType: 'application/json' },
+      generationConfig: { temperature: 0.1, responseMimeType: 'application/json', maxOutputTokens: 4096 },
     };
 
     for (const model of candidateModels) {
@@ -171,6 +234,7 @@ export async function solveQuestionWithGemini(
         if (!res.ok) {
           const errorJson = await res.json().catch(() => null);
           lastErrorMsg = errorJson?.error?.message || `Model ${model} responded with status ${res.status}`;
+          if (res.status === 401 || res.status === 403) break; // bad key, stop retrying
           continue;
         }
 
@@ -201,9 +265,15 @@ export async function solveQuestionWithGemini(
     throw new Error('Gemini AI returned a malformed response. Please try again.');
   }
 
+  // ── Increment usage counter on success (only when using shared server key) ─
+  if (!userKey) {
+    incrementUsage();
+  }
+
   // Sanitize and locally verify the generated automata
-  return sanitizeAndVerifyAutomata(parsed, prompt);
+  return sanitizeAndVerifyAutomata(parsed, trimmedPrompt);
 }
+
 
 
 
