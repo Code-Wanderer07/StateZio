@@ -96,74 +96,98 @@ Return ONLY valid JSON matching this exact structure:
   "confidenceScore": 0.95
 }`;
 
+
 export async function solveQuestionWithGemini(
   prompt: string,
   apiKey?: string
 ): Promise<SolvedQuestionResult> {
-  const key = apiKey || getStoredGeminiApiKey();
-  if (!key) {
-    throw new Error(
-      'Google Gemini API Key not found. Please provide an API key to use the AI Question Solver.'
-    );
-  }
+  const userKey = apiKey || getStoredGeminiApiKey();
 
-  const candidateModels = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
+  // ── Strategy: try the server-side proxy first (key hidden from browser) ──
+  // If that fails (e.g. no server key set), fall back to direct API call with user's own key
   let rawText = '';
   let lastErrorMsg = '';
 
-  const requestBody = {
-    contents: [
-      {
-        role: 'user',
-        parts: [
-          {
-            text: `Problem: ${prompt}\n\nPlease generate the complete, formally verified Automata solution matching the JSON specification.`,
-          },
-        ],
-      },
-    ],
-    systemInstruction: {
-      parts: [{ text: SYSTEM_INSTRUCTION }],
-    },
-    generationConfig: {
-      temperature: 0.1,
-      responseMimeType: 'application/json',
-    },
-  };
+  // 1. Try the Vercel serverless proxy (/api/gemini)
+  try {
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    // Send user key as optional override header (proxy still prefers server env key)
+    if (userKey) headers['x-gemini-key'] = userKey;
 
-  for (const model of candidateModels) {
-    try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    const proxyRes = await fetch('/api/gemini', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ prompt, systemInstruction: SYSTEM_INSTRUCTION }),
+    });
+
+    if (proxyRes.ok) {
+      const data = await proxyRes.json();
+      if (data?.result) {
+        rawText = data.result;
+      }
+    } else {
+      // Proxy returned an error - read it but keep going to direct fallback
+      const errData = await proxyRes.json().catch(() => null);
+      lastErrorMsg = errData?.error || `Proxy returned HTTP ${proxyRes.status}`;
+    }
+  } catch {
+    lastErrorMsg = 'Could not reach /api/gemini proxy - trying direct API...';
+  }
+
+  // 2. If proxy didn't return text, try direct Gemini call with user's own key
+  if (!rawText) {
+    if (!userKey) {
+      throw new Error(
+        lastErrorMsg ||
+        'No Gemini API key configured. Please set your key via the 🔑 button, or contact the site administrator.'
+      );
+    }
+
+    const candidateModels = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
+    const requestBody = {
+      contents: [
+        {
+          role: 'user',
+          parts: [
+            {
+              text: `Problem: ${prompt}\n\nPlease generate the complete, formally verified Automata solution matching the JSON specification.`,
+            },
+          ],
         },
-        body: JSON.stringify(requestBody),
-      });
+      ],
+      systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+      generationConfig: { temperature: 0.1, responseMimeType: 'application/json' },
+    };
 
-      if (!res.ok) {
-        const errorJson = await res.json().catch(() => null);
-        lastErrorMsg = errorJson?.error?.message || `Model ${model} responded with status ${res.status}`;
-        continue;
-      }
+    for (const model of candidateModels) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${userKey}`;
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody),
+        });
 
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (text) {
-        rawText = text;
-        break;
+        if (!res.ok) {
+          const errorJson = await res.json().catch(() => null);
+          lastErrorMsg = errorJson?.error?.message || `Model ${model} responded with status ${res.status}`;
+          continue;
+        }
+
+        const data = await res.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (text) { rawText = text; break; }
+      } catch (e: unknown) {
+        lastErrorMsg = e instanceof Error ? e.message : 'Network error';
       }
-    } catch (e: unknown) {
-      lastErrorMsg = e instanceof Error ? e.message : 'Network error';
     }
   }
 
   if (!rawText) {
-    throw new Error(lastErrorMsg || 'No solution returned from Gemini AI. Please check your API key.');
+    throw new Error(lastErrorMsg || 'No solution returned from Gemini AI. Please try again.');
   }
 
-  // Clean JSON if wrapped in markdown code fence
+  // Strip markdown code fences if present
   let cleanedText = rawText.trim();
   if (cleanedText.startsWith('```')) {
     cleanedText = cleanedText.replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
@@ -180,6 +204,8 @@ export async function solveQuestionWithGemini(
   // Sanitize and locally verify the generated automata
   return sanitizeAndVerifyAutomata(parsed, prompt);
 }
+
+
 
 function sanitizeAndVerifyAutomata(
   raw: SolvedQuestionResult,
