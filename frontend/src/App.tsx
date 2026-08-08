@@ -25,7 +25,7 @@ export const App: React.FC = () => {
   const [isSolverOpen, setIsSolverOpen] = useState(false);
   const [activeInspectorTab, setActiveInspectorTab] = useState<'trace' | 'batch' | 'tuples'>('trace');
 
-  const { machine, setMachineType } = useAutomataStore();
+  const { machine, setMachineType, batchTestCases } = useAutomataStore();
   const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   const handleLaunchSimulator = (type?: MachineType, openSolver: boolean = false) => {
@@ -101,6 +101,17 @@ export const App: React.FC = () => {
             >
               <FlaskConical className="w-3.5 h-3.5" />
               <span>Batch Tests</span>
+              {batchTestCases.length > 0 && (
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                    activeInspectorTab === 'batch'
+                      ? 'bg-[#1C1313] text-sky-400'
+                      : 'bg-sky-500/20 text-sky-300'
+                  }`}
+                >
+                  {batchTestCases.length}
+                </span>
+              )}
             </button>
 
             <button
