@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Disc3, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Disc3, ArrowDown } from 'lucide-react';
 import { useAutomataStore } from '../../store/useAutomataStore';
 
 export const TapeVisualizer: React.FC = () => {
@@ -33,33 +33,33 @@ export const TapeVisualizer: React.FC = () => {
   }, [headIndex, currentStepIndex]);
 
   return (
-    <div className="flex flex-col bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 shadow-xl backdrop-blur-md">
+    <div className="flex flex-col bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-200">
         <div className="flex items-center gap-2">
-          <Disc3 className="w-4 h-4 text-cyan-400" />
-          <h4 className="text-xs font-semibold text-slate-200 uppercase tracking-wider">
+          <Disc3 className="w-4 h-4 text-emerald-700" />
+          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
             Turing Machine Tape Visualizer
           </h4>
         </div>
         <div className="flex items-center gap-2 text-[11px] font-mono">
-          <span className="px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">
+          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
             Head Pos: [{headIndex}]
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
+          <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
             Blank: '{blank}'
           </span>
         </div>
       </div>
 
       {/* Tape Head Indicator Arrow */}
-      <div className="flex items-center justify-center pt-2 text-[11px] font-mono text-cyan-400 gap-1 animate-bounce-subtle">
+      <div className="flex items-center justify-center pt-2 text-[11px] font-mono text-emerald-700 gap-1 animate-bounce-subtle">
         <ArrowDown className="w-4 h-4" />
         <span className="font-semibold tracking-wider">READ / WRITE HEAD</span>
       </div>
 
       {/* Horizontal Tape Scroll Strip */}
-      <div className="relative my-2 py-3 px-2 bg-slate-950/70 border border-slate-800/80 rounded-xl overflow-x-auto shadow-inner">
+      <div className="relative my-2 py-3 px-2 bg-slate-50 border border-slate-200 rounded-xl overflow-x-auto shadow-inner">
         <div
           ref={tapeScrollRef}
           className="flex items-center justify-start gap-2 min-w-max px-8"
@@ -74,7 +74,7 @@ export const TapeVisualizer: React.FC = () => {
                 {/* Index label */}
                 <span
                   className={`text-[9px] font-mono ${
-                    isHead ? 'text-cyan-400 font-bold' : 'text-slate-500'
+                    isHead ? 'text-emerald-800 font-bold' : 'text-slate-400'
                   }`}
                 >
                   {idx}
@@ -82,14 +82,14 @@ export const TapeVisualizer: React.FC = () => {
 
                 {/* Tape Cell Box */}
                 <div
-                  className={`w-11 h-12 rounded-xl flex items-center justify-center font-mono text-sm font-bold transition-all duration-300 select-none shadow-md ${
+                  className={`w-11 h-12 rounded-xl flex items-center justify-center font-mono text-sm font-bold transition-all duration-300 select-none shadow-xs ${
                     isHead
-                      ? 'bg-cyan-600/30 border-2 border-cyan-400 text-cyan-100 shadow-[0_0_16px_rgba(6,182,212,0.6)] scale-110 ring-2 ring-cyan-500/20'
-                      : 'bg-slate-800/90 border border-slate-700 text-slate-300 hover:border-slate-600'
+                      ? 'bg-emerald-50 border-2 border-emerald-600 text-emerald-950 shadow-md scale-110 ring-2 ring-emerald-500/20'
+                      : 'bg-white border border-slate-200 text-slate-700 hover:border-slate-300'
                   }`}
                 >
                   {sym === blank ? (
-                    <span className="text-slate-500 text-xs font-normal">_</span>
+                    <span className="text-slate-400 text-xs font-normal">_</span>
                   ) : (
                     sym
                   )}
@@ -101,10 +101,10 @@ export const TapeVisualizer: React.FC = () => {
       </div>
 
       {/* Footer Info */}
-      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+      <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1">
         <span>Infinite dynamic bidirectional tape</span>
-        <span className="font-mono text-slate-300">
-          Current Symbol: <strong className="text-cyan-300 font-bold">'{tape[headIndex] || blank}'</strong>
+        <span className="font-mono text-slate-700">
+          Current Symbol: <strong className="text-emerald-800 font-bold">'{tape[headIndex] || blank}'</strong>
         </span>
       </div>
     </div>

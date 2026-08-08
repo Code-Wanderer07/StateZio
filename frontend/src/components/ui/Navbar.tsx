@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Sparkles,
-  BookOpen,
   Binary,
   Layers,
   Disc3,
   HelpCircle,
   FolderOpen,
 } from 'lucide-react';
+import { LinkedInIcon } from './LinkedInIcon';
 import { useAutomataStore } from '../../store/useAutomataStore';
 import { MachineType } from '../../types/automata';
 
@@ -30,36 +30,39 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMachineType(type);
   };
 
+  // Replace YOUR_LINKEDIN_USERNAME with your actual LinkedIn username/URL
+  const linkedInUrl = "https://www.linkedin.com/in/shivakanth";
+
   return (
-    <header className="h-14 bg-slate-900/95 border-b border-slate-800/80 px-4 flex items-center justify-between z-30 shadow-md backdrop-blur-md">
+    <header className="h-14 bg-white/95 border-b border-slate-200 px-4 flex items-center justify-between z-30 shadow-sm backdrop-blur-md text-slate-800">
       {/* Brand & Logo */}
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-          <Binary className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-800 via-emerald-700 to-teal-700 flex items-center justify-center shadow-md shadow-emerald-800/20 text-white">
+          <Binary className="w-4 h-4" />
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="font-bold text-sm tracking-wide text-white">
+            <h1 className="font-bold text-sm tracking-tight text-slate-900">
               TOC Visualizer
             </h1>
-            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
               v1.0
             </span>
           </div>
-          <p className="text-[10px] text-slate-400 -mt-0.5">
-            Automata & Computability Suite
+          <p className="text-[10px] text-slate-500 -mt-0.5">
+            Theory of Computation Simulator
           </p>
         </div>
       </div>
 
       {/* Center: Module Switcher Tabs */}
-      <div className="flex items-center gap-1 p-1 bg-slate-950/80 rounded-xl border border-slate-800">
+      <div className="flex items-center gap-1 p-1 bg-slate-100/90 rounded-xl border border-slate-200">
         <button
           onClick={() => handleModuleClick('DFA')}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
             machine.type === 'DFA'
-              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-emerald-700 text-white shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -70,8 +73,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => handleModuleClick('NFA')}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
             machine.type === 'NFA'
-              ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-emerald-700 text-white shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -82,8 +85,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => handleModuleClick('PDA')}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
             machine.type === 'PDA'
-              ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-emerald-700 text-white shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
           }`}
         >
           <Layers className="w-3.5 h-3.5" />
@@ -94,8 +97,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => handleModuleClick('TM')}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
             machine.type === 'TM'
-              ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30'
-              : 'text-slate-400 hover:text-slate-200'
+              ? 'bg-emerald-700 text-white shadow-xs'
+              : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
           }`}
         >
           <Disc3 className="w-3.5 h-3.5" />
@@ -103,32 +106,51 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
       </div>
 
-      {/* Right Controls */}
+      {/* Right Controls & Author Credit */}
       <div className="flex items-center gap-2">
+        {/* Author Credit Badge with LinkedIn Link */}
+        <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-50/80 border border-emerald-200 text-xs">
+          <span className="text-slate-500 flex items-center gap-1 text-[11px]">
+            Made by <strong className="text-emerald-900 font-semibold">Shivakanth</strong>
+          </span>
+          <a
+            href={linkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Connect with Shivakanth on LinkedIn"
+            className="p-1 rounded-lg bg-white hover:bg-emerald-700 text-emerald-700 hover:text-white border border-emerald-300 transition-all shadow-xs flex items-center justify-center"
+          >
+            <LinkedInIcon className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        {/* Question Solver Button */}
         <button
           onClick={onOpenSolver}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white border border-indigo-400/30 text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
           title="TOC Question Solver & AI Assistant"
         >
           <Sparkles className="w-3.5 h-3.5" />
           <span>Question Solver</span>
         </button>
 
+        {/* Presets Toggle Button */}
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-medium transition-colors ${
             isSidebarOpen
-              ? 'bg-indigo-950/80 border-indigo-700 text-indigo-300'
-              : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:text-white'
+              ? 'bg-emerald-50 border-emerald-300 text-emerald-800 font-semibold'
+              : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
           }`}
         >
-          <FolderOpen className="w-3.5 h-3.5 text-indigo-400" />
+          <FolderOpen className="w-3.5 h-3.5 text-emerald-700" />
           <span>Presets</span>
         </button>
 
+        {/* Theory Help Button */}
         <button
           onClick={onOpenHelp}
-          className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white transition-colors"
+          className="p-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors shadow-xs"
           title="Theory Guide & Reference"
         >
           <HelpCircle className="w-4 h-4" />

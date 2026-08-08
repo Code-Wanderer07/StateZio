@@ -41,14 +41,14 @@ export const AutomataCanvas: React.FC = () => {
     type: 'customTransitionEdge',
     markerEnd: {
       type: MarkerType.ArrowClosed,
-      color: '#818cf8',
+      color: '#047857',
       width: 14,
       height: 14,
     },
   }), []);
 
   return (
-    <div className="relative w-full h-full bg-[#090d16] overflow-hidden select-none">
+    <div className="relative w-full h-full bg-slate-50 overflow-hidden select-none">
       {/* Top Floating Action Bar */}
       <CanvasControls />
 
@@ -83,24 +83,24 @@ export const AutomataCanvas: React.FC = () => {
           variant={BackgroundVariant.Dots}
           gap={24}
           size={1.5}
-          color="#334155"
+          color="#cbd5e1"
         />
 
         <Controls
           position="bottom-left"
-          className="!m-4 !bg-slate-900/90 !border-slate-700/80 !shadow-2xl"
+          className="!m-4 !bg-white !border-slate-200 !shadow-lg"
           showInteractive={false}
         />
 
         <MiniMap
           position="bottom-right"
-          className="!m-4 !bg-slate-950/80 !border-slate-800/80 !rounded-2xl"
+          className="!m-4 !bg-white !border-slate-200 !rounded-2xl !shadow-md"
           nodeColor={(node) => {
-            if (node.data?.isActive) return '#818cf8';
+            if (node.data?.isActive) return '#059669';
             if (node.data?.isAccept) return '#10b981';
-            return '#475569';
+            return '#94a3b8';
           }}
-          maskColor="rgba(9, 13, 22, 0.75)"
+          maskColor="rgba(241, 245, 249, 0.7)"
         />
       </ReactFlow>
 

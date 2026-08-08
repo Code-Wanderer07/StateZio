@@ -4,15 +4,16 @@
 
 @layer base {
   :root {
-    --bg-main: #090d16;
-    --card-bg: rgba(15, 23, 42, 0.85);
-    --border-color: rgba(51, 65, 85, 0.6);
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
   }
 
   body {
-    background-color: #090d16;
-    color: #f8fafc;
+    background-color: #f8fafc;
+    color: #0f172a;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
   code, pre, .font-mono {
@@ -27,94 +28,93 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(79, 70, 229, 0.4);
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.8);
+  background: #94a3b8;
 }
 
 /* React Flow customizations */
 .react-flow__background {
-  background-color: #090d16 !important;
+  background-color: #f8fafc !important;
 }
 
 .react-flow__controls {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(51, 65, 85, 0.8) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 12px !important;
   overflow: hidden !important;
-  background: rgba(15, 23, 42, 0.9) !important;
-  backdrop-filter: blur(12px) !important;
+  background: #ffffff !important;
 }
 
 .react-flow__controls-button {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.4) !important;
-  color: #94a3b8 !important;
-  fill: #94a3b8 !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+  fill: #64748b !important;
   transition: all 0.2s ease !important;
 }
 
 .react-flow__controls-button:hover {
-  background: rgba(99, 102, 241, 0.2) !important;
-  color: #818cf8 !important;
-  fill: #818cf8 !important;
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  fill: #047857 !important;
 }
 
 .react-flow__minimap {
-  background: rgba(15, 23, 42, 0.85) !important;
-  border: 1px solid rgba(51, 65, 85, 0.6) !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 12px !important;
-  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* Glassmorphic panels */
+/* Minimalist panels */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.6);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 .glass-panel-glow {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.15);
+  background: #ffffff;
+  border: 1px solid #a7f3d0;
+  box-shadow: 0 0 20px -3px rgba(5, 150, 105, 0.12);
 }
 
 /* Glow effects for active state & playback */
 .glow-primary {
-  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6));
+  filter: drop-shadow(0 0 8px rgba(5, 150, 105, 0.4));
 }
 
 .glow-emerald {
-  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.7));
+  filter: drop-shadow(0 0 10px rgba(5, 150, 105, 0.5));
 }
 
 .glow-rose {
-  filter: drop-shadow(0 0 12px rgba(244, 63, 94, 0.7));
+  filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.4));
 }
 
 .glow-cyan {
-  filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.7));
+  filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4));
 }
 
 .glow-amber {
-  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.7));
+  filter: drop-shadow(0 0 10px rgba(217, 119, 6, 0.4));
 }
 
 /* Tape slot & stack box animations */
 @keyframes tapeSlide {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.94);
   }
   to {
     opacity: 1;
