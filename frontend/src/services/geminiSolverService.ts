@@ -107,7 +107,9 @@ export async function solveQuestionWithGemini(
     );
   }
 
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
+  const candidateModels = ['gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
+  let rawText = '';
+  let lastErrorMsg = '';
 
   const requestBody = {
     contents: [
@@ -129,32 +131,49 @@ export async function solveQuestionWithGemini(
     },
   };
 
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(requestBody),
-  });
+  for (const model of candidateModels) {
+    try {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-  if (!res.ok) {
-    const errorJson = await res.json().catch(() => null);
-    const msg = errorJson?.error?.message || `Gemini API responded with status ${res.status}`;
-    throw new Error(msg);
+      if (!res.ok) {
+        const errorJson = await res.json().catch(() => null);
+        lastErrorMsg = errorJson?.error?.message || `Model ${model} responded with status ${res.status}`;
+        continue;
+      }
+
+      const data = await res.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (text) {
+        rawText = text;
+        break;
+      }
+    } catch (e: unknown) {
+      lastErrorMsg = e instanceof Error ? e.message : 'Network error';
+    }
   }
 
-  const data = await res.json();
-  const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
   if (!rawText) {
-    throw new Error('No solution returned from Gemini AI model.');
+    throw new Error(lastErrorMsg || 'No solution returned from Gemini AI. Please check your API key.');
+  }
+
+  // Clean JSON if wrapped in markdown code fence
+  let cleanedText = rawText.trim();
+  if (cleanedText.startsWith('```')) {
+    cleanedText = cleanedText.replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```$/, '').trim();
   }
 
   let parsed: SolvedQuestionResult;
   try {
-    parsed = JSON.parse(rawText);
+    parsed = JSON.parse(cleanedText);
   } catch (err) {
-    console.error('Failed to parse Gemini JSON output:', rawText, err);
+    console.error('Failed to parse Gemini JSON output:', cleanedText, err);
     throw new Error('Gemini AI returned a malformed response. Please try again.');
   }
 

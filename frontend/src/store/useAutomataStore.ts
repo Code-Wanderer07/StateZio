@@ -305,6 +305,10 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
       isPlaying: false,
       subsetResult: null,
     });
+
+    if (initialSimResult && initialSimResult.traces.length > 0) {
+      get().jumpToStep(0);
+    }
   },
 
   setInputString: (inputString) => {
