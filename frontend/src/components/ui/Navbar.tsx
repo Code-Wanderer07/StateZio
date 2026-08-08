@@ -63,15 +63,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </button>
 
-        {/* Intro/Home quick button */}
+        {/* Home quick button */}
         {onNavigateHome && (
           <button
             onClick={onNavigateHome}
-            title="Go to StateZio Intro & How to Use Guide"
+            title="Go to StateZio Home"
             className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#271C1C] hover:bg-[#3D2C2C] text-sky-200 hover:text-white text-xs font-semibold transition-colors cursor-pointer border border-sky-500/30 ml-2 shadow-xs"
           >
             <Home className="w-3.5 h-3.5 text-sky-400" />
-            <span>Intro / Guide</span>
+            <span>Home</span>
           </button>
         )}
       </div>
