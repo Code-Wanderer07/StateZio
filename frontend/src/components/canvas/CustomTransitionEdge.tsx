@@ -33,9 +33,22 @@ export const CustomTransitionEdge: React.FC<EdgeProps> = ({
   });
 
   const { openTransitionModal, deleteTransition } = useAutomataStore();
-  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; allTransitions?: unknown[] });
+  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; allTransitions?: unknown[]; hasError?: boolean });
   const isActive = !!edgeData?.isActive;
+  const hasError = !!edgeData?.hasError;
   const labelText = edgeData?.combinedLabel || 'ε';
+
+  // Light Blue & #1C1313 Edge Styling:
+  // Active: Bright Light Blue #38BDF8 (3px)
+  // Error/Dead: Crimson Red #EF4444 (3px)
+  // Idle: Light Blue #38BDF8 (2px)
+  const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : style?.stroke || '#38BDF8';
+  const edgeWidth = hasError || isActive ? 3 : 2;
+  const edgeFilter = hasError
+    ? 'drop-shadow(0 0 8px rgba(239, 68, 68, 0.7))'
+    : isActive
+    ? 'drop-shadow(0 0 10px rgba(56, 189, 248, 0.9))'
+    : undefined;
 
   return (
     <>
@@ -44,10 +57,10 @@ export const CustomTransitionEdge: React.FC<EdgeProps> = ({
         markerEnd={markerEnd}
         style={{
           ...style,
-          stroke: isActive ? '#059669' : style?.stroke || '#64748b',
-          strokeWidth: isActive ? 3 : 2,
-          filter: isActive ? 'drop-shadow(0 0 6px rgba(5, 150, 105, 0.6))' : undefined,
-          transition: 'stroke 0.3s, stroke-width 0.3s, filter 0.3s',
+          stroke: edgeStroke,
+          strokeWidth: edgeWidth,
+          filter: edgeFilter,
+          transition: 'stroke 0.25s, stroke-width 0.25s, filter 0.25s',
         }}
       />
 
@@ -67,10 +80,12 @@ export const CustomTransitionEdge: React.FC<EdgeProps> = ({
                 openTransitionModal(source, target, id);
               }}
               title="Click to edit transition rules"
-              className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold tracking-wider transition-all duration-200 border shadow-xs ${
-                isActive
-                  ? 'bg-emerald-700 text-white border-emerald-800 shadow-md scale-110'
-                  : 'bg-white text-slate-700 border-slate-300 hover:border-emerald-600 hover:text-emerald-800'
+              className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 border shadow-md cursor-pointer ${
+                hasError
+                  ? 'bg-red-900/90 text-red-100 border-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)] scale-105'
+                  : isActive
+                  ? 'bg-sky-500 text-[#1C1313] border-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.7)] scale-105'
+                  : 'bg-[#1C1313] text-sky-200 border-sky-500/40 hover:border-sky-300 hover:text-white'
               }`}
             >
               {labelText}
@@ -82,7 +97,7 @@ export const CustomTransitionEdge: React.FC<EdgeProps> = ({
                 deleteTransition(id);
               }}
               title="Delete Transition"
-              className="w-4 h-4 rounded-full bg-white border border-slate-300 text-slate-400 hover:text-rose-600 hover:border-rose-300 flex items-center justify-center text-[10px] opacity-0 group-hover:opacity-100 transition-opacity shadow-xs"
+              className="w-4 h-4 rounded-full bg-[#1C1313] border border-sky-500/30 text-slate-400 hover:text-rose-400 hover:border-rose-500 flex items-center justify-center text-[10px] opacity-0 group-hover:opacity-100 transition-opacity shadow-sm cursor-pointer"
             >
               ×
             </button>

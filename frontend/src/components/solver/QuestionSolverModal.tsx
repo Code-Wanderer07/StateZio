@@ -93,24 +93,24 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="relative w-full max-w-6xl h-[88vh] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-900">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
+      <div className="relative w-full max-w-6xl h-[88vh] bg-[#1C1313] border border-sky-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50/70">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-500/20 bg-[#271C1C]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-800 via-emerald-700 to-teal-700 flex items-center justify-center shadow-md shadow-emerald-800/20 text-white">
-              <Zap className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-sky-950/50 text-white">
+              <Zap className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-slate-900 tracking-tight">
+                <h2 className="text-lg font-bold text-white tracking-tight">
                   TOC Question Solver & AI Assistant
                 </h2>
-                <span className="px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 uppercase">
+                <span className="px-2 py-0.5 text-[10px] font-bold tracking-wider rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40 uppercase">
                   Instant Synthesizer
                 </span>
               </div>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-400">
                 Ask any Theory of Computation question, view formal 5-tuple proofs, and load directly onto the canvas.
               </p>
             </div>
@@ -118,14 +118,14 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-400 hover:text-slate-700 transition-colors shadow-xs"
+            className="p-2 rounded-xl bg-[#1C1313] hover:bg-[#3D2C2C] border border-sky-500/30 text-slate-400 hover:text-white transition-colors shadow-xs cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Search & Prompt Bar */}
-        <div className="px-6 py-3 border-b border-slate-200 bg-white flex flex-col gap-2.5">
+        <div className="px-6 py-3 border-b border-sky-500/20 bg-[#161111] flex flex-col gap-2.5">
           <form onSubmit={handleSolveCustom} className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -134,12 +134,12 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 value={customPrompt}
                 onChange={(e) => setCustomPrompt(e.target.value)}
                 placeholder="Ask any TOC problem: e.g. 'Design a DFA for binary divisible by 3' or 'Construct PDA for a^n b^n'..."
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-[#0d1017] border border-sky-500/30 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all"
               />
             </div>
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold shadow-xs flex items-center gap-2 transition-all shrink-0"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-sky-950/40 flex items-center gap-2 transition-all shrink-0 cursor-pointer"
             >
               <Sparkles className="w-4 h-4" />
               <span>Solve Question</span>
@@ -148,8 +148,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
           {/* Quick Prompts */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs scrollbar-none">
-            <span className="text-[11px] font-medium text-slate-500 flex items-center gap-1 shrink-0">
-              <Lightbulb className="w-3 h-3 text-amber-500" /> Examples:
+            <span className="text-[11px] font-medium text-slate-400 flex items-center gap-1 shrink-0">
+              <Lightbulb className="w-3 h-3 text-amber-400" /> Examples:
             </span>
             {quickPrompts.map((p, idx) => (
               <button
@@ -159,7 +159,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   const sol = solveTOCQuestion(p.q);
                   setActiveSolution(sol);
                 }}
-                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 text-slate-700 hover:text-emerald-800 text-[11px] font-medium transition-colors shrink-0 whitespace-nowrap shadow-xs"
+                className="px-2.5 py-1 rounded-lg bg-[#271C1C] hover:bg-[#3D2C2C] border border-sky-500/30 hover:border-sky-400 text-sky-200 hover:text-white text-[11px] font-medium transition-colors shrink-0 whitespace-nowrap shadow-xs cursor-pointer"
               >
                 {p.label}
               </button>
@@ -170,17 +170,17 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         {/* Content Body: Split View (Question Bank Left, Solution Right) */}
         <div className="flex-1 flex overflow-hidden">
           {/* Left Panel: Question Bank */}
-          <div className="w-[380px] border-r border-slate-200 bg-slate-50/50 flex flex-col">
+          <div className="w-[380px] border-r border-sky-500/20 bg-[#120D0D] flex flex-col">
             {/* Filter Tabs */}
-            <div className="p-3 border-b border-slate-200 flex gap-1 bg-slate-100/70 overflow-x-auto">
+            <div className="p-3 border-b border-sky-500/20 flex gap-1 bg-[#1C1313] overflow-x-auto">
               {(['ALL', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
                     selectedCategory === cat
-                      ? 'bg-emerald-700 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/80'
+                      ? 'bg-sky-400 text-[#1C1313] shadow-xs'
+                      : 'text-sky-200 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {cat === 'ALL' ? 'All Questions' : cat}
@@ -189,8 +189,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
             </div>
 
             {/* Questions List */}
-            <div className="flex-1 overflow-y-auto p-3 space-y-2.5">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 px-1">
+            <div className="flex-1 overflow-y-auto p-3 space-y-2.5 bg-[#120D0D]">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
                 Exam Question Bank ({filteredQuestions.length})
               </div>
 
@@ -202,34 +202,34 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     onClick={() => handleSelectQuestion(item)}
                     className={`p-3 rounded-xl border cursor-pointer transition-all ${
                       isSelected
-                        ? 'bg-emerald-50/90 border-emerald-400 shadow-sm ring-1 ring-emerald-400'
-                        : 'bg-white border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/30 shadow-xs'
+                        ? 'bg-[#271C1C] border-sky-400 shadow-md ring-1 ring-sky-400/60'
+                        : 'bg-[#1C1313] border-sky-500/30 hover:border-sky-400 hover:bg-[#221717] shadow-xs'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-slate-800">
+                      <span className="text-xs font-bold text-white">
                         {item.title}
                       </span>
                       <span
                         className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                           item.difficulty === 'Easy'
-                            ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                             : item.difficulty === 'Medium'
-                            ? 'bg-amber-50 text-amber-800 border border-amber-200'
-                            : 'bg-rose-50 text-rose-800 border border-rose-200'
+                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                            : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
                         }`}
                       >
                         {item.difficulty}
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-slate-500 line-clamp-2 mb-2 leading-relaxed">
+                    <p className="text-[11px] text-slate-400 line-clamp-2 mb-2 leading-relaxed">
                       {item.question}
                     </p>
 
-                    <div className="flex items-center justify-between text-[10px] text-slate-400">
-                      <span className="font-mono">{item.module}</span>
-                      <span className="flex items-center gap-1 text-emerald-700 font-semibold group">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500">
+                      <span className="font-mono text-sky-300 font-bold">{item.category}</span>
+                      <span className="flex items-center gap-1 text-sky-400 font-semibold group">
                         Solve <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
                       </span>
                     </div>
@@ -240,34 +240,31 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
           </div>
 
           {/* Right Panel: Formal Solution & Walkthrough */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-white">
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#161111]">
             {activeSolution ? (
               <>
                 {/* Solution Title & Action Header */}
-                <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+                <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-[#241919] border border-sky-500/30 shadow-md">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="px-2 py-0.5 text-xs font-bold font-mono rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                      <span className="px-2 py-0.5 text-xs font-bold font-mono rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40">
                         {activeSolution.machineType}
                       </span>
-                      <span className="text-xs text-slate-500 font-mono">
-                        {activeSolution.module}
-                      </span>
-                      <span className="flex items-center gap-1 text-[11px] text-emerald-700 font-medium ml-2">
+                      <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-medium ml-2">
                         <ShieldCheck className="w-3.5 h-3.5" /> Verified Formal Construction
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900">
+                    <h3 className="text-base font-bold text-white">
                       {activeSolution.title}
                     </h3>
-                    <p className="text-xs text-slate-600 mt-0.5 font-mono">
+                    <p className="text-xs text-slate-300 mt-0.5 font-mono">
                       {activeSolution.formalDefinition}
                     </p>
                   </div>
 
                   <button
                     onClick={handleLoadOnCanvas}
-                    className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold shadow-sm flex items-center gap-2 transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+                    className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-sky-950/50 flex items-center gap-2 transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                   >
                     <Play className="w-4 h-4 fill-white" />
                     <span>Load onto Canvas & Simulate</span>
@@ -276,34 +273,34 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                 {/* Formal 5-Tuple / 7-Tuple Definition */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5 text-emerald-700" /> Formal Mathematical Definition (Tuples)
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5" /> Formal Mathematical Definition (Tuples)
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <div className="text-[10px] text-slate-500 uppercase font-semibold">States (Q)</div>
-                      <div className="text-xs font-mono font-bold text-emerald-900 mt-1">
+                    <div className="p-3 rounded-xl bg-[#241919] border border-sky-500/30">
+                      <div className="text-[10px] text-slate-400 uppercase font-semibold">States (Q)</div>
+                      <div className="text-xs font-mono font-bold text-sky-300 mt-1 truncate">
                         {'{' + activeSolution.formalTuples.states.join(', ') + '}'}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <div className="text-[10px] text-slate-500 uppercase font-semibold">Alphabet (Σ)</div>
-                      <div className="text-xs font-mono font-bold text-teal-800 mt-1">
+                    <div className="p-3 rounded-xl bg-[#241919] border border-sky-500/30">
+                      <div className="text-[10px] text-slate-400 uppercase font-semibold">Alphabet (Σ)</div>
+                      <div className="text-xs font-mono font-bold text-teal-300 mt-1 truncate">
                         {'{' + activeSolution.formalTuples.alphabet.join(', ') + '}'}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <div className="text-[10px] text-slate-500 uppercase font-semibold">Start State (q₀)</div>
-                      <div className="text-xs font-mono font-bold text-amber-700 mt-1">
+                    <div className="p-3 rounded-xl bg-[#241919] border border-sky-500/30">
+                      <div className="text-[10px] text-slate-400 uppercase font-semibold">Start State (q₀)</div>
+                      <div className="text-xs font-mono font-bold text-amber-300 mt-1 truncate">
                         {activeSolution.formalTuples.startState}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <div className="text-[10px] text-slate-500 uppercase font-semibold">Accept States (F)</div>
-                      <div className="text-xs font-mono font-bold text-emerald-700 mt-1">
+                    <div className="p-3 rounded-xl bg-[#241919] border border-sky-500/30">
+                      <div className="text-[10px] text-slate-400 uppercase font-semibold">Accept States (F)</div>
+                      <div className="text-xs font-mono font-bold text-emerald-300 mt-1 truncate">
                         {'{' + activeSolution.formalTuples.acceptStates.join(', ') + '}'}
                       </div>
                     </div>
@@ -312,19 +309,19 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                 {/* State Meanings */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5 text-emerald-700" /> State Meaning & Invariants
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5" /> State Meaning & Invariants
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {activeSolution.stateMeanings.map((sm, idx) => (
                       <div
                         key={idx}
-                        className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3"
+                        className="p-3 rounded-xl bg-[#241919] border border-sky-500/30 flex items-start gap-3"
                       >
-                        <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 font-mono text-xs font-bold shrink-0">
+                        <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40 font-mono text-xs font-bold shrink-0">
                           {sm.stateId}
                         </span>
-                        <div className="text-xs text-slate-700 leading-relaxed">
+                        <div className="text-xs text-slate-300 leading-relaxed">
                           {sm.meaning}
                         </div>
                       </div>
@@ -334,13 +331,13 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                 {/* Step-by-Step Construction Walkthrough */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                    <Disc3 className="w-3.5 h-3.5 text-emerald-700" /> Construction Logic & Walkthrough
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+                    <Disc3 className="w-3.5 h-3.5" /> Construction Logic & Walkthrough
                   </h4>
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <div className="p-4 rounded-xl bg-[#241919] border border-sky-500/30 space-y-2">
                     {activeSolution.constructionSteps.map((step, idx) => (
-                      <div key={idx} className="text-xs text-slate-700 flex items-start gap-2 leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
+                      <div key={idx} className="text-xs text-slate-300 flex items-start gap-2 leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-1.5 shrink-0" />
                         <span>{step}</span>
                       </div>
                     ))}
@@ -349,26 +346,26 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                 {/* Test Cases Suite */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Generated Test Cases Suite ({activeSolution.testCases.length})
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Generated Test Cases Suite ({activeSolution.testCases.length})
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {activeSolution.testCases.map((tc, idx) => (
                       <div
                         key={idx}
-                        className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2"
+                        className="p-2.5 rounded-xl bg-[#241919] border border-sky-500/30 flex items-center justify-between gap-2"
                       >
                         <div className="flex items-center gap-2 overflow-hidden">
                           {tc.expected ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                           ) : (
-                            <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                            <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
                           )}
-                          <span className="font-mono text-xs font-bold text-slate-800 truncate">
+                          <span className="font-mono text-xs font-bold text-white truncate">
                             "{tc.input || 'ε'}"
                           </span>
                         </div>
-                        <span className="text-[11px] text-slate-500 text-right truncate">
+                        <span className="text-[11px] text-slate-400 text-right truncate">
                           {tc.reason}
                         </span>
                       </div>
@@ -377,8 +374,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 </div>
               </>
             ) : (
-              <div className="h-full flex flex-col items-center justify-center text-slate-400 space-y-3">
-                <Sparkles className="w-12 h-12 text-slate-300 animate-pulse" />
+              <div className="h-full flex flex-col items-center justify-center text-slate-500 space-y-3">
+                <Sparkles className="w-12 h-12 text-slate-600 animate-pulse" />
                 <p className="text-sm">Select a question or ask any custom Theory of Computation problem.</p>
               </div>
             )}

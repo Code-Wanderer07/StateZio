@@ -94,34 +94,34 @@ export const TransitionModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4 animate-fade-in">
-      <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-xs p-4 animate-fade-in">
+      <div className="bg-[#1C1313] border border-sky-500/30 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-sky-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50/80">
-          <div className="flex items-center gap-2 text-emerald-800">
-            <ArrowLeftRight className="w-5 h-5 text-emerald-700" />
-            <h3 className="font-semibold text-slate-900 text-sm tracking-wide">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-500/20 bg-[#271C1C]">
+          <div className="flex items-center gap-2 text-sky-400">
+            <ArrowLeftRight className="w-5 h-5" />
+            <h3 className="font-semibold text-slate-100 text-sm tracking-wide">
               {editingTransitionId ? 'Edit Transition Rule' : 'Add Transition Rule'}
             </h3>
           </div>
           <button
             onClick={closeTransitionModal}
-            className="p-1 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 transition-colors"
+            className="p-1 text-slate-400 hover:text-slate-200 rounded-lg hover:bg-[#3D2C2C] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Source -> Target banner */}
-        <div className="px-6 py-3 bg-emerald-50/60 border-b border-emerald-100 flex items-center justify-center gap-4 text-xs font-mono">
-          <span className="px-2.5 py-1 rounded bg-white text-emerald-900 font-semibold border border-emerald-200 shadow-xs">
+        <div className="px-6 py-3 bg-[#1C1313] border-b border-sky-500/20 flex items-center justify-center gap-4 text-xs font-mono">
+          <span className="px-2.5 py-1 rounded bg-[#271C1C] text-emerald-400 font-semibold border border-emerald-500/40 shadow-xs">
             {sourceLabel}
           </span>
-          <ArrowRight className="w-4 h-4 text-emerald-700" />
-          <span className="px-2.5 py-1 rounded bg-white text-emerald-900 font-semibold border border-emerald-200 shadow-xs">
+          <ArrowRight className="w-4 h-4 text-sky-400" />
+          <span className="px-2.5 py-1 rounded bg-[#271C1C] text-sky-300 font-semibold border border-sky-500/40 shadow-xs">
             {targetLabel}
           </span>
-          <span className="text-slate-500 text-[11px] font-sans">({machine.type})</span>
+          <span className="text-slate-400 text-[11px] font-sans">({machine.type})</span>
         </div>
 
         {/* Form Body */}
@@ -129,7 +129,7 @@ export const TransitionModal: React.FC = () => {
           {/* DFA / NFA form */}
           {(machine.type === 'DFA' || machine.type === 'NFA') && (
             <div className="space-y-3">
-              <label className="block text-xs font-semibold text-slate-700">
+              <label className="block text-xs font-semibold text-sky-200">
                 Input Symbol (read)
               </label>
               <div className="flex items-center gap-2">
@@ -138,20 +138,20 @@ export const TransitionModal: React.FC = () => {
                   value={symbol}
                   onChange={(e) => setSymbol(e.target.value)}
                   placeholder="e.g. 0, 1, a, or ε"
-                  className="w-full bg-white border border-slate-300 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-lg px-3 py-2 text-sm font-mono text-slate-900 outline-none transition-all"
+                  className="w-full bg-[#271C1C] border border-sky-500/30 focus:border-sky-400 focus:ring-1 focus:ring-sky-400 rounded-lg px-3 py-2 text-sm font-mono text-slate-100 outline-none transition-all"
                   autoFocus
                 />
               </div>
 
               {/* Quick Symbol Insertion buttons */}
               <div className="flex items-center gap-1.5 pt-1">
-                <span className="text-[11px] text-slate-500 mr-1">Quick:</span>
+                <span className="text-[11px] text-slate-400 mr-1">Quick:</span>
                 {['0', '1', 'a', 'b', ...(machine.type === 'NFA' ? ['ε'] : [])].map((sym) => (
                   <button
                     key={sym}
                     type="button"
                     onClick={() => setSymbol(sym)}
-                    className="px-2.5 py-0.5 text-xs font-mono bg-slate-100 hover:bg-emerald-700 hover:text-white text-slate-700 rounded border border-slate-200 transition-colors shadow-xs"
+                    className="px-2.5 py-0.5 text-xs font-mono bg-[#271C1C] hover:bg-sky-500 hover:text-[#1C1313] text-sky-200 rounded border border-sky-500/30 transition-colors shadow-xs"
                   >
                     {sym}
                   </button>
@@ -165,7 +165,7 @@ export const TransitionModal: React.FC = () => {
             <div className="space-y-4">
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-sky-200 mb-1">
                     Input Symbol
                   </label>
                   <input
@@ -173,7 +173,7 @@ export const TransitionModal: React.FC = () => {
                     value={inputSymbol}
                     onChange={(e) => setInputSymbol(e.target.value)}
                     placeholder="a or ε"
-                    className="w-full bg-white border border-slate-300 focus:border-emerald-600 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 outline-none"
+                    className="w-full bg-[#271C1C] border border-sky-500/30 focus:border-sky-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-100 outline-none"
                   />
                   <div className="flex gap-1 mt-1">
                     {['a', 'b', 'ε'].map((s) => (
@@ -181,7 +181,7 @@ export const TransitionModal: React.FC = () => {
                         key={s}
                         type="button"
                         onClick={() => setInputSymbol(s)}
-                        className="text-[10px] px-1.5 py-0.5 bg-slate-100 hover:bg-emerald-700 hover:text-white text-slate-700 rounded border border-slate-200"
+                        className="text-[10px] px-1.5 py-0.5 bg-[#271C1C] hover:bg-sky-500 hover:text-[#1C1313] text-sky-200 rounded border border-sky-500/30"
                       >
                         {s}
                       </button>
@@ -190,7 +190,7 @@ export const TransitionModal: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-sky-200 mb-1">
                     Pop from Stack
                   </label>
                   <input
@@ -198,7 +198,7 @@ export const TransitionModal: React.FC = () => {
                     value={popSymbol}
                     onChange={(e) => setPopSymbol(e.target.value)}
                     placeholder="Z0 or ε"
-                    className="w-full bg-white border border-slate-300 focus:border-emerald-600 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 outline-none"
+                    className="w-full bg-[#271C1C] border border-sky-500/30 focus:border-sky-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-100 outline-none"
                   />
                   <div className="flex gap-1 mt-1">
                     {['Z0', 'a', 'b', 'ε'].map((s) => (
@@ -206,7 +206,7 @@ export const TransitionModal: React.FC = () => {
                         key={s}
                         type="button"
                         onClick={() => setPopSymbol(s)}
-                        className="text-[10px] px-1 py-0.5 bg-slate-100 hover:bg-emerald-700 hover:text-white text-slate-700 rounded border border-slate-200"
+                        className="text-[10px] px-1 py-0.5 bg-[#271C1C] hover:bg-sky-500 hover:text-[#1C1313] text-sky-200 rounded border border-sky-500/30"
                       >
                         {s}
                       </button>
@@ -215,7 +215,7 @@ export const TransitionModal: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-sky-200 mb-1">
                     Push to Stack
                   </label>
                   <input
@@ -223,7 +223,7 @@ export const TransitionModal: React.FC = () => {
                     value={pushSymbols}
                     onChange={(e) => setPushSymbols(e.target.value)}
                     placeholder="aZ0 or ε"
-                    className="w-full bg-white border border-slate-300 focus:border-emerald-600 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 outline-none"
+                    className="w-full bg-[#271C1C] border border-sky-500/30 focus:border-sky-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-100 outline-none"
                   />
                   <div className="flex gap-1 mt-1">
                     {['aZ0', 'aa', 'Z0', 'ε'].map((s) => (
@@ -231,7 +231,7 @@ export const TransitionModal: React.FC = () => {
                         key={s}
                         type="button"
                         onClick={() => setPushSymbols(s)}
-                        className="text-[10px] px-1 py-0.5 bg-slate-100 hover:bg-emerald-700 hover:text-white text-slate-700 rounded border border-slate-200"
+                        className="text-[10px] px-1 py-0.5 bg-[#271C1C] hover:bg-sky-500 hover:text-[#1C1313] text-sky-200 rounded border border-sky-500/30"
                       >
                         {s}
                       </button>
@@ -240,9 +240,9 @@ export const TransitionModal: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-200 text-xs font-mono text-slate-800 flex items-center justify-between">
-                <span className="text-slate-500">Rule notation:</span>
-                <span className="text-emerald-800 font-bold">
+              <div className="p-2.5 rounded-lg bg-[#271C1C] border border-sky-500/30 text-xs font-mono text-slate-300 flex items-center justify-between">
+                <span className="text-slate-400">Rule notation:</span>
+                <span className="text-sky-300 font-bold">
                   {inputSymbol || 'ε'}, {popSymbol || 'ε'} → {pushSymbols || 'ε'}
                 </span>
               </div>
@@ -254,7 +254,7 @@ export const TransitionModal: React.FC = () => {
             <div className="space-y-4">
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-sky-200 mb-1">
                     Read Tape Symbol
                   </label>
                   <input
@@ -262,7 +262,7 @@ export const TransitionModal: React.FC = () => {
                     value={readSymbol}
                     onChange={(e) => setReadSymbol(e.target.value)}
                     placeholder="0, 1, _"
-                    className="w-full bg-white border border-slate-300 focus:border-emerald-600 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 outline-none"
+                    className="w-full bg-[#271C1C] border border-sky-500/30 focus:border-sky-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-100 outline-none"
                   />
                   <div className="flex gap-1 mt-1">
                     {['0', '1', '_', 'X', 'Y'].map((s) => (
@@ -270,7 +270,7 @@ export const TransitionModal: React.FC = () => {
                         key={s}
                         type="button"
                         onClick={() => setReadSymbol(s)}
-                        className="text-[10px] px-1.5 py-0.5 bg-slate-100 hover:bg-emerald-700 hover:text-white text-slate-700 rounded border border-slate-200"
+                        className="text-[10px] px-1.5 py-0.5 bg-[#271C1C] hover:bg-sky-500 hover:text-[#1C1313] text-sky-200 rounded border border-sky-500/30"
                       >
                         {s}
                       </button>
@@ -279,7 +279,7 @@ export const TransitionModal: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-sky-200 mb-1">
                     Write Symbol
                   </label>
                   <input
@@ -287,7 +287,7 @@ export const TransitionModal: React.FC = () => {
                     value={writeSymbol}
                     onChange={(e) => setWriteSymbol(e.target.value)}
                     placeholder="0, 1, _"
-                    className="w-full bg-white border border-slate-300 focus:border-emerald-600 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 outline-none"
+                    className="w-full bg-[#271C1C] border border-sky-500/30 focus:border-sky-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-100 outline-none"
                   />
                   <div className="flex gap-1 mt-1">
                     {['0', '1', '_', 'X', 'Y'].map((s) => (
@@ -295,7 +295,7 @@ export const TransitionModal: React.FC = () => {
                         key={s}
                         type="button"
                         onClick={() => setWriteSymbol(s)}
-                        className="text-[10px] px-1.5 py-0.5 bg-slate-100 hover:bg-emerald-700 hover:text-white text-slate-700 rounded border border-slate-200"
+                        className="text-[10px] px-1.5 py-0.5 bg-[#271C1C] hover:bg-sky-500 hover:text-[#1C1313] text-sky-200 rounded border border-sky-500/30"
                       >
                         {s}
                       </button>
@@ -304,10 +304,10 @@ export const TransitionModal: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-sky-200 mb-1">
                     Head Movement
                   </label>
-                  <div className="flex rounded-lg overflow-hidden border border-slate-300">
+                  <div className="flex rounded-lg overflow-hidden border border-sky-500/30">
                     {(['L', 'R', 'S'] as const).map((dir) => (
                       <button
                         key={dir}
@@ -315,23 +315,23 @@ export const TransitionModal: React.FC = () => {
                         onClick={() => setDirection(dir)}
                         className={`flex-1 py-1.5 text-xs font-mono font-bold transition-colors ${
                           direction === dir
-                            ? 'bg-emerald-700 text-white'
-                            : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
+                            ? 'bg-sky-500 text-[#1C1313]'
+                            : 'bg-[#271C1C] text-slate-300 hover:bg-[#3D2C2C]'
                         }`}
                       >
                         {dir}
                       </button>
                     ))}
                   </div>
-                  <div className="text-[10px] text-slate-500 mt-1 text-center font-medium">
+                  <div className="text-[10px] text-slate-400 mt-1 text-center font-medium">
                     {direction === 'L' ? 'Left (←)' : direction === 'R' ? 'Right (→)' : 'Stay (•)'}
                   </div>
                 </div>
               </div>
 
-              <div className="p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-200 text-xs font-mono text-slate-800 flex items-center justify-between">
-                <span className="text-slate-500">TM Transition:</span>
-                <span className="text-emerald-800 font-bold">
+              <div className="p-2.5 rounded-lg bg-[#271C1C] border border-sky-500/30 text-xs font-mono text-slate-300 flex items-center justify-between">
+                <span className="text-slate-400">TM Transition:</span>
+                <span className="text-sky-300 font-bold">
                   {readSymbol || '_'} → {writeSymbol || '_'}, {direction}
                 </span>
               </div>
@@ -343,13 +343,13 @@ export const TransitionModal: React.FC = () => {
             <button
               type="button"
               onClick={closeTransitionModal}
-              className="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
+              className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-[#271C1C] rounded-xl transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-5 py-2 text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 rounded-xl shadow-sm transition-all duration-200"
+              className="px-5 py-2 text-xs font-bold text-[#1C1313] bg-sky-400 hover:bg-sky-300 rounded-xl shadow-md transition-all duration-200 cursor-pointer"
             >
               {editingTransitionId ? 'Save Changes' : 'Add Transition'}
             </button>

@@ -41,14 +41,14 @@ export const AutomataCanvas: React.FC = () => {
     type: 'customTransitionEdge',
     markerEnd: {
       type: MarkerType.ArrowClosed,
-      color: '#047857',
+      color: '#38BDF8', // Light Blue for idle transitions
       width: 14,
       height: 14,
     },
   }), []);
 
   return (
-    <div className="relative w-full h-full bg-slate-50 overflow-hidden select-none">
+    <div className="relative w-full h-full bg-[#1C1313] overflow-hidden select-none">
       {/* Top Floating Action Bar */}
       <CanvasControls />
 
@@ -83,24 +83,25 @@ export const AutomataCanvas: React.FC = () => {
           variant={BackgroundVariant.Dots}
           gap={24}
           size={1.5}
-          color="#cbd5e1"
+          color="rgba(56, 189, 248, 0.25)"
         />
 
         <Controls
           position="bottom-left"
-          className="!m-4 !bg-white !border-slate-200 !shadow-lg"
+          className="!m-4 !bg-[#1C1313] !border-sky-500/30 !shadow-2xl !rounded-xl overflow-hidden"
           showInteractive={false}
         />
 
         <MiniMap
           position="bottom-right"
-          className="!m-4 !bg-white !border-slate-200 !rounded-2xl !shadow-md"
+          className="!m-4 !bg-[#1C1313] !border-sky-500/30 !rounded-2xl !shadow-2xl"
           nodeColor={(node) => {
-            if (node.data?.isActive) return '#059669';
-            if (node.data?.isAccept) return '#10b981';
-            return '#94a3b8';
+            if (node.data?.isActive) return '#38BDF8'; // Light Blue / Cyan
+            if (node.data?.isAccept) return '#818CF8'; // Indigo
+            if (node.data?.isInitial) return '#34D399'; // Emerald Green
+            return '#64748B'; // Muted Slate
           }}
-          maskColor="rgba(241, 245, 249, 0.7)"
+          maskColor="rgba(28, 19, 19, 0.8)"
         />
       </ReactFlow>
 

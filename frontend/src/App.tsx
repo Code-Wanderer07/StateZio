@@ -44,7 +44,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-slate-50 text-slate-900 overflow-hidden font-sans select-none">
+    <div className="flex flex-col h-screen w-screen bg-[#0e0a0a] text-slate-100 overflow-hidden font-sans select-none">
       {/* Top Navigation */}
       <Navbar
         isSidebarOpen={isSidebarOpen}
@@ -59,14 +59,14 @@ export const App: React.FC = () => {
         {/* Preset Sidebar (collapsible) */}
         {isSidebarOpen && <PresetSidebar />}
 
-        {/* Center: Interactive Graph Canvas */}
-        <div className="flex-1 relative h-full flex flex-col min-w-0 bg-slate-50">
+        {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
+        <div className="flex-1 relative h-full flex flex-col min-w-0 bg-[#1C1313] border-r border-sky-500/20">
           <AutomataCanvas />
         </div>
 
-        {/* Right Dock: Simulation Controls & Diagnostics */}
-        <div className="w-[420px] max-w-[440px] h-full bg-white border-l border-slate-200 flex flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-xs box-border">
-          {/* Main Simulation Deck */}
+        {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
+        <div className="w-[430px] max-w-[450px] h-full bg-[#161111] border-l border-sky-500/20 flex flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
+          {/* Main Simulation Deck (with glowing engine chassis) */}
           <SimulationDeck />
 
           {/* Dedicated Component Visualizer (PDA Stack or TM Tape) */}
@@ -74,13 +74,13 @@ export const App: React.FC = () => {
           {machine.type === 'TM' && <TapeVisualizer />}
 
           {/* Inspector Tabs (Trace / Batch / Tuples) */}
-          <div className="flex items-center gap-1 p-1 bg-slate-100/90 rounded-xl border border-slate-200 shrink-0">
+          <div className="flex items-center gap-1 p-1 bg-[#241919] rounded-xl border border-sky-500/30 shrink-0 shadow-inner">
             <button
               onClick={() => setActiveInspectorTab('trace')}
-              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'trace'
-                  ? 'bg-emerald-700 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  ? 'bg-sky-400 text-[#1C1313] shadow-md shadow-sky-950/40'
+                  : 'text-sky-200 hover:text-white hover:bg-white/10'
               }`}
             >
               <ListOrdered className="w-3.5 h-3.5" />
@@ -89,10 +89,10 @@ export const App: React.FC = () => {
 
             <button
               onClick={() => setActiveInspectorTab('batch')}
-              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'batch'
-                  ? 'bg-emerald-700 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  ? 'bg-sky-400 text-[#1C1313] shadow-md shadow-sky-950/40'
+                  : 'text-sky-200 hover:text-white hover:bg-white/10'
               }`}
             >
               <FlaskConical className="w-3.5 h-3.5" />
@@ -101,10 +101,10 @@ export const App: React.FC = () => {
 
             <button
               onClick={() => setActiveInspectorTab('tuples')}
-              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'tuples'
-                  ? 'bg-emerald-700 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  ? 'bg-sky-400 text-[#1C1313] shadow-md shadow-sky-950/40'
+                  : 'text-sky-200 hover:text-white hover:bg-white/10'
               }`}
             >
               <Info className="w-3.5 h-3.5" />
@@ -120,15 +120,15 @@ export const App: React.FC = () => {
           </div>
 
           {/* Footer Author Credits */}
-          <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 shrink-0">
-            <span className="flex items-center gap-1">
-              Made by <strong className="text-emerald-800 font-bold">Shivakanth</strong>
+          <div className="pt-2.5 border-t border-sky-500/20 flex items-center justify-between text-[11px] text-slate-400 shrink-0">
+            <span className="flex items-center gap-1.5">
+              Made by <strong className="text-white font-bold">Shivakanth</strong>
             </span>
             <a
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-emerald-700 hover:text-emerald-900 hover:underline font-semibold"
+              className="flex items-center gap-1.5 text-sky-400 hover:text-sky-300 hover:underline font-semibold"
             >
               <LinkedInIcon className="w-3.5 h-3.5" />
               <span>LinkedIn Profile</span>

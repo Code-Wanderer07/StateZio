@@ -4,14 +4,15 @@
 
 @layer base {
   :root {
-    --bg-main: #f8fafc;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
+    --bg-main: #1c1313;
+    --card-bg: #271c1c;
+    --border-color: #3d2c2c;
+    --accent-light-blue: #38bdf8;
   }
 
   body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: #1c1313;
+    color: #f1f5f9;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
@@ -28,86 +29,80 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #1c1313;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #3d2c2c;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #38bdf8;
 }
 
-/* React Flow customizations */
+/* React Flow customizations for #1C1313 and Light Blue theme */
 .react-flow__background {
-  background-color: #f8fafc !important;
+  background-color: #1c1313 !important;
 }
 
 .react-flow__controls {
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04) !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-radius: 14px !important;
   overflow: hidden !important;
-  background: #ffffff !important;
+  background: #1c1313 !important;
 }
 
 .react-flow__controls-button {
-  background: #ffffff !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  color: #64748b !important;
-  fill: #64748b !important;
+  background: #1c1313 !important;
+  border-bottom: 1px solid #3d2c2c !important;
+  color: #94a3b8 !important;
+  fill: #94a3b8 !important;
   transition: all 0.2s ease !important;
 }
 
 .react-flow__controls-button:hover {
-  background: #ecfdf5 !important;
-  color: #047857 !important;
-  fill: #047857 !important;
+  background: #271c1c !important;
+  color: #38bdf8 !important;
+  fill: #38bdf8 !important;
 }
 
 .react-flow__minimap {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06) !important;
+  background: #1c1313 !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Minimalist panels */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.92);
+/* Minimalist dark panels */
+.glass-panel-dark {
+  background: rgba(28, 19, 19, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
 }
 
-.glass-panel-glow {
-  background: #ffffff;
-  border: 1px solid #a7f3d0;
-  box-shadow: 0 0 20px -3px rgba(5, 150, 105, 0.12);
+/* Glow effects matching Light Blue & #1C1313 theme */
+.glow-cyan {
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8));
 }
 
-/* Glow effects for active state & playback */
-.glow-primary {
-  filter: drop-shadow(0 0 8px rgba(5, 150, 105, 0.4));
+.glow-blue {
+  filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.8));
+}
+
+.glow-indigo {
+  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.7));
 }
 
 .glow-emerald {
-  filter: drop-shadow(0 0 10px rgba(5, 150, 105, 0.5));
+  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.7));
 }
 
-.glow-rose {
-  filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.4));
-}
-
-.glow-cyan {
-  filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4));
-}
-
-.glow-amber {
-  filter: drop-shadow(0 0 10px rgba(217, 119, 6, 0.4));
+.glow-crimson {
+  filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
 }
 
 /* Tape slot & stack box animations */

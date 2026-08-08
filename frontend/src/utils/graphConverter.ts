@@ -1,4 +1,4 @@
-import { Node, Edge } from '@xyflow/react';
+import { Node, Edge, MarkerType } from '@xyflow/react';
 import {
   AutomataMachine,
   AutomataState,
@@ -39,6 +39,7 @@ export interface TransitionEdgeData {
   writeSymbol?: string;
   direction?: 'L' | 'R' | 'S';
   isActive?: boolean;
+  hasError?: boolean;
   onEdit?: (edgeId: string) => void;
   onDelete?: (edgeId: string) => void;
   [key: string]: unknown;
@@ -65,11 +66,13 @@ export function formatTransitionLabel(data: TransitionEdgeData): string {
 
 /**
  * Converts an AutomataMachine model to ReactFlow Nodes and Edges
+ * styled according to the StateZio Specification
  */
 export function machineToFlowElements(
   machine: AutomataMachine,
   activeStateIds: string[] = [],
-  activeEdgeId?: string
+  activeEdgeId?: string,
+  errorEdgeId?: string
 ): { nodes: Node[]; edges: Edge[] } {
   const nodes: Node[] = machine.states.map((st, index) => {
     return {
@@ -106,6 +109,7 @@ export function machineToFlowElements(
     const [from, to] = key.split('->');
     const isSelfLoop = from === to;
     const isEdgeActive = transitions.some((t) => t.id === activeEdgeId);
+    const isEdgeError = transitions.some((t) => t.id === errorEdgeId);
 
     // Form combined label
     const labels = transitions.map((t) => {
@@ -124,6 +128,7 @@ export function machineToFlowElements(
     const dataPayload: TransitionEdgeData = {
       machineType: machine.type,
       isActive: isEdgeActive,
+      hasError: isEdgeError,
       symbol: (firstT as DFATransition).symbol,
       inputSymbol: (firstT as PDATransition).inputSymbol,
       popSymbol: (firstT as PDATransition).popSymbol,
@@ -133,20 +138,28 @@ export function machineToFlowElements(
       direction: (firstT as TMTransition).direction,
     };
 
+    const edgeColor = isEdgeError ? '#EF4444' : isEdgeActive ? '#38BDF8' : '#38BDF8';
+
     edges.push({
       id: firstT.id || `edge_${from}_${to}_${edgeIdx++}`,
       source: from,
       target: to,
       type: isSelfLoop ? 'selfLoopEdge' : 'customTransitionEdge',
       animated: isEdgeActive,
+      markerEnd: {
+        type: MarkerType.ArrowClosed,
+        color: edgeColor,
+        width: 14,
+        height: 14,
+      },
       data: {
         ...dataPayload,
         combinedLabel: labels.join(' | '),
         allTransitions: transitions,
       },
       style: {
-        stroke: isEdgeActive ? '#818cf8' : '#64748b',
-        strokeWidth: isEdgeActive ? 3 : 2,
+        stroke: edgeColor,
+        strokeWidth: isEdgeActive || isEdgeError ? 3 : 2,
       },
     });
   });
