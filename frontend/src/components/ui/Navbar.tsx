@@ -30,8 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMachineType(type);
   };
 
-  // Replace YOUR_LINKEDIN_USERNAME with your actual LinkedIn username/URL
-  const linkedInUrl = "https://www.linkedin.com/in/shivakanth";
+  const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   return (
     <header className="h-14 bg-white/95 border-b border-slate-200 px-4 flex items-center justify-between z-30 shadow-sm backdrop-blur-md text-slate-800">

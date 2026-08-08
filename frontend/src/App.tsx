@@ -23,7 +23,7 @@ export const App: React.FC = () => {
   const [activeInspectorTab, setActiveInspectorTab] = useState<'trace' | 'batch' | 'tuples'>('trace');
 
   const { machine } = useAutomataStore();
-  const linkedInUrl = "https://www.linkedin.com/in/shivakanth";
+  const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   return (
     <div className="flex flex-col h-screen w-screen bg-slate-50 text-slate-900 overflow-hidden font-sans select-none">
