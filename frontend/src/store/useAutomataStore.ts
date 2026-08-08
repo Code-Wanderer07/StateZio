@@ -270,6 +270,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   loadSolvedMachine: (machine, testCases = []) => {
     const flow = machineToFlowElements(machine);
     const layouted = getLayoutedElements(flow.nodes, flow.edges, 'LR');
+    const initialInput = testCases[0]?.input ?? (machine.type === 'PDA' ? 'aabb' : '01');
     const batchCases: BatchTestCase[] = testCases.map((tc, idx) => ({
       id: `sol_tc_${idx}`,
       input: tc.input,
@@ -277,14 +278,29 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
       status: 'PENDING',
     }));
 
+    let initialSimResult = null;
+    try {
+      if (machine.type === 'DFA') {
+        initialSimResult = simulateDFA(machine as DFAMachine, initialInput);
+      } else if (machine.type === 'NFA') {
+        initialSimResult = simulateNFA(machine as NFAMachine, initialInput);
+      } else if (machine.type === 'PDA') {
+        initialSimResult = simulatePDA(machine as PDAMachine, initialInput);
+      } else {
+        initialSimResult = simulateTM(machine as TMMachine, initialInput);
+      }
+    } catch (e) {
+      console.warn('Initial simulation preview error:', e);
+    }
+
     set({
       machine,
       nodes: layouted.nodes,
       edges: layouted.edges,
       activePresetId: null,
-      inputString: testCases[0]?.input ?? (machine.type === 'PDA' ? 'aabb' : '01'),
+      inputString: initialInput,
       batchTestCases: batchCases,
-      simulationResult: null,
+      simulationResult: initialSimResult,
       currentStepIndex: 0,
       isPlaying: false,
       subsetResult: null,
