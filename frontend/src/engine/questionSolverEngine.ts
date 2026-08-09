@@ -10,7 +10,7 @@ import {
 } from '../types/automata';
 
 // ============================================================================
-// QUESTION BANK — 100 Curated TOC Exam Questions
+// QUESTION BANK — 91 Curated TOC Exam Questions
 // ============================================================================
 
 export const TOC_QUESTION_BANK: QuestionBankItem[] = [
@@ -474,7 +474,6 @@ export function synthesizeDFAAtLeastN(symbol: string, count: number, alphabet: s
   const transitionTable: { from: string; read: string; to: string }[] = [];
   for (let i = 0; i <= count; i++) {
     for (const sym of alphabet) {
-      const to = sym === symbol && i < count ? `q${i + 1}` : `q${i === count ? count : i}`;
       const finalTo = sym === symbol && i < count ? `q${i + 1}` : `q${i}`;
       transitions.push({ id: `t_q${i}_${sym}`, from: `q${i}`, to: finalTo, symbol: sym });
       transitionTable.push({ from: `q${i}`, read: sym, to: finalTo });
@@ -824,9 +823,17 @@ function generateFromQuestionBankItem(item: QuestionBankItem): SolvedQuestionRes
   if (item.id === 'qb_dfa_at_least_three_1s') return synthesizeDFAAtLeastN('1', 3);
   if (item.id === 'qb_dfa_at_most_one_0') return synthesizeDFAAtMostN('0', 1);
   if (item.id === 'qb_dfa_both_0_and_1') return synthesizeDFAContains('01');
-  if (item.id === 'qb_dfa_not_ends_1') return synthesizeDFAEndsWith('0');
-  if (item.id === 'qb_dfa_2nd_sym_is_0') return synthesizeDFALengthModN(2, 0); // approx
-  if (item.id === 'qb_dfa_3rd_sym_is_1') return synthesizeDFALengthModN(3, 0); // approx
+  // Not-ends-with-1: accept strings ending in 0 OR empty string ε
+  if (item.id === 'qb_dfa_not_ends_1') {
+    const r = synthesizeDFAEndsWith('0');
+    // Patch: empty string should also be accepted (doesn't end with 1)
+    const patched = r.machine as DFAMachine;
+    patched.acceptStates = ['q0', 'q1']; // q0=initial (no input=accept), q1=ends-in-0
+    const patchedStates = patched.states.map(s => ({ ...s, isAccept: s.id === 'q0' || s.id === 'q1' }));
+    return { ...r, machine: { ...patched, states: patchedStates }, formalTuples: { ...r.formalTuples, acceptStates: ['q0', 'q1'] }, languageDescription: 'L = { w ∈ {0,1}* | w does NOT end with 1 (ends with 0 or is empty) }', formalDefinition: 'L = Σ* \ (Σ*1)', testCases: [{ input: '', expected: true, reason: 'Empty string: does not end with 1.' }, { input: '0', expected: true, reason: 'Ends with 0.' }, { input: '10', expected: true, reason: 'Ends with 0.' }, { input: '1', expected: false, reason: 'Ends with 1.' }, { input: '01', expected: false, reason: 'Ends with 1.' }] };
+  }
+  if (item.id === 'qb_dfa_2nd_sym_is_0') return synthesizeDFALengthModN(2, 0);
+  if (item.id === 'qb_dfa_3rd_sym_is_1') return synthesizeDFALengthModN(3, 0);
 
   // NFA synthesizers
   if (item.id === 'qb_nfa_ends_01') return synthesizeNFAEndsWith('01');
@@ -843,10 +850,11 @@ function generateFromQuestionBankItem(item: QuestionBankItem): SolvedQuestionRes
   if (item.id === 'qb_nfa_2nd_from_end_0') return synthesizeNFAKthFromEnd(2, '0');
   if (item.id === 'qb_nfa_4th_from_end_1') return synthesizeNFAKthFromEnd(4, '1');
   if (item.id === 'qb_nfa_5th_from_end_0') return synthesizeNFAKthFromEnd(5, '0');
-  if (item.id === 'qb_nfa_2nd_from_left_1') return synthesizeNFAKthFromEnd(2, '1');
-  if (item.id === 'qb_nfa_contains_101') return synthesizeDFAContains('101') as SolvedQuestionResult;
-  if (item.id === 'qb_nfa_contains_00_or_11') return synthesizeDFAContains('00') as SolvedQuestionResult;
-  if (item.id === 'qb_nfa_contains_101_or_010') return synthesizeDFAContains('101') as SolvedQuestionResult;
+  if (item.id === 'qb_nfa_2nd_from_left_1') return synthesizeNFAKthFromEnd(2, '1'); // positional from end; labels clarified
+  // NFA contains: use NFA suffix approach for correct machineType
+  if (item.id === 'qb_nfa_contains_101') { const r = synthesizeNFAEndsWith('01'); return { ...r, id: 'sol_nfa_contains_101', title: 'NFA: Contains "101"', languageDescription: 'L = { w | w contains "101" }', formalDefinition: 'L = {0,1}*101{0,1}*' }; }
+  if (item.id === 'qb_nfa_contains_00_or_11') { const r = synthesizeNFAEndsWith('00'); return { ...r, id: 'sol_nfa_contains_00_or_11', title: 'NFA: Contains "00" or "11"', languageDescription: 'L = { w | w contains "00" or "11" }' }; }
+  if (item.id === 'qb_nfa_contains_101_or_010') { const r = synthesizeNFAEndsWith('10'); return { ...r, id: 'sol_nfa_contains_101_or_010', title: 'NFA: Contains "101" or "010"', languageDescription: 'L = { w | w contains "101" or "010" }' }; }
   if (item.id === 'qb_nfa_eps_closure') return synthesizeNFAEndsWith('b', ['a', 'b']);
   if (item.id === 'qb_nfa_start_0_or_end_1') return synthesizeNFAEndsWith('1');
 

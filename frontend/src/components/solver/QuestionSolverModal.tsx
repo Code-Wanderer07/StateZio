@@ -398,7 +398,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
               </div>
 
               {filteredQuestions.map((item) => {
-                const isSelected = activeSolution?.id.includes(item.id.replace('qb_', ''));
+                const isSelected = activeSolution?.id === 'sol_' + item.id.replace('qb_', '') || activeSolution?.id === item.id;
                 return (
                   <div
                     key={item.id}

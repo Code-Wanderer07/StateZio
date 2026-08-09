@@ -116,7 +116,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               className="text-purple-300 hover:text-purple-200 transition-colors cursor-pointer font-semibold flex items-center gap-1"
             >
               <Sparkles className="w-3 h-3 text-purple-400" />
-              <span>AI Solver</span>
+              <span>Question Solver</span>
             </button>
             <button
               onClick={() => scrollToSection('pro-tips')}
@@ -668,7 +668,7 @@ Transition Function δ:
         </div>
       </section>
 
-      {/* AI Question Solver Showcase Section */}
+      {/* Question Solver Showcase Section */}
       <section id="solver" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-[#1E112A] via-[#161226] to-[#0f1424] border border-sky-500/30 text-white shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -679,10 +679,10 @@ Transition Function δ:
               <span>Instant Formal Synthesizer</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-              TOC AI Question Solver
+              TOC Question Solver
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Ask any Theory of Computation exam problem in plain English. StateZio automatically generates the formal 5-tuple proof, step-by-step invariant logic, comprehensive test suite, and lets you load it directly onto the interactive canvas with one click.
+              Select any Theory of Computation exam problem from our massive offline bank. StateZio automatically generates the formal 5-tuple proof, step-by-step invariant logic, comprehensive test suite, and lets you load it directly onto the interactive canvas with one click.
             </p>
 
             {/* Quick Example Chips */}

@@ -149,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           onClick={onOpenSolver}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white border border-sky-300/40 text-xs font-bold shadow-md shadow-sky-950/50 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-          title="TOC Question Solver & AI Assistant"
+          title="TOC Question Solver"
         >
           <Sparkles className="w-3.5 h-3.5 text-white" />
           <span>Question Solver</span>
