@@ -38,7 +38,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
 
             <button
               onClick={() => setIsSubsetDrawerOpen(false)}
-              className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:bg-[#3D2C2C] transition-colors cursor-pointer"
+              className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-[#3D2C2C] transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -48,7 +48,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50 dark:bg-[#161111]">
           {/* Summary Box */}
-          <div className="p-4 rounded-xl bg-[#241919] border border-sky-300 dark:border-sky-500/30 text-xs text-slate-700 dark:text-slate-300 space-y-1">
+          <div className="p-4 rounded-xl bg-sky-100 dark:bg-[#241919] border border-sky-300 dark:border-sky-500/30 text-xs text-slate-700 dark:text-slate-300 space-y-1">
             <p className="font-bold text-sky-700 dark:text-sky-300">Conversion Summary:</p>
             <p>
               Converted NFA into a DFA with <strong className="text-slate-900 dark:text-white">{convertedDfa.states.length}</strong> states and{' '}

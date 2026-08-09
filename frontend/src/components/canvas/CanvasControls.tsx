@@ -33,7 +33,7 @@ export const CanvasControls: React.FC = () => {
       {/* Auto Layout (Dagre) */}
       <button
         onClick={autoLayout}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 text-xs font-medium transition-colors shadow-xs cursor-pointer"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 text-xs font-medium transition-colors shadow-xs cursor-pointer"
         title="Automatically organize graph layout using Dagre"
       >
         <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
@@ -57,7 +57,7 @@ export const CanvasControls: React.FC = () => {
       {/* Export / Import Modal */}
       <button
         onClick={() => setIsExportImportOpen(true)}
-        className="p-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] text-sky-700 dark:text-sky-300 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
+        className="p-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-700 dark:text-sky-300 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
         title="Import / Export Machine JSON & Images"
       >
         <Download className="w-4 h-4" />

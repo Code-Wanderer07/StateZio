@@ -416,7 +416,7 @@ Transition Function δ:
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-purple-600/20 text-purple-300 border border-purple-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <MousePointer className="w-5 h-5" />
               </div>
@@ -428,7 +428,7 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <Play className="w-5 h-5" />
               </div>
@@ -440,7 +440,7 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-cyan-600/20 text-cyan-300 border border-cyan-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-cyan-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <Cpu className="w-5 h-5" />
               </div>
@@ -452,7 +452,7 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <FlaskConical className="w-5 h-5" />
               </div>
@@ -555,7 +555,7 @@ Transition Function δ:
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* DFA / NFA */}
-            <div className="bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-purple-500/40 transition-colors">
+            <div className="bg-white dark:bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-purple-500/40 transition-colors">
               <div>
                 <div className="inline-block px-2.5 py-1 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-300 font-bold text-xs mb-3">
                   DFA & NFA
@@ -592,7 +592,7 @@ Transition Function δ:
             </div>
 
             {/* PDA */}
-            <div className="bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-indigo-500/40 transition-colors">
+            <div className="bg-white dark:bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-indigo-500/40 transition-colors">
               <div>
                 <div className="inline-block px-2.5 py-1 rounded-lg bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-bold text-xs mb-3">
                   PDA
@@ -629,7 +629,7 @@ Transition Function δ:
             </div>
 
             {/* TM */}
-            <div className="bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
+            <div className="bg-white dark:bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
               <div>
                 <div className="inline-block px-2.5 py-1 rounded-lg bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-bold text-xs mb-3">
                   TM

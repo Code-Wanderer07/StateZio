@@ -148,7 +148,7 @@ export const SimulationDeck: React.FC = () => {
             onClick={resetSimulation}
             disabled={!simulationResult}
             title="Reset Simulation (Step 0)"
-            className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] disabled:opacity-30 disabled:hover:bg-sky-200 dark:bg-[#271C1C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 shadow-xs"
+            className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] disabled:opacity-30 disabled:hover:bg-sky-200 dark:bg-[#271C1C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 shadow-xs"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
@@ -157,7 +157,7 @@ export const SimulationDeck: React.FC = () => {
             onClick={stepBackward}
             disabled={!simulationResult || currentStepIndex === 0}
             title="Step Backward"
-            className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] disabled:opacity-30 disabled:hover:bg-sky-200 dark:bg-[#271C1C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 shadow-xs"
+            className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] disabled:opacity-30 disabled:hover:bg-sky-200 dark:bg-[#271C1C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 shadow-xs"
           >
             <SkipBack className="w-3.5 h-3.5" />
           </button>
@@ -191,7 +191,7 @@ export const SimulationDeck: React.FC = () => {
             onClick={stepForward}
             disabled={!simulationResult || isFinalStep}
             title="Step Forward"
-            className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] disabled:opacity-30 disabled:hover:bg-sky-200 dark:bg-[#271C1C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 shadow-xs"
+            className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] disabled:opacity-30 disabled:hover:bg-sky-200 dark:bg-[#271C1C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 shadow-xs"
           >
             <SkipForward className="w-3.5 h-3.5" />
           </button>

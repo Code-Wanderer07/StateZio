@@ -22,7 +22,7 @@ export const TheoryHelpModal: React.FC<TheoryHelpModalProps> = ({ isOpen, onClos
           </div>
           <button
             onClick={onClose}
-            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:bg-[#3D2C2C] transition-colors cursor-pointer"
+            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-[#3D2C2C] transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -31,7 +31,7 @@ export const TheoryHelpModal: React.FC<TheoryHelpModalProps> = ({ isOpen, onClos
         {/* Content */}
         <div className="p-6 space-y-6 overflow-y-auto text-xs text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-[#161111]">
           {/* Canvas Controls Guide */}
-          <div className="p-4 rounded-xl bg-[#241919] border border-sky-300 dark:border-sky-500/30 space-y-2">
+          <div className="p-4 rounded-xl bg-sky-100 dark:bg-[#241919] border border-sky-300 dark:border-sky-500/30 space-y-2">
             <div className="flex items-center gap-2 text-sky-700 dark:text-sky-300 font-bold">
               <MousePointer className="w-4 h-4 text-sky-600 dark:text-sky-400" />
               <span>How to Use the Interactive Canvas</span>

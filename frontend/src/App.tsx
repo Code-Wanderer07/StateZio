@@ -87,7 +87,7 @@ export const App: React.FC = () => {
           {machine.type === 'TM' && <TapeVisualizer />}
 
           {/* Inspector Tabs (Trace / Batch / Tuples) */}
-          <div className="flex items-center gap-1 p-1 bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0 shadow-inner">
+          <div className="flex items-center gap-1 p-1 bg-sky-100 dark:bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0 shadow-inner">
             <button
               onClick={() => setActiveInspectorTab('trace')}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${

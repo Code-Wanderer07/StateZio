@@ -32,7 +32,7 @@ export const PresetSidebar: React.FC = () => {
         </div>
 
         {/* Filter Pills */}
-        <div className="grid grid-cols-5 gap-1 p-1 bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30">
+        <div className="grid grid-cols-5 gap-1 p-1 bg-sky-100 dark:bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30">
           {(['All', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((type) => (
             <button
               key={type}

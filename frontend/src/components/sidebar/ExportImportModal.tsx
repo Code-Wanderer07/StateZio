@@ -63,7 +63,7 @@ export const ExportImportModal: React.FC = () => {
           </div>
           <button
             onClick={() => setIsExportImportOpen(false)}
-            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:bg-[#3D2C2C] transition-colors cursor-pointer"
+            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-[#3D2C2C] transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -80,7 +80,7 @@ export const ExportImportModal: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 text-xs border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 text-xs border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
                 >
                   {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                   <span>{copied ? 'Copied' : 'Copy JSON'}</span>

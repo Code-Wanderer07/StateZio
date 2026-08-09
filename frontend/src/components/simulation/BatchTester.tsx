@@ -32,7 +32,7 @@ export const BatchTester: React.FC = () => {
   const failCount = batchTestCases.filter((tc) => tc.status === 'FAIL').length;
 
   return (
-    <div className="flex flex-col bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
+    <div className="flex flex-col bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-[#0d1017]">
         <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export const BatchTester: React.FC = () => {
           value={newString}
           onChange={(e) => setNewString(e.target.value)}
           placeholder="New test string (e.g. 1010)..."
-          className="flex-1 bg-[#121622] border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
+          className="flex-1 bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
         />
 
         <div className="flex items-center gap-1 text-xs">

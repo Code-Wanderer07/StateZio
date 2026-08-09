@@ -106,7 +106,7 @@ export const TransitionModal: React.FC = () => {
           </div>
           <button
             onClick={closeTransitionModal}
-            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-200 rounded-lg hover:bg-sky-300 dark:bg-[#3D2C2C] transition-colors"
+            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-200 rounded-lg hover:bg-sky-300 dark:hover:bg-[#3D2C2C] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -316,7 +316,7 @@ export const TransitionModal: React.FC = () => {
                         className={`flex-1 py-1.5 text-xs font-mono font-bold transition-colors ${
                           direction === dir
                             ? 'bg-sky-500 text-white dark:text-[#1C1313]'
-                            : 'bg-sky-200 dark:bg-[#271C1C] text-slate-700 dark:text-slate-300 hover:bg-sky-300 dark:bg-[#3D2C2C]'
+                            : 'bg-sky-200 dark:bg-[#271C1C] text-slate-700 dark:text-slate-300 hover:bg-sky-300 dark:hover:bg-[#3D2C2C]'
                         }`}
                       >
                         {dir}

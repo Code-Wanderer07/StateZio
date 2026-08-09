@@ -26,6 +26,7 @@ export const AutomataCanvas: React.FC = () => {
     onConnect,
     setSelectedNodeId,
     setSelectedEdgeId,
+    theme,
   } = useAutomataStore();
 
   const nodeTypes = useMemo(() => ({
@@ -101,7 +102,7 @@ export const AutomataCanvas: React.FC = () => {
             if (node.data?.isInitial) return '#34D399'; // Emerald Green
             return '#64748B'; // Muted Slate
           }}
-          maskColor="rgba(28, 19, 19, 0.8)"
+          maskColor={theme === 'dark' ? 'rgba(28, 19, 19, 0.8)' : 'rgba(248, 250, 252, 0.8)'}
         />
       </ReactFlow>
 
