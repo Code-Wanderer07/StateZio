@@ -62,7 +62,7 @@ export const BatchTester: React.FC = () => {
       </div>
 
       {/* Add Test Case Form */}
-      <form onSubmit={handleAdd} className="p-3 border-b border-slate-300 dark:border-white/10 bg-[#0b0e14] flex items-center gap-2">
+      <form onSubmit={handleAdd} className="p-3 border-b border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#0b0e14] flex items-center gap-2">
         <input
           type="text"
           value={newString}
@@ -105,7 +105,7 @@ export const BatchTester: React.FC = () => {
           batchTestCases.map((tc) => (
             <div
               key={tc.id}
-              className="px-4 py-2.5 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-200 dark:bg-white/5 transition-colors text-xs font-mono"
+              className="px-4 py-2.5 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-xs font-mono"
             >
               <div className="flex items-center gap-3">
                 {tc.status === 'PASS' && (
@@ -124,7 +124,7 @@ export const BatchTester: React.FC = () => {
                     runSimulation(tc.input);
                   }}
                   title="Click to simulate this string"
-                  className="font-bold text-slate-200 hover:text-purple-300 transition-colors text-left cursor-pointer"
+                  className="font-bold text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-300 transition-colors text-left cursor-pointer"
                 >
                   "{tc.input}"
                 </button>
