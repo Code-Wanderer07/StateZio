@@ -3,16 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --bg-main: #1c1313;
-    --card-bg: #271c1c;
-    --border-color: #3d2c2c;
-    --accent-light-blue: #38bdf8;
-  }
-
   body {
-    background-color: #1c1313;
-    color: #f1f5f9;
+    @apply bg-slate-50 text-slate-900 dark:bg-[#1c1313] dark:text-[#f1f5f9];
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
@@ -29,59 +21,42 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1c1313;
+  @apply bg-slate-100 dark:bg-[#1c1313];
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3d2c2c;
+  @apply bg-slate-300 dark:bg-[#3d2c2c];
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #38bdf8;
+  @apply bg-sky-400 dark:bg-[#38bdf8];
 }
 
-/* React Flow customizations for #1C1313 and Light Blue theme */
+/* React Flow customizations */
 .react-flow__background {
-  background-color: #1c1313 !important;
+  @apply bg-sky-50 dark:bg-[#1c1313] !important;
 }
 
 .react-flow__controls {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(56, 189, 248, 0.3) !important;
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  background: #1c1313 !important;
+  @apply shadow-lg border border-slate-200 dark:border-sky-400/30 rounded-xl overflow-hidden bg-white dark:bg-[#1c1313] !important;
 }
 
 .react-flow__controls-button {
-  background: #1c1313 !important;
-  border-bottom: 1px solid #3d2c2c !important;
-  color: #94a3b8 !important;
-  fill: #94a3b8 !important;
-  transition: all 0.2s ease !important;
+  @apply bg-white dark:bg-[#1c1313] border-b border-slate-100 dark:border-[#3d2c2c] text-slate-500 dark:text-slate-400 fill-slate-500 dark:fill-slate-400 transition-all !important;
 }
 
 .react-flow__controls-button:hover {
-  background: #271c1c !important;
-  color: #38bdf8 !important;
-  fill: #38bdf8 !important;
+  @apply bg-slate-50 dark:bg-[#271c1c] text-sky-500 dark:text-[#38bdf8] fill-sky-500 dark:fill-[#38bdf8] !important;
 }
 
 .react-flow__minimap {
-  background: #1c1313 !important;
-  border: 1px solid rgba(56, 189, 248, 0.3) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+  @apply bg-white dark:bg-[#1c1313] border border-slate-200 dark:border-sky-400/30 rounded-2xl shadow-lg !important;
 }
 
 /* Minimalist dark panels */
 .glass-panel-dark {
-  background: rgba(28, 19, 19, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  @apply bg-white/90 dark:bg-[#1c1313]/90 backdrop-blur-md border border-slate-200 dark:border-sky-400/25 shadow-lg;
 }
 
 /* Glow effects matching Light Blue & #1C1313 theme */

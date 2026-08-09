@@ -33,12 +33,12 @@ export const TapeVisualizer: React.FC = () => {
   }, [headIndex, currentStepIndex]);
 
   return (
-    <div className="flex flex-col bg-[#121622] border border-white/10 rounded-2xl p-4 shadow-xl text-slate-100">
+    <div className="flex flex-col bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl p-4 shadow-xl text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-white/10">
+      <div className="flex items-center justify-between pb-3 border-b border-slate-300 dark:border-white/10">
         <div className="flex items-center gap-2">
           <Disc3 className="w-4 h-4 text-cyan-400" />
-          <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+          <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Turing Machine Tape Visualizer
           </h4>
         </div>
@@ -46,7 +46,7 @@ export const TapeVisualizer: React.FC = () => {
           <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold">
             Head Pos: [{headIndex}]
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/10">
+          <span className="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/10">
             Blank: '{blank}'
           </span>
         </div>
@@ -59,7 +59,7 @@ export const TapeVisualizer: React.FC = () => {
       </div>
 
       {/* Horizontal Tape Scroll Strip */}
-      <div className="relative my-2 py-3 px-2 bg-[#0d1017] border border-white/10 rounded-xl overflow-x-auto shadow-inner">
+      <div className="relative my-2 py-3 px-2 bg-[#0d1017] border border-slate-300 dark:border-white/10 rounded-xl overflow-x-auto shadow-inner">
         <div
           ref={tapeScrollRef}
           className="flex items-center justify-start gap-2 min-w-max px-8"
@@ -84,8 +84,8 @@ export const TapeVisualizer: React.FC = () => {
                 <div
                   className={`w-11 h-12 rounded-xl flex items-center justify-center font-mono text-sm font-bold transition-all duration-300 select-none shadow-md ${
                     isHead
-                      ? 'bg-cyan-500/25 border-2 border-cyan-400 text-white shadow-cyan-950/60 scale-110 ring-2 ring-cyan-400/30'
-                      : 'bg-[#161b26] border border-white/10 text-slate-300 hover:border-white/20'
+                      ? 'bg-cyan-500/25 border-2 border-cyan-400 text-slate-900 dark:text-white shadow-cyan-950/60 scale-110 ring-2 ring-cyan-400/30'
+                      : 'bg-[#161b26] border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:border-white/20'
                   }`}
                 >
                   {sym === blank ? (
@@ -101,9 +101,9 @@ export const TapeVisualizer: React.FC = () => {
       </div>
 
       {/* Footer Info */}
-      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+      <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 pt-1">
         <span>Infinite dynamic bidirectional tape</span>
-        <span className="font-mono text-slate-300">
+        <span className="font-mono text-slate-700 dark:text-slate-300">
           Current Symbol: <strong className="text-cyan-300 font-bold">'{tape[headIndex] || blank}'</strong>
         </span>
       </div>

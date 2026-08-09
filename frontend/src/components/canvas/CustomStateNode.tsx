@@ -29,20 +29,20 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
   // Node Border & Background resolution according to #1C1313 and Light Blue Spec
   const getNodeStyling = () => {
     if (isActive) {
-      return 'bg-sky-400 border-2 border-sky-200 shadow-[0_0_25px_rgba(56,189,248,0.9)] ring-4 ring-sky-300/60 text-[#1C1313] scale-105';
+      return 'bg-sky-400 border-2 border-sky-200 shadow-[0_0_25px_rgba(56,189,248,0.9)] ring-4 ring-sky-300/60 text-white dark:text-[#1C1313] scale-105';
     }
     if (selected) {
-      if (isAccept) return 'bg-[#1C1313] border-2 border-indigo-400 text-sky-100 ring-2 ring-indigo-400/60 shadow-lg';
-      if (isInitial) return 'bg-[#1C1313] border-2 border-emerald-400 text-sky-100 ring-2 ring-emerald-400/60 shadow-lg';
-      return 'bg-[#1C1313] border-2 border-sky-400 text-sky-100 ring-2 ring-sky-400/50 shadow-lg';
+      if (isAccept) return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-indigo-400 text-sky-100 ring-2 ring-indigo-400/60 shadow-lg';
+      if (isInitial) return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-emerald-400 text-sky-100 ring-2 ring-emerald-400/60 shadow-lg';
+      return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-sky-400 text-sky-100 ring-2 ring-sky-400/50 shadow-lg';
     }
     if (isAccept) {
-      return 'bg-[#1C1313] border-2 border-indigo-400 text-slate-100 hover:border-indigo-300 shadow-md';
+      return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-indigo-400 text-slate-900 dark:text-slate-100 hover:border-indigo-300 shadow-md';
     }
     if (isInitial) {
-      return 'bg-[#1C1313] border-2 border-emerald-400 text-slate-100 hover:border-emerald-300 shadow-md';
+      return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-emerald-400 text-slate-900 dark:text-slate-100 hover:border-emerald-300 shadow-md';
     }
-    return 'bg-[#1C1313] border-2 border-sky-400/80 text-sky-100 hover:border-sky-300 shadow-md';
+    return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-sky-400/80 text-sky-100 hover:border-sky-300 shadow-md';
   };
 
   return (
@@ -92,7 +92,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
               onChange={(e) => setLabelValue(e.target.value)}
               onBlur={handleRenameSubmit}
               autoFocus
-              className="w-12 bg-[#1C1313] text-sky-100 text-xs font-mono text-center border border-sky-400 rounded px-1 py-0.5 outline-none shadow-xs"
+              className="w-12 bg-sky-50 dark:bg-[#1C1313] text-sky-100 text-xs font-mono text-center border border-sky-400 rounded px-1 py-0.5 outline-none shadow-xs"
             />
           </form>
         ) : (
@@ -100,7 +100,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             onDoubleClick={() => setIsEditing(true)}
             title="Double-click to rename"
             className={`z-10 font-mono font-bold tracking-wide text-xs truncate max-w-[50px] ${
-              isActive ? 'text-[#1C1313] font-extrabold' : 'text-sky-100'
+              isActive ? 'text-white dark:text-[#1C1313] font-extrabold' : 'text-sky-100'
             }`}
           >
             {(data.label as string) || id}
@@ -109,7 +109,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
       </div>
 
       {/* Floating Action Menu on Node Hover / Selection */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-[#1C1313] border border-sky-500/30 rounded-full px-2 py-0.5 shadow-2xl opacity-0 group-hover:opacity-100 hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-auto">
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-full px-2 py-0.5 shadow-2xl opacity-0 group-hover:opacity-100 hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-auto">
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -117,7 +117,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
           }}
           title={isInitial ? 'Remove Start State' : 'Set as Start State (Emerald)'}
           className={`p-1 rounded-full text-xs transition-colors ${
-            isInitial ? 'text-emerald-400 hover:text-emerald-300' : 'text-slate-400 hover:text-emerald-400'
+            isInitial ? 'text-emerald-400 hover:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:text-emerald-400'
           }`}
         >
           <Play className="w-3 h-3 fill-current" />
@@ -130,7 +130,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
           }}
           title={isAccept ? 'Remove Accept State' : 'Set as Accept State (Indigo Double Circle)'}
           className={`p-1 rounded-full text-xs transition-colors ${
-            isAccept ? 'text-indigo-400 hover:text-indigo-300' : 'text-slate-400 hover:text-indigo-400'
+            isAccept ? 'text-indigo-400 hover:text-indigo-300' : 'text-slate-600 dark:text-slate-400 hover:text-indigo-400'
           }`}
         >
           <CheckCircle2 className="w-3 h-3" />
@@ -142,7 +142,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             setIsEditing(true);
           }}
           title="Rename State"
-          className="p-1 rounded-full text-slate-400 hover:text-sky-400 transition-colors"
+          className="p-1 rounded-full text-slate-600 dark:text-slate-400 hover:text-sky-400 transition-colors"
         >
           <Edit3 className="w-3 h-3" />
         </button>
@@ -153,7 +153,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             deleteState(id);
           }}
           title="Delete State"
-          className="p-1 rounded-full text-slate-400 hover:text-rose-400 transition-colors"
+          className="p-1 rounded-full text-slate-600 dark:text-slate-400 hover:text-rose-400 transition-colors"
         >
           <Trash2 className="w-3 h-3" />
         </button>

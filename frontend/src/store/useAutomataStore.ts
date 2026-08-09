@@ -57,6 +57,9 @@ interface AutomataStateStore {
   subsetResult: SubsetConstructionResult | null;
   isSubsetDrawerOpen: boolean;
 
+  // Theme
+  theme: 'light' | 'dark';
+
   // Modals & UI
   isExportImportOpen: boolean;
   isTransitionModalOpen: boolean;
@@ -72,6 +75,7 @@ interface AutomataStateStore {
   setInputString: (input: string) => void;
   setPlaybackSpeed: (speed: number) => void;
   setIsPlaying: (playing: boolean) => void;
+  toggleTheme: () => void;
 
   // Graph Manipulations
   onNodesChange: (changes: NodeChange[]) => void;
@@ -151,6 +155,8 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   transitionModalSourceId: null,
   transitionModalTargetId: null,
   editingTransitionId: null,
+
+  theme: 'dark', // Default theme
 
   setMachine: (machine) => {
     const flow = machineToFlowElements(machine);
@@ -686,4 +692,15 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   setIsExportImportOpen: (isExportImportOpen) => set({ isExportImportOpen }),
   setSelectedNodeId: (selectedNodeId) => set({ selectedNodeId }),
   setSelectedEdgeId: (selectedEdgeId) => set({ selectedEdgeId }),
+
+  toggleTheme: () => {
+    const { theme } = get();
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    set({ theme: newTheme });
+  },
 }));

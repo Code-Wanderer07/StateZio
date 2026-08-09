@@ -32,12 +32,12 @@ export const BatchTester: React.FC = () => {
   const failCount = batchTestCases.filter((tc) => tc.status === 'FAIL').length;
 
   return (
-    <div className="flex flex-col bg-[#121622] border border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-100">
+    <div className="flex flex-col bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-[#0d1017]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-300 dark:border-white/10 bg-[#0d1017]">
         <div className="flex items-center gap-2">
           <FlaskConical className="w-4 h-4 text-purple-400" />
-          <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+          <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Batch Test Suite
           </h4>
         </div>
@@ -53,7 +53,7 @@ export const BatchTester: React.FC = () => {
 
           <button
             onClick={runBatchTests}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-xs font-semibold shadow-md shadow-purple-950/40 border border-purple-400/30 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-slate-900 dark:text-white rounded-xl text-xs font-semibold shadow-md shadow-purple-950/40 border border-purple-400/30 transition-all cursor-pointer"
           >
             <Play className="w-3 h-3 fill-current" />
             <span>Run All</span>
@@ -62,17 +62,17 @@ export const BatchTester: React.FC = () => {
       </div>
 
       {/* Add Test Case Form */}
-      <form onSubmit={handleAdd} className="p-3 border-b border-white/10 bg-[#0b0e14] flex items-center gap-2">
+      <form onSubmit={handleAdd} className="p-3 border-b border-slate-300 dark:border-white/10 bg-[#0b0e14] flex items-center gap-2">
         <input
           type="text"
           value={newString}
           onChange={(e) => setNewString(e.target.value)}
           placeholder="New test string (e.g. 1010)..."
-          className="flex-1 bg-[#121622] border border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 outline-none"
+          className="flex-1 bg-[#121622] border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
         />
 
         <div className="flex items-center gap-1 text-xs">
-          <label className="text-[11px] text-slate-400 font-medium">Expected:</label>
+          <label className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">Expected:</label>
           <button
             type="button"
             onClick={() => setNewExpected(!newExpected)}
@@ -88,7 +88,7 @@ export const BatchTester: React.FC = () => {
 
         <button
           type="submit"
-          className="p-1.5 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white rounded-xl border border-white/10 transition-colors shadow-xs cursor-pointer"
+          className="p-1.5 bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white rounded-xl border border-slate-300 dark:border-white/10 transition-colors shadow-xs cursor-pointer"
           title="Add Test Case"
         >
           <Plus className="w-4 h-4" />
@@ -105,7 +105,7 @@ export const BatchTester: React.FC = () => {
           batchTestCases.map((tc) => (
             <div
               key={tc.id}
-              className="px-4 py-2.5 flex items-center justify-between hover:bg-white/5 transition-colors text-xs font-mono"
+              className="px-4 py-2.5 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-200 dark:bg-white/5 transition-colors text-xs font-mono"
             >
               <div className="flex items-center gap-3">
                 {tc.status === 'PASS' && (
@@ -131,12 +131,12 @@ export const BatchTester: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-slate-600 dark:text-slate-400">
                   Expected: <strong className={tc.expected ? 'text-emerald-400' : 'text-rose-400'}>{tc.expected ? 'ACCEPT' : 'REJECT'}</strong>
                 </span>
 
                 {tc.actual !== undefined && (
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-slate-600 dark:text-slate-400">
                     Actual: <strong className={tc.actual ? 'text-emerald-400' : 'text-rose-400'}>{tc.actual ? 'ACCEPT' : 'REJECT'}</strong>
                   </span>
                 )}
