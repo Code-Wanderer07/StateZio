@@ -521,13 +521,13 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   clearCanvas: () => {
     const { machine } = get();
-    const clearedMachine: AutomataMachine = {
+    const clearedMachine = {
       ...machine,
       states: [],
       startState: '',
       acceptStates: [],
-      transitions: [] as never,
-    };
+      transitions: [],
+    } as AutomataMachine;
     set({
       machine: clearedMachine,
       nodes: [],
@@ -543,14 +543,24 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     const { machine } = get();
     let result: SimulationResult;
 
-    if (machine.type === 'DFA') {
-      result = simulateDFA(machine as DFAMachine, input);
-    } else if (machine.type === 'NFA') {
-      result = simulateNFA(machine as NFAMachine, input);
-    } else if (machine.type === 'PDA') {
-      result = simulatePDA(machine as PDAMachine, input);
-    } else {
-      result = simulateTM(machine as TMMachine, input);
+    try {
+      if (machine.type === 'DFA') {
+        result = simulateDFA(machine as DFAMachine, input);
+      } else if (machine.type === 'NFA') {
+        result = simulateNFA(machine as NFAMachine, input);
+      } else if (machine.type === 'PDA') {
+        result = simulatePDA(machine as PDAMachine, input);
+      } else {
+        result = simulateTM(machine as TMMachine, input);
+      }
+    } catch (err) {
+      result = {
+        accepted: false,
+        finalStatus: 'REJECTED' as const,
+        traces: [],
+        totalSteps: 0,
+        message: err instanceof Error ? err.message : 'Simulation error. Check machine definition.',
+      };
     }
 
     set({
@@ -606,10 +616,20 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     const { machine, batchTestCases } = get();
     const updated = batchTestCases.map((tc) => {
       let res: SimulationResult;
-      if (machine.type === 'DFA') res = simulateDFA(machine as DFAMachine, tc.input);
-      else if (machine.type === 'NFA') res = simulateNFA(machine as NFAMachine, tc.input);
-      else if (machine.type === 'PDA') res = simulatePDA(machine as PDAMachine, tc.input);
-      else res = simulateTM(machine as TMMachine, tc.input);
+      try {
+        if (machine.type === 'DFA') res = simulateDFA(machine as DFAMachine, tc.input);
+        else if (machine.type === 'NFA') res = simulateNFA(machine as NFAMachine, tc.input);
+        else if (machine.type === 'PDA') res = simulatePDA(machine as PDAMachine, tc.input);
+        else res = simulateTM(machine as TMMachine, tc.input);
+      } catch (err) {
+        res = {
+          accepted: false,
+          finalStatus: 'REJECTED' as const,
+          traces: [],
+          totalSteps: 0,
+          message: err instanceof Error ? err.message : 'Simulation error.',
+        };
+      }
 
       const pass = res.accepted === tc.expected;
       return {

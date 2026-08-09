@@ -127,10 +127,16 @@ export const SimulationDeck: React.FC = () => {
 
         <button
           onClick={() => runSimulation()}
-          className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 active:scale-95 text-white border border-sky-300/40 rounded-xl text-xs font-bold shadow-lg shadow-sky-950/40 transition-all shrink-0 cursor-pointer"
+          disabled={isPlaying}
+          aria-label="Run simulation"
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold shadow-lg transition-all shrink-0 border ${
+            isPlaying
+              ? 'bg-sky-900/40 border-sky-700/30 text-sky-400/50 cursor-not-allowed'
+              : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 active:scale-95 text-white border-sky-300/40 shadow-sky-950/40 cursor-pointer'
+          }`}
         >
-          <Sparkles className="w-3.5 h-3.5 text-white" />
-          <span>Simulate</span>
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>{isPlaying ? 'Running…' : 'Simulate'}</span>
         </button>
       </div>
 

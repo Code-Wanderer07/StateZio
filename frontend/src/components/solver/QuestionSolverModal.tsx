@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import {
   X,
   Search,
@@ -110,6 +110,15 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
     return solveTOCQuestion('qb_dfa_ends_01');
   });
 
+  // Debounced search to avoid filtering 800 items on every keystroke
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => setDebouncedSearch(searchQuery), 200);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [searchQuery]);
+
   const { loadSolvedMachine, setMachineType } = useAutomataStore();
 
   // Pattern detection — same regexes as solver engine so error is accurate
@@ -145,11 +154,12 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
     return TOC_QUESTION_BANK.filter((item) => {
       const matchCat = selectedCategory === 'ALL' || item.category === selectedCategory;
       const matchSearch =
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.question.toLowerCase().includes(searchQuery.toLowerCase());
+        !debouncedSearch ||
+        item.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        item.question.toLowerCase().includes(debouncedSearch.toLowerCase());
       return matchCat && matchSearch;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, debouncedSearch]);
 
   if (!isOpen) return null;
 
@@ -386,6 +396,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Filter..."
+                  aria-label="Filter questions"
+                  role="searchbox"
                   className="w-full pl-6 pr-2 py-1.5 bg-[#140D0D] border border-white/10 focus:border-sky-500 rounded-lg text-[11px] text-white placeholder-slate-600 outline-none"
                 />
               </div>
@@ -400,10 +412,12 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
               {filteredQuestions.map((item) => {
                 const isSelected = activeSolution?.id === 'sol_' + item.id.replace('qb_', '') || activeSolution?.id === item.id;
                 return (
-                  <div
+                  <button
                     key={item.id}
                     onClick={() => handleSelectQuestion(item)}
-                    className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                    aria-label={`Load question: ${item.title}`}
+                    aria-pressed={isSelected}
+                    className={`w-full text-left p-3 rounded-xl border cursor-pointer transition-all ${
                       isSelected
                         ? 'bg-[#271C1C] border-sky-400 shadow-md ring-1 ring-sky-400/60'
                         : 'bg-[#1C1313] border-sky-500/30 hover:border-sky-400 hover:bg-[#221717] shadow-xs'
@@ -434,7 +448,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                         Solve <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>
-                  </div>
+                  </button>
                 );
               })}
 

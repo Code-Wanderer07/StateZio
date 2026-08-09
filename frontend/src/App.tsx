@@ -48,7 +48,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-[#0e0a0a] text-slate-100 overflow-hidden font-sans select-none">
+    <div className="flex flex-col h-[100dvh] w-screen bg-[#0e0a0a] text-slate-100 overflow-hidden font-sans select-none">
       {/* Top Navigation */}
       <Navbar
         isSidebarOpen={isSidebarOpen}
@@ -59,7 +59,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Workspace Area */}
-      <div className="flex flex-1 h-[calc(100vh-3.5rem)] overflow-hidden">
+      <div className="flex flex-1 h-[calc(100dvh-3.5rem)] overflow-hidden">
         {/* Preset Sidebar (collapsible) */}
         {isSidebarOpen && <PresetSidebar />}
 
@@ -69,7 +69,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className="w-[430px] max-w-[450px] h-full bg-[#161111] border-l border-sky-500/20 flex flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
+        <div className="hidden md:flex w-[430px] max-w-[450px] h-full bg-[#161111] border-l border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
           {/* Main Simulation Deck (with glowing engine chassis) */}
           <SimulationDeck />
 
