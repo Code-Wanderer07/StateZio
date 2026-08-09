@@ -35,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   return (
-    <header className="h-14 bg-[#161111]/95 border-b border-sky-500/20 px-4 flex items-center justify-between z-30 shadow-md backdrop-blur-md text-slate-100 shrink-0 select-none">
+    <header className="min-h-[3.5rem] bg-[#161111]/95 border-b border-sky-500/20 px-2 sm:px-4 py-2 sm:py-0 flex items-center justify-between gap-2 z-30 shadow-md backdrop-blur-md text-slate-100 shrink-0 select-none flex-wrap sm:flex-nowrap">
       {/* Brand & Logo (Clickable to return to Intro/Home) */}
       <div className="flex items-center gap-3">
         <button
@@ -77,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Center: Automata Type Switcher Tabs (DFA, NFA, PDA, TM) */}
-      <div className="flex items-center gap-1 p-1 bg-[#241919] rounded-xl border border-sky-500/30 shadow-inner">
+      <div className="flex items-center gap-1 p-1 bg-[#241919] rounded-xl border border-sky-500/30 shadow-inner overflow-x-auto max-w-full hide-scrollbar">
         <button
           onClick={() => handleModuleClick('DFA')}
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
@@ -148,24 +148,24 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Question Solver Button */}
         <button
           onClick={onOpenSolver}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white border border-sky-300/40 text-xs font-bold shadow-md shadow-sky-950/50 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white border border-sky-300/40 text-xs font-bold shadow-md shadow-sky-950/50 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           title="TOC Question Solver"
         >
           <Sparkles className="w-3.5 h-3.5 text-white" />
-          <span>Question Solver</span>
+          <span className="hidden sm:inline">Question Solver</span>
         </button>
 
         {/* Presets Toggle Button */}
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-colors cursor-pointer ${
+          className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl border text-xs font-semibold transition-colors cursor-pointer ${
             isSidebarOpen
               ? 'bg-sky-500/20 border-sky-400 text-sky-300 shadow-xs'
               : 'bg-[#271C1C] border-sky-500/30 text-slate-300 hover:text-white hover:bg-[#3D2C2C]'
           }`}
         >
           <FolderOpen className="w-3.5 h-3.5 text-sky-400" />
-          <span>Presets</span>
+          <span className="hidden sm:inline">Presets</span>
         </button>
 
         {/* Theory Help Button */}
