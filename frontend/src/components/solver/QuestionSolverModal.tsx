@@ -1,36 +1,24 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   X,
-  Sparkles,
   Search,
   BookOpen,
-  CheckCircle2,
-  XCircle,
   Play,
-  Layers,
-  Disc3,
   Lightbulb,
   ArrowRight,
   ShieldCheck,
   Zap,
-  Bot,
-  Key,
-  ExternalLink,
-  Loader2,
   AlertTriangle,
+  ChevronDown,
+  ChevronRight,
+  Info,
+  Cpu,
+  FlaskConical,
 } from 'lucide-react';
 import {
   TOC_QUESTION_BANK,
   solveTOCQuestion,
 } from '../../engine/questionSolverEngine';
-import {
-  solveQuestionWithGemini,
-  getStoredGeminiApiKey,
-  saveStoredGeminiApiKey,
-  getRemainingUses,
-  isClientRateLimited,
-  getResetTimeString,
-} from '../../services/geminiSolverService';
 import {
   SolvedQuestionResult,
   QuestionBankItem,
@@ -43,6 +31,70 @@ interface QuestionSolverModalProps {
   onClose: () => void;
 }
 
+// ── Supported patterns guide data ────────────────────────────────────────────
+const PATTERN_GUIDE = [
+  {
+    category: 'DFA Patterns',
+    color: 'text-sky-400',
+    border: 'border-sky-500/30',
+    bg: 'bg-sky-500/10',
+    icon: '🔵',
+    patterns: [
+      { label: 'Ends with a pattern', example: 'Design a DFA that accepts strings ending with 01' },
+      { label: 'Starts with a pattern', example: 'Design a DFA that accepts strings starting with 10' },
+      { label: 'Contains a substring', example: 'Construct a DFA containing the substring 101' },
+      { label: 'Does NOT contain', example: 'DFA for strings that do not contain 00' },
+      { label: 'Even / Odd length', example: 'DFA accepting strings of even length' },
+      { label: 'Divisible by N (binary)', example: 'DFA accepting binary numbers divisible by 3' },
+      { label: 'Parity of 0s and 1s', example: 'DFA for even number of 0s and odd number of 1s' },
+      { label: 'Exactly N occurrences', example: 'DFA for strings with exactly two 0s' },
+      { label: 'At least N occurrences', example: 'DFA for strings with at least three 1s' },
+      { label: 'At most N occurrences', example: 'DFA for strings with at most one 0' },
+      { label: 'No consecutive same symbol', example: 'DFA where no two consecutive 0s appear' },
+    ],
+  },
+  {
+    category: 'NFA Patterns',
+    color: 'text-teal-400',
+    border: 'border-teal-500/30',
+    bg: 'bg-teal-500/10',
+    icon: '🟢',
+    patterns: [
+      { label: 'Kth symbol from end', example: 'NFA where 3rd symbol from the end is 1' },
+      { label: 'Ends with pattern (NFA)', example: 'NFA accepting strings ending with 01' },
+      { label: 'Kth from end is 0', example: 'NFA where 2nd symbol from end is 0' },
+      { label: '5th from end', example: 'NFA where 5th symbol from end is 1' },
+    ],
+  },
+  {
+    category: 'PDA Patterns',
+    color: 'text-amber-400',
+    border: 'border-amber-500/30',
+    bg: 'bg-amber-500/10',
+    icon: '🟡',
+    patterns: [
+      { label: 'Equal counts (aⁿbⁿ)', example: 'Construct a PDA for the language a^n b^n' },
+      { label: 'Double counts (aⁿb²ⁿ)', example: 'PDA for strings of the form a^n b^2n' },
+      { label: 'Palindromes', example: 'Design a PDA for palindromes over {a,b}' },
+      { label: 'Balanced brackets', example: 'PDA for balanced parentheses' },
+      { label: 'Equal a and b counts', example: 'PDA where number of a equals number of b' },
+    ],
+  },
+  {
+    category: 'Turing Machine Patterns',
+    color: 'text-purple-400',
+    border: 'border-purple-500/30',
+    bg: 'bg-purple-500/10',
+    icon: '🟣',
+    patterns: [
+      { label: 'Binary increment', example: 'Design a Turing Machine for binary increment x+1' },
+      { label: "1's complement", example: "Turing Machine for 1's complement of binary string" },
+      { label: 'aⁿbⁿcⁿ recognizer', example: 'Turing Machine for the language a^n b^n c^n' },
+      { label: '0ⁿ1ⁿ recognizer', example: 'TM accepting strings 0^n 1^n' },
+    ],
+  },
+];
+
 export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   isOpen,
   onClose,
@@ -50,15 +102,9 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<QuestionCategory | 'ALL'>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [customPrompt, setCustomPrompt] = useState('');
-  const [engineMode, setEngineMode] = useState<'LOCAL' | 'GEMINI'>('LOCAL');
-  const [apiKeyInput, setApiKeyInput] = useState('');
-  const [showKeyModal, setShowKeyModal] = useState(false);
-  const [hasApiKey, setHasApiKey] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [loadingStep, setLoadingStep] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [remainingUses, setRemainingUses] = useState(() => getRemainingUses());
-  const [clientLimited, setClientLimited] = useState(() => isClientRateLimited());
+  const [showGuide, setShowGuide] = useState(false);
+  const [expandedGuideCategory, setExpandedGuideCategory] = useState<string | null>('DFA Patterns');
 
   const [activeSolution, setActiveSolution] = useState<SolvedQuestionResult | null>(() => {
     return solveTOCQuestion('qb_dfa_ends_01');
@@ -66,19 +112,38 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
   const { loadSolvedMachine, setMachineType } = useAutomataStore();
 
-  useEffect(() => {
-    const existing = getStoredGeminiApiKey();
-    setHasApiKey(Boolean(existing));
-    if (existing) {
-      setApiKeyInput(existing);
-    }
-  }, [isOpen]);
+  // Pattern detection — same regexes as solver engine so error is accurate
+  const hasKnownPattern = (prompt: string): boolean => {
+    const query = prompt.trim().toLowerCase();
+    return (
+      /(?:starts?\s+(?:with|in)|begins?\s+with|starting\s+with)\s+["']?([01ab]+)["']?/i.test(query) ||
+      /(?:not\s+contain(?:ing)?|does\s+not\s+contain|without)\s+["']?([01ab]+)["']?/i.test(query) ||
+      /(?:ends?\s+(?:with|in)|ending\s+(?:with|in))\s+["']?([01ab]+)["']?/i.test(query) ||
+      /(?:divisible\s+by|mod(?:ulo)?|multiple\s+of)\s+(\d+)/i.test(query) ||
+      /(?:contains?|substring|having)\s+["']?([01ab]+)["']?/i.test(query) ||
+      /(?:exactly|at\s+least|at\s+most)\s+\d+/i.test(query) ||
+      /(?:even|odd)\s+(?:length|number|count)/i.test(query) ||
+      /length\s+(?:divisible|mod|modulo)/i.test(query) ||
+      /no\s+(?:two\s+)?consecutive/i.test(query) ||
+      /(?:\d+)(?:st|nd|rd|th)\s+(?:symbol|char|character)\s+from\s+(?:the\s+)?end/i.test(query) ||
+      query.includes('even') || query.includes('odd') ||
+      query.includes('pda') || query.includes('pushdown') ||
+      query.includes('palindrome') || query.includes('balanced') ||
+      query.includes('tm') || query.includes('turing') ||
+      query.includes('increment') || query.includes('complement') ||
+      query.includes('a^n') || query.includes('an bn') || query.includes('0^n') ||
+      TOC_QUESTION_BANK.some(q =>
+        q.id === prompt || q.question.toLowerCase() === query || q.title.toLowerCase() === query
+      ) ||
+      TOC_QUESTION_BANK.some(q =>
+        q.question.toLowerCase().split(/\s+/).filter(w => w.length > 3 && query.includes(w)).length >= 2
+      )
+    );
+  };
 
-  // Filter question bank items
   const filteredQuestions = useMemo(() => {
     return TOC_QUESTION_BANK.filter((item) => {
-      const matchCat =
-        selectedCategory === 'ALL' || item.category === selectedCategory;
+      const matchCat = selectedCategory === 'ALL' || item.category === selectedCategory;
       const matchSearch =
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.question.toLowerCase().includes(searchQuery.toLowerCase());
@@ -95,312 +160,183 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
     setActiveSolution(solution);
   };
 
-  const handleSolveCustom = async (e?: React.FormEvent, overridePrompt?: string) => {
+  const handleSolve = (e?: React.FormEvent, overridePrompt?: string) => {
     if (e) e.preventDefault();
     const prompt = overridePrompt !== undefined ? overridePrompt : customPrompt;
     if (!prompt.trim()) return;
-
     setErrorMessage(null);
 
-    if (engineMode === 'LOCAL') {
-      // Try local synthesizer — detect whether it genuinely matched or silently fell back
-      const query = prompt.trim().toLowerCase();
-      const hasKnownPattern =
-        /(?:starts?\s+(?:with|in)|begins?\s+with|starting\s+with)\s+["']?([01ab]+)["']?/i.test(query) ||
-        /(?:not\s+contain(?:ing)?|does\s+not\s+contain|without)\s+["']?([01ab]+)["']?/i.test(query) ||
-        /(?:ends?\s+(?:with|in)|ending\s+(?:with|in))\s+["']?([01ab]+)["']?/i.test(query) ||
-        /(?:divisible\s+by|mod(?:ulo)?|multiple\s+of)\s+(\d+)/i.test(query) ||
-        /(?:contains?|substring|having)\s+["']?([01ab]+)["']?/i.test(query) ||
-        TOC_QUESTION_BANK.some(q => q.id === prompt || q.question.toLowerCase() === query || q.title.toLowerCase() === query) ||
-        TOC_QUESTION_BANK.some(q => q.question.toLowerCase().split(/\s+/).filter(w => w.length > 3 && query.includes(w)).length >= 2) ||
-        query.includes('even') || query.includes('odd') ||
-        query.includes('pda') || query.includes('pushdown') || query.includes('palindrome') || query.includes('balanced') ||
-        query.includes('tm') || query.includes('turing') || query.includes('increment') || query.includes('complement');
-
-      if (!hasKnownPattern) {
-        setErrorMessage(
-          '⚡ Local Synthesizer cannot solve this question — it only handles specific patterns. Switch to 🤖 Gemini AI mode above to solve any TOC problem automatically.'
-        );
-        return;
-      }
-
-      const solution = solveTOCQuestion(prompt);
-      setActiveSolution(solution);
-      return;
-    }
-
-    // Gemini Mode — client-limit guard (users without own key)
-    const userKey = getStoredGeminiApiKey();
-    if (!userKey && clientLimited) {
+    if (!hasKnownPattern(prompt)) {
       setErrorMessage(
-        `Daily limit reached (5 free AI solves). Resets ${getResetTimeString()}. Add your own 🔑 Gemini key for unlimited access.`
+        'This question pattern is not recognized. Please use one of the supported formats shown in the "Supported Patterns" guide above, or pick a question from the bank on the left.'
       );
       return;
     }
 
-    setIsLoading(true);
-    setLoadingStep('Connecting to Google Gemini AI...');
-
-    try {
-      setTimeout(() => setLoadingStep('Synthesizing state transitions & 5-tuple...'), 800);
-      setTimeout(() => setLoadingStep('Running local verification & simulation tests...'), 1600);
-
-      const solution = await solveQuestionWithGemini(prompt, userKey || undefined);
-      setActiveSolution(solution);
-      // Refresh usage display
-      setRemainingUses(getRemainingUses());
-      setClientLimited(isClientRateLimited());
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Failed to generate solution with Gemini AI.';
-      setErrorMessage(msg);
-    } finally {
-      setIsLoading(false);
-      setLoadingStep('');
-    }
-  };
-
-  const handleSaveApiKey = () => {
-    if (apiKeyInput.trim()) {
-      saveStoredGeminiApiKey(apiKeyInput.trim());
-      setHasApiKey(true);
-      setShowKeyModal(false);
-      setErrorMessage(null);
-      if (customPrompt.trim()) {
-        handleSolveCustom();
-      }
-    }
+    const solution = solveTOCQuestion(prompt);
+    setActiveSolution(solution);
   };
 
   const handleLoadOnCanvas = () => {
     if (!activeSolution) return;
-
-    // Set matching machine type in store
     setMachineType(activeSolution.machine.type);
-
-    // Load full machine & test cases into store & canvas + auto-runs first simulation test
     loadSolvedMachine(activeSolution.machine, activeSolution.testCases);
-
-    // Close modal
     onClose();
   };
 
   const quickPrompts = [
     { label: 'Starts with "01"', q: 'Design a DFA that accepts strings starting with 01' },
     { label: 'Ends with "01"', q: 'Design a DFA that accepts strings ending with 01' },
-    { label: 'Does NOT contain "00"', q: 'Design a DFA that does not contain 00' },
-    { label: 'Binary Mod 3', q: 'Construct a DFA accepting binary numbers divisible by 3' },
-    { label: 'Even 0s & Odd 1s', q: 'Design a DFA for even number of 0s and odd number of 1s' },
-    { label: 'PDA aⁿ bⁿ', q: 'Construct a PDA for the language L = { a^n b^n | n >= 0 }' },
-    { label: 'TM Binary x+1', q: 'Design a Turing Machine for binary incrementer x+1' },
+    { label: 'Contains "101"', q: 'Construct a DFA containing the substring 101' },
+    { label: 'NOT contain "00"', q: 'DFA for strings that do not contain 00' },
+    { label: 'Even length', q: 'DFA accepting strings of even length' },
+    { label: 'Odd length', q: 'DFA accepting strings of odd length' },
+    { label: 'Binary Mod 3', q: 'DFA accepting binary numbers divisible by 3' },
+    { label: 'Even 0s & Odd 1s', q: 'DFA for even number of 0s and odd number of 1s' },
+    { label: 'At least two 1s', q: 'DFA for strings with at least two 1s' },
+    { label: 'Exactly one 0', q: 'DFA for strings with exactly one 0' },
+    { label: '3rd from end = 1', q: 'NFA where 3rd symbol from the end is 1' },
+    { label: 'PDA aⁿbⁿ', q: 'Construct a PDA for the language a^n b^n where n >= 0' },
+    { label: 'PDA Palindromes', q: 'Design a PDA for palindromes over the alphabet {a,b}' },
+    { label: 'TM Binary x+1', q: 'Design a Turing Machine for binary increment x+1' },
   ];
+
+  const categoryStats = {
+    ALL: TOC_QUESTION_BANK.length,
+    DFA: TOC_QUESTION_BANK.filter(q => q.category === 'DFA').length,
+    NFA: TOC_QUESTION_BANK.filter(q => q.category === 'NFA').length,
+    PDA: TOC_QUESTION_BANK.filter(q => q.category === 'PDA').length,
+    TM: TOC_QUESTION_BANK.filter(q => q.category === 'TM').length,
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
-      <div className="relative w-full max-w-6xl h-[88vh] bg-[#1C1313] border border-sky-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-100">
-        
-        {/* API Key Modal / Popover */}
-        {showKeyModal && (
-          <div className="absolute inset-0 z-60 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-[#241919] border border-sky-500/40 rounded-2xl p-6 shadow-2xl text-slate-100 space-y-4 animate-in zoom-in-95 duration-150">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-sky-400 font-bold text-base">
-                  <Bot className="w-5 h-5" />
-                  <span>Google Gemini API Key</span>
-                </div>
-                <button
-                  onClick={() => setShowKeyModal(false)}
-                  className="text-slate-400 hover:text-white"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
+      <div className="relative w-full max-w-6xl h-[90vh] bg-[#1C1313] border border-sky-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-100">
 
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Connect your free Google Gemini API key to solve <strong>any Theory of Computation problem</strong> with automated verification.
-              </p>
-
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-semibold text-slate-400">Gemini API Key</label>
-                <div className="relative">
-                  <input
-                    type="password"
-                    value={apiKeyInput}
-                    onChange={(e) => setApiKeyInput(e.target.value)}
-                    placeholder="AIzaSy..."
-                    className="w-full px-3 py-2 bg-[#140D0D] border border-sky-500/40 rounded-xl text-sm text-white focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between pt-2">
-                <a
-                  href="https://aistudio.google.com/app/apikey"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs text-sky-400 hover:text-sky-300 flex items-center gap-1 hover:underline"
-                >
-                  Get free key from Google AI Studio <ExternalLink className="w-3 h-3" />
-                </a>
-
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => setShowKeyModal(false)}
-                    className="px-3 py-1.5 rounded-xl bg-[#1C1313] hover:bg-[#3D2C2C] text-xs font-semibold text-slate-300 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSaveApiKey}
-                    className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-xs font-bold text-white shadow-md shadow-sky-950/50 transition-all"
-                  >
-                    Save Key
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-500/20 bg-[#271C1C]">
+        {/* ── Header ─────────────────────────────────────────────────────────── */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-500/20 bg-[#271C1C] shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-sky-950/50 text-white">
-              <Zap className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-sky-950/50">
+              <Cpu className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-white tracking-tight">
-                  TOC Question Solver & AI Assistant
-                </h2>
-                
-                {/* Engine Selector */}
-                <div className="flex items-center bg-[#140D0D] border border-sky-500/30 rounded-lg p-0.5 ml-2">
-                  <button
-                    onClick={() => setEngineMode('LOCAL')}
-                    className={`px-2.5 py-1 rounded-md text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer ${
-                      engineMode === 'LOCAL'
-                        ? 'bg-sky-500 text-white shadow-xs'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Zap className="w-3 h-3" /> Local Synthesizer
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEngineMode('GEMINI');
-                    }}
-                    className={`px-2.5 py-1 rounded-md text-[11px] font-bold flex items-center gap-1 transition-all cursor-pointer ${
-                      engineMode === 'GEMINI'
-                        ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-xs'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Bot className="w-3 h-3" /> Gemini AI
-                    {engineMode === 'GEMINI' && !hasApiKey && (
-                      <span className={`ml-1 text-[10px] font-mono px-1 rounded ${
-                        clientLimited
-                          ? 'bg-rose-500/30 text-rose-300'
-                          : 'bg-purple-500/30 text-purple-200'
-                      }`}>
-                        {clientLimited ? '0/5' : `${remainingUses}/5 free`}
-                      </span>
-                    )}
-                  </button>
-                </div>
+                <h2 className="text-base font-bold text-white tracking-tight">TOC Question Solver</h2>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  ⚡ 100% Offline
+                </span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40">
+                  {TOC_QUESTION_BANK.length} Questions
+                </span>
               </div>
-              <p className="text-xs text-slate-400">
-                Ask any Theory of Computation question, view formal 5-tuple proofs, and load directly onto the simulation canvas.
+              <p className="text-xs text-slate-400 mt-0.5">
+                Instantly synthesize verified automata — no API key, no internet required.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setShowKeyModal(true)}
-              title="Configure Gemini API Key"
-              className={`p-2 rounded-xl border text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
-                hasApiKey
-                  ? 'bg-emerald-950/30 border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/40'
-                  : 'bg-[#1C1313] border-sky-500/30 text-slate-400 hover:text-white hover:bg-[#3D2C2C]'
-              }`}
-            >
-              <Key className="w-4 h-4" />
-              <span className="hidden sm:inline">{hasApiKey ? 'Gemini Key Configured' : 'Set Gemini Key'}</span>
-            </button>
-
-            <button
-              onClick={onClose}
-              className="p-2 rounded-xl bg-[#1C1313] hover:bg-[#3D2C2C] border border-sky-500/30 text-slate-400 hover:text-white transition-colors shadow-xs cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-xl bg-[#1C1313] hover:bg-[#3D2C2C] border border-sky-500/30 text-slate-400 hover:text-white transition-colors cursor-pointer"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        {/* Search & Prompt Bar */}
-        <div className="px-6 py-3 border-b border-sky-500/20 bg-[#161111] flex flex-col gap-2.5">
-          <form onSubmit={handleSolveCustom} className="flex gap-2">
+        {/* ── Supported Patterns Collapsible Guide ───────────────────────────── */}
+        <div className="px-6 py-2.5 border-b border-sky-500/20 bg-[#1a1010] shrink-0">
+          <button
+            onClick={() => setShowGuide(!showGuide)}
+            className="w-full flex items-center justify-between text-xs font-semibold text-sky-300 hover:text-sky-200 transition-colors cursor-pointer py-0.5"
+          >
+            <span className="flex items-center gap-2">
+              <Info className="w-3.5 h-3.5 text-sky-400" />
+              What can the solver handle? — Supported question patterns &amp; how to write them
+            </span>
+            {showGuide ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+          </button>
+
+          {showGuide && (
+            <div className="mt-3 grid grid-cols-2 gap-3 pb-2">
+              {PATTERN_GUIDE.map((group) => (
+                <div key={group.category} className={`rounded-xl border ${group.border} ${group.bg} overflow-hidden`}>
+                  <button
+                    onClick={() => setExpandedGuideCategory(
+                      expandedGuideCategory === group.category ? null : group.category
+                    )}
+                    className="w-full flex items-center justify-between px-3 py-2 cursor-pointer"
+                  >
+                    <span className={`text-xs font-bold ${group.color} flex items-center gap-1.5`}>
+                      {group.icon} {group.category}
+                    </span>
+                    {expandedGuideCategory === group.category
+                      ? <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                      : <ChevronRight className="w-3.5 h-3.5 text-slate-400" />}
+                  </button>
+                  {expandedGuideCategory === group.category && (
+                    <div className="px-3 pb-3 space-y-1.5">
+                      {group.patterns.map((p, idx) => (
+                        <div key={idx} className="space-y-0.5">
+                          <div className={`text-[11px] font-semibold ${group.color}`}>{p.label}</div>
+                          <button
+                            onClick={() => {
+                              setCustomPrompt(p.example);
+                              setErrorMessage(null);
+                              handleSolve(undefined, p.example);
+                            }}
+                            className="text-[10px] text-slate-300 italic hover:text-white transition-colors text-left cursor-pointer leading-relaxed"
+                            title="Click to solve this example"
+                          >
+                            "{p.example}" →
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* ── Search & Solve Bar ────────────────────────────────────────────── */}
+        <div className="px-6 py-3 border-b border-sky-500/20 bg-[#161111] flex flex-col gap-2.5 shrink-0">
+          <form onSubmit={handleSolve} className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 value={customPrompt}
-                onChange={(e) => setCustomPrompt(e.target.value)}
-                placeholder={
-                  engineMode === 'GEMINI'
-                    ? "Ask Gemini AI any TOC problem: e.g. 'DFA with at most two 0s' or '2-tape TM for string copy'..."
-                    : "Ask any TOC problem: e.g. 'Design a DFA starting with 01' or 'Construct PDA for a^n b^n'..."
-                }
+                onChange={(e) => { setCustomPrompt(e.target.value); setErrorMessage(null); }}
+                placeholder="Type a TOC question e.g. 'DFA accepting strings ending with 01' or 'PDA for a^n b^n'..."
+                maxLength={500}
                 className="w-full pl-10 pr-4 py-2.5 bg-[#0d1017] border border-sky-500/30 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all"
               />
             </div>
             <button
               type="submit"
-              disabled={isLoading}
-              className={`px-5 py-2.5 rounded-xl text-white text-xs font-bold shadow-md shadow-sky-950/40 flex items-center gap-2 transition-all shrink-0 cursor-pointer disabled:opacity-50 ${
-                engineMode === 'GEMINI'
-                  ? 'bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500'
-                  : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500'
-              }`}
+              className="px-5 py-2.5 rounded-xl text-white text-xs font-bold shadow-md shadow-sky-950/40 flex items-center gap-2 transition-all shrink-0 cursor-pointer bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 hover:scale-[1.02] active:scale-[0.98]"
             >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Thinking...</span>
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4" />
-                  <span>{engineMode === 'GEMINI' ? 'Solve with Gemini' : 'Solve Question'}</span>
-                </>
-              )}
+              <Zap className="w-4 h-4" />
+              <span>Solve</span>
             </button>
           </form>
 
           {/* Error Banner */}
           {errorMessage && (
-            <div className="px-3 py-2 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-200 text-xs flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
-                <span>{errorMessage}</span>
+            <div className="px-3 py-2.5 rounded-xl bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+              <div>
+                <div className="font-semibold mb-0.5">Pattern not recognized</div>
+                <div className="text-amber-200/80">{errorMessage}</div>
               </div>
-              <button
-                onClick={() => {
-                  setEngineMode('LOCAL');
-                  setErrorMessage(null);
-                  handleSolveCustom();
-                }}
-                className="px-2 py-1 rounded-lg bg-rose-900/60 hover:bg-rose-800 text-[11px] font-bold text-white transition-colors"
-              >
-                Use Local Synthesizer Instead
-              </button>
             </div>
           )}
 
           {/* Quick Prompts */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs scrollbar-none">
             <span className="text-[11px] font-medium text-slate-400 flex items-center gap-1 shrink-0">
-              <Lightbulb className="w-3 h-3 text-amber-400" /> Examples:
+              <Lightbulb className="w-3 h-3 text-amber-400" /> Quick:
             </span>
             {quickPrompts.map((p, idx) => (
               <button
@@ -408,8 +344,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 onClick={() => {
                   setCustomPrompt(p.q);
                   setErrorMessage(null);
-                  // Always trigger solve immediately (respects current engine mode)
-                  handleSolveCustom(undefined, p.q);
+                  handleSolve(undefined, p.q);
                 }}
                 className="px-2.5 py-1 rounded-lg bg-[#271C1C] hover:bg-[#3D2C2C] border border-sky-500/30 hover:border-sky-400 text-sky-200 hover:text-white text-[11px] font-medium transition-colors shrink-0 whitespace-nowrap shadow-xs cursor-pointer"
               >
@@ -419,31 +354,47 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
           </div>
         </div>
 
-        {/* Content Body: Split View (Question Bank Left, Solution Right) */}
+        {/* ── Body: Question Bank Left | Solution Right ──────────────────────── */}
         <div className="flex-1 flex overflow-hidden">
-          {/* Left Panel: Question Bank */}
-          <div className="w-[380px] border-r border-sky-500/20 bg-[#120D0D] flex flex-col">
-            {/* Filter Tabs */}
-            <div className="p-3 border-b border-sky-500/20 flex gap-1 bg-[#1C1313] overflow-x-auto">
+
+          {/* Left: Question Bank */}
+          <div className="w-[360px] border-r border-sky-500/20 bg-[#120D0D] flex flex-col shrink-0">
+            {/* Category Filter */}
+            <div className="p-3 border-b border-sky-500/20 flex gap-1 bg-[#1C1313] overflow-x-auto shrink-0">
               {(['ALL', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all shrink-0 cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all shrink-0 cursor-pointer flex items-center gap-1 ${
                     selectedCategory === cat
                       ? 'bg-sky-400 text-[#1C1313] shadow-xs'
                       : 'text-sky-200 hover:text-white hover:bg-white/10'
                   }`}
                 >
-                  {cat === 'ALL' ? 'All Questions' : cat}
+                  {cat === 'ALL' ? 'All' : cat}
+                  <span className={`font-mono ${selectedCategory === cat ? 'text-[#1C1313]/70' : 'text-slate-500'}`}>
+                    {categoryStats[cat]}
+                  </span>
                 </button>
               ))}
+
+              {/* Search within list */}
+              <div className="relative flex-1 min-w-[80px]">
+                <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Filter..."
+                  className="w-full pl-6 pr-2 py-1.5 bg-[#140D0D] border border-white/10 focus:border-sky-500 rounded-lg text-[11px] text-white placeholder-slate-600 outline-none"
+                />
+              </div>
             </div>
 
             {/* Questions List */}
-            <div className="flex-1 overflow-y-auto p-3 space-y-2.5 bg-[#120D0D]">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1">
-                Exam Question Bank ({filteredQuestions.length})
+            <div className="flex-1 overflow-y-auto p-3 space-y-2">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-1 mb-2">
+                {filteredQuestions.length} question{filteredQuestions.length !== 1 ? 's' : ''}
               </div>
 
               {filteredQuestions.map((item) => {
@@ -458,12 +409,10 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                         : 'bg-[#1C1313] border-sky-500/30 hover:border-sky-400 hover:bg-[#221717] shadow-xs'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-white">
-                        {item.title}
-                      </span>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-bold text-white truncate pr-2">{item.title}</span>
                       <span
-                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                        className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full shrink-0 ${
                           item.difficulty === 'Easy'
                             ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                             : item.difficulty === 'Medium'
@@ -475,51 +424,47 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-slate-400 line-clamp-2 mb-2 leading-relaxed">
+                    <p className="text-[11px] text-slate-400 line-clamp-2 mb-1.5 leading-relaxed">
                       {item.question}
                     </p>
 
                     <div className="flex items-center justify-between text-[10px] text-slate-500">
                       <span className="font-mono text-sky-300 font-bold">{item.category}</span>
-                      <span className="flex items-center gap-1 text-sky-400 font-semibold group">
-                        Solve <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                      <span className="flex items-center gap-1 text-sky-400 font-semibold">
+                        Solve <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>
                   </div>
                 );
               })}
+
+              {filteredQuestions.length === 0 && (
+                <div className="py-12 text-center text-slate-500 text-xs">
+                  <FlaskConical className="w-8 h-8 mx-auto mb-2 opacity-30" />
+                  No matching questions found.
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Right Panel: Formal Solution & Walkthrough */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#161111] relative">
-            {isLoading && (
-              <div className="absolute inset-0 bg-[#161111]/90 backdrop-blur-xs flex flex-col items-center justify-center space-y-3 z-10">
-                <Loader2 className="w-8 h-8 text-sky-400 animate-spin" />
-                <p className="text-sm font-semibold text-white">{loadingStep}</p>
-                <p className="text-xs text-slate-400">Synthesizing state machine and running validation tests...</p>
-              </div>
-            )}
-
+          {/* Right: Solution Panel */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-[#161111]">
             {activeSolution ? (
               <>
-                {/* Solution Title & Action Header */}
+                {/* Solution Header */}
                 <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-[#241919] border border-sky-500/30 shadow-md">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="px-2 py-0.5 text-xs font-bold font-mono rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40">
                         {activeSolution.machineType}
                       </span>
-                      <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-medium ml-2">
-                        <ShieldCheck className="w-3.5 h-3.5" /> Verified Formal Construction (Score: {Math.round((activeSolution.confidenceScore ?? 1) * 100)}%)
+                      <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-medium">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        Formally Verified (Score: {Math.round((activeSolution.confidenceScore ?? 1) * 100)}%)
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-white">
-                      {activeSolution.title}
-                    </h3>
-                    <p className="text-xs text-slate-300 mt-0.5 font-mono">
-                      {activeSolution.formalDefinition}
-                    </p>
+                    <h3 className="text-sm font-bold text-white">{activeSolution.title}</h3>
+                    <p className="text-xs text-slate-300 mt-0.5 font-mono">{activeSolution.formalDefinition}</p>
                   </div>
 
                   <button
@@ -527,19 +472,19 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-sky-950/50 flex items-center gap-2 transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                   >
                     <Play className="w-4 h-4 fill-white" />
-                    <span>Load onto Canvas & Simulate Tests</span>
+                    <span>Load onto Canvas</span>
                   </button>
                 </div>
 
-                {/* Formal 5-Tuple / 7-Tuple Definition */}
+                {/* Formal Tuples */}
                 <div className="space-y-2">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
-                    <BookOpen className="w-3.5 h-3.5" /> Formal Mathematical Definition (Tuples)
+                    <BookOpen className="w-3.5 h-3.5" /> Formal Mathematical Definition
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div className="p-3 rounded-xl bg-[#241919] border border-sky-500/30">
                       <div className="text-[10px] text-slate-400 uppercase font-semibold">States (Q)</div>
-                      <div className="text-xs font-mono font-bold text-sky-300 mt-1 truncate">
+                      <div className="text-xs font-mono font-bold text-sky-300 mt-1 truncate" title={'{' + activeSolution.formalTuples.states.join(', ') + '}'}>
                         {'{' + activeSolution.formalTuples.states.join(', ') + '}'}
                       </div>
                     </div>
@@ -567,76 +512,118 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   </div>
                 </div>
 
+                {/* Language Description */}
+                <div className="p-4 rounded-xl bg-[#0d1117] border border-sky-500/20">
+                  <div className="text-[10px] text-slate-400 uppercase font-semibold mb-1">Language Description</div>
+                  <div className="text-sm font-mono text-sky-200">{activeSolution.languageDescription}</div>
+                  {activeSolution.regularExpressionOrGrammar && (
+                    <div className="text-[11px] text-slate-400 mt-1">
+                      Regex / Grammar: <span className="font-mono text-teal-300">{activeSolution.regularExpressionOrGrammar}</span>
+                    </div>
+                  )}
+                </div>
+
                 {/* State Meanings */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5" /> State Meaning & Invariants
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {activeSolution.stateMeanings.map((sm, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3 rounded-xl bg-[#241919] border border-sky-500/30 flex items-start gap-3"
-                      >
-                        <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40 font-mono text-xs font-bold shrink-0">
-                          {sm.stateId}
-                        </span>
-                        <div className="text-xs text-slate-300 leading-relaxed">
-                          {sm.meaning}
+                {activeSolution.stateMeanings && activeSolution.stateMeanings.length > 0 && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400">State Invariants</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {activeSolution.stateMeanings.map((sm) => (
+                        <div key={sm.stateId} className="p-2.5 rounded-xl bg-[#1C1313] border border-sky-500/20 flex gap-2.5">
+                          <span className="text-xs font-mono font-bold text-sky-300 shrink-0 mt-0.5">{sm.label}</span>
+                          <span className="text-[11px] text-slate-400 leading-relaxed">{sm.meaning}</span>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Step-by-Step Construction Walkthrough */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
-                    <Disc3 className="w-3.5 h-3.5" /> Construction Logic & Walkthrough
-                  </h4>
-                  <div className="p-4 rounded-xl bg-[#241919] border border-sky-500/30 space-y-2">
-                    {activeSolution.constructionSteps.map((step, idx) => (
-                      <div key={idx} className="text-xs text-slate-300 flex items-start gap-2 leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mt-1.5 shrink-0" />
-                        <span>{step}</span>
-                      </div>
-                    ))}
+                {/* Construction Steps */}
+                {activeSolution.constructionSteps && activeSolution.constructionSteps.length > 0 && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+                      <Lightbulb className="w-3.5 h-3.5 text-amber-400" /> Step-by-Step Construction
+                    </h4>
+                    <div className="space-y-1.5">
+                      {activeSolution.constructionSteps.map((step, idx) => (
+                        <div key={idx} className="flex gap-3 text-[11px] text-slate-300 leading-relaxed">
+                          <span className="text-sky-400 font-mono font-bold shrink-0 mt-0.5">{idx + 1}.</span>
+                          <span>{step}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Test Cases Suite */}
+                {/* Test Cases */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> Generated Test Cases Suite ({activeSolution.testCases.length})
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400">Verification Test Cases</h4>
+                  <div className="space-y-1.5">
                     {activeSolution.testCases.map((tc, idx) => (
-                      <div
-                        key={idx}
-                        className="p-2.5 rounded-xl bg-[#241919] border border-sky-500/30 flex items-center justify-between gap-2"
-                      >
-                        <div className="flex items-center gap-2 overflow-hidden">
-                          {tc.expected ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                          ) : (
-                            <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
-                          )}
-                          <span className="font-mono text-xs font-bold text-white truncate">
-                            "{tc.input || 'ε'}"
-                          </span>
-                        </div>
-                        <span className="text-[11px] text-slate-400 text-right truncate">
-                          {tc.reason}
+                      <div key={idx} className="flex items-center gap-3 p-2.5 rounded-xl bg-[#1C1313] border border-sky-500/20 text-xs font-mono">
+                        <span className={`shrink-0 font-bold px-2 py-0.5 rounded-full text-[10px] border ${
+                          tc.expected
+                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                            : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
+                        }`}>
+                          {tc.expected ? 'ACCEPT' : 'REJECT'}
                         </span>
+                        <span className="text-white font-bold">
+                          {tc.input === '' ? '(empty string ε)' : `"${tc.input}"`}
+                        </span>
+                        <span className="text-slate-400 text-[11px] font-sans">{tc.reason}</span>
                       </div>
                     ))}
                   </div>
                 </div>
+
+                {/* Transition Table */}
+                {activeSolution.formalTuples.transitionTable && activeSolution.formalTuples.transitionTable.length > 0 && (
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400">Transition Function δ</h4>
+                    <div className="overflow-x-auto rounded-xl border border-sky-500/20">
+                      <table className="w-full text-xs font-mono">
+                        <thead className="bg-[#241919] text-sky-200 uppercase text-[10px] tracking-wider">
+                          <tr>
+                            <th className="py-2 px-3 text-left">From State</th>
+                            <th className="py-2 px-3 text-left">Read</th>
+                            <th className="py-2 px-3 text-left">To State</th>
+                            {activeSolution.formalTuples.transitionTable[0]?.popOrWrite && (
+                              <th className="py-2 px-3 text-left">Pop/Write</th>
+                            )}
+                            {activeSolution.formalTuples.transitionTable[0]?.pushOrMove && (
+                              <th className="py-2 px-3 text-left">Push/Move</th>
+                            )}
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-sky-500/10">
+                          {activeSolution.formalTuples.transitionTable.slice(0, 20).map((row, idx) => (
+                            <tr key={idx} className="hover:bg-white/5 text-slate-300">
+                              <td className="py-1.5 px-3 text-sky-300 font-semibold">{row.from}</td>
+                              <td className="py-1.5 px-3 text-teal-300">{row.read || 'ε'}</td>
+                              <td className="py-1.5 px-3 text-sky-300 font-semibold">{row.to}</td>
+                              {row.popOrWrite && <td className="py-1.5 px-3 text-amber-300">{row.popOrWrite}</td>}
+                              {row.pushOrMove && <td className="py-1.5 px-3 text-purple-300">{row.pushOrMove}</td>}
+                            </tr>
+                          ))}
+                          {activeSolution.formalTuples.transitionTable.length > 20 && (
+                            <tr>
+                              <td colSpan={5} className="py-1.5 px-3 text-slate-500 text-center text-[10px]">
+                                ... and {activeSolution.formalTuples.transitionTable.length - 20} more transitions
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
               </>
             ) : (
-              <div className="h-full flex flex-col items-center justify-center text-slate-500 space-y-3">
-                <Sparkles className="w-12 h-12 text-slate-600 animate-pulse" />
-                <p className="text-sm">Select a question or ask any custom Theory of Computation problem.</p>
+              <div className="h-full flex flex-col items-center justify-center text-center text-slate-500">
+                <Cpu className="w-12 h-12 mb-3 opacity-20" />
+                <p className="text-sm font-medium text-slate-400">Select a question or type a problem above</p>
+                <p className="text-xs mt-1">The formal solution will appear here</p>
               </div>
             )}
           </div>
@@ -645,4 +632,3 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
     </div>
   );
 };
-
