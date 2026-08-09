@@ -55,7 +55,7 @@ export const ExportImportModal: React.FC = () => {
       <div className="bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-slate-900 dark:text-slate-100">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-[#271C1C]">
-          <div className="flex items-center gap-2 text-sky-400">
+          <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
             <FileJson className="w-5 h-5" />
             <h3 className="font-bold text-slate-900 dark:text-white text-sm tracking-tight">
               Export & Import Automata
@@ -70,7 +70,7 @@ export const ExportImportModal: React.FC = () => {
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6 overflow-y-auto bg-white dark:bg-[#161111]">
+        <div className="p-6 space-y-6 overflow-y-auto bg-slate-50 dark:bg-[#161111]">
           {/* Export Section */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
@@ -96,7 +96,7 @@ export const ExportImportModal: React.FC = () => {
               </div>
             </div>
 
-            <pre className="p-3 bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 rounded-xl text-[11px] font-mono text-sky-800 dark:text-sky-200 max-h-36 overflow-y-auto shadow-inner">
+            <pre className="p-3 bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 rounded-xl text-[11px] font-mono text-sky-800 dark:text-sky-200 max-h-36 overflow-y-auto shadow-inner">
               {jsonString}
             </pre>
           </div>
@@ -112,7 +112,7 @@ export const ExportImportModal: React.FC = () => {
               value={importJsonText}
               onChange={(e) => setImportJsonText(e.target.value)}
               placeholder="Paste valid Automata JSON definition here..."
-              className="w-full bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 focus:border-sky-400 rounded-xl p-3 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none resize-none"
+              className="w-full bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 focus:border-sky-400 rounded-xl p-3 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none resize-none"
             />
 
             {importError && (

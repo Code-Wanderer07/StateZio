@@ -20,7 +20,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
       <div className="w-full max-w-2xl bg-sky-50 dark:bg-[#1C1313] border-l border-sky-300 dark:border-sky-500/30 shadow-2xl flex flex-col h-full overflow-hidden text-slate-900 dark:text-slate-100">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-[#271C1C]">
-          <div className="flex items-center gap-2 text-sky-400 font-bold">
+          <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold">
             <GitFork className="w-5 h-5" />
             <h3 className="font-bold text-slate-900 dark:text-white text-sm tracking-tight">
               NFA → DFA Subset Construction (Powerset)
@@ -46,7 +46,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-white dark:bg-[#161111]">
+        <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50 dark:bg-[#161111]">
           {/* Summary Box */}
           <div className="p-4 rounded-xl bg-[#241919] border border-sky-300 dark:border-sky-500/30 text-xs text-slate-700 dark:text-slate-300 space-y-1">
             <p className="font-bold text-sky-700 dark:text-sky-300">Conversion Summary:</p>
@@ -60,7 +60,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
           {/* Transition Table */}
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <Table className="w-4 h-4 text-sky-400" />
+              <Table className="w-4 h-4 text-sky-600 dark:text-sky-400" />
               <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 DFA Transition Table δ'
               </h4>
@@ -115,7 +115,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
             <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
               Mathematical Derivations
             </h4>
-            <div className="p-4 rounded-xl bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 font-mono text-xs space-y-1.5 max-h-[220px] overflow-y-auto">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 font-mono text-xs space-y-1.5 max-h-[220px] overflow-y-auto">
               {stepsExplanation.map((step, idx) => (
                 <div key={`step_${idx}`} className="text-slate-700 dark:text-slate-300 leading-relaxed">
                   <span className="text-slate-500 mr-2">[{idx + 1}]</span>

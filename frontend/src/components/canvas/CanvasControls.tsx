@@ -36,7 +36,7 @@ export const CanvasControls: React.FC = () => {
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 text-xs font-medium transition-colors shadow-xs cursor-pointer"
         title="Automatically organize graph layout using Dagre"
       >
-        <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+        <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
         <span>Auto-Layout</span>
       </button>
 

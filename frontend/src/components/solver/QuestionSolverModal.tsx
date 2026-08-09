@@ -35,7 +35,7 @@ interface QuestionSolverModalProps {
 const PATTERN_GUIDE = [
   {
     category: 'DFA Patterns',
-    color: 'text-sky-400',
+    color: 'text-sky-600 dark:text-sky-400',
     border: 'border-sky-300 dark:border-sky-500/30',
     bg: 'bg-sky-500/10',
     icon: '🔵',
@@ -55,7 +55,7 @@ const PATTERN_GUIDE = [
   },
   {
     category: 'NFA Patterns',
-    color: 'text-teal-400',
+    color: 'text-teal-600 dark:text-teal-400',
     border: 'border-teal-500/30',
     bg: 'bg-teal-500/10',
     icon: '🟢',
@@ -68,7 +68,7 @@ const PATTERN_GUIDE = [
   },
   {
     category: 'PDA Patterns',
-    color: 'text-amber-400',
+    color: 'text-amber-600 dark:text-amber-400',
     border: 'border-amber-500/30',
     bg: 'bg-amber-500/10',
     icon: '🟡',
@@ -82,7 +82,7 @@ const PATTERN_GUIDE = [
   },
   {
     category: 'Turing Machine Patterns',
-    color: 'text-purple-400',
+    color: 'text-purple-600 dark:text-purple-400',
     border: 'border-purple-500/30',
     bg: 'bg-purple-500/10',
     icon: '🟣',
@@ -220,7 +220,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
       <div className="relative w-full max-w-6xl h-[90vh] bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-900 dark:text-slate-100">
 
         {/* ── Header ─────────────────────────────────────────────────────────── */}
@@ -254,13 +254,13 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         </div>
 
         {/* ── Supported Patterns Collapsible Guide ───────────────────────────── */}
-        <div className="px-6 py-2.5 border-b border-sky-200 dark:border-sky-500/20 bg-[#1a1010] shrink-0">
+        <div className="px-6 py-2.5 border-b border-sky-200 dark:border-sky-500/20 bg-slate-100 dark:bg-[#1a1010] shrink-0">
           <button
             onClick={() => setShowGuide(!showGuide)}
             className="w-full flex items-center justify-between text-xs font-semibold text-sky-700 dark:text-sky-300 hover:text-sky-800 dark:text-sky-200 transition-colors cursor-pointer py-0.5"
           >
             <span className="flex items-center gap-2">
-              <Info className="w-3.5 h-3.5 text-sky-400" />
+              <Info className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
               What can the solver handle? — Supported question patterns &amp; how to write them
             </span>
             {showGuide ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
@@ -310,7 +310,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         </div>
 
         {/* ── Search & Solve Bar ────────────────────────────────────────────── */}
-        <div className="px-6 py-3 border-b border-sky-200 dark:border-sky-500/20 bg-white dark:bg-[#161111] flex flex-col gap-2.5 shrink-0">
+        <div className="px-6 py-3 border-b border-sky-200 dark:border-sky-500/20 bg-slate-50 dark:bg-[#161111] flex flex-col gap-2.5 shrink-0">
           <form onSubmit={handleSolve} className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 dark:text-slate-400" />
@@ -320,7 +320,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 onChange={(e) => { setCustomPrompt(e.target.value); setErrorMessage(null); }}
                 placeholder="Type a TOC question e.g. 'DFA accepting strings ending with 01' or 'PDA for a^n b^n'..."
                 maxLength={500}
-                className="w-full pl-10 pr-4 py-2.5 bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition-all"
               />
             </div>
             <button
@@ -334,11 +334,11 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
           {/* Error Banner */}
           {errorMessage && (
-            <div className="px-3 py-2.5 rounded-xl bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+            <div className="px-3 py-2.5 rounded-xl bg-amber-100 dark:bg-amber-950/40 border border-amber-500/40 text-amber-700 dark:text-amber-200 text-xs flex items-start gap-2">
+              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
               <div>
                 <div className="font-semibold mb-0.5">Pattern not recognized</div>
-                <div className="text-amber-200/80">{errorMessage}</div>
+                <div className="text-amber-700 dark:text-amber-200/80">{errorMessage}</div>
               </div>
             </div>
           )}
@@ -346,7 +346,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
           {/* Quick Prompts */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs scrollbar-none">
             <span className="text-[11px] font-medium text-slate-600 dark:text-slate-400 flex items-center gap-1 shrink-0">
-              <Lightbulb className="w-3 h-3 text-amber-400" /> Quick:
+              <Lightbulb className="w-3 h-3 text-amber-600 dark:text-amber-400" /> Quick:
             </span>
             {quickPrompts.map((p, idx) => (
               <button
@@ -378,7 +378,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all shrink-0 cursor-pointer flex items-center gap-1 ${
                     selectedCategory === cat
                       ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-xs'
-                      : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+                      : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
                   }`}
                 >
                   {cat === 'ALL' ? 'All' : cat}
@@ -398,7 +398,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   placeholder="Filter..."
                   aria-label="Filter questions"
                   role="searchbox"
-                  className="w-full pl-6 pr-2 py-1.5 bg-white dark:bg-[#140D0D] border border-slate-300 dark:border-white/10 focus:border-sky-500 rounded-lg text-[11px] text-slate-900 dark:text-white placeholder-slate-600 outline-none"
+                  className="w-full pl-6 pr-2 py-1.5 bg-slate-50 dark:bg-[#140D0D] border border-slate-300 dark:border-white/10 focus:border-sky-500 rounded-lg text-[11px] text-slate-900 dark:text-white placeholder-slate-600 outline-none"
                 />
               </div>
             </div>
@@ -444,7 +444,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                     <div className="flex items-center justify-between text-[10px] text-slate-500">
                       <span className="font-mono text-sky-700 dark:text-sky-300 font-bold">{item.category}</span>
-                      <span className="flex items-center gap-1 text-sky-400 font-semibold">
+                      <span className="flex items-center gap-1 text-sky-600 dark:text-sky-400 font-semibold">
                         Solve <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>
@@ -462,7 +462,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
           </div>
 
           {/* Right: Solution Panel */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-white dark:bg-[#161111]">
+          <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-slate-50 dark:bg-[#161111]">
             {activeSolution ? (
               <>
                 {/* Solution Header */}
@@ -492,7 +492,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                 {/* Formal Tuples */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
                     <BookOpen className="w-3.5 h-3.5" /> Formal Mathematical Definition
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -540,7 +540,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 {/* State Meanings */}
                 {activeSolution.stateMeanings && activeSolution.stateMeanings.length > 0 && (
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400">State Invariants</h4>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">State Invariants</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {activeSolution.stateMeanings.map((sm) => (
                         <div key={sm.stateId} className="p-2.5 rounded-xl bg-sky-50 dark:bg-[#1C1313] border border-sky-200 dark:border-sky-500/20 flex gap-2.5">
@@ -555,13 +555,13 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 {/* Construction Steps */}
                 {activeSolution.constructionSteps && activeSolution.constructionSteps.length > 0 && (
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1.5">
-                      <Lightbulb className="w-3.5 h-3.5 text-amber-400" /> Step-by-Step Construction
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+                      <Lightbulb className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> Step-by-Step Construction
                     </h4>
                     <div className="space-y-1.5">
                       {activeSolution.constructionSteps.map((step, idx) => (
                         <div key={idx} className="flex gap-3 text-[11px] text-slate-700 dark:text-slate-300 leading-relaxed">
-                          <span className="text-sky-400 font-mono font-bold shrink-0 mt-0.5">{idx + 1}.</span>
+                          <span className="text-sky-600 dark:text-sky-400 font-mono font-bold shrink-0 mt-0.5">{idx + 1}.</span>
                           <span>{step}</span>
                         </div>
                       ))}
@@ -571,7 +571,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
                 {/* Test Cases */}
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400">Verification Test Cases</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Verification Test Cases</h4>
                   <div className="space-y-1.5">
                     {activeSolution.testCases.map((tc, idx) => (
                       <div key={idx} className="flex items-center gap-3 p-2.5 rounded-xl bg-sky-50 dark:bg-[#1C1313] border border-sky-200 dark:border-sky-500/20 text-xs font-mono">
@@ -594,7 +594,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 {/* Transition Table */}
                 {activeSolution.formalTuples.transitionTable && activeSolution.formalTuples.transitionTable.length > 0 && (
                   <div className="space-y-2">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400">Transition Function δ</h4>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">Transition Function δ</h4>
                     <div className="overflow-x-auto rounded-xl border border-sky-200 dark:border-sky-500/20">
                       <table className="w-full text-xs font-mono">
                         <thead className="bg-[#241919] text-sky-800 dark:text-sky-200 uppercase text-[10px] tracking-wider">

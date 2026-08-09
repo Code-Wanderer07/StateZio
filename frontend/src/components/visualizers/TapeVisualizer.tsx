@@ -59,7 +59,7 @@ export const TapeVisualizer: React.FC = () => {
       </div>
 
       {/* Horizontal Tape Scroll Strip */}
-      <div className="relative my-2 py-3 px-2 bg-[#0d1017] border border-slate-300 dark:border-white/10 rounded-xl overflow-x-auto shadow-inner">
+      <div className="relative my-2 py-3 px-2 bg-slate-50 dark:bg-[#0d1017] border border-slate-300 dark:border-white/10 rounded-xl overflow-x-auto shadow-inner">
         <div
           ref={tapeScrollRef}
           className="flex items-center justify-start gap-2 min-w-max px-8"

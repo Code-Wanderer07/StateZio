@@ -21,11 +21,11 @@ export const PresetSidebar: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-[#161111] border-r border-sky-200 dark:border-sky-500/20 w-80 shadow-2xl text-slate-900 dark:text-slate-100 select-none">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-[#161111] border-r border-sky-200 dark:border-sky-500/20 w-80 shadow-2xl text-slate-900 dark:text-slate-100 select-none">
       {/* Sidebar Header */}
       <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-[#1C1313]">
         <div className="flex items-center gap-2 mb-3">
-          <BookOpen className="w-4 h-4 text-sky-400" />
+          <BookOpen className="w-4 h-4 text-sky-600 dark:text-sky-400" />
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Preset Library
           </h3>
@@ -40,7 +40,7 @@ export const PresetSidebar: React.FC = () => {
               className={`py-1 text-[10px] font-bold rounded-lg transition-colors truncate cursor-pointer ${
                 selectedType === type
                   ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-xs'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               {type}

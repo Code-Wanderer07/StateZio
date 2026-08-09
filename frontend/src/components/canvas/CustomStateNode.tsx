@@ -142,7 +142,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             setIsEditing(true);
           }}
           title="Rename State"
-          className="p-1 rounded-full text-slate-600 dark:text-slate-400 hover:text-sky-400 transition-colors"
+          className="p-1 rounded-full text-slate-600 dark:text-slate-400 hover:text-sky-600 dark:text-sky-400 transition-colors"
         >
           <Edit3 className="w-3 h-3" />
         </button>

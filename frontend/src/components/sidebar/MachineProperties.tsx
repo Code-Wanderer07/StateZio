@@ -15,7 +15,7 @@ export const MachineProperties: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-sky-200 dark:border-sky-500/20">
         <div className="flex items-center gap-2">
-          <Info className="w-4 h-4 text-sky-400" />
+          <Info className="w-4 h-4 text-sky-600 dark:text-sky-400" />
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Formal Definition ({machine.type})
           </h4>

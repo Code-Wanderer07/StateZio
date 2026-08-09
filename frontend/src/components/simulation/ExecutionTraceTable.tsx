@@ -20,9 +20,9 @@ export const ExecutionTraceTable: React.FC = () => {
   return (
     <div className="flex flex-col bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-sky-200 dark:border-sky-500/20 bg-white dark:bg-[#161111]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-sky-200 dark:border-sky-500/20 bg-slate-50 dark:bg-[#161111]">
         <div className="flex items-center gap-2">
-          <ListOrdered className="w-4 h-4 text-sky-400" />
+          <ListOrdered className="w-4 h-4 text-sky-600 dark:text-sky-400" />
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Execution Trace Log
           </h4>

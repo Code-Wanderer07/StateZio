@@ -115,7 +115,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               onClick={() => scrollToSection('solver')}
               className="text-purple-300 hover:text-purple-200 transition-colors cursor-pointer font-semibold flex items-center gap-1"
             >
-              <Sparkles className="w-3 h-3 text-purple-400" />
+              <Sparkles className="w-3 h-3 text-purple-600 dark:text-purple-400" />
               <span>Question Solver</span>
             </button>
             <button
@@ -138,7 +138,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Connect with Shivakanth on LinkedIn"
-                className="p-1 rounded-lg bg-white/10 hover:bg-[#0077B5] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white border border-slate-300 dark:border-white/10 transition-all flex items-center justify-center cursor-pointer shadow-xs"
+                className="p-1 rounded-lg bg-slate-50/10 hover:bg-[#0077B5] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white border border-slate-300 dark:border-white/10 transition-all flex items-center justify-center cursor-pointer shadow-xs"
               >
                 <LinkedInIcon className="w-3.5 h-3.5" />
               </a>
@@ -214,9 +214,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <button
             onClick={() => scrollToSection('models')}
-            className="flex items-center gap-2 px-6 py-3.5 bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-200 border border-white/15 rounded-xl text-sm font-semibold shadow-lg backdrop-blur-md transition-all hover:border-white/30 cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3.5 bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-slate-50/10 text-slate-200 border border-white/15 rounded-xl text-sm font-semibold shadow-lg backdrop-blur-md transition-all hover:border-white/30 cursor-pointer"
           >
-            <BookOpen className="w-4 h-4 text-purple-400" />
+            <BookOpen className="w-4 h-4 text-purple-600 dark:text-purple-400" />
             <span>Explore Models</span>
           </button>
 
@@ -273,7 +273,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* Interactive Code / Graph Preview Window */}
         <div className="w-full max-w-3xl mt-14 text-left">
           <div className="rounded-2xl bg-[#131620]/95 border border-white/15 shadow-2xl shadow-purple-950/60 overflow-hidden backdrop-blur-2xl">
-            <div className="h-10 bg-[#0d1017] border-b border-slate-300 dark:border-white/10 px-4 flex items-center justify-between">
+            <div className="h-10 bg-slate-50 dark:bg-[#0d1017] border-b border-slate-300 dark:border-white/10 px-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
@@ -319,7 +319,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <button
                 onClick={handleCopyCode}
                 title="Copy snippet"
-                className="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors cursor-pointer flex items-center gap-1 text-[11px]"
+                className="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-50/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors cursor-pointer flex items-center gap-1 text-[11px]"
               >
                 {copiedCode ? (
                   <>
@@ -338,7 +338,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <div className="p-5 font-mono text-xs leading-relaxed overflow-x-auto bg-[#0b0e14]/90 text-slate-700 dark:text-slate-300">
               {activeCodeTab === 'python' && (
                 <pre className="space-y-1">
-                  <span className="text-purple-400">from</span> statezio <span className="text-purple-400">import</span> DFAMachine, Simulator
+                  <span className="text-purple-600 dark:text-purple-400">from</span> statezio <span className="text-purple-600 dark:text-purple-400">import</span> DFAMachine, Simulator
                   <br /><br />
                   <span className="text-slate-500"># 1. Initialize DFA Machine</span><br />
                   machine = DFAMachine(<br />
@@ -353,7 +353,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   machine.add_transition(<span className="text-emerald-300">"q1"</span>, <span className="text-emerald-300">"0"</span>, <span className="text-emerald-300">"q2"</span>)<br /><br />
                   <span className="text-slate-500"># 3. Simulate step-by-step with state highlighting</span><br />
                   result = Simulator.run(machine, input_str=<span className="text-emerald-300">"0101"</span>)<br />
-                  <span className="text-purple-400">print</span>(result.status)&nbsp;&nbsp;<span className="text-emerald-400"># -&gt; ACCEPTED (Final State: q2)</span>
+                  <span className="text-purple-600 dark:text-purple-400">print</span>(result.status)&nbsp;&nbsp;<span className="text-emerald-400"># -&gt; ACCEPTED (Final State: q2)</span>
                 </pre>
               )}
 
@@ -378,7 +378,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               )}
 
               {activeCodeTab === 'tuples' && (
-                <pre className="text-amber-200">
+                <pre className="text-amber-700 dark:text-amber-200">
 {`M = (Q, Σ, δ, q0, F)
 Q = { q0, q1, q2 }
 Σ = { 0, 1 }
@@ -404,7 +404,7 @@ Transition Function δ:
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/15 text-purple-300 text-xs font-semibold mb-3 border border-purple-500/30">
-              <Zap className="w-3.5 h-3.5 text-purple-400" />
+              <Zap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
               <span>Full Automata Suite</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -471,7 +471,7 @@ Transition Function δ:
       <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs font-semibold mb-3 border border-slate-300 dark:border-white/10">
-            <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+            <BookOpen className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
             <span>Workflow</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -506,7 +506,7 @@ Transition Function δ:
                 Add States and Define Transitions
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                Click <strong>+ Add State</strong> to create nodes on the canvas. Drag connection handles between circles to form transitions. Double click any node or edge badge to configure symbol rules (<code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">0, 1, ε</code> for DFA/NFA, <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">a, Z0 → aZ0</code> for PDA, <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">0 → X, R</code> for TM).
+                Click <strong>+ Add State</strong> to create nodes on the canvas. Drag connection handles between circles to form transitions. Double click any node or edge badge to configure symbol rules (<code className="bg-slate-50/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">0, 1, ε</code> for DFA/NFA, <code className="bg-slate-50/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">a, Z0 → aZ0</code> for PDA, <code className="bg-slate-50/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">0 → X, R</code> for TM).
               </p>
             </div>
           </div>
@@ -534,7 +534,7 @@ Transition Function δ:
                 Input String & Step Simulation
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
-                Enter your test string in the bottom simulation deck (e.g. <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">0101</code> or <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">aaabbb</code>) and click <strong>Simulate</strong>. Use Step Forward / Step Backward, run at 0.5x, 1x, or 2x speed, and examine the trace table!
+                Enter your test string in the bottom simulation deck (e.g. <code className="bg-slate-50/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">0101</code> or <code className="bg-slate-50/10 px-1 py-0.5 rounded font-mono text-[11px] text-purple-300">aaabbb</code>) and click <strong>Simulate</strong>. Use Step Forward / Step Backward, run at 0.5x, 1x, or 2x speed, and examine the trace table!
               </p>
             </div>
           </div>
@@ -565,19 +565,19 @@ Transition Function δ:
                 </h3>
                 <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>DFA: 5-tuple formal definition & state transitions</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>NFA & ε-NFA with spontaneous epsilon transitions</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>Subset Construction Algorithm (NFA → DFA)</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>Batch Test Suite & Pass/Fail Matrix</span>
                   </li>
                 </ul>
@@ -675,7 +675,7 @@ Transition Function δ:
 
           <div className="max-w-3xl relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-700 dark:text-sky-300 text-xs font-semibold mb-4 backdrop-blur-xs border border-sky-500/40">
-              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+              <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
               <span>Instant Formal Synthesizer</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
@@ -706,7 +706,7 @@ Transition Function δ:
                       if (onOpenSolver) onOpenSolver();
                       else onLaunchSimulator(undefined, true);
                     }}
-                    className="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-white/5 hover:bg-white/15 border border-sky-300 dark:border-sky-500/30 hover:border-sky-400 text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white text-xs font-medium transition-colors cursor-pointer"
+                    className="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-white/5 hover:bg-slate-50/15 border border-sky-300 dark:border-sky-500/30 hover:border-sky-400 text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white text-xs font-medium transition-colors cursor-pointer"
                   >
                     {sample}
                   </button>
@@ -738,7 +738,7 @@ Transition Function δ:
 
           <div className="max-w-2xl relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-semibold mb-4 backdrop-blur-xs border border-purple-500/40">
-              <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
               <span>Pro Tips for Automata Construction</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
@@ -746,19 +746,19 @@ Transition Function δ:
             </h2>
             <div className="mt-6 space-y-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
               <div className="flex items-start gap-3">
-                <span className="font-bold text-purple-400 text-base">💡</span>
+                <span className="font-bold text-purple-600 dark:text-purple-400 text-base">💡</span>
                 <p>
                   <strong className="text-slate-900 dark:text-white">DFA Completeness:</strong> Ensure every state has a transition for every alphabet symbol. Any unhandled transition will instantly halt with a rejected status!
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="font-bold text-purple-400 text-base">💡</span>
+                <span className="font-bold text-purple-600 dark:text-purple-400 text-base">💡</span>
                 <p>
-                  <strong className="text-slate-900 dark:text-white">NFA ε-Transitions:</strong> Use the symbol <code className="bg-white/10 px-1 py-0.5 rounded font-mono text-purple-300">ε</code> to allow transitions without consuming input characters.
+                  <strong className="text-slate-900 dark:text-white">NFA ε-Transitions:</strong> Use the symbol <code className="bg-slate-50/10 px-1 py-0.5 rounded font-mono text-purple-300">ε</code> to allow transitions without consuming input characters.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <span className="font-bold text-purple-400 text-base">💡</span>
+                <span className="font-bold text-purple-600 dark:text-purple-400 text-base">💡</span>
                 <p>
                   <strong className="text-slate-900 dark:text-white">Batch Test Suite:</strong> Use the sidebar Batch Testing card to run 5+ test cases in parallel and get an instant Pass/Fail report card.
                 </p>

@@ -78,7 +78,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className="hidden md:flex w-[430px] max-w-[450px] h-full bg-white dark:bg-[#161111] border-l border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
+        <div className="hidden md:flex w-[430px] max-w-[450px] h-full bg-slate-50 dark:bg-[#161111] border-l border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
           {/* Main Simulation Deck (with glowing engine chassis) */}
           <SimulationDeck />
 
@@ -93,7 +93,7 @@ export const App: React.FC = () => {
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'trace'
                   ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <ListOrdered className="w-3.5 h-3.5" />
@@ -105,7 +105,7 @@ export const App: React.FC = () => {
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'batch'
                   ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <FlaskConical className="w-3.5 h-3.5" />
@@ -114,7 +114,7 @@ export const App: React.FC = () => {
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
                     activeInspectorTab === 'batch'
-                      ? 'bg-sky-50 dark:bg-[#1C1313] text-sky-400'
+                      ? 'bg-sky-50 dark:bg-[#1C1313] text-sky-600 dark:text-sky-400'
                       : 'bg-sky-500/20 text-sky-700 dark:text-sky-300'
                   }`}
                 >
@@ -128,7 +128,7 @@ export const App: React.FC = () => {
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'tuples'
                   ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <Info className="w-3.5 h-3.5" />
@@ -152,7 +152,7 @@ export const App: React.FC = () => {
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sky-400 hover:text-sky-700 dark:text-sky-300 hover:underline font-semibold"
+              className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:text-sky-300 hover:underline font-semibold"
             >
               <LinkedInIcon className="w-3.5 h-3.5" />
               <span>LinkedIn Profile</span>

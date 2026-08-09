@@ -34,9 +34,9 @@ export const BatchTester: React.FC = () => {
   return (
     <div className="flex flex-col bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-300 dark:border-white/10 bg-[#0d1017]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-[#0d1017]">
         <div className="flex items-center gap-2">
-          <FlaskConical className="w-4 h-4 text-purple-400" />
+          <FlaskConical className="w-4 h-4 text-purple-600 dark:text-purple-400" />
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Batch Test Suite
           </h4>
@@ -88,7 +88,7 @@ export const BatchTester: React.FC = () => {
 
         <button
           type="submit"
-          className="p-1.5 bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white rounded-xl border border-slate-300 dark:border-white/10 transition-colors shadow-xs cursor-pointer"
+          className="p-1.5 bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-slate-50/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white rounded-xl border border-slate-300 dark:border-white/10 transition-colors shadow-xs cursor-pointer"
           title="Add Test Case"
         >
           <Plus className="w-4 h-4" />

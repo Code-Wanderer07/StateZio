@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   return (
-    <header className="min-h-[3.5rem] bg-white dark:bg-[#161111]/95 border-b border-sky-200 dark:border-sky-500/20 px-2 sm:px-4 py-2 sm:py-0 flex items-center justify-between gap-2 z-30 shadow-md backdrop-blur-md text-slate-900 dark:text-slate-100 shrink-0 select-none flex-wrap sm:flex-nowrap">
+    <header className="min-h-[3.5rem] bg-slate-50 dark:bg-[#161111]/95 border-b border-sky-200 dark:border-sky-500/20 px-2 sm:px-4 py-2 sm:py-0 flex items-center justify-between gap-2 z-30 shadow-md backdrop-blur-md text-slate-900 dark:text-slate-100 shrink-0 select-none flex-wrap sm:flex-nowrap">
       {/* Brand & Logo (Clickable to return to Intro/Home) */}
       <div className="flex items-center gap-3">
         <button
@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Go to StateZio Home"
             className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white text-xs font-semibold transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 ml-2 shadow-xs"
           >
-            <Home className="w-3.5 h-3.5 text-sky-400" />
+            <Home className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             <span>Home</span>
           </button>
         )}
@@ -85,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'DFA'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
-              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'NFA'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
-              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -109,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'PDA'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
-              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
           }`}
         >
           <Layers className="w-3.5 h-3.5" />
@@ -121,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'TM'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
-              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10'
+              : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
           }`}
         >
           <Disc3 className="w-3.5 h-3.5" />
@@ -141,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             target="_blank"
             rel="noopener noreferrer"
             title="Connect with Shivakanth on LinkedIn"
-            className="p-1 rounded-lg bg-sky-50 dark:bg-[#1C1313] hover:bg-sky-500 text-sky-400 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] border border-sky-500/40 transition-all shadow-xs flex items-center justify-center cursor-pointer"
+            className="p-1 rounded-lg bg-sky-50 dark:bg-[#1C1313] hover:bg-sky-500 text-sky-600 dark:text-sky-400 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] border border-sky-500/40 transition-all shadow-xs flex items-center justify-center cursor-pointer"
           >
             <LinkedInIcon className="w-3.5 h-3.5" />
           </a>
@@ -162,7 +162,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           onClick={toggleTheme}
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-[11px] font-bold bg-white dark:bg-[#221717] hover:bg-slate-200 dark:hover:bg-[#2F2121] text-slate-700 dark:text-sky-300 transition-colors shadow-xs border border-slate-200 dark:border-sky-500/20 flex items-center gap-1.5 cursor-pointer"
+          className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-[11px] font-bold bg-slate-50 dark:bg-[#221717] hover:bg-slate-200 dark:hover:bg-[#2F2121] text-slate-700 dark:text-sky-300 transition-colors shadow-xs border border-slate-200 dark:border-sky-500/20 flex items-center gap-1.5 cursor-pointer"
         >
           {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
         </button>
@@ -175,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               : 'bg-sky-200 dark:bg-[#271C1C] border-sky-300 dark:border-sky-500/30 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white hover:bg-sky-300 dark:bg-[#3D2C2C]'
           }`}
         >
-          <FolderOpen className="w-3.5 h-3.5 text-sky-400" />
+          <FolderOpen className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
           <span className="hidden sm:inline">Presets</span>
         </button>
 
@@ -185,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:bg-[#3D2C2C] border border-sky-300 dark:border-sky-500/30 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white transition-colors shadow-xs cursor-pointer"
           title="Theory Guide & Reference"
         >
-          <HelpCircle className="w-4 h-4 text-sky-400" />
+          <HelpCircle className="w-4 h-4 text-sky-600 dark:text-sky-400" />
         </button>
       </div>
     </header>

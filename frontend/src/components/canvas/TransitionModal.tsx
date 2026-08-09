@@ -98,7 +98,7 @@ export const TransitionModal: React.FC = () => {
       <div className="bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-sky-100">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-[#271C1C]">
-          <div className="flex items-center gap-2 text-sky-400">
+          <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
             <ArrowLeftRight className="w-5 h-5" />
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm tracking-wide">
               {editingTransitionId ? 'Edit Transition Rule' : 'Add Transition Rule'}
@@ -117,7 +117,7 @@ export const TransitionModal: React.FC = () => {
           <span className="px-2.5 py-1 rounded bg-sky-200 dark:bg-[#271C1C] text-emerald-400 font-semibold border border-emerald-500/40 shadow-xs">
             {sourceLabel}
           </span>
-          <ArrowRight className="w-4 h-4 text-sky-400" />
+          <ArrowRight className="w-4 h-4 text-sky-600 dark:text-sky-400" />
           <span className="px-2.5 py-1 rounded bg-sky-200 dark:bg-[#271C1C] text-sky-700 dark:text-sky-300 font-semibold border border-sky-500/40 shadow-xs">
             {targetLabel}
           </span>

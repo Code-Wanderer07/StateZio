@@ -96,7 +96,7 @@ export const SimulationDeck: React.FC = () => {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-sky-400 animate-ping"></div>
           <span className="text-[11px] font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300 font-mono flex items-center gap-1.5">
-            <Activity className="w-3.5 h-3.5 text-sky-400" />
+            <Activity className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             <span>Simulation Engine ({machine.type})</span>
           </span>
         </div>
@@ -116,7 +116,7 @@ export const SimulationDeck: React.FC = () => {
               if (e.key === 'Enter') runSimulation();
             }}
             placeholder={`Input for ${machine.type} (e.g. 0101, aaabbb)...`}
-            className="w-full bg-white dark:bg-[#161111] border border-sky-300 dark:border-sky-500/30 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 dark:ring-sky-400/20 rounded-xl px-3 py-2 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none transition-all"
+            className="w-full bg-slate-50 dark:bg-[#161111] border border-sky-300 dark:border-sky-500/30 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 dark:ring-sky-400/20 rounded-xl px-3 py-2 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none transition-all"
           />
           {inputString.length === 0 && (
             <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-slate-500 font-mono pointer-events-none hidden sm:inline">
@@ -131,7 +131,7 @@ export const SimulationDeck: React.FC = () => {
           aria-label="Run simulation"
           className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold shadow-lg transition-all shrink-0 border ${
             isPlaying
-              ? 'bg-sky-900/40 border-sky-700/30 text-sky-400/50 cursor-not-allowed'
+              ? 'bg-sky-900/40 border-sky-700/30 text-sky-600 dark:text-sky-400/50 cursor-not-allowed'
               : 'bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 active:scale-95 text-slate-900 dark:text-white border-sky-300/40 shadow-sky-200 dark:shadow-sky-950/40 cursor-pointer'
           }`}
         >
@@ -198,9 +198,9 @@ export const SimulationDeck: React.FC = () => {
         </div>
 
         {/* Speed Selector (0.5x, 1x, 2x) */}
-        <div className="flex items-center gap-1 bg-white dark:bg-[#161111] p-1 rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0">
+        <div className="flex items-center gap-1 bg-slate-50 dark:bg-[#161111] p-1 rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0">
           <div className="flex items-center gap-0.5 px-1 text-slate-600 dark:text-slate-400" title="Playback Speed">
-            <Gauge className="w-3.5 h-3.5 text-sky-400" />
+            <Gauge className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
           </div>
           {[0.5, 1, 2].map((spd) => (
             <button
@@ -222,7 +222,7 @@ export const SimulationDeck: React.FC = () => {
       <div className="space-y-1.5 pt-0.5">
         <div className="flex items-center justify-between text-[11px] font-mono text-slate-600 dark:text-slate-400">
           <span className="flex items-center gap-1.5">
-            <Clock className="w-3 h-3 text-sky-400" />
+            <Clock className="w-3 h-3 text-sky-600 dark:text-sky-400" />
             <span>Step Timeline:</span>
           </span>
           <span>
@@ -241,15 +241,15 @@ export const SimulationDeck: React.FC = () => {
             max={totalSteps - 1}
             value={currentStepIndex}
             onChange={(e) => jumpToStep(Number(e.target.value))}
-            className="w-full h-1.5 bg-white dark:bg-[#161111] border border-sky-200 dark:border-sky-500/20 rounded-lg appearance-none cursor-pointer accent-sky-400"
+            className="w-full h-1.5 bg-slate-50 dark:bg-[#161111] border border-sky-200 dark:border-sky-500/20 rounded-lg appearance-none cursor-pointer accent-sky-400"
           />
         )}
       </div>
 
       {/* Action Banner / Status Verdict */}
-      <div className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-[#161111] border border-sky-200 dark:border-sky-500/20 text-xs w-full overflow-hidden">
+      <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#161111] border border-sky-200 dark:border-sky-500/20 text-xs w-full overflow-hidden">
         <div className="flex items-center gap-2 flex-1 min-w-0 mr-2">
-          <span className="text-sky-400 font-mono font-bold shrink-0 text-[11px]">
+          <span className="text-sky-600 dark:text-sky-400 font-mono font-bold shrink-0 text-[11px]">
             [S{currentStepIndex}]:
           </span>
           <span className="text-slate-700 dark:text-slate-300 font-mono text-[11px] truncate">

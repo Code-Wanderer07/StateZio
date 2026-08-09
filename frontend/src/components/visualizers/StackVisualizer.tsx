@@ -18,7 +18,7 @@ export const StackVisualizer: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-300 dark:border-white/10">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-purple-400" />
+          <Layers className="w-4 h-4 text-purple-600 dark:text-purple-400" />
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             PDA Stack Visualizer
           </h4>
@@ -35,7 +35,7 @@ export const StackVisualizer: React.FC = () => {
       </div>
 
       {/* Vertical Stack Tube */}
-      <div className="flex-1 min-h-[150px] max-h-[240px] overflow-y-auto px-4 py-2 flex flex-col items-center gap-1.5 bg-[#0d1017] rounded-xl border border-slate-300 dark:border-white/10 shadow-inner">
+      <div className="flex-1 min-h-[150px] max-h-[240px] overflow-y-auto px-4 py-2 flex flex-col items-center gap-1.5 bg-slate-50 dark:bg-[#0d1017] rounded-xl border border-slate-300 dark:border-white/10 shadow-inner">
         {reversedStack.length === 0 ? (
           <div className="m-auto text-xs text-slate-500 italic font-mono">
             Stack is Empty (ε)
