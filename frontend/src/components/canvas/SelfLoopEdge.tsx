@@ -79,7 +79,7 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
                   ? 'bg-red-900/90 text-red-100 border-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)] scale-105'
                   : isActive
                   ? 'bg-sky-500 text-white dark:text-[#1C1313] border-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.7)] scale-105'
-                  : 'bg-sky-50 dark:bg-[#1C1313] text-sky-800 dark:text-sky-200 border-sky-500/40 hover:border-sky-300 hover:text-slate-900 dark:text-white'
+                  : 'bg-sky-50 dark:bg-[#1C1313] text-sky-800 dark:text-sky-200 border-sky-500/40 hover:border-sky-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               {labelText}

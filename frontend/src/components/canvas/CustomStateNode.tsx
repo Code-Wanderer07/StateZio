@@ -32,9 +32,9 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
       return 'bg-sky-400 border-2 border-sky-200 shadow-[0_0_25px_rgba(56,189,248,0.9)] ring-4 ring-sky-300/60 text-white dark:text-[#1C1313] scale-105';
     }
     if (selected) {
-      if (isAccept) return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-indigo-400 text-sky-100 ring-2 ring-indigo-400/60 shadow-lg';
-      if (isInitial) return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-emerald-400 text-sky-100 ring-2 ring-emerald-400/60 shadow-lg';
-      return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-sky-400 text-sky-100 ring-2 ring-sky-400/50 shadow-lg';
+      if (isAccept) return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-indigo-400 text-slate-900 dark:text-slate-100 ring-2 ring-indigo-400/60 shadow-lg';
+      if (isInitial) return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-emerald-400 text-slate-900 dark:text-slate-100 ring-2 ring-emerald-400/60 shadow-lg';
+      return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-sky-400 text-slate-900 dark:text-slate-100 ring-2 ring-sky-400/50 shadow-lg';
     }
     if (isAccept) {
       return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-indigo-400 text-slate-900 dark:text-slate-100 hover:border-indigo-300 shadow-md';
@@ -42,7 +42,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
     if (isInitial) {
       return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-emerald-400 text-slate-900 dark:text-slate-100 hover:border-emerald-300 shadow-md';
     }
-    return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-sky-400/80 text-sky-100 hover:border-sky-300 shadow-md';
+    return 'bg-sky-50 dark:bg-[#1C1313] border-2 border-sky-400/80 text-slate-900 dark:text-slate-100 hover:border-sky-300 shadow-md';
   };
 
   return (
@@ -92,7 +92,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
               onChange={(e) => setLabelValue(e.target.value)}
               onBlur={handleRenameSubmit}
               autoFocus
-              className="w-12 bg-sky-50 dark:bg-[#1C1313] text-sky-100 text-xs font-mono text-center border border-sky-400 rounded px-1 py-0.5 outline-none shadow-xs"
+              className="w-12 bg-sky-50 dark:bg-[#1C1313] text-slate-900 dark:text-slate-100 text-xs font-mono text-center border border-sky-400 rounded px-1 py-0.5 outline-none shadow-xs"
             />
           </form>
         ) : (
@@ -100,7 +100,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             onDoubleClick={() => setIsEditing(true)}
             title="Double-click to rename"
             className={`z-10 font-mono font-bold tracking-wide text-xs truncate max-w-[50px] ${
-              isActive ? 'text-white dark:text-[#1C1313] font-extrabold' : 'text-sky-100'
+              isActive ? 'text-white dark:text-[#1C1313] font-extrabold' : 'text-slate-900 dark:text-slate-100'
             }`}
           >
             {(data.label as string) || id}
