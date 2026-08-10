@@ -24,6 +24,7 @@ export const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isSolverOpen, setIsSolverOpen] = useState(false);
+  const [isMobileControlsOpen, setIsMobileControlsOpen] = useState(false);
   const [activeInspectorTab, setActiveInspectorTab] = useState<'trace' | 'batch' | 'tuples'>('trace');
 
   const { machine, setMachineType, batchTestCases, theme } = useAutomataStore(
@@ -84,17 +85,28 @@ export const App: React.FC = () => {
       />
 
       {/* Main Workspace Area */}
-      <div className="flex flex-col md:flex-row flex-1 h-[calc(100dvh-3.5rem)] overflow-hidden">
+      <div className="flex flex-row flex-1 h-[calc(100dvh-3.5rem)] relative overflow-hidden">
         {/* Preset Sidebar (collapsible) */}
         {isSidebarOpen && <PresetSidebar />}
 
         {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
         <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-[#1C1313] border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
           <AutomataCanvas />
+          
+          {/* Mobile Controls Toggle Button */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden">
+            <button 
+              onClick={() => setIsMobileControlsOpen(prev => !prev)}
+              className="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2.5 rounded-full shadow-xl shadow-sky-900/20 border border-sky-400 font-bold flex items-center gap-2 transition-all active:scale-95"
+            >
+              <ListOrdered className="w-4 h-4" />
+              {isMobileControlsOpen ? 'Hide Controls' : 'Show Controls'}
+            </button>
+          </div>
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className="flex w-full md:w-[430px] md:max-w-[450px] flex-1 md:flex-none md:h-full bg-slate-50 dark:bg-[#161111] md:border-l border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
+        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-[60vh] md:h-full bg-slate-50 dark:bg-[#161111] md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
           {/* Main Simulation Deck (with glowing engine chassis) */}
           <SimulationDeck />
 

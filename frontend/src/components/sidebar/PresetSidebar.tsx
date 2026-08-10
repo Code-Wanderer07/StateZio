@@ -21,7 +21,7 @@ export const PresetSidebar: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 dark:bg-[#161111] border-r border-sky-200 dark:border-sky-500/20 w-80 shadow-2xl text-slate-900 dark:text-slate-100 select-none">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-[#161111] border-r border-sky-200 dark:border-sky-500/20 w-80 max-w-[85vw] shadow-2xl text-slate-900 dark:text-slate-100 select-none absolute md:relative z-40 md:z-auto">
       {/* Sidebar Header */}
       <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-[#1C1313]">
         <div className="flex items-center gap-2 mb-3">
