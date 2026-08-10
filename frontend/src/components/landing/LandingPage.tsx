@@ -14,9 +14,12 @@ import {
   Check,
   Layers,
   Disc3,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { LinkedInIcon } from '../ui/LinkedInIcon';
 import { MachineType } from '../../types/automata';
+import { useAutomataStore } from '../../store/useAutomataStore';
 
 interface LandingPageProps {
   onLaunchSimulator: (type?: MachineType, openSolver?: boolean) => void;
@@ -29,6 +32,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   onOpenSolver,
 }) => {
   const [copiedCode, setCopiedCode] = useState(false);
+  const { theme, toggleTheme } = useAutomataStore();
   const [activeCodeTab, setActiveCodeTab] = useState<'python' | 'json' | 'tuples'>('python');
 
   const linkedInUrl = 'https://www.linkedin.com/in/shivakanth-m-701631380';
@@ -143,6 +147,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <LinkedInIcon className="w-3.5 h-3.5" />
               </a>
             </div>
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-[#221717] hover:bg-slate-300 dark:hover:bg-[#2F2121] text-slate-700 dark:text-sky-300 transition-colors shadow-xs border border-slate-300 dark:border-sky-500/20 flex items-center gap-1.5 cursor-pointer"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
 
             {/* Launch CTA */}
             <button
