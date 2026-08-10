@@ -112,7 +112,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-[60vh] md:h-full bg-slate-50 dark:bg-[#161111] md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
+        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-[80vh] md:h-full bg-slate-50 dark:bg-[#161111] md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
           {/* Mobile Close Button for Controls */}
           <div className="md:hidden flex justify-end mb-1">
             <button 
@@ -181,7 +181,7 @@ export const App: React.FC = () => {
           </div>
 
           {/* Active Inspector Tab Content */}
-          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-auto">
+          <div className="flex-none md:flex-1 md:min-h-0 overflow-y-auto overflow-x-auto mb-4 md:mb-0 pb-6 md:pb-0">
             {activeInspectorTab === 'trace' && <ExecutionTraceTable />}
             {activeInspectorTab === 'batch' && <BatchTester />}
             {activeInspectorTab === 'tuples' && <MachineProperties />}
