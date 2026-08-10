@@ -15,7 +15,7 @@ import { ExportImportModal } from './components/sidebar/ExportImportModal';
 import { TheoryHelpModal } from './components/ui/TheoryHelpModal';
 import { QuestionSolverModal } from './components/solver/QuestionSolverModal';
 import { useAutomataStore } from './store/useAutomataStore';
-import { ListOrdered, FlaskConical, Info } from 'lucide-react';
+import { ListOrdered, FlaskConical, Info, Cpu } from 'lucide-react';
 import { LinkedInIcon } from './components/ui/LinkedInIcon';
 import { MachineType } from './types/automata';
 
@@ -25,7 +25,7 @@ export const App: React.FC = () => {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isSolverOpen, setIsSolverOpen] = useState(false);
   const [isMobileControlsOpen, setIsMobileControlsOpen] = useState(false);
-  const [activeInspectorTab, setActiveInspectorTab] = useState<'trace' | 'batch' | 'tuples'>('trace');
+  const [activeInspectorTab, setActiveInspectorTab] = useState<'engine' | 'trace' | 'batch' | 'tuples'>('engine');
 
   const { machine, setMachineType, batchTestCases, theme } = useAutomataStore(
     useShallow((state) => ({
@@ -122,16 +122,20 @@ export const App: React.FC = () => {
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
-          
-          {/* Main Simulation Deck (with glowing engine chassis) */}
-          <SimulationDeck />
-
-          {/* Dedicated Component Visualizer (PDA Stack or TM Tape) */}
-          {machine.type === 'PDA' && <StackVisualizer />}
-          {machine.type === 'TM' && <TapeVisualizer />}
-
-          {/* Inspector Tabs (Trace / Batch / Tuples) */}
+          {/* Inspector Tabs (Engine / Trace / Batch / Tuples) */}
           <div className="flex items-center gap-1 p-1 bg-sky-100 dark:bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0 shadow-inner">
+            <button
+              onClick={() => setActiveInspectorTab('engine')}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                activeInspectorTab === 'engine'
+                  ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
+                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+              }`}
+            >
+              <Cpu className="w-3.5 h-3.5" />
+              <span>Engine</span>
+            </button>
+
             <button
               onClick={() => setActiveInspectorTab('trace')}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
@@ -141,7 +145,8 @@ export const App: React.FC = () => {
               }`}
             >
               <ListOrdered className="w-3.5 h-3.5" />
-              <span>Step Trace</span>
+              <span className="hidden sm:inline">Step Trace</span>
+              <span className="sm:hidden">Trace</span>
             </button>
 
             <button
@@ -153,7 +158,8 @@ export const App: React.FC = () => {
               }`}
             >
               <FlaskConical className="w-3.5 h-3.5" />
-              <span>Batch Tests</span>
+              <span className="hidden sm:inline">Batch Tests</span>
+              <span className="sm:hidden">Batch</span>
               {batchTestCases.length > 0 && (
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
@@ -182,6 +188,13 @@ export const App: React.FC = () => {
 
           {/* Active Inspector Tab Content */}
           <div className="flex-none md:flex-1 md:min-h-0 overflow-y-auto overflow-x-auto mb-4 md:mb-0 pb-6 md:pb-0">
+            {activeInspectorTab === 'engine' && (
+              <div className="space-y-3">
+                <SimulationDeck />
+                {machine.type === 'PDA' && <StackVisualizer />}
+                {machine.type === 'TM' && <TapeVisualizer />}
+              </div>
+            )}
             {activeInspectorTab === 'trace' && <ExecutionTraceTable />}
             {activeInspectorTab === 'batch' && <BatchTester />}
             {activeInspectorTab === 'tuples' && <MachineProperties />}
