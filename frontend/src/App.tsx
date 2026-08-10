@@ -21,7 +21,7 @@ import { MachineType } from './types/automata';
 
 export const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'landing' | 'simulator'>('landing');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => typeof window !== 'undefined' ? window.innerWidth > 768 : true);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isSolverOpen, setIsSolverOpen] = useState(false);
   const [isMobileControlsOpen, setIsMobileControlsOpen] = useState(false);
@@ -87,20 +87,26 @@ export const App: React.FC = () => {
       {/* Main Workspace Area */}
       <div className="flex flex-row flex-1 h-[calc(100dvh-3.5rem)] relative overflow-hidden">
         {/* Preset Sidebar (collapsible) */}
-        {isSidebarOpen && <PresetSidebar />}
+        {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
 
         {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
         <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-[#1C1313] border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
           <AutomataCanvas />
-          
-          {/* Mobile Controls Toggle Button */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden">
+          {/* Mobile Controls Toggle Buttons */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden flex gap-2 w-max max-w-[90vw]">
+            <button 
+              onClick={() => setIsSidebarOpen(true)}
+              className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-full shadow-xl shadow-slate-900/40 border border-slate-600 font-bold flex items-center gap-2 transition-all active:scale-95"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              Presets
+            </button>
             <button 
               onClick={() => setIsMobileControlsOpen(prev => !prev)}
               className="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2.5 rounded-full shadow-xl shadow-sky-900/20 border border-sky-400 font-bold flex items-center gap-2 transition-all active:scale-95"
             >
               <ListOrdered className="w-4 h-4" />
-              {isMobileControlsOpen ? 'Hide Controls' : 'Show Controls'}
+              {isMobileControlsOpen ? 'Hide Controls' : 'Controls'}
             </button>
           </div>
         </div>

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, X } from 'lucide-react';
 import { useAutomataStore } from '../../store/useAutomataStore';
 import { allPresets } from '../../presets';
 import { MachineType } from '../../types/automata';
 
-export const PresetSidebar: React.FC = () => {
+interface PresetSidebarProps {
+  onClose?: () => void;
+}
+
+export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
   const { loadPreset, activePresetId } = useAutomataStore();
   const [selectedType, setSelectedType] = useState<'All' | MachineType>('All');
 
@@ -23,7 +27,15 @@ export const PresetSidebar: React.FC = () => {
   return (
     <div className="flex flex-col h-full bg-slate-50 dark:bg-[#161111] border-r border-sky-200 dark:border-sky-500/20 w-80 max-w-[85vw] shadow-2xl text-slate-900 dark:text-slate-100 select-none absolute md:relative z-40 md:z-auto">
       {/* Sidebar Header */}
-      <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-[#1C1313]">
+      <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-[#1C1313] flex flex-col relative">
+        {onClose && (
+          <button 
+            onClick={onClose}
+            className="md:hidden absolute top-3 right-3 p-1 rounded-md text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
         <div className="flex items-center gap-2 mb-3">
           <BookOpen className="w-4 h-4 text-sky-600 dark:text-sky-400" />
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
