@@ -69,8 +69,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               className="flex items-center gap-2.5 text-left group cursor-pointer"
             >
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 rounded-xl blur-xs opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <div className="relative w-8 h-8 rounded-xl overflow-hidden bg-slate-900 border border-slate-300 dark:border-white/10 shrink-0">
+                <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-slate-900 shadow-md shadow-cyan-500/20 shrink-0">
                   <img src="/statezio-logo.jpg" alt="StateZio Logo" className="w-full h-full object-cover scale-[1.2]" />
                 </div>
               </div>
@@ -781,11 +780,9 @@ Transition Function δ:
       <footer className="mt-auto bg-slate-100 dark:bg-slate-950 border-t border-slate-300 dark:border-white/10 py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <img
-              src="/statezio-logo.jpg"
-              alt="StateZio Logo"
-              className="w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 shadow-xs"
-            />
+            <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-900 shadow-sm shrink-0">
+                <img src="/statezio-logo.jpg" alt="StateZio Logo" className="w-full h-full object-cover scale-[1.2]" />
+              </div>
             <div>
               <span className="font-extrabold text-sm text-slate-900 dark:text-white">
                 StateZio
