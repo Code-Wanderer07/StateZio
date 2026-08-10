@@ -71,7 +71,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 rounded-xl blur-xs opacity-75 group-hover:opacity-100 transition duration-300"></div>
                 <img
-                  src="/statezio-logo.png"
+                  src="/statezio-logo.jpg"
                   alt="StateZio Logo"
                   className="relative w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10"
                 />
@@ -784,7 +784,7 @@ Transition Function δ:
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img
-              src="/statezio-logo.png"
+              src="/statezio-logo.jpg"
               alt="StateZio Logo"
               className="w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 shadow-xs"
             />
