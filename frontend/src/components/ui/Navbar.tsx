@@ -45,11 +45,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           title="Return to StateZio Intro & Tutorials"
           className="flex items-center gap-2.5 text-left group cursor-pointer"
         >
-          <img
-            src="/statezio-logo.jpg"
-            alt="StateZio Logo"
-            className="w-8 h-8 rounded-xl object-contain shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform"
-          />
+          <div className="w-8 h-8 rounded-xl overflow-hidden shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform shrink-0">
+            <img
+              src="/statezio-logo.jpg"
+              alt="StateZio Logo"
+              className="w-full h-full object-cover scale-[1.2]"
+            />
+          </div>
           <div>
             <div className="flex items-center gap-2">
               <h1 className="font-extrabold text-sm tracking-tight text-slate-900 dark:text-white group-hover:text-cyan-700 dark:text-cyan-300 transition-colors">

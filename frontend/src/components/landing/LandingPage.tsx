@@ -70,11 +70,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             >
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 rounded-xl blur-xs opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <img
-                  src="/statezio-logo.jpg"
-                  alt="StateZio Logo"
-                  className="relative w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10"
-                />
+                <div className="relative w-8 h-8 rounded-xl overflow-hidden bg-slate-900 border border-slate-300 dark:border-white/10 shrink-0">
+                  <img src="/statezio-logo.jpg" alt="StateZio Logo" className="w-full h-full object-cover scale-[1.2]" />
+                </div>
               </div>
               <div>
                 <div className="flex items-center gap-2">
