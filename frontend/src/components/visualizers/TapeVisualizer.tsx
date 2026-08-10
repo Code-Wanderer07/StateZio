@@ -33,7 +33,7 @@ export const TapeVisualizer: React.FC = () => {
   }, [headIndex, currentStepIndex]);
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl p-4 shadow-xl text-slate-900 dark:text-slate-100">
+    <div className="flex flex-col bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 rounded-2xl p-4 shadow-xl text-slate-900 dark:text-slate-100">
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-300 dark:border-white/10">
         <div className="flex items-center gap-2">
@@ -59,7 +59,7 @@ export const TapeVisualizer: React.FC = () => {
       </div>
 
       {/* Horizontal Tape Scroll Strip */}
-      <div className="relative my-2 py-3 px-2 bg-slate-50 dark:bg-[#0d1017] border border-slate-300 dark:border-white/10 rounded-xl overflow-x-auto shadow-inner">
+      <div className="relative my-2 py-3 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 rounded-xl overflow-x-auto shadow-inner">
         <div
           ref={tapeScrollRef}
           className="flex items-center justify-start gap-2 min-w-max px-8"
@@ -85,7 +85,7 @@ export const TapeVisualizer: React.FC = () => {
                   className={`w-11 h-12 rounded-xl flex items-center justify-center font-mono text-sm font-bold transition-all duration-300 select-none shadow-md ${
                     isHead
                       ? 'bg-cyan-500/25 border-2 border-cyan-400 text-slate-900 dark:text-white shadow-cyan-950/60 scale-110 ring-2 ring-cyan-400/30'
-                      : 'bg-slate-100 dark:bg-[#161b26] border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:border-white/20'
+                      : 'bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:border-white/20'
                   }`}
                 >
                   {sym === blank ? (

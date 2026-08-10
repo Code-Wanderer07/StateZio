@@ -11,7 +11,7 @@ export const MachineProperties: React.FC = () => {
   const startStateLabel = machine.states.find((s) => s.id === machine.startState)?.label || machine.startState;
 
   return (
-    <div className="flex flex-col bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl p-4 shadow-xl space-y-3 text-slate-900 dark:text-slate-100 select-none">
+    <div className="flex flex-col bg-sky-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 rounded-2xl p-4 shadow-xl space-y-3 text-slate-900 dark:text-slate-100 select-none">
       {/* Header */}
       <div className="flex items-center justify-between pb-2 border-b border-sky-200 dark:border-sky-500/20">
         <div className="flex items-center gap-2">
@@ -28,7 +28,7 @@ export const MachineProperties: React.FC = () => {
       {/* Tuples breakdown */}
       <div className="space-y-2 text-xs font-mono">
         {/* Q: States */}
-        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
           <span className="text-sky-700 dark:text-sky-300 font-semibold shrink-0">Q (States):</span>
           <span className="text-slate-900 dark:text-white text-right break-words font-medium">
             {'{'}{stateIds.join(', ')}{'}'}
@@ -36,7 +36,7 @@ export const MachineProperties: React.FC = () => {
         </div>
 
         {/* Sigma: Input Alphabet */}
-        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
           <span className="text-teal-300 font-semibold shrink-0">Σ (Alphabet):</span>
           <span className="text-slate-900 dark:text-white text-right font-medium">
             {'{'}{(machine.type === 'PDA' ? (machine as PDAMachine).inputAlphabet : machine.type === 'TM' ? (machine as TMMachine).inputAlphabet : machine.alphabet)?.join(', ') || '0, 1'}{'}'}
@@ -46,13 +46,13 @@ export const MachineProperties: React.FC = () => {
         {/* PDA Gamma & Z0 */}
         {machine.type === 'PDA' && (
           <>
-            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
               <span className="text-amber-300 font-semibold shrink-0">Γ (Stack Alph.):</span>
               <span className="text-slate-900 dark:text-white text-right font-medium">
                 {'{'}{(machine as PDAMachine).stackAlphabet?.join(', ') || 'Z0, a'}{'}'}
               </span>
             </div>
-            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
               <span className="text-amber-300 font-semibold shrink-0">Z₀ (Init Stack):</span>
               <span className="text-slate-900 dark:text-white text-right font-medium">
                 {(machine as PDAMachine).initialStackSymbol || 'Z0'}
@@ -64,13 +64,13 @@ export const MachineProperties: React.FC = () => {
         {/* TM Gamma & Blank */}
         {machine.type === 'TM' && (
           <>
-            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
               <span className="text-teal-300 font-semibold shrink-0">Γ (Tape Alph.):</span>
               <span className="text-slate-900 dark:text-white text-right font-medium">
                 {'{'}{(machine as TMMachine).tapeAlphabet?.join(', ') || '0, 1, _'}{'}'}
               </span>
             </div>
-            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+            <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
               <span className="text-teal-300 font-semibold shrink-0">␣ (Blank):</span>
               <span className="text-slate-900 dark:text-white text-right font-medium">
                 '{(machine as TMMachine).blankSymbol || '_'}'
@@ -80,7 +80,7 @@ export const MachineProperties: React.FC = () => {
         )}
 
         {/* q0: Start State */}
-        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
           <span className="text-emerald-400 font-semibold shrink-0">q₀ (Start):</span>
           <span className="text-slate-900 dark:text-white text-right font-medium">
             {startStateLabel || 'None'}
@@ -88,7 +88,7 @@ export const MachineProperties: React.FC = () => {
         </div>
 
         {/* F: Accept States */}
-        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
           <span className="text-indigo-400 font-semibold shrink-0">F (Accept):</span>
           <span className="text-slate-900 dark:text-white text-right break-words font-medium">
             {'{'}{acceptStateIds.join(', ')}{'}'}
@@ -96,7 +96,7 @@ export const MachineProperties: React.FC = () => {
         </div>
 
         {/* delta: Transition Count */}
-        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
+        <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-slate-800 border border-sky-200 dark:border-sky-500/20">
           <span className="text-slate-600 dark:text-slate-400 font-semibold shrink-0">δ (Transitions):</span>
           <span className="text-slate-900 dark:text-white text-right font-medium">
             {machine.transitions.length} rules

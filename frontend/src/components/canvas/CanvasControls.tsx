@@ -19,7 +19,7 @@ export const CanvasControls: React.FC = () => {
   } = useAutomataStore();
 
   return (
-    <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-sky-50 dark:bg-[#1C1313]/95 border border-sky-300 dark:border-sky-500/30 p-1.5 rounded-2xl shadow-2xl backdrop-blur-md text-sky-100">
+    <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-sky-50 dark:bg-slate-950/95 border border-sky-300 dark:border-sky-500/30 p-1.5 rounded-2xl shadow-2xl backdrop-blur-md text-sky-100">
       {/* Add State */}
       <button
         onClick={addState}
@@ -33,7 +33,7 @@ export const CanvasControls: React.FC = () => {
       {/* Auto Layout (Dagre) */}
       <button
         onClick={autoLayout}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 text-xs font-medium transition-colors shadow-xs cursor-pointer"
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-200 dark:bg-slate-800 hover:bg-sky-300 dark:hover:bg-slate-800 text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 text-xs font-medium transition-colors shadow-xs cursor-pointer"
         title="Automatically organize graph layout using Dagre"
       >
         <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
@@ -57,7 +57,7 @@ export const CanvasControls: React.FC = () => {
       {/* Export / Import Modal */}
       <button
         onClick={() => setIsExportImportOpen(true)}
-        className="p-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-700 dark:text-sky-300 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
+        className="p-1.5 rounded-xl bg-sky-200 dark:bg-slate-800 hover:bg-sky-300 dark:hover:bg-slate-800 text-sky-700 dark:text-sky-300 hover:text-slate-900 dark:text-white border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
         title="Import / Export Machine JSON & Images"
       >
         <Download className="w-4 h-4" />
@@ -66,7 +66,7 @@ export const CanvasControls: React.FC = () => {
       {/* Clear Canvas */}
       <button
         onClick={clearCanvas}
-        className="p-1.5 rounded-xl bg-sky-200 dark:bg-[#271C1C] hover:bg-rose-950/60 text-slate-600 dark:text-slate-400 hover:text-rose-400 border border-sky-300 dark:border-sky-500/30 hover:border-rose-800 transition-colors shadow-xs cursor-pointer"
+        className="p-1.5 rounded-xl bg-sky-200 dark:bg-slate-800 hover:bg-rose-950/60 text-slate-600 dark:text-slate-400 hover:text-rose-400 border border-sky-300 dark:border-sky-500/30 hover:border-rose-800 transition-colors shadow-xs cursor-pointer"
         title="Clear Canvas"
       >
         <RotateCcw className="w-4 h-4" />

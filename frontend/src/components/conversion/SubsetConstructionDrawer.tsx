@@ -17,9 +17,9 @@ export const SubsetConstructionDrawer: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/75 backdrop-blur-xs animate-in fade-in duration-200 select-none">
-      <div className="w-full max-w-2xl bg-sky-50 dark:bg-[#1C1313] border-l border-sky-300 dark:border-sky-500/30 shadow-2xl flex flex-col h-full overflow-hidden text-slate-900 dark:text-slate-100">
+      <div className="w-full max-w-2xl bg-sky-50 dark:bg-slate-950 border-l border-sky-300 dark:border-sky-500/30 shadow-2xl flex flex-col h-full overflow-hidden text-slate-900 dark:text-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-[#271C1C]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-slate-800">
           <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold">
             <GitFork className="w-5 h-5" />
             <h3 className="font-bold text-slate-900 dark:text-white text-sm tracking-tight">
@@ -38,7 +38,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
 
             <button
               onClick={() => setIsSubsetDrawerOpen(false)}
-              className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-[#3D2C2C] transition-colors cursor-pointer"
+              className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -46,9 +46,9 @@ export const SubsetConstructionDrawer: React.FC = () => {
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50 dark:bg-[#161111]">
+        <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50 dark:bg-slate-900">
           {/* Summary Box */}
-          <div className="p-4 rounded-xl bg-sky-100 dark:bg-[#241919] border border-sky-300 dark:border-sky-500/30 text-xs text-slate-700 dark:text-slate-300 space-y-1">
+          <div className="p-4 rounded-xl bg-sky-100 dark:bg-slate-900 border border-sky-300 dark:border-sky-500/30 text-xs text-slate-700 dark:text-slate-300 space-y-1">
             <p className="font-bold text-sky-700 dark:text-sky-300">Conversion Summary:</p>
             <p>
               Converted NFA into a DFA with <strong className="text-slate-900 dark:text-white">{convertedDfa.states.length}</strong> states and{' '}
@@ -68,7 +68,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
 
             <div className="border border-sky-300 dark:border-sky-500/30 rounded-xl overflow-hidden shadow-md">
               <table className="w-full text-left text-xs font-mono">
-                <thead className="bg-[#0b0e14] text-slate-600 dark:text-slate-400 uppercase text-[10px] tracking-wider border-b border-sky-200 dark:border-sky-500/20">
+                <thead className="bg-slate-950 text-slate-600 dark:text-slate-400 uppercase text-[10px] tracking-wider border-b border-sky-200 dark:border-sky-500/20">
                   <tr>
                     <th className="py-2.5 px-3">DFA State</th>
                     <th className="py-2.5 px-3">NFA Subset</th>
@@ -79,7 +79,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 bg-slate-100 dark:bg-[#120D0D]">
+                <tbody className="divide-y divide-white/5 bg-slate-100 dark:bg-slate-900">
                   {table.map((row, idx) => (
                     <tr
                       key={`subset_row_${idx}`}
@@ -115,7 +115,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
             <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
               Mathematical Derivations
             </h4>
-            <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 font-mono text-xs space-y-1.5 max-h-[220px] overflow-y-auto">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 font-mono text-xs space-y-1.5 max-h-[220px] overflow-y-auto">
               {stepsExplanation.map((step, idx) => (
                 <div key={`step_${idx}`} className="text-slate-700 dark:text-slate-300 leading-relaxed">
                   <span className="text-slate-500 mr-2">[{idx + 1}]</span>
@@ -127,7 +127,7 @@ export const SubsetConstructionDrawer: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-[#271C1C] flex items-center justify-between">
+        <div className="p-4 border-t border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-slate-800 flex items-center justify-between">
           <span className="text-[11px] text-slate-600 dark:text-slate-400">
             Click "Render Converted DFA" to load onto main canvas.
           </span>

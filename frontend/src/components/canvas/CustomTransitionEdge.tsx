@@ -85,7 +85,7 @@ export const CustomTransitionEdge: React.FC<EdgeProps> = ({
                   ? 'bg-red-900/90 text-red-100 border-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)] scale-105'
                   : isActive
                   ? 'bg-sky-500 text-white dark:text-[#1C1313] border-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.7)] scale-105'
-                  : 'bg-sky-50 dark:bg-[#1C1313] text-sky-800 dark:text-sky-200 border-sky-500/40 hover:border-sky-300 hover:text-slate-900 dark:hover:text-white'
+                  : 'bg-sky-50 dark:bg-slate-950 text-sky-800 dark:text-sky-200 border-sky-500/40 hover:border-sky-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               {labelText}
@@ -97,7 +97,7 @@ export const CustomTransitionEdge: React.FC<EdgeProps> = ({
                 deleteTransition(id);
               }}
               title="Delete Transition"
-              className="w-4 h-4 rounded-full bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 text-slate-600 dark:text-slate-400 hover:text-rose-400 hover:border-rose-500 flex items-center justify-center text-[10px] opacity-0 group-hover:opacity-100 transition-opacity shadow-sm cursor-pointer"
+              className="w-4 h-4 rounded-full bg-sky-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 text-slate-600 dark:text-slate-400 hover:text-rose-400 hover:border-rose-500 flex items-center justify-center text-[10px] opacity-0 group-hover:opacity-100 transition-opacity shadow-sm cursor-pointer"
             >
               ×
             </button>

@@ -14,7 +14,7 @@ export const StackVisualizer: React.FC = () => {
   const reversedStack = [...stack].reverse();
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl p-4 shadow-xl text-slate-900 dark:text-slate-100">
+    <div className="flex flex-col bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 rounded-2xl p-4 shadow-xl text-slate-900 dark:text-slate-100">
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-300 dark:border-white/10">
         <div className="flex items-center gap-2">
@@ -35,7 +35,7 @@ export const StackVisualizer: React.FC = () => {
       </div>
 
       {/* Vertical Stack Tube */}
-      <div className="flex-1 min-h-[150px] max-h-[240px] overflow-y-auto px-4 py-2 flex flex-col items-center gap-1.5 bg-slate-50 dark:bg-[#0d1017] rounded-xl border border-slate-300 dark:border-white/10 shadow-inner">
+      <div className="flex-1 min-h-[150px] max-h-[240px] overflow-y-auto px-4 py-2 flex flex-col items-center gap-1.5 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-300 dark:border-white/10 shadow-inner">
         {reversedStack.length === 0 ? (
           <div className="m-auto text-xs text-slate-500 italic font-mono">
             Stack is Empty (ε)
@@ -49,7 +49,7 @@ export const StackVisualizer: React.FC = () => {
                 className={`w-full max-w-[140px] py-2 px-3 rounded-xl flex items-center justify-between font-mono text-xs transition-all duration-300 ${
                   isTOS
                     ? 'bg-purple-600/30 border-2 border-purple-400 text-slate-900 dark:text-white font-bold scale-105 shadow-lg shadow-purple-950/40'
-                    : 'bg-slate-100 dark:bg-[#161b26] border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300'
+                    : 'bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300'
                 }`}
               >
                 <span className="text-slate-500 text-[10px]">

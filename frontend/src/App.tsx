@@ -74,7 +74,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-[100dvh] w-full bg-slate-50 dark:bg-[#0e0a0a] text-slate-900 dark:text-slate-100 overflow-hidden font-sans select-none">
+    <div className="flex flex-col h-[100dvh] w-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-hidden font-sans select-none">
       {/* Top Navigation */}
       <Navbar
         isSidebarOpen={isSidebarOpen}
@@ -90,7 +90,7 @@ export const App: React.FC = () => {
         {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
 
         {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
-        <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-[#1C1313] border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
+        <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-slate-950 border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
           <AutomataCanvas />
           {/* Mobile Controls Toggle Buttons */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden flex gap-2 w-max max-w-[90vw]">
@@ -112,7 +112,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-auto md:h-full max-h-[85vh] md:max-h-none bg-slate-50 dark:bg-[#161111] md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
+        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-auto md:h-full max-h-[85vh] md:max-h-none bg-slate-50 dark:bg-slate-900 md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
           {/* Mobile Close Button for Controls */}
           <div className="md:hidden flex justify-end mb-1">
             <button 
@@ -123,7 +123,7 @@ export const App: React.FC = () => {
             </button>
           </div>
           {/* Inspector Tabs (Engine / Trace / Batch / Tuples) */}
-          <div className="flex items-center gap-1 p-1 bg-sky-100 dark:bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0 shadow-inner">
+          <div className="flex items-center gap-1 p-1 bg-sky-100 dark:bg-slate-900 rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0 shadow-inner">
             <button
               onClick={() => setActiveInspectorTab('engine')}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
@@ -164,7 +164,7 @@ export const App: React.FC = () => {
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
                     activeInspectorTab === 'batch'
-                      ? 'bg-sky-50 dark:bg-[#1C1313] text-sky-600 dark:text-sky-400'
+                      ? 'bg-sky-50 dark:bg-slate-950 text-sky-600 dark:text-sky-400'
                       : 'bg-sky-500/20 text-sky-700 dark:text-sky-300'
                   }`}
                 >

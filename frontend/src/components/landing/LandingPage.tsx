@@ -58,9 +58,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-slate-900 dark:text-slate-100 font-sans selection:bg-purple-600 selection:text-slate-900 dark:text-white flex flex-col relative overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-purple-600 selection:text-slate-900 dark:text-white flex flex-col relative overflow-x-hidden">
       {/* Top Floating Glass Navbar */}
-      <header className="hidden md:block sticky top-0 z-50 bg-slate-50/80 dark:bg-[#0d1117]/80 backdrop-blur-xl border-b border-slate-300 dark:border-white/10">
+      <header className="hidden md:block sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-300 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
@@ -73,7 +73,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <img
                   src="/statezio-logo.png"
                   alt="StateZio Logo"
-                  className="relative w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-[#161b22] border border-slate-300 dark:border-white/10"
+                  className="relative w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10"
                 />
               </div>
               <div>
@@ -152,7 +152,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <button
               onClick={toggleTheme}
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-[#221717] hover:bg-slate-300 dark:hover:bg-[#2F2121] text-slate-700 dark:text-sky-300 transition-colors shadow-xs border border-slate-300 dark:border-sky-500/20 flex items-center gap-1.5 cursor-pointer"
+              className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-sky-300 transition-colors shadow-xs border border-slate-300 dark:border-sky-500/20 flex items-center gap-1.5 cursor-pointer"
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
@@ -192,7 +192,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         {/* Top Pill Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-[#1c1936]/80 border border-purple-500/30 text-purple-800 dark:text-purple-200 text-xs font-semibold shadow-lg shadow-purple-950/50 mb-8 backdrop-blur-md hover:border-purple-400/50 transition-colors">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 dark:bg-slate-900/80 border border-purple-500/30 text-purple-800 dark:text-purple-200 text-xs font-semibold shadow-lg shadow-purple-950/50 mb-8 backdrop-blur-md hover:border-purple-400/50 transition-colors">
           <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
           <span className="font-mono text-[11px] text-purple-700 dark:text-purple-300">
             ● StateZio Automata Engine v1.0
@@ -285,8 +285,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
         {/* Interactive Code / Graph Preview Window */}
         <div className="w-full max-w-3xl mt-14 text-left">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#131620]/95 border border-white/15 shadow-2xl shadow-purple-950/60 overflow-hidden backdrop-blur-2xl">
-            <div className="h-10 bg-slate-50 dark:bg-[#0d1017] border-b border-slate-300 dark:border-white/10 px-4 flex items-center justify-between">
+          <div className="rounded-2xl bg-white/95 dark:bg-slate-950/95 border border-white/15 shadow-2xl shadow-purple-950/60 overflow-hidden backdrop-blur-2xl">
+            <div className="h-10 bg-slate-50 dark:bg-slate-950 border-b border-slate-300 dark:border-white/10 px-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
@@ -336,7 +336,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </button>
             </div>
 
-            <div className="p-5 font-mono text-xs leading-relaxed overflow-x-auto bg-slate-100/90 dark:bg-[#0b0e14]/90 text-slate-700 dark:text-slate-300">
+            <div className="p-5 font-mono text-xs leading-relaxed overflow-x-auto bg-slate-100/90 dark:bg-slate-950/90 text-slate-700 dark:text-slate-300">
               {activeCodeTab === 'python' && (
                 <pre className="space-y-1">
                   <span className="text-purple-600 dark:text-purple-400">from</span> statezio <span className="text-purple-600 dark:text-purple-400">import</span> DFAMachine, Simulator
@@ -401,7 +401,7 @@ Transition Function δ:
       </section>
 
       {/* Capabilities Section */}
-      <section id="capabilities" className="py-20 bg-white dark:bg-[#0a0d13] border-y border-slate-300 dark:border-white/10 relative">
+      <section id="capabilities" className="py-20 bg-white dark:bg-slate-950 border-y border-slate-300 dark:border-white/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/15 text-purple-700 dark:text-purple-300 text-xs font-semibold mb-3 border border-purple-500/30">
@@ -417,7 +417,7 @@ Transition Function δ:
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-purple-600/20 text-purple-700 dark:text-purple-300 border border-purple-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <MousePointer className="w-5 h-5" />
               </div>
@@ -429,7 +429,7 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <Play className="w-5 h-5" />
               </div>
@@ -441,7 +441,7 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-cyan-600/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-cyan-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <Cpu className="w-5 h-5" />
               </div>
@@ -453,7 +453,7 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-950/40 transition-all group">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-950/40 transition-all group">
               <div className="w-11 h-11 rounded-xl bg-emerald-600/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <FlaskConical className="w-5 h-5" />
               </div>
@@ -484,7 +484,7 @@ Transition Function δ:
         </div>
 
         <div className="space-y-5">
-          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-[#131722] border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               1
             </div>
@@ -498,7 +498,7 @@ Transition Function δ:
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-[#131722] border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               2
             </div>
@@ -512,7 +512,7 @@ Transition Function δ:
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-[#131722] border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               3
             </div>
@@ -526,7 +526,7 @@ Transition Function δ:
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-[#131722] border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
+          <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               4
             </div>
@@ -543,7 +543,7 @@ Transition Function δ:
       </section>
 
       {/* Automata Models Covered */}
-      <section id="models" className="py-20 bg-white dark:bg-[#0a0d13] border-y border-slate-300 dark:border-white/10">
+      <section id="models" className="py-20 bg-white dark:bg-slate-950 border-y border-slate-300 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -556,7 +556,7 @@ Transition Function δ:
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* DFA / NFA */}
-            <div className="bg-white dark:bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-purple-500/40 transition-colors">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-purple-500/40 transition-colors">
               <div>
                 <div className="inline-block px-2.5 py-1 rounded-lg bg-purple-500/20 border border-purple-500/30 text-purple-700 dark:text-purple-300 font-bold text-xs mb-3">
                   DFA & NFA
@@ -593,7 +593,7 @@ Transition Function δ:
             </div>
 
             {/* PDA */}
-            <div className="bg-white dark:bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-indigo-500/40 transition-colors">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-indigo-500/40 transition-colors">
               <div>
                 <div className="inline-block px-2.5 py-1 rounded-lg bg-indigo-500/20 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 font-bold text-xs mb-3">
                   PDA
@@ -630,7 +630,7 @@ Transition Function δ:
             </div>
 
             {/* TM */}
-            <div className="bg-white dark:bg-[#121622] p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
               <div>
                 <div className="inline-block px-2.5 py-1 rounded-lg bg-cyan-500/20 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 font-bold text-xs mb-3">
                   TM
@@ -780,13 +780,13 @@ Transition Function δ:
       </section>
 
       {/* Sleek Dark Footer */}
-      <footer className="mt-auto bg-slate-100 dark:bg-[#090b10] border-t border-slate-300 dark:border-white/10 py-10 px-4 sm:px-6 lg:px-8">
+      <footer className="mt-auto bg-slate-100 dark:bg-slate-950 border-t border-slate-300 dark:border-white/10 py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img
               src="/statezio-logo.png"
               alt="StateZio Logo"
-              className="w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-[#161b22] border border-slate-300 dark:border-white/10 shadow-xs"
+              className="w-8 h-8 rounded-xl object-contain bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-white/10 shadow-xs"
             />
             <div>
               <span className="font-extrabold text-sm text-slate-900 dark:text-white">

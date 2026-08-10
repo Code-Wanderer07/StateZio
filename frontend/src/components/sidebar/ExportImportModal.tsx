@@ -78,9 +78,9 @@ export const ExportImportModal: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-xs p-4 animate-in fade-in duration-200 select-none">
-      <div className="bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-slate-900 dark:text-slate-100">
+      <div className="bg-sky-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] text-slate-900 dark:text-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-[#271C1C]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-200 dark:bg-slate-800">
           <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
             <FileJson className="w-5 h-5" />
             <h3 className="font-bold text-slate-900 dark:text-white text-sm tracking-tight">
@@ -89,14 +89,14 @@ export const ExportImportModal: React.FC = () => {
           </div>
           <button
             onClick={() => setIsExportImportOpen(false)}
-            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-[#3D2C2C] transition-colors cursor-pointer"
+            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white rounded-lg hover:bg-sky-300 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6 overflow-y-auto bg-slate-50 dark:bg-[#161111]">
+        <div className="p-6 space-y-6 overflow-y-auto bg-slate-50 dark:bg-slate-900">
           {/* Export Section */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
@@ -106,7 +106,7 @@ export const ExportImportModal: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 text-xs border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-slate-800 hover:bg-sky-300 dark:hover:bg-slate-800 text-sky-800 dark:text-sky-200 text-xs border border-sky-300 dark:border-sky-500/30 transition-colors shadow-xs cursor-pointer"
                 >
                   {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                   <span>{copied ? 'Copied' : 'Copy JSON'}</span>
@@ -122,7 +122,7 @@ export const ExportImportModal: React.FC = () => {
               </div>
             </div>
 
-            <pre className="p-3 bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 rounded-xl text-[11px] font-mono text-sky-800 dark:text-sky-200 max-h-36 overflow-y-auto shadow-inner">
+            <pre className="p-3 bg-slate-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 rounded-xl text-[11px] font-mono text-sky-800 dark:text-sky-200 max-h-36 overflow-y-auto shadow-inner">
               {jsonString}
             </pre>
           </div>
@@ -138,7 +138,7 @@ export const ExportImportModal: React.FC = () => {
               value={importJsonText}
               onChange={(e) => setImportJsonText(e.target.value)}
               placeholder="Paste valid Automata JSON definition here..."
-              className="w-full bg-slate-50 dark:bg-[#0d1017] border border-sky-300 dark:border-sky-500/30 focus:border-sky-400 rounded-xl p-3 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none resize-none"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 focus:border-sky-400 rounded-xl p-3 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none resize-none"
             />
 
             {importError && (

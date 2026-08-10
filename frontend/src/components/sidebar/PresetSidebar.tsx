@@ -25,9 +25,9 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 dark:bg-[#161111] border-r border-sky-200 dark:border-sky-500/20 w-80 max-w-[85vw] shadow-2xl text-slate-900 dark:text-slate-100 select-none absolute md:relative z-40 md:z-auto">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-slate-900 border-r border-sky-200 dark:border-sky-500/20 w-80 max-w-[85vw] shadow-2xl text-slate-900 dark:text-slate-100 select-none absolute md:relative z-40 md:z-auto">
       {/* Sidebar Header */}
-      <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-[#1C1313] flex flex-col relative">
+      <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-slate-950 flex flex-col relative">
         {onClose && (
           <button 
             onClick={onClose}
@@ -44,7 +44,7 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
         </div>
 
         {/* Filter Pills */}
-        <div className="grid grid-cols-5 gap-1 p-1 bg-sky-100 dark:bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30">
+        <div className="grid grid-cols-5 gap-1 p-1 bg-sky-100 dark:bg-slate-900 rounded-xl border border-sky-300 dark:border-sky-500/30">
           {(['All', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((type) => (
             <button
               key={type}
@@ -62,7 +62,7 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
       </div>
 
       {/* Preset List */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-2.5 bg-slate-100 dark:bg-[#120D0D]">
+      <div className="flex-1 overflow-y-auto p-3 space-y-2.5 bg-slate-100 dark:bg-slate-900">
         {filtered.map((preset) => {
           const isActive = preset.id === activePresetId;
           return (
@@ -71,8 +71,8 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
               onClick={() => loadPreset(preset)}
               className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group cursor-pointer ${
                 isActive
-                  ? 'bg-sky-200 dark:bg-[#271C1C] border-sky-400 shadow-md ring-1 ring-sky-400/60'
-                  : 'bg-sky-50 dark:bg-[#1C1313] border-sky-300 dark:border-sky-500/30 hover:border-sky-400 hover:bg-sky-100 dark:bg-[#221717] shadow-xs'
+                  ? 'bg-sky-200 dark:bg-slate-800 border-sky-400 shadow-md ring-1 ring-sky-400/60'
+                  : 'bg-sky-50 dark:bg-slate-950 border-sky-300 dark:border-sky-500/30 hover:border-sky-400 hover:bg-sky-100 dark:bg-slate-800 shadow-xs'
               }`}
             >
               <div className="flex items-center justify-between gap-2 mb-1">

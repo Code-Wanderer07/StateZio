@@ -32,9 +32,9 @@ export const BatchTester: React.FC = () => {
   const failCount = batchTestCases.filter((tc) => tc.status === 'FAIL').length;
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
+    <div className="flex flex-col bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-[#0d1017]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-slate-950">
         <div className="flex items-center gap-2">
           <FlaskConical className="w-4 h-4 text-purple-600 dark:text-purple-400" />
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
@@ -62,13 +62,13 @@ export const BatchTester: React.FC = () => {
       </div>
 
       {/* Add Test Case Form */}
-      <form onSubmit={handleAdd} className="p-3 border-b border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#0b0e14] flex items-center gap-2">
+      <form onSubmit={handleAdd} className="p-3 border-b border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-slate-950 flex items-center gap-2">
         <input
           type="text"
           value={newString}
           onChange={(e) => setNewString(e.target.value)}
           placeholder="New test string (e.g. 1010)..."
-          className="flex-1 bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-sm font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
+          className="flex-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-sm font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
         />
 
         <div className="flex items-center gap-1 text-xs">
@@ -98,8 +98,10 @@ export const BatchTester: React.FC = () => {
       {/* Test Cases List */}
       <div className="flex-1 max-h-[50vh] md:max-h-[400px] overflow-y-auto overflow-x-auto divide-y divide-white/5">
         {batchTestCases.length === 0 ? (
-          <div className="p-6 text-center text-slate-500 text-xs">
-            No test cases loaded. Add test strings above.
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 m-2 flex flex-col items-center justify-center text-center text-slate-600 dark:text-slate-400 py-10 border border-dashed border-slate-300 dark:border-slate-700">
+            <FlaskConical className="w-8 h-8 text-sky-500/40 mb-2" />
+            <p className="text-sm font-medium text-slate-700 dark:text-slate-300">No test cases loaded.</p>
+            <p className="text-xs text-slate-500 mt-1">Add test strings above to run a batch test.</p>
           </div>
         ) : (
           batchTestCases.map((tc) => (
