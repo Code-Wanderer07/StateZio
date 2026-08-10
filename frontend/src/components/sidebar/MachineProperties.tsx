@@ -30,7 +30,7 @@ export const MachineProperties: React.FC = () => {
         {/* Q: States */}
         <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
           <span className="text-sky-700 dark:text-sky-300 font-semibold shrink-0">Q (States):</span>
-          <span className="text-slate-900 dark:text-white text-right truncate font-medium">
+          <span className="text-slate-900 dark:text-white text-right break-words font-medium">
             {'{'}{stateIds.join(', ')}{'}'}
           </span>
         </div>
@@ -90,7 +90,7 @@ export const MachineProperties: React.FC = () => {
         {/* F: Accept States */}
         <div className="flex items-start justify-between gap-2 p-2 rounded-xl bg-sky-200 dark:bg-[#271C1C] border border-sky-200 dark:border-sky-500/20">
           <span className="text-indigo-400 font-semibold shrink-0">F (Accept):</span>
-          <span className="text-slate-900 dark:text-white text-right truncate font-medium">
+          <span className="text-slate-900 dark:text-white text-right break-words font-medium">
             {'{'}{acceptStateIds.join(', ')}{'}'}
           </span>
         </div>

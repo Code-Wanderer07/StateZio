@@ -181,7 +181,7 @@ export const App: React.FC = () => {
           </div>
 
           {/* Active Inspector Tab Content */}
-          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-auto">
             {activeInspectorTab === 'trace' && <ExecutionTraceTable />}
             {activeInspectorTab === 'batch' && <BatchTester />}
             {activeInspectorTab === 'tuples' && <MachineProperties />}
