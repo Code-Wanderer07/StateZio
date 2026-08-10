@@ -68,7 +68,7 @@ export const BatchTester: React.FC = () => {
           value={newString}
           onChange={(e) => setNewString(e.target.value)}
           placeholder="New test string (e.g. 1010)..."
-          className="flex-1 bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-xs font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
+          className="flex-1 bg-white dark:bg-[#121622] border border-slate-300 dark:border-white/10 focus:border-purple-500 rounded-xl px-3 py-1.5 text-sm font-mono text-slate-900 dark:text-white placeholder-slate-500 outline-none"
         />
 
         <div className="flex items-center gap-1 text-xs">
@@ -96,7 +96,7 @@ export const BatchTester: React.FC = () => {
       </form>
 
       {/* Test Cases List */}
-      <div className="flex-1 min-h-[200px] overflow-y-auto divide-y divide-white/5">
+      <div className="flex-1 max-h-[50vh] md:max-h-[400px] overflow-y-auto overflow-x-auto divide-y divide-white/5">
         {batchTestCases.length === 0 ? (
           <div className="p-6 text-center text-slate-500 text-xs">
             No test cases loaded. Add test strings above.
@@ -105,7 +105,7 @@ export const BatchTester: React.FC = () => {
           batchTestCases.map((tc) => (
             <div
               key={tc.id}
-              className="px-4 py-2.5 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-xs font-mono"
+              className="px-4 py-3 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-sm font-mono min-w-[280px]"
             >
               <div className="flex items-center gap-3">
                 {tc.status === 'PASS' && (

@@ -9,8 +9,8 @@ export const ExecutionTraceTable: React.FC = () => {
     return (
       <div className="bg-sky-50 dark:bg-[#1C1313] border border-sky-300 dark:border-sky-500/30 rounded-2xl p-6 shadow-xl flex flex-col items-center justify-center text-center text-slate-600 dark:text-slate-400 py-12">
         <ListOrdered className="w-8 h-8 text-sky-500/50 mb-2" />
-        <p className="text-xs font-medium text-slate-700 dark:text-slate-300">No simulation trace available.</p>
-        <p className="text-[11px] text-slate-500 mt-1">Enter an input string and click "Simulate" to view step trace.</p>
+        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">No simulation trace available.</p>
+        <p className="text-xs text-slate-500 mt-1">Enter an input string and click "Simulate" to view step trace.</p>
       </div>
     );
   }
@@ -33,17 +33,17 @@ export const ExecutionTraceTable: React.FC = () => {
       </div>
 
       {/* Table container */}
-      <div className="max-h-[300px] overflow-y-auto">
-        <table className="w-full text-left text-xs font-mono">
-          <thead className="bg-sky-100 dark:bg-[#241919] text-sky-800 dark:text-sky-200 uppercase text-[10px] tracking-wider sticky top-0 border-b border-sky-200 dark:border-sky-500/20 z-10">
+      <div className="max-h-[50vh] md:max-h-[300px] overflow-y-auto overflow-x-auto">
+        <table className="w-full min-w-[300px] text-left text-sm font-mono">
+          <thead className="bg-sky-100 dark:bg-[#241919] text-sky-800 dark:text-sky-200 uppercase text-xs tracking-wider sticky top-0 border-b border-sky-200 dark:border-sky-500/20 z-10">
             <tr>
-              <th className="py-2.5 px-3">Step</th>
-              <th className="py-2.5 px-3">State(s)</th>
-              <th className="py-2.5 px-3">Remaining Input</th>
-              {machine.type === 'PDA' && <th className="py-2.5 px-3">Stack</th>}
-              {machine.type === 'TM' && <th className="py-2.5 px-3">Tape Head</th>}
-              <th className="py-2.5 px-3">Action Description</th>
-              <th className="py-2.5 px-3 text-right">Status</th>
+              <th className="py-3 px-3">Step</th>
+              <th className="py-3 px-3">State(s)</th>
+              <th className="py-3 px-3">Remaining Input</th>
+              {machine.type === 'PDA' && <th className="py-3 px-3">Stack</th>}
+              {machine.type === 'TM' && <th className="py-3 px-3">Tape Head</th>}
+              <th className="py-3 px-3">Action Description</th>
+              <th className="py-3 px-3 text-right">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-sky-500/10">
