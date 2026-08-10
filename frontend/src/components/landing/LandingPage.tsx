@@ -262,7 +262,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <div>
             <div className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight font-mono">
-              50+
+              100+
             </div>
             <div className="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">
               Preset Bank & University Questions
