@@ -39,14 +39,40 @@ export const ExportImportModal: React.FC = () => {
     e.preventDefault();
     try {
       setImportError(null);
-      const parsed = JSON.parse(importJsonText) as AutomataMachine;
-      if (!parsed.type || !parsed.states || !parsed.transitions) {
-        throw new Error('Invalid automata format: Missing type, states, or transitions field.');
+
+      // Guard: limit JSON size to 100KB to prevent memory DoS
+      if (importJsonText.length > 100_000) {
+        throw new Error('JSON input is too large (max 100KB). Please import a valid automata file.');
       }
+
+      const parsed = JSON.parse(importJsonText) as AutomataMachine;
+
+      // Whitelist valid machine types
+      const VALID_TYPES = ['DFA', 'NFA', 'PDA', 'TM'];
+      if (!parsed.type || !VALID_TYPES.includes(parsed.type)) {
+        throw new Error(`Invalid machine type "${parsed.type}". Must be one of: DFA, NFA, PDA, TM.`);
+      }
+      if (!Array.isArray(parsed.states) || !Array.isArray(parsed.transitions)) {
+        throw new Error('Invalid automata format: "states" and "transitions" must be arrays.');
+      }
+
+      // Guard: cap states and transitions to prevent runaway graph rendering
+      if (parsed.states.length > 200) {
+        throw new Error('Too many states (max 200). Please simplify your automata.');
+      }
+      if (parsed.transitions.length > 1000) {
+        throw new Error('Too many transitions (max 1000). Please simplify your automata.');
+      }
+
+      // Guard: ensure startState is a string
+      if (typeof parsed.startState !== 'string') {
+        throw new Error('Invalid automata format: "startState" must be a string.');
+      }
+
       setMachine(parsed);
       setIsExportImportOpen(false);
-    } catch (err: any) {
-      setImportError(err.message || 'Failed to parse JSON');
+    } catch (err: unknown) {
+      setImportError(err instanceof Error ? err.message : 'Failed to parse JSON. Please check the format.');
     }
   };
 

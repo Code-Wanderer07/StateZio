@@ -318,7 +318,9 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   setInputString: (inputString) => {
-    set({ inputString, simulationResult: null, currentStepIndex: 0, isPlaying: false });
+    // Guard: limit simulation input to 5000 characters to prevent hang
+    const safeInput = inputString.slice(0, 5000);
+    set({ inputString: safeInput, simulationResult: null, currentStepIndex: 0, isPlaying: false });
   },
 
   setPlaybackSpeed: (playbackSpeed) => set({ playbackSpeed }),
