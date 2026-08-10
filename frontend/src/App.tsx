@@ -93,40 +93,37 @@ export const App: React.FC = () => {
         <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-cyan-50 dark:bg-slate-950 border-b md:border-b-0 md:border-r border-cyan-200 dark:border-cyan-500/20">
           <AutomataCanvas />
           
-          {/* Mobile Top Floating Buttons (Home & Solver) */}
-          <div className="absolute top-4 left-4 right-4 z-40 md:hidden flex justify-between items-center pointer-events-none">
+          {/* Mobile Bottom Dock (Home, Presets, Controls, Solver) */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden flex items-center justify-center gap-1.5 sm:gap-2 w-max max-w-[95vw]">
             <button 
               onClick={() => setCurrentView('landing')}
-              className="pointer-events-auto bg-slate-800/90 backdrop-blur hover:bg-slate-700 text-white p-2.5 rounded-full shadow-lg border border-slate-600 transition-all active:scale-95"
+              className="bg-slate-800 hover:bg-slate-700 text-white p-2.5 rounded-full shadow-xl shadow-slate-900/40 border border-slate-600 flex items-center justify-center transition-all active:scale-95 shrink-0"
               title="Go Home"
             >
               <Home className="w-5 h-5" />
             </button>
-            
-            <button 
-              onClick={() => setIsSolverOpen(true)}
-              className="pointer-events-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white p-2.5 rounded-full shadow-lg shadow-cyan-900/50 border border-cyan-400 transition-all active:scale-95"
-              title="Question Solver"
-            >
-              <Brain className="w-5 h-5" />
-            </button>
-          </div>
 
-          {/* Mobile Controls Toggle Buttons */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden flex gap-2 w-max max-w-[90vw]">
             <button 
               onClick={() => setIsSidebarOpen(true)}
-              className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-full shadow-xl shadow-slate-900/40 border border-slate-600 font-bold flex items-center gap-2 transition-all active:scale-95"
+              className="bg-slate-800 hover:bg-slate-700 text-white px-3 sm:px-4 py-2.5 rounded-full shadow-xl shadow-slate-900/40 border border-slate-600 font-bold flex items-center gap-1.5 sm:gap-2 transition-all active:scale-95 shrink-0 text-sm sm:text-base"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
               Presets
             </button>
             <button 
               onClick={() => setIsMobileControlsOpen(prev => !prev)}
-              className="bg-cyan-500 hover:bg-cyan-400 text-white px-5 py-2.5 rounded-full shadow-xl shadow-cyan-900/20 border border-cyan-400 font-bold flex items-center gap-2 transition-all active:scale-95"
+              className="bg-cyan-500 hover:bg-cyan-400 text-white px-3 sm:px-4 py-2.5 rounded-full shadow-xl shadow-cyan-900/20 border border-cyan-400 font-bold flex items-center gap-1.5 sm:gap-2 transition-all active:scale-95 shrink-0 text-sm sm:text-base"
             >
               <ListOrdered className="w-4 h-4" />
-              {isMobileControlsOpen ? 'Hide Controls' : 'Controls'}
+              Controls
+            </button>
+
+            <button 
+              onClick={() => setIsSolverOpen(true)}
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white p-2.5 rounded-full shadow-xl shadow-cyan-900/50 border border-cyan-400 flex items-center justify-center transition-all active:scale-95 shrink-0"
+              title="Question Solver"
+            >
+              <Brain className="w-5 h-5" />
             </button>
           </div>
         </div>
