@@ -60,7 +60,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-slate-900 dark:text-slate-100 font-sans selection:bg-purple-600 selection:text-slate-900 dark:text-white flex flex-col relative overflow-x-hidden">
       {/* Top Floating Glass Navbar */}
-      <header className="sticky top-0 z-50 bg-slate-50/80 dark:bg-[#0d1117]/80 backdrop-blur-xl border-b border-slate-300 dark:border-white/10">
+      <header className="hidden md:block sticky top-0 z-50 bg-slate-50/80 dark:bg-[#0d1117]/80 backdrop-blur-xl border-b border-slate-300 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">

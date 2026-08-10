@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   return (
-    <header className="min-h-[3.5rem] bg-slate-50 dark:bg-[#161111]/95 border-b border-sky-200 dark:border-sky-500/20 px-2 sm:px-4 py-2 sm:py-0 flex items-center justify-between gap-2 z-30 shadow-md backdrop-blur-md text-slate-900 dark:text-slate-100 shrink-0 select-none flex-wrap sm:flex-nowrap">
+    <header className="hidden md:flex min-h-[3.5rem] bg-slate-50 dark:bg-[#161111]/95 border-b border-sky-200 dark:border-sky-500/20 px-2 sm:px-4 py-2 sm:py-0 items-center justify-between gap-2 z-30 shadow-md backdrop-blur-md text-slate-900 dark:text-slate-100 shrink-0 select-none flex-wrap sm:flex-nowrap">
       {/* Brand & Logo (Clickable to return to Intro/Home) */}
       <div className="flex items-center gap-3">
         <button
