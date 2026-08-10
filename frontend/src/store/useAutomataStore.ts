@@ -346,12 +346,15 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   addState: () => {
     const { machine, nodes, edges } = get();
-    const count = nodes.length;
-    const newId = `q${count}`;
+    const maxIndex = nodes.reduce((max, n) => {
+      const match = n.id.match(/^q(\d+)$/);
+      return match ? Math.max(max, parseInt(match[1], 10)) : max;
+    }, -1);
+    const newId = `q${maxIndex + 1}`;
     const newNode: Node = {
       id: newId,
       type: 'customState',
-      position: { x: 120 + (count % 5) * 160, y: 150 + Math.floor(count / 5) * 140 },
+      position: { x: 120 + ((maxIndex + 1) % 5) * 160, y: 150 + Math.floor((maxIndex + 1) / 5) * 140 },
       data: {
         label: newId,
         isInitial: nodes.length === 0,
@@ -439,52 +442,57 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     const mType = machine.type;
     const transitionId = editingTransitionId || `t_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 
-    let updatedMachine = { ...machine };
+    let updatedMachine: AutomataMachine;
 
-    if (mType === 'DFA') {
-      const dfa = updatedMachine as DFAMachine;
-      const filtered = editingTransitionId ? dfa.transitions.filter((t) => t.id !== editingTransitionId) : dfa.transitions;
-      const newT: DFATransition = {
-        id: transitionId,
-        from: transitionModalSourceId,
-        to: transitionModalTargetId,
-        symbol: data.symbol || '0',
-      };
-      updatedMachine = { ...dfa, transitions: [...filtered, newT] };
-    } else if (mType === 'NFA') {
-      const nfa = updatedMachine as NFAMachine;
-      const filtered = editingTransitionId ? nfa.transitions.filter((t) => t.id !== editingTransitionId) : nfa.transitions;
-      const newT: NFATransition = {
-        id: transitionId,
-        from: transitionModalSourceId,
-        to: transitionModalTargetId,
-        symbol: data.symbol || 'ε',
-      };
-      updatedMachine = { ...nfa, transitions: [...filtered, newT] };
-    } else if (mType === 'PDA') {
-      const pda = updatedMachine as PDAMachine;
-      const filtered = editingTransitionId ? pda.transitions.filter((t) => t.id !== editingTransitionId) : pda.transitions;
-      const newT: PDATransition = {
-        id: transitionId,
-        from: transitionModalSourceId,
-        to: transitionModalTargetId,
-        inputSymbol: data.inputSymbol || 'ε',
-        popSymbol: data.popSymbol || 'Z0',
-        pushSymbols: data.pushSymbols || 'Z0',
-      };
-      updatedMachine = { ...pda, transitions: [...filtered, newT] };
-    } else {
-      const tm = updatedMachine as TMMachine;
-      const filtered = editingTransitionId ? tm.transitions.filter((t) => t.id !== editingTransitionId) : tm.transitions;
-      const newT: TMTransition = {
-        id: transitionId,
-        from: transitionModalSourceId,
-        to: transitionModalTargetId,
-        readSymbol: data.readSymbol || '_',
-        writeSymbol: data.writeSymbol || '_',
-        direction: data.direction || 'R',
-      };
-      updatedMachine = { ...tm, transitions: [...filtered, newT] };
+    switch (machine.type) {
+      case 'DFA': {
+        const filtered = editingTransitionId ? machine.transitions.filter((t) => t.id !== editingTransitionId) : machine.transitions;
+        const newT: DFATransition = {
+          id: transitionId,
+          from: transitionModalSourceId,
+          to: transitionModalTargetId,
+          symbol: data.symbol || '0',
+        };
+        updatedMachine = { ...machine, transitions: [...filtered, newT] };
+        break;
+      }
+      case 'NFA': {
+        const filtered = editingTransitionId ? machine.transitions.filter((t) => t.id !== editingTransitionId) : machine.transitions;
+        const newT: NFATransition = {
+          id: transitionId,
+          from: transitionModalSourceId,
+          to: transitionModalTargetId,
+          symbol: data.symbol || 'ε',
+        };
+        updatedMachine = { ...machine, transitions: [...filtered, newT] };
+        break;
+      }
+      case 'PDA': {
+        const filtered = editingTransitionId ? machine.transitions.filter((t) => t.id !== editingTransitionId) : machine.transitions;
+        const newT: PDATransition = {
+          id: transitionId,
+          from: transitionModalSourceId,
+          to: transitionModalTargetId,
+          inputSymbol: data.inputSymbol || 'ε',
+          popSymbol: data.popSymbol || 'Z0',
+          pushSymbols: data.pushSymbols || 'Z0',
+        };
+        updatedMachine = { ...machine, transitions: [...filtered, newT] };
+        break;
+      }
+      case 'TM': {
+        const filtered = editingTransitionId ? machine.transitions.filter((t) => t.id !== editingTransitionId) : machine.transitions;
+        const newT: TMTransition = {
+          id: transitionId,
+          from: transitionModalSourceId,
+          to: transitionModalTargetId,
+          readSymbol: data.readSymbol || '_',
+          writeSymbol: data.writeSymbol || '_',
+          direction: (data.direction as 'L'|'R'|'S') || 'R',
+        };
+        updatedMachine = { ...machine, transitions: [...filtered, newT] };
+        break;
+      }
     }
 
     const flow = machineToFlowElements(updatedMachine);
@@ -501,20 +509,21 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   deleteTransition: (id) => {
     const { machine } = get();
-    let updatedMachine = { ...machine };
+    let updatedMachine: AutomataMachine;
 
-    if (machine.type === 'DFA') {
-      const dfa = machine as DFAMachine;
-      updatedMachine = { ...dfa, transitions: dfa.transitions.filter((t) => t.id !== id) };
-    } else if (machine.type === 'NFA') {
-      const nfa = machine as NFAMachine;
-      updatedMachine = { ...nfa, transitions: nfa.transitions.filter((t) => t.id !== id) };
-    } else if (machine.type === 'PDA') {
-      const pda = machine as PDAMachine;
-      updatedMachine = { ...pda, transitions: pda.transitions.filter((t) => t.id !== id) };
-    } else {
-      const tm = machine as TMMachine;
-      updatedMachine = { ...tm, transitions: tm.transitions.filter((t) => t.id !== id) };
+    switch (machine.type) {
+      case 'DFA':
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        break;
+      case 'NFA':
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        break;
+      case 'PDA':
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        break;
+      case 'TM':
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        break;
     }
 
     const flow = machineToFlowElements(updatedMachine);
@@ -529,13 +538,26 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   clearCanvas: () => {
     const { machine } = get();
-    const clearedMachine = {
-      ...machine,
-      states: [],
-      startState: '',
-      acceptStates: [],
-      transitions: [],
-    } as AutomataMachine;
+    let clearedMachine: AutomataMachine;
+
+    if (machine.type === 'TM') {
+      clearedMachine = {
+        ...machine,
+        states: [],
+        startState: '',
+        acceptStates: [],
+        rejectStates: [],
+        transitions: [],
+      };
+    } else {
+      clearedMachine = {
+        ...machine,
+        states: [],
+        startState: '',
+        acceptStates: [],
+        transitions: [],
+      };
+    }
     set({
       machine: clearedMachine,
       nodes: [],
@@ -653,10 +675,11 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   addBatchTestCase: (input, expected) => {
     const { batchTestCases } = get();
+    const safeInput = input.slice(0, 5000);
     set({
       batchTestCases: [
         ...batchTestCases,
-        { id: `custom_tc_${Date.now()}`, input, expected, status: 'PENDING' },
+        { id: `custom_tc_${Date.now()}`, input: safeInput, expected, status: 'PENDING' },
       ],
     });
   },

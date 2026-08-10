@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import {
   Play,
   Pause,
@@ -31,7 +32,24 @@ export const SimulationDeck: React.FC = () => {
     stepBackward,
     resetSimulation,
     jumpToStep,
-  } = useAutomataStore();
+  } = useAutomataStore(
+    useShallow((state) => ({
+      machine: state.machine,
+      inputString: state.inputString,
+      setInputString: state.setInputString,
+      simulationResult: state.simulationResult,
+      currentStepIndex: state.currentStepIndex,
+      isPlaying: state.isPlaying,
+      playbackSpeed: state.playbackSpeed,
+      runSimulation: state.runSimulation,
+      setIsPlaying: state.setIsPlaying,
+      stepForward: state.stepForward,
+      stepBackward: state.stepBackward,
+      resetSimulation: state.resetSimulation,
+      setPlaybackSpeed: state.setPlaybackSpeed,
+      jumpToStep: state.jumpToStep,
+    }))
+  );
 
   // Playback timer effect
   useEffect(() => {
@@ -253,7 +271,7 @@ export const SimulationDeck: React.FC = () => {
             [S{currentStepIndex}]:
           </span>
           <span className="text-slate-700 dark:text-slate-300 font-mono text-[11px] truncate">
-            {currentTrace?.actionSummary || 'Simulation ready. Click Simulate to execute.'}
+            {simulationResult?.message || currentTrace?.actionSummary || 'Simulation ready. Click Simulate to execute.'}
           </span>
         </div>
 

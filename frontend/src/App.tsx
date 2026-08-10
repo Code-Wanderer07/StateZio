@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { LandingPage } from './components/landing/LandingPage';
 import { Navbar } from './components/ui/Navbar';
 import { PresetSidebar } from './components/sidebar/PresetSidebar';
@@ -25,7 +26,14 @@ export const App: React.FC = () => {
   const [isSolverOpen, setIsSolverOpen] = useState(false);
   const [activeInspectorTab, setActiveInspectorTab] = useState<'trace' | 'batch' | 'tuples'>('trace');
 
-  const { machine, setMachineType, batchTestCases, theme } = useAutomataStore();
+  const { machine, setMachineType, batchTestCases, theme } = useAutomataStore(
+    useShallow((state) => ({
+      machine: state.machine,
+      setMachineType: state.setMachineType,
+      batchTestCases: state.batchTestCases,
+      theme: state.theme,
+    }))
+  );
   const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
 
   // Apply initial theme class to HTML root
@@ -37,7 +45,7 @@ export const App: React.FC = () => {
     }
   }, [theme]);
 
-  const handleLaunchSimulator = (type?: MachineType, openSolver: boolean = false) => {
+  const handleLaunchSimulator = useCallback((type?: MachineType, openSolver: boolean = false) => {
     if (type) {
       setMachineType(type);
     }
@@ -45,13 +53,21 @@ export const App: React.FC = () => {
       setIsSolverOpen(true);
     }
     setCurrentView('simulator');
-  };
+  }, [setMachineType]);
+
+  const handleOpenSolverFromLanding = useCallback(() => {
+    handleLaunchSimulator(undefined, true);
+  }, [handleLaunchSimulator]);
+
+  const handleOpenHelp = useCallback(() => setIsHelpOpen(true), []);
+  const handleOpenSolver = useCallback(() => setIsSolverOpen(true), []);
+  const handleNavigateHome = useCallback(() => setCurrentView('landing'), []);
 
   if (currentView === 'landing') {
     return (
       <LandingPage
         onLaunchSimulator={handleLaunchSimulator}
-        onOpenSolver={() => handleLaunchSimulator(undefined, true)}
+        onOpenSolver={handleOpenSolverFromLanding}
       />
     );
   }
@@ -62,9 +78,9 @@ export const App: React.FC = () => {
       <Navbar
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
-        onOpenHelp={() => setIsHelpOpen(true)}
-        onOpenSolver={() => setIsSolverOpen(true)}
-        onNavigateHome={() => setCurrentView('landing')}
+        onOpenHelp={handleOpenHelp}
+        onOpenSolver={handleOpenSolver}
+        onNavigateHome={handleNavigateHome}
       />
 
       {/* Main Workspace Area */}

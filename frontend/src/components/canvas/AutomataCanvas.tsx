@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import {
   ReactFlow,
   Background,
@@ -27,7 +28,18 @@ export const AutomataCanvas: React.FC = () => {
     setSelectedNodeId,
     setSelectedEdgeId,
     theme,
-  } = useAutomataStore();
+  } = useAutomataStore(
+    useShallow((state) => ({
+      nodes: state.nodes,
+      edges: state.edges,
+      onNodesChange: state.onNodesChange,
+      onEdgesChange: state.onEdgesChange,
+      onConnect: state.onConnect,
+      setSelectedNodeId: state.setSelectedNodeId,
+      setSelectedEdgeId: state.setSelectedEdgeId,
+      theme: state.theme,
+    }))
+  );
 
   const nodeTypes = useMemo(() => ({
     customState: CustomStateNode,

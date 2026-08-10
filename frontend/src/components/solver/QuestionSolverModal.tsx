@@ -189,7 +189,6 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
   const handleLoadOnCanvas = () => {
     if (!activeSolution) return;
-    setMachineType(activeSolution.machine.type);
     loadSolvedMachine(activeSolution.machine, activeSolution.testCases);
     onClose();
   };
@@ -375,6 +374,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
+                  aria-pressed={selectedCategory === cat}
                   className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all shrink-0 cursor-pointer flex items-center gap-1 ${
                     selectedCategory === cat
                       ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-xs'
