@@ -113,6 +113,16 @@ export const App: React.FC = () => {
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
         <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-[60vh] md:h-full bg-slate-50 dark:bg-[#161111] md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
+          {/* Mobile Close Button for Controls */}
+          <div className="md:hidden flex justify-end mb-1">
+            <button 
+              onClick={() => setIsMobileControlsOpen(false)}
+              className="p-1.5 rounded-md text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          
           {/* Main Simulation Deck (with glowing engine chassis) */}
           <SimulationDeck />
 
