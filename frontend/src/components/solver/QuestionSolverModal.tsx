@@ -11,6 +11,7 @@ import {
   AlertTriangle,
   ChevronDown,
   ChevronRight,
+  ChevronLeft,
   Info,
   Cpu,
   FlaskConical,
@@ -367,7 +368,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
           {/* Left: Question Bank */}
-          <div className="w-full md:w-[360px] border-b md:border-b-0 md:border-r border-cyan-200 dark:border-cyan-500/20 bg-slate-100 dark:bg-slate-900 flex flex-col shrink-0 max-h-[40vh] md:max-h-full">
+          <div className={`w-full md:w-[360px] border-b md:border-b-0 md:border-r border-cyan-200 dark:border-cyan-500/20 bg-slate-100 dark:bg-slate-900 shrink-0 ${activeSolution ? 'hidden md:flex' : 'flex'} flex-col`}>
             {/* Category Filter */}
             <div className="p-3 border-b border-cyan-200 dark:border-cyan-500/20 flex gap-1 bg-cyan-50 dark:bg-slate-950 overflow-x-auto shrink-0">
               {(['ALL', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((cat) => (
@@ -462,12 +463,18 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
           </div>
 
           {/* Right: Solution Panel */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-slate-50 dark:bg-slate-900">
+          <div className={`flex-1 overflow-y-auto p-4 md:p-6 space-y-5 bg-slate-50 dark:bg-slate-900 ${!activeSolution ? 'hidden md:block' : 'block'}`}>
             {activeSolution ? (
               <>
                 {/* Solution Header */}
-                <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30 shadow-md">
-                  <div className="min-w-0">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30 shadow-md">
+                  <div className="min-w-0 w-full sm:w-auto">
+                    <button 
+                      onClick={() => setActiveSolution(null)}
+                      className="md:hidden mb-3 text-cyan-700 dark:text-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-200 flex items-center gap-1 text-xs font-bold transition-colors cursor-pointer"
+                    >
+                      <ChevronLeft className="w-4 h-4" /> Browse Question Bank
+                    </button>
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="px-2 py-0.5 text-xs font-bold font-mono rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/40">
                         {activeSolution.machineType}
