@@ -56,7 +56,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#0d1117] text-slate-900 dark:text-slate-100 font-sans selection:bg-purple-600 selection:text-slate-900 dark:text-white flex flex-col relative overflow-x-hidden">
       {/* Top Floating Glass Navbar */}
-      <header className="sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-50 dark:bg-[#0d1117]/80 backdrop-blur-xl border-b border-slate-300 dark:border-white/10">
+      <header className="sticky top-0 z-50 bg-slate-50/80 dark:bg-[#0d1117]/80 backdrop-blur-xl border-b border-slate-300 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-extrabold text-base tracking-tight text-slate-900 dark:text-white group-hover:text-purple-700 dark:text-purple-300 transition-colors">
+                  <span className="font-extrabold text-base tracking-tight text-slate-900 dark:text-white group-hover:text-purple-300 transition-colors">
                     StateZio
                   </span>
                   <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-500/40 font-semibold">
@@ -113,7 +113,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </button>
             <button
               onClick={() => scrollToSection('solver')}
-              className="text-purple-700 dark:text-purple-300 hover:text-purple-800 dark:text-purple-200 transition-colors cursor-pointer font-semibold flex items-center gap-1"
+              className="text-purple-700 dark:text-purple-300 hover:text-purple-200 transition-colors cursor-pointer font-semibold flex items-center gap-1"
             >
               <Sparkles className="w-3 h-3 text-purple-600 dark:text-purple-400" />
               <span>Question Solver</span>
@@ -129,7 +129,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {/* Right Action & Author Badge */}
           <div className="flex items-center gap-3">
             {/* Author Credit Badge with LinkedIn */}
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-xs backdrop-blur-md">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-xs backdrop-blur-md">
               <span className="text-slate-600 dark:text-slate-400 text-[11px]">
                 Made by <strong className="text-slate-900 dark:text-white font-bold">Shivakanth</strong>
               </span>
@@ -206,7 +206,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4 z-10">
           <button
             onClick={() => onLaunchSimulator()}
-            className="flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-slate-900 dark:text-white rounded-xl text-sm font-bold shadow-xl shadow-purple-900/40 border border-purple-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            className="flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-sm font-bold shadow-xl shadow-purple-900/40 border border-purple-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
           >
             <span>Start Simulating Free</span>
             <ArrowRight className="w-4 h-4" />
@@ -214,7 +214,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <button
             onClick={() => scrollToSection('models')}
-            className="flex items-center gap-2 px-6 py-3.5 bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-slate-50/10 text-slate-200 border border-white/15 rounded-xl text-sm font-semibold shadow-lg backdrop-blur-md transition-all hover:border-white/30 cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3.5 bg-slate-200 dark:bg-slate-200 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-slate-50/10 text-slate-800 dark:text-slate-200 border border-white/15 rounded-xl text-sm font-semibold shadow-lg backdrop-blur-md transition-all hover:border-white/30 cursor-pointer"
           >
             <BookOpen className="w-4 h-4 text-purple-600 dark:text-purple-400" />
             <span>Explore Models</span>
@@ -273,7 +273,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* Interactive Code / Graph Preview Window */}
         <div className="w-full max-w-3xl mt-14 text-left">
           <div className="rounded-2xl bg-white/95 dark:bg-[#131620]/95 border border-white/15 shadow-2xl shadow-purple-950/60 overflow-hidden backdrop-blur-2xl">
-            <div className="h-10 bg-slate-50 dark:bg-slate-50 dark:bg-[#0d1017] border-b border-slate-300 dark:border-white/10 px-4 flex items-center justify-between">
+            <div className="h-10 bg-slate-50 dark:bg-[#0d1017] border-b border-slate-300 dark:border-white/10 px-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
                 <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
@@ -283,34 +283,22 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </span>
               </div>
 
-              <div className="flex items-center gap-1 bg-slate-200 dark:bg-white/5 p-0.5 rounded-lg border border-slate-300 dark:border-white/10 text-[11px] font-mono">
+              <div className="flex items-center gap-1 bg-slate-200 dark:bg-slate-200 dark:bg-white/5 p-0.5 rounded-lg border border-slate-300 dark:border-white/10 text-[11px] font-mono">
                 <button
                   onClick={() => setActiveCodeTab('python')}
-                  className={`px-2.5 py-0.5 rounded-md transition-colors cursor-pointer ${
-                    activeCodeTab === 'python'
-                      ? 'bg-purple-600 text-slate-900 dark:text-white font-bold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
-                  }`}
+                  className={`px-2.5 py-0.5 rounded-md transition-colors cursor-pointer ${ activeCodeTab === 'python' ? 'bg-purple-600 text-slate-900 dark:text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white' }`}
                 >
                   Python API
                 </button>
                 <button
                   onClick={() => setActiveCodeTab('json')}
-                  className={`px-2.5 py-0.5 rounded-md transition-colors cursor-pointer ${
-                    activeCodeTab === 'json'
-                      ? 'bg-purple-600 text-slate-900 dark:text-white font-bold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
-                  }`}
+                  className={`px-2.5 py-0.5 rounded-md transition-colors cursor-pointer ${ activeCodeTab === 'json' ? 'bg-purple-600 text-slate-900 dark:text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white' }`}
                 >
                   5-Tuple JSON
                 </button>
                 <button
                   onClick={() => setActiveCodeTab('tuples')}
-                  className={`px-2.5 py-0.5 rounded-md transition-colors cursor-pointer ${
-                    activeCodeTab === 'tuples'
-                      ? 'bg-purple-600 text-slate-900 dark:text-white font-bold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
-                  }`}
+                  className={`px-2.5 py-0.5 rounded-md transition-colors cursor-pointer ${ activeCodeTab === 'tuples' ? 'bg-purple-600 text-slate-900 dark:text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white' }`}
                 >
                   Formal δ Table
                 </button>
@@ -470,7 +458,7 @@ Transition Function δ:
       {/* How It Works Section */}
       <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs font-semibold mb-3 border border-slate-300 dark:border-white/10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 text-xs font-semibold mb-3 border border-slate-300 dark:border-white/10">
             <BookOpen className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
             <span>Workflow</span>
           </div>
@@ -670,7 +658,7 @@ Transition Function δ:
 
       {/* Question Solver Showcase Section */}
       <section id="solver" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-sky-50 via-indigo-50 to-purple-50 dark:from-[#1E112A] dark:via-[#161226] dark:to-[#0f1424] border border-sky-300 dark:border-sky-500/30 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden">
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-sky-50 dark:from-[#1E112A] via-indigo-50 dark:via-[#161226] to-purple-50 dark:to-[#0f1424] border border-sky-300 dark:border-sky-500/30 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="max-w-3xl relative z-10">
@@ -720,9 +708,9 @@ Transition Function δ:
                   if (onOpenSolver) onOpenSolver();
                   else onLaunchSimulator(undefined, true);
                 }}
-                className="px-6 py-3 bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-xl shadow-sky-950/50 transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-sky-950/50 transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2"
               >
-                <Zap className="w-4 h-4 text-slate-900 dark:text-white" />
+                <Zap className="w-4 h-4 text-white" />
                 <span>Launch Question Solver</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
@@ -733,7 +721,7 @@ Transition Function δ:
 
       {/* Pro Tips Section */}
       <section id="pro-tips" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-purple-50 via-fuchsia-50 to-pink-50 dark:from-purple-950 dark:via-[#191533] dark:to-[#0f192b] border border-purple-500/30 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden">
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-purple-50 dark:from-purple-950 via-fuchsia-50 dark:via-[#191533] to-pink-50 dark:to-[#0f192b] border border-purple-500/30 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="max-w-2xl relative z-10">
@@ -768,7 +756,7 @@ Transition Function δ:
             <div className="mt-8 flex items-center gap-4">
               <button
                 onClick={() => onLaunchSimulator()}
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-xl shadow-purple-900/30 transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-purple-900/30 transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
               >
                 <span>Open Simulator Now</span>
                 <ArrowRight className="w-3.5 h-3.5" />
