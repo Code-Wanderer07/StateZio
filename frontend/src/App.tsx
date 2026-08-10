@@ -15,7 +15,7 @@ import { ExportImportModal } from './components/sidebar/ExportImportModal';
 import { TheoryHelpModal } from './components/ui/TheoryHelpModal';
 import { QuestionSolverModal } from './components/solver/QuestionSolverModal';
 import { useAutomataStore } from './store/useAutomataStore';
-import { ListOrdered, FlaskConical, Info, Cpu } from 'lucide-react';
+import { ListOrdered, FlaskConical, Info, Cpu, Home, Brain } from 'lucide-react';
 import { LinkedInIcon } from './components/ui/LinkedInIcon';
 import { MachineType } from './types/automata';
 
@@ -92,6 +92,26 @@ export const App: React.FC = () => {
         {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
         <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-slate-950 border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
           <AutomataCanvas />
+          
+          {/* Mobile Top Floating Buttons (Home & Solver) */}
+          <div className="absolute top-4 left-4 right-4 z-40 md:hidden flex justify-between items-center pointer-events-none">
+            <button 
+              onClick={() => setCurrentView('landing')}
+              className="pointer-events-auto bg-slate-800/90 backdrop-blur hover:bg-slate-700 text-white p-2.5 rounded-full shadow-lg border border-slate-600 transition-all active:scale-95"
+              title="Go Home"
+            >
+              <Home className="w-5 h-5" />
+            </button>
+            
+            <button 
+              onClick={() => setIsSolverOpen(true)}
+              className="pointer-events-auto bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white p-2.5 rounded-full shadow-lg shadow-sky-900/50 border border-sky-400 transition-all active:scale-95"
+              title="Question Solver"
+            >
+              <Brain className="w-5 h-5" />
+            </button>
+          </div>
+
           {/* Mobile Controls Toggle Buttons */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 md:hidden flex gap-2 w-max max-w-[90vw]">
             <button 
