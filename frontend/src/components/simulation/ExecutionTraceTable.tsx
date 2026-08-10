@@ -34,7 +34,7 @@ export const ExecutionTraceTable: React.FC = () => {
 
       {/* Table container */}
       <div className="max-h-[50vh] md:max-h-[300px] overflow-y-auto overflow-x-auto">
-        <table className="w-full min-w-[300px] text-left text-sm font-mono">
+        <table className="w-full min-w-[500px] md:min-w-full text-left text-sm font-mono">
           <thead className="bg-sky-100 dark:bg-[#241919] text-sky-800 dark:text-sky-200 uppercase text-xs tracking-wider sticky top-0 border-b border-sky-200 dark:border-sky-500/20 z-10">
             <tr>
               <th className="py-3 px-3">Step</th>

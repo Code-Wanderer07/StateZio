@@ -105,7 +105,7 @@ export const BatchTester: React.FC = () => {
           batchTestCases.map((tc) => (
             <div
               key={tc.id}
-              className="px-4 py-3 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-sm font-mono min-w-[280px]"
+              className="px-4 py-3 flex items-center justify-between hover:bg-slate-100 dark:hover:bg-white/5 transition-colors text-sm font-mono min-w-[400px] md:min-w-full"
             >
               <div className="flex items-center gap-3">
                 {tc.status === 'PASS' && (
