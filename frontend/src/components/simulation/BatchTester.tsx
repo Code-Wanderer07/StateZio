@@ -96,7 +96,7 @@ export const BatchTester: React.FC = () => {
       </form>
 
       {/* Test Cases List */}
-      <div className="max-h-[260px] overflow-y-auto divide-y divide-white/5">
+      <div className="flex-1 min-h-[200px] overflow-y-auto divide-y divide-white/5">
         {batchTestCases.length === 0 ? (
           <div className="p-6 text-center text-slate-500 text-xs">
             No test cases loaded. Add test strings above.

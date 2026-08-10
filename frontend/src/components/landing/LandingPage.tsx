@@ -90,7 +90,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Center Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-xs font-medium text-slate-700 dark:text-slate-300">
+          <nav className="flex overflow-x-auto hide-scrollbar shrink-0 max-w-[50vw] sm:max-w-none items-center gap-4 sm:gap-7 text-xs font-medium text-slate-700 dark:text-slate-300">
             <button
               onClick={() => scrollToSection('hero')}
               className="hover:text-slate-900 dark:text-white transition-colors cursor-pointer"
@@ -186,9 +186,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           />
 
           {/* Ambient Glow Orbs */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-purple-600/25 via-indigo-500/20 to-cyan-500/20 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-cyan-600/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-          <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-purple-600/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] sm:w-[600px] h-[350px] bg-gradient-to-tr from-purple-600/25 via-indigo-500/20 to-cyan-500/20 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/3 w-[60vw] sm:w-[300px] h-[300px] bg-cyan-600/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+          <div className="absolute top-1/2 right-1/3 w-[60vw] sm:w-[300px] h-[300px] bg-purple-600/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
         </div>
 
         {/* Top Pill Badge */}

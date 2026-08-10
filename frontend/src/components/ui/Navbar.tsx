@@ -70,10 +70,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onNavigateHome}
             title="Go to StateZio Home"
-            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white text-xs font-semibold transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 ml-2 shadow-xs"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-200 dark:bg-[#271C1C] hover:bg-sky-300 dark:hover:bg-[#3D2C2C] text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white text-xs font-semibold transition-colors cursor-pointer border border-sky-300 dark:border-sky-500/30 ml-2 shadow-xs"
           >
             <Home className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-            <span>Home</span>
+            <span className="hidden sm:inline">Home</span>
           </button>
         )}
       </div>
@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="flex items-center gap-1 p-1 bg-sky-100 dark:bg-[#241919] rounded-xl border border-sky-300 dark:border-sky-500/30 shadow-inner overflow-x-auto max-w-full hide-scrollbar">
         <button
           onClick={() => handleModuleClick('DFA')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'DFA'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
               : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         <button
           onClick={() => handleModuleClick('NFA')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'NFA'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
               : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         <button
           onClick={() => handleModuleClick('PDA')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'PDA'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
               : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
@@ -118,7 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         <button
           onClick={() => handleModuleClick('TM')}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
             machine.type === 'TM'
               ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-950/50 border border-sky-200'
               : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'

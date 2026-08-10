@@ -365,10 +365,10 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         </div>
 
         {/* ── Body: Question Bank Left | Solution Right ──────────────────────── */}
-        <div className="flex-1 flex overflow-hidden">
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
           {/* Left: Question Bank */}
-          <div className="w-[360px] border-r border-sky-200 dark:border-sky-500/20 bg-slate-100 dark:bg-[#120D0D] flex flex-col shrink-0">
+          <div className="w-full md:w-[360px] border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20 bg-slate-100 dark:bg-[#120D0D] flex flex-col shrink-0 max-h-[40vh] md:max-h-full">
             {/* Category Filter */}
             <div className="p-3 border-b border-sky-200 dark:border-sky-500/20 flex gap-1 bg-sky-50 dark:bg-[#1C1313] overflow-x-auto shrink-0">
               {(['ALL', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((cat) => (
@@ -495,7 +495,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   <h4 className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
                     <BookOpen className="w-3.5 h-3.5" /> Formal Mathematical Definition
                   </h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     <div className="p-3 rounded-xl bg-sky-100 dark:bg-[#241919] border border-sky-300 dark:border-sky-500/30">
                       <div className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-semibold">States (Q)</div>
                       <div className="text-xs font-mono font-bold text-sky-700 dark:text-sky-300 mt-1 truncate" title={'{' + activeSolution.formalTuples.states.join(', ') + '}'}>

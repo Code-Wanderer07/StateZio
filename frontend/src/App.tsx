@@ -57,7 +57,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-[100dvh] w-screen bg-slate-50 dark:bg-[#0e0a0a] text-slate-900 dark:text-slate-100 overflow-hidden font-sans select-none">
+    <div className="flex flex-col h-[100dvh] w-full bg-slate-50 dark:bg-[#0e0a0a] text-slate-900 dark:text-slate-100 overflow-hidden font-sans select-none">
       {/* Top Navigation */}
       <Navbar
         isSidebarOpen={isSidebarOpen}
@@ -68,17 +68,17 @@ export const App: React.FC = () => {
       />
 
       {/* Main Workspace Area */}
-      <div className="flex flex-1 h-[calc(100dvh-3.5rem)] overflow-hidden">
+      <div className="flex flex-col md:flex-row flex-1 h-[calc(100dvh-3.5rem)] overflow-hidden">
         {/* Preset Sidebar (collapsible) */}
         {isSidebarOpen && <PresetSidebar />}
 
         {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
-        <div className="flex-1 relative h-full flex flex-col min-w-0 bg-sky-50 dark:bg-[#1C1313] border-r border-sky-200 dark:border-sky-500/20">
+        <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-[#1C1313] border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
           <AutomataCanvas />
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className="hidden md:flex w-[430px] max-w-[450px] h-full bg-slate-50 dark:bg-[#161111] border-l border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
+        <div className="flex w-full md:w-[430px] md:max-w-[450px] flex-1 md:flex-none md:h-full bg-slate-50 dark:bg-[#161111] md:border-l border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto overflow-x-hidden z-10 shadow-2xl box-border">
           {/* Main Simulation Deck (with glowing engine chassis) */}
           <SimulationDeck />
 
