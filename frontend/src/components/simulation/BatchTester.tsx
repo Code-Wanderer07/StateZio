@@ -53,7 +53,7 @@ export const BatchTester: React.FC = () => {
 
           <button
             onClick={runBatchTests}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-slate-900 dark:text-white rounded-xl text-xs font-semibold shadow-md shadow-purple-950/40 border border-purple-400/30 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-slate-900 dark:text-white rounded-xl text-xs font-semibold shadow-md shadow-purple-950/40 border border-purple-400/30 transition-all cursor-pointer"
           >
             <Play className="w-3 h-3 fill-current" />
             <span>Run All</span>
@@ -99,7 +99,7 @@ export const BatchTester: React.FC = () => {
       <div className="flex-1 max-h-[50vh] md:max-h-[400px] overflow-y-auto overflow-x-auto divide-y divide-white/5">
         {batchTestCases.length === 0 ? (
           <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-6 m-2 flex flex-col items-center justify-center text-center text-slate-600 dark:text-slate-400 py-10 border border-dashed border-slate-300 dark:border-slate-700">
-            <FlaskConical className="w-8 h-8 text-sky-500/40 mb-2" />
+            <FlaskConical className="w-8 h-8 text-cyan-500/40 mb-2" />
             <p className="text-sm font-medium text-slate-700 dark:text-slate-300">No test cases loaded.</p>
             <p className="text-xs text-slate-500 mt-1">Add test strings above to run a batch test.</p>
           </div>

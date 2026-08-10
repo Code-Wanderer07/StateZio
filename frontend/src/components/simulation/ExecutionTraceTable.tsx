@@ -7,8 +7,8 @@ export const ExecutionTraceTable: React.FC = () => {
 
   if (!simulationResult || simulationResult.traces.length === 0) {
     return (
-      <div className="bg-sky-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 rounded-2xl p-6 shadow-xl flex flex-col items-center justify-center text-center text-slate-600 dark:text-slate-400 py-12">
-        <ListOrdered className="w-8 h-8 text-sky-500/50 mb-2" />
+      <div className="bg-cyan-50 dark:bg-slate-950 border border-cyan-300 dark:border-cyan-500/30 rounded-2xl p-6 shadow-xl flex flex-col items-center justify-center text-center text-slate-600 dark:text-slate-400 py-12">
+        <ListOrdered className="w-8 h-8 text-cyan-500/50 mb-2" />
         <p className="text-sm font-medium text-slate-700 dark:text-slate-300">No simulation trace available.</p>
         <p className="text-xs text-slate-500 mt-1">Enter an input string and click "Simulate" to view step trace.</p>
       </div>
@@ -18,16 +18,16 @@ export const ExecutionTraceTable: React.FC = () => {
   const stateLabel = (id: string) => machine.states.find((s) => s.id === id)?.label || id;
 
   return (
-    <div className="flex flex-col bg-sky-50 dark:bg-slate-950 border border-sky-300 dark:border-sky-500/30 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
+    <div className="flex flex-col bg-cyan-50 dark:bg-slate-950 border border-cyan-300 dark:border-cyan-500/30 rounded-2xl shadow-xl overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-sky-200 dark:border-sky-500/20 bg-slate-50 dark:bg-slate-900">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-cyan-200 dark:border-cyan-500/20 bg-slate-50 dark:bg-slate-900">
         <div className="flex items-center gap-2">
-          <ListOrdered className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+          <ListOrdered className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
           <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Execution Trace Log
           </h4>
         </div>
-        <span className="text-[11px] font-mono text-sky-700 dark:text-sky-300 font-bold">
+        <span className="text-[11px] font-mono text-cyan-700 dark:text-cyan-300 font-bold">
           Total Steps: {simulationResult.traces.length}
         </span>
       </div>
@@ -35,7 +35,7 @@ export const ExecutionTraceTable: React.FC = () => {
       {/* Table container */}
       <div className="max-h-[50vh] md:max-h-[300px] overflow-y-auto overflow-x-auto">
         <table className="w-full min-w-[500px] md:min-w-full text-left text-sm font-mono">
-          <thead className="bg-sky-100 dark:bg-slate-900 text-sky-800 dark:text-sky-200 uppercase text-xs tracking-wider sticky top-0 border-b border-sky-200 dark:border-sky-500/20 z-10">
+          <thead className="bg-cyan-100 dark:bg-slate-900 text-cyan-800 dark:text-cyan-200 uppercase text-xs tracking-wider sticky top-0 border-b border-cyan-200 dark:border-cyan-500/20 z-10">
             <tr>
               <th className="py-3 px-3">Step</th>
               <th className="py-3 px-3">State(s)</th>
@@ -46,7 +46,7 @@ export const ExecutionTraceTable: React.FC = () => {
               <th className="py-3 px-3 text-right">Status</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-sky-500/10">
+          <tbody className="divide-y divide-cyan-500/10">
             {simulationResult.traces.map((trace, idx) => {
               const isCurrent = idx === currentStepIndex;
               return (
@@ -55,12 +55,12 @@ export const ExecutionTraceTable: React.FC = () => {
                   onClick={() => jumpToStep(idx)}
                   className={`cursor-pointer transition-colors duration-150 ${
                     isCurrent
-                      ? 'bg-sky-500/20 text-slate-900 dark:text-white font-semibold border-l-4 border-l-sky-400'
+                      ? 'bg-cyan-500/20 text-slate-900 dark:text-white font-semibold border-l-4 border-l-cyan-400'
                       : 'hover:bg-slate-100 dark:hover:bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   <td className="py-2 px-3 text-slate-600 dark:text-slate-400">{idx}</td>
-                  <td className="py-2 px-3 text-sky-700 dark:text-sky-300 font-semibold">
+                  <td className="py-2 px-3 text-cyan-700 dark:text-cyan-300 font-semibold">
                     {trace.activeStates.length > 0
                       ? `{${trace.activeStates.map(stateLabel).join(', ')}}`
                       : '∅'}
@@ -74,7 +74,7 @@ export const ExecutionTraceTable: React.FC = () => {
                     </td>
                   )}
                   {machine.type === 'TM' && (
-                    <td className="py-2 px-3 text-sky-700 dark:text-sky-300">
+                    <td className="py-2 px-3 text-cyan-700 dark:text-cyan-300">
                       pos: {trace.headIndex !== undefined ? trace.headIndex : 0} ('{trace.tape?.[trace.headIndex || 0] || '_'}')
                     </td>
                   )}

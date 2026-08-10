@@ -18,16 +18,16 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
   });
 
   const getModuleBadge = (type: MachineType) => {
-    if (type === 'DFA') return <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-700 dark:text-sky-300 border border-sky-500/40 text-[10px] font-mono font-semibold">DFA</span>;
+    if (type === 'DFA') return <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/40 text-[10px] font-mono font-semibold">DFA</span>;
     if (type === 'NFA') return <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/40 text-[10px] font-mono font-semibold">NFA</span>;
-    if (type === 'PDA') return <span className="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 text-[10px] font-mono font-semibold">PDA</span>;
+    if (type === 'PDA') return <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/40 text-[10px] font-mono font-semibold">PDA</span>;
     return <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-mono font-semibold">TM</span>;
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-50 dark:bg-slate-900 border-r border-sky-200 dark:border-sky-500/20 w-80 max-w-[85vw] shadow-2xl text-slate-900 dark:text-slate-100 select-none absolute md:relative z-40 md:z-auto">
+    <div className="flex flex-col h-full bg-slate-50 dark:bg-slate-900 border-r border-cyan-200 dark:border-cyan-500/20 w-80 max-w-[85vw] shadow-2xl text-slate-900 dark:text-slate-100 select-none absolute md:relative z-40 md:z-auto">
       {/* Sidebar Header */}
-      <div className="p-4 border-b border-sky-200 dark:border-sky-500/20 bg-sky-50 dark:bg-slate-950 flex flex-col relative">
+      <div className="p-4 border-b border-cyan-200 dark:border-cyan-500/20 bg-cyan-50 dark:bg-slate-950 flex flex-col relative">
         {onClose && (
           <button 
             onClick={onClose}
@@ -37,22 +37,22 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
           </button>
         )}
         <div className="flex items-center gap-2 mb-3">
-          <BookOpen className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+          <BookOpen className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
           <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
             Preset Library
           </h3>
         </div>
 
         {/* Filter Pills */}
-        <div className="grid grid-cols-5 gap-1 p-1 bg-sky-100 dark:bg-slate-900 rounded-xl border border-sky-300 dark:border-sky-500/30">
+        <div className="grid grid-cols-5 gap-1 p-1 bg-cyan-100 dark:bg-slate-900 rounded-xl border border-cyan-300 dark:border-cyan-500/30">
           {(['All', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((type) => (
             <button
               key={type}
               onClick={() => setSelectedType(type)}
               className={`py-1 text-[10px] font-bold rounded-lg transition-colors truncate cursor-pointer ${
                 selectedType === type
-                  ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-xs'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+                  ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-xs'
+                  : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               {type}
@@ -71,12 +71,12 @@ export const PresetSidebar: React.FC<PresetSidebarProps> = ({ onClose }) => {
               onClick={() => loadPreset(preset)}
               className={`w-full text-left p-3 rounded-xl border transition-all duration-200 group cursor-pointer ${
                 isActive
-                  ? 'bg-sky-200 dark:bg-slate-800 border-sky-400 shadow-md ring-1 ring-sky-400/60'
-                  : 'bg-sky-50 dark:bg-slate-950 border-sky-300 dark:border-sky-500/30 hover:border-sky-400 hover:bg-sky-100 dark:bg-slate-800 shadow-xs'
+                  ? 'bg-cyan-200 dark:bg-slate-800 border-cyan-400 shadow-md ring-1 ring-cyan-400/60'
+                  : 'bg-cyan-50 dark:bg-slate-950 border-cyan-300 dark:border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-100 dark:bg-slate-800 shadow-xs'
               }`}
             >
               <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-sky-700 dark:text-sky-300 truncate">
+                <span className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-cyan-700 dark:text-cyan-300 truncate">
                   {preset.name}
                 </span>
                 {getModuleBadge(preset.type)}

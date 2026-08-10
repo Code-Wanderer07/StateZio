@@ -69,7 +69,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               className="flex items-center gap-2.5 text-left group cursor-pointer"
             >
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-indigo-500 to-cyan-400 rounded-xl blur-xs opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 rounded-xl blur-xs opacity-75 group-hover:opacity-100 transition duration-300"></div>
                 <img
                   src="/statezio-logo.png"
                   alt="StateZio Logo"
@@ -152,7 +152,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <button
               onClick={toggleTheme}
               title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-sky-300 transition-colors shadow-xs border border-slate-300 dark:border-sky-500/20 flex items-center gap-1.5 cursor-pointer"
+              className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-cyan-300 transition-colors shadow-xs border border-slate-300 dark:border-cyan-500/20 flex items-center gap-1.5 cursor-pointer"
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
@@ -160,7 +160,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {/* Launch CTA */}
             <button
               onClick={() => onLaunchSimulator()}
-              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 active:scale-95 text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-lg shadow-purple-600/30 border border-purple-400/30 transition-all hover:scale-105 cursor-pointer"
+              className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 active:scale-95 text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-lg shadow-purple-600/30 border border-purple-400/30 transition-all hover:scale-105 cursor-pointer"
             >
               <span>Launch Free</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -186,7 +186,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           />
 
           {/* Ambient Glow Orbs */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] sm:w-[600px] h-[350px] bg-gradient-to-tr from-purple-600/25 via-indigo-500/20 to-cyan-500/20 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse"></div>
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] sm:w-[600px] h-[350px] bg-gradient-to-tr from-purple-600/25 via-blue-500/20 to-cyan-500/20 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse"></div>
           <div className="absolute top-1/2 left-1/3 w-[60vw] sm:w-[300px] h-[300px] bg-cyan-600/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
           <div className="absolute top-1/2 right-1/3 w-[60vw] sm:w-[300px] h-[300px] bg-purple-600/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
         </div>
@@ -202,7 +202,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         {/* Large Hero Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl">
           Build & Simulate Automata <br />
-          <span className="bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-sm">
+          <span className="bg-gradient-to-r from-purple-400 via-blue-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-sm">
             in Half the Time
           </span>
         </h1>
@@ -219,7 +219,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4 z-10">
           <button
             onClick={() => onLaunchSimulator()}
-            className="flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-sm font-bold shadow-xl shadow-purple-900/40 border border-purple-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            className="flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-purple-600 via-purple-700 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white rounded-xl text-sm font-bold shadow-xl shadow-purple-900/40 border border-purple-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
           >
             <span>Start Simulating Free</span>
             <ArrowRight className="w-4 h-4" />
@@ -429,8 +429,8 @@ Transition Function δ:
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 hover:border-indigo-500/50 hover:shadow-xl hover:shadow-indigo-950/40 transition-all group">
-              <div className="w-11 h-11 rounded-xl bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-slate-900 dark:text-white transition-all">
+            <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-950/40 transition-all group">
+              <div className="w-11 h-11 rounded-xl bg-blue-600/20 text-blue-700 dark:text-blue-300 border border-blue-500/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-slate-900 dark:text-white transition-all">
                 <Play className="w-5 h-5" />
               </div>
               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
@@ -485,7 +485,7 @@ Transition Function δ:
 
         <div className="space-y-5">
           <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-blue-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               1
             </div>
             <div>
@@ -499,7 +499,7 @@ Transition Function δ:
           </div>
 
           <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-blue-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               2
             </div>
             <div>
@@ -513,7 +513,7 @@ Transition Function δ:
           </div>
 
           <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-blue-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               3
             </div>
             <div>
@@ -527,7 +527,7 @@ Transition Function δ:
           </div>
 
           <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 hover:border-purple-500/40 transition-colors">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-blue-600 text-slate-900 dark:text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-md shadow-purple-900/30">
               4
             </div>
             <div>
@@ -593,9 +593,9 @@ Transition Function δ:
             </div>
 
             {/* PDA */}
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-indigo-500/40 transition-colors">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-300 dark:border-white/10 flex flex-col justify-between hover:border-blue-500/40 transition-colors">
               <div>
-                <div className="inline-block px-2.5 py-1 rounded-lg bg-indigo-500/20 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 font-bold text-xs mb-3">
+                <div className="inline-block px-2.5 py-1 rounded-lg bg-blue-500/20 border border-blue-500/30 text-blue-700 dark:text-blue-300 font-bold text-xs mb-3">
                   PDA
                 </div>
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
@@ -603,19 +603,19 @@ Transition Function δ:
                 </h3>
                 <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                     <span>7-tuple PDA formal definition</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                     <span>Acceptance by Final State & Empty Stack</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                     <span>Live stack animation with top pointer (Z₀)</span>
                   </li>
                   <li className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                     <span>Classic languages: aⁿbⁿ, Palindromes (wwᴿ)</span>
                   </li>
                 </ul>
@@ -623,7 +623,7 @@ Transition Function δ:
 
               <button
                 onClick={() => onLaunchSimulator('PDA')}
-                className="mt-6 w-full py-2.5 bg-indigo-600/20 hover:bg-indigo-600 text-indigo-800 dark:text-indigo-200 hover:text-slate-900 dark:text-white font-bold text-xs rounded-xl border border-indigo-500/30 transition-all cursor-pointer"
+                className="mt-6 w-full py-2.5 bg-blue-600/20 hover:bg-blue-600 text-blue-800 dark:text-blue-200 hover:text-slate-900 dark:text-white font-bold text-xs rounded-xl border border-blue-500/30 transition-all cursor-pointer"
               >
                 Launch PDA Visualizer
               </button>
@@ -671,12 +671,12 @@ Transition Function δ:
 
       {/* Question Solver Showcase Section */}
       <section id="solver" className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-sky-50 dark:from-[#1E112A] via-indigo-50 dark:via-[#161226] to-purple-50 dark:to-[#0f1424] border border-sky-300 dark:border-sky-500/30 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-tr from-cyan-50 dark:from-[#1E112A] via-blue-50 dark:via-[#161226] to-purple-50 dark:to-[#0f1424] border border-cyan-300 dark:border-cyan-500/30 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="max-w-3xl relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-700 dark:text-sky-300 text-xs font-semibold mb-4 backdrop-blur-xs border border-sky-500/40">
-              <Sparkles className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-xs font-semibold mb-4 backdrop-blur-xs border border-cyan-500/40">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
               <span>Instant Formal Synthesizer</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
@@ -707,7 +707,7 @@ Transition Function δ:
                       if (onOpenSolver) onOpenSolver();
                       else onLaunchSimulator(undefined, true);
                     }}
-                    className="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-white/5 hover:bg-slate-50/15 border border-sky-300 dark:border-sky-500/30 hover:border-sky-400 text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white text-xs font-medium transition-colors cursor-pointer"
+                    className="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-white/5 hover:bg-slate-50/15 border border-cyan-300 dark:border-cyan-500/30 hover:border-cyan-400 text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white text-xs font-medium transition-colors cursor-pointer"
                   >
                     {sample}
                   </button>
@@ -721,7 +721,7 @@ Transition Function δ:
                   if (onOpenSolver) onOpenSolver();
                   else onLaunchSimulator(undefined, true);
                 }}
-                className="px-6 py-3 bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 hover:from-sky-400 hover:to-purple-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-sky-950/50 transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-cyan-950/50 transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-2"
               >
                 <Zap className="w-4 h-4 text-white" />
                 <span>Launch Question Solver</span>
@@ -769,7 +769,7 @@ Transition Function δ:
             <div className="mt-8 flex items-center gap-4">
               <button
                 onClick={() => onLaunchSimulator()}
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-purple-900/30 transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white rounded-xl text-xs font-bold shadow-xl shadow-purple-900/30 transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
               >
                 <span>Open Simulator Now</span>
                 <ArrowRight className="w-3.5 h-3.5" />

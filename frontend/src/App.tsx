@@ -90,7 +90,7 @@ export const App: React.FC = () => {
         {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
 
         {/* Center: Interactive Graph Canvas (#1C1313) with glowing boundary */}
-        <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-sky-50 dark:bg-slate-950 border-b md:border-b-0 md:border-r border-sky-200 dark:border-sky-500/20">
+        <div className="flex-1 relative flex flex-col min-h-0 min-w-0 bg-cyan-50 dark:bg-slate-950 border-b md:border-b-0 md:border-r border-cyan-200 dark:border-cyan-500/20">
           <AutomataCanvas />
           
           {/* Mobile Top Floating Buttons (Home & Solver) */}
@@ -105,7 +105,7 @@ export const App: React.FC = () => {
             
             <button 
               onClick={() => setIsSolverOpen(true)}
-              className="pointer-events-auto bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white p-2.5 rounded-full shadow-lg shadow-sky-900/50 border border-sky-400 transition-all active:scale-95"
+              className="pointer-events-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white p-2.5 rounded-full shadow-lg shadow-cyan-900/50 border border-cyan-400 transition-all active:scale-95"
               title="Question Solver"
             >
               <Brain className="w-5 h-5" />
@@ -123,7 +123,7 @@ export const App: React.FC = () => {
             </button>
             <button 
               onClick={() => setIsMobileControlsOpen(prev => !prev)}
-              className="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2.5 rounded-full shadow-xl shadow-sky-900/20 border border-sky-400 font-bold flex items-center gap-2 transition-all active:scale-95"
+              className="bg-cyan-500 hover:bg-cyan-400 text-white px-5 py-2.5 rounded-full shadow-xl shadow-cyan-900/20 border border-cyan-400 font-bold flex items-center gap-2 transition-all active:scale-95"
             >
               <ListOrdered className="w-4 h-4" />
               {isMobileControlsOpen ? 'Hide Controls' : 'Controls'}
@@ -132,7 +132,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Right Dock: Simulation Controls & Diagnostics with Dark Glass Chassis */}
-        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-auto md:h-full max-h-[85vh] md:max-h-none bg-slate-50 dark:bg-slate-900 md:border-l border-t md:border-t-0 border-sky-200 dark:border-sky-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
+        <div className={`flex w-full md:w-[430px] md:max-w-[450px] md:relative absolute bottom-0 left-0 right-0 z-50 md:z-10 transition-transform duration-300 ease-in-out ${isMobileControlsOpen ? 'translate-y-0' : 'translate-y-[100%] md:translate-y-0'} h-auto md:h-full max-h-[85vh] md:max-h-none bg-slate-50 dark:bg-slate-900 md:border-l border-t md:border-t-0 border-cyan-200 dark:border-cyan-500/20 flex-col p-3.5 space-y-3 overflow-y-auto box-border shadow-[0_-10px_40px_rgba(0,0,0,0.3)] md:shadow-2xl rounded-t-2xl md:rounded-none`}>
           {/* Mobile Close Button for Controls */}
           <div className="md:hidden flex justify-end mb-1">
             <button 
@@ -151,13 +151,13 @@ export const App: React.FC = () => {
           </div>
 
           {/* Inspector Tabs (Engine / Trace / Batch / Tuples) */}
-          <div className="flex items-center gap-1 p-1 bg-sky-100 dark:bg-slate-900 rounded-xl border border-sky-300 dark:border-sky-500/30 shrink-0 shadow-inner">
+          <div className="flex items-center gap-1 p-1 bg-cyan-100 dark:bg-slate-900 rounded-xl border border-cyan-300 dark:border-cyan-500/30 shrink-0 shadow-inner">
             <button
               onClick={() => setActiveInspectorTab('engine')}
               className={`md:hidden flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'engine'
-                  ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+                  ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-200 dark:shadow-cyan-950/40'
+                  : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
@@ -168,8 +168,8 @@ export const App: React.FC = () => {
               onClick={() => setActiveInspectorTab('trace')}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'trace'
-                  ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+                  ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-200 dark:shadow-cyan-950/40'
+                  : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <ListOrdered className="w-3.5 h-3.5" />
@@ -181,8 +181,8 @@ export const App: React.FC = () => {
               onClick={() => setActiveInspectorTab('batch')}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'batch'
-                  ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+                  ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-200 dark:shadow-cyan-950/40'
+                  : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <FlaskConical className="w-3.5 h-3.5" />
@@ -192,8 +192,8 @@ export const App: React.FC = () => {
                 <span
                   className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
                     activeInspectorTab === 'batch'
-                      ? 'bg-sky-50 dark:bg-slate-950 text-sky-600 dark:text-sky-400'
-                      : 'bg-sky-500/20 text-sky-700 dark:text-sky-300'
+                      ? 'bg-cyan-50 dark:bg-slate-950 text-cyan-600 dark:text-cyan-400'
+                      : 'bg-cyan-500/20 text-cyan-700 dark:text-cyan-300'
                   }`}
                 >
                   {batchTestCases.length}
@@ -205,8 +205,8 @@ export const App: React.FC = () => {
               onClick={() => setActiveInspectorTab('tuples')}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 activeInspectorTab === 'tuples'
-                  ? 'bg-sky-400 text-white dark:text-[#1C1313] shadow-md shadow-sky-200 dark:shadow-sky-950/40'
-                  : 'text-sky-800 dark:text-sky-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+                  ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-200 dark:shadow-cyan-950/40'
+                  : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
               }`}
             >
               <Info className="w-3.5 h-3.5" />
@@ -234,7 +234,7 @@ export const App: React.FC = () => {
           </div>
 
           {/* Footer Author Credits */}
-          <div className="pt-2.5 border-t border-sky-200 dark:border-sky-500/20 flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 shrink-0">
+          <div className="pt-2.5 border-t border-cyan-200 dark:border-cyan-500/20 flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 shrink-0">
             <span className="flex items-center gap-1.5">
               Made by <strong className="text-slate-900 dark:text-white font-bold">Shivakanth</strong>
             </span>
@@ -242,7 +242,7 @@ export const App: React.FC = () => {
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:text-sky-300 hover:underline font-semibold"
+              className="flex items-center gap-1.5 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:text-cyan-300 hover:underline font-semibold"
             >
               <LinkedInIcon className="w-3.5 h-3.5" />
               <span>LinkedIn Profile</span>
