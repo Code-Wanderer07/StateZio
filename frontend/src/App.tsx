@@ -121,7 +121,7 @@ export const App: React.FC = () => {
         {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
 
         {/* Mobile Top Pill Navigation */}
-        <div className="md:hidden absolute top-4 left-1/2 -translate-x-1/2 z-40 bg-surface-container-high/90 backdrop-blur-2xl rounded-xl border border-outline-variant/30 shadow-[0_0_20px_rgba(0,0,0,0.5)] p-1 flex gap-1 font-code text-xs">
+        <div id="mobile-tour-tabs" className="md:hidden absolute top-4 left-1/2 -translate-x-1/2 z-40 bg-surface-container-high/90 backdrop-blur-2xl rounded-xl border border-outline-variant/30 shadow-[0_0_20px_rgba(0,0,0,0.5)] p-1 flex gap-1 font-code text-xs">
            <button onClick={() => setMobileActiveTab('canvas')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'canvas' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Canvas</button>
            <button onClick={() => setMobileActiveTab('trace')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'trace' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Trace</button>
            <button onClick={() => setMobileActiveTab('batch')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'batch' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Batch</button>
