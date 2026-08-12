@@ -118,8 +118,9 @@ export const SimulationDeck: React.FC = () => {
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col md:flex-row items-center justify-between border-t border-outline-variant/20 pt-2 pb-1 gap-2 md:gap-0">
-        <div id="tour-sim-input" className="flex items-center gap-4 w-full md:w-1/3">
+      {/* Controls */}
+      <div className="flex flex-col md:flex-row items-center justify-between border-t border-outline-variant/20 pt-2 pb-1 gap-2 md:gap-0 relative">
+        <div id="tour-sim-input" className="flex items-center gap-4 w-full md:w-1/3 shrink-0">
           <input
             type="text"
             value={inputString}
@@ -132,44 +133,46 @@ export const SimulationDeck: React.FC = () => {
           />
         </div>
         
-        <div id="tour-sim-play" className="flex items-center justify-center w-full md:w-auto">
-          {!simulationResult ? (
-              <button onClick={() => {
-                runSimulation();
-                setIsPlaying(true);
-              }} className="w-10 h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#1C1313] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]">
-                <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-              </button>
-           ) : (
-              <div className="flex items-center gap-1 bg-surface-container/40 backdrop-blur-md rounded-full px-3 py-1 border border-outline-variant/20 shadow-inner w-full md:w-auto justify-center">
-                <button onClick={stepBackward} disabled={currentStepIndex === 0} className="p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
-                  <span className="material-symbols-outlined text-xl">skip_previous</span>
+        <div className="flex flex-row items-center justify-between md:justify-end w-full md:w-2/3 gap-2 mt-1 md:mt-0">
+          <div id="tour-sim-play" className="flex items-center justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
+            {!simulationResult ? (
+                <button onClick={() => {
+                  runSimulation();
+                  setIsPlaying(true);
+                }} className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#1C1313] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]">
+                  <span className="material-symbols-outlined text-xl md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                 </button>
-                <button onClick={() => setIsPlaying(!isPlaying)} disabled={isFinalStep} className="w-10 h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#1C1313] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:shadow-none mx-2">
-                  {isPlaying ? (
-                    <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>pause</span>
-                  ) : (
-                    <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
-                  )}
-                </button>
-                <button onClick={stepForward} disabled={isFinalStep} className="p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
-                  <span className="material-symbols-outlined text-xl">skip_next</span>
-                </button>
-                <div className="hidden md:block w-[1px] h-5 bg-outline-variant/30 mx-1"></div>
-                <button onClick={resetSimulation} className="p-1.5 rounded-full text-on-surface-variant hover:text-rose-400 hover:bg-surface-variant/50 transition-all" title="Reset Simulation">
-                   <span className="material-symbols-outlined text-[18px]">replay</span>
-                </button>
-              </div>
-           )}
-        </div>
-
-        <div id="tour-sim-speed" className="flex items-center gap-2 w-full md:w-1/3 justify-center md:justify-end">
-          <span className="material-symbols-outlined text-on-surface-variant text-sm">speed</span>
-          <div className="flex items-center bg-surface-container/40 backdrop-blur-md rounded-lg p-1 border border-outline-variant/20 md:mr-2 text-[10px] font-mono font-bold shadow-inner">
-            <button onClick={() => setPlaybackSpeed(0.5)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 0.5 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>.5x</button>
-            <button onClick={() => setPlaybackSpeed(1.0)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 1.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>1x</button>
-            <button onClick={() => setPlaybackSpeed(2.0)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 2.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>2x</button>
-            <button onClick={() => setPlaybackSpeed(4.0)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 4.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>4x</button>
+             ) : (
+                <div className="flex items-center gap-1 bg-surface-container/40 backdrop-blur-md rounded-full px-2 py-1 md:px-3 border border-outline-variant/20 shadow-inner">
+                  <button onClick={stepBackward} disabled={currentStepIndex === 0} className="p-1 md:p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
+                    <span className="material-symbols-outlined text-lg md:text-xl">skip_previous</span>
+                  </button>
+                  <button onClick={() => setIsPlaying(!isPlaying)} disabled={isFinalStep} className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#1C1313] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:shadow-none mx-1 md:mx-2">
+                    {isPlaying ? (
+                      <span className="material-symbols-outlined text-lg md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>pause</span>
+                    ) : (
+                      <span className="material-symbols-outlined text-lg md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+                    )}
+                  </button>
+                  <button onClick={stepForward} disabled={isFinalStep} className="p-1 md:p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
+                    <span className="material-symbols-outlined text-lg md:text-xl">skip_next</span>
+                  </button>
+                  <div className="w-[1px] h-4 md:h-5 bg-outline-variant/30 mx-1"></div>
+                  <button onClick={resetSimulation} className="p-1 md:p-1.5 rounded-full text-on-surface-variant hover:text-rose-400 hover:bg-surface-variant/50 transition-all" title="Reset Simulation">
+                     <span className="material-symbols-outlined text-base md:text-[18px]">replay</span>
+                  </button>
+                </div>
+             )}
+          </div>
+  
+          <div id="tour-sim-speed" className="flex items-center gap-1 md:gap-2 justify-end">
+            <span className="material-symbols-outlined text-on-surface-variant text-[12px] md:text-sm">speed</span>
+            <div className="flex items-center bg-surface-container/40 backdrop-blur-md rounded-lg p-0.5 md:p-1 border border-outline-variant/20 text-[9px] md:text-[10px] font-mono font-bold shadow-inner">
+              <button onClick={() => setPlaybackSpeed(0.5)} className={`px-1.5 md:px-2 py-1 rounded-md transition-all ${playbackSpeed === 0.5 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>.5x</button>
+              <button onClick={() => setPlaybackSpeed(1.0)} className={`px-1.5 md:px-2 py-1 rounded-md transition-all ${playbackSpeed === 1.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>1x</button>
+              <button onClick={() => setPlaybackSpeed(2.0)} className={`px-1.5 md:px-2 py-1 rounded-md transition-all ${playbackSpeed === 2.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>2x</button>
+              <button onClick={() => setPlaybackSpeed(4.0)} className={`px-1.5 md:px-2 py-1 rounded-md transition-all ${playbackSpeed === 4.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>4x</button>
+            </div>
           </div>
         </div>
       </div>
