@@ -107,7 +107,7 @@ export const AutomataCanvas: React.FC = () => {
 
         <MiniMap
           position="top-right"
-          className="!m-4 !bg-cyan-50 dark:!bg-slate-950 !border-cyan-300 dark:!border-cyan-500/30 !rounded-2xl !shadow-2xl"
+          className="hidden md:block !m-4 !bg-cyan-50 dark:!bg-slate-950 !border-cyan-300 dark:!border-cyan-500/30 !rounded-2xl !shadow-2xl"
           nodeColor={(node) => {
             if (node.data?.isActive) return '#38BDF8'; // Light Blue / Cyan
             if (node.data?.isAccept) return '#818CF8'; // Indigo

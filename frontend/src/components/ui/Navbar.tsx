@@ -33,8 +33,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-2 cursor-pointer" onClick={onNavigateHome}>
           <img src="/statezio-logo2.png" alt="StateZio Logo" className="w-9 h-9 dark:mix-blend-screen rounded-lg dark:rounded-none" />
           <div className="flex items-start">
-            <span className="font-display-lg text-2xl text-primary tracking-tighter font-bold">StateZio</span>
-            <span className="ml-1 text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-md self-start mt-0.5">2.0</span>
+            <span className="hidden sm:inline font-display-lg text-2xl text-primary tracking-tighter font-bold">StateZio</span>
+            <span className="hidden sm:inline ml-1 text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-md self-start mt-0.5">2.0</span>
           </div>
         </div>
         <nav className="hidden md:flex gap-6">
@@ -57,10 +57,11 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="flex items-center gap-4">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="bg-surface-variant/50 hover:bg-surface-bright/50 transition-all border border-outline-variant/50 text-on-surface px-4 py-2 rounded-lg text-sm flex items-center gap-2"
+          className="bg-surface-variant/50 hover:bg-surface-bright/50 transition-all border border-outline-variant/50 text-on-surface px-3 py-2 rounded-lg text-sm flex items-center gap-2"
+          title="Preset Library"
         >
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
-          Preset Library
+          <span className="hidden sm:inline">Preset Library</span>
         </button>
         <button
           onClick={onOpenSolver}
