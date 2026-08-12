@@ -185,7 +185,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Mobile Floating Simulation Deck (Bottom, above controls) */}
-        <div className="md:hidden absolute bottom-24 left-2 right-2 z-40 pointer-events-none flex justify-center">
+        <div className="md:hidden absolute bottom-[120px] left-2 right-2 z-40 pointer-events-none flex justify-center">
           <div className="glass-panel rounded-xl p-2 flex flex-col gap-1 shadow-2xl pointer-events-auto w-full max-w-md bg-surface-container-highest/90 backdrop-blur-2xl">
             <SimulationDeck />
           </div>
