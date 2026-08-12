@@ -84,7 +84,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
                 <span className="material-symbols-outlined text-[18px]">play_arrow</span> Start Simulating
               </button>
               <a href="https://github.com/Code-Wanderer07/StateZio" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto flex justify-center items-center gap-2 px-6 py-3 rounded-md font-label-caps font-bold tracking-wider border border-outline-variant/50 text-on-surface hover:bg-surface-container-high transition-all hover:-translate-y-0.5 active:translate-y-0 duration-200 shadow-sm">
-                <span className="material-symbols-outlined text-[18px]">menu_book</span> Docs
+                View Source Code <span className="material-symbols-outlined text-[18px]">code</span>
               </a>
             </div>
           </div>
