@@ -28,7 +28,7 @@ export const CanvasControls: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex fixed md:left-6 md:top-1/2 md:-translate-y-1/2 bottom-4 left-1/2 -translate-x-1/2 md:translate-x-0 z-50 bg-surface-container-highest/90 backdrop-blur-2xl md:rounded-full rounded-xl flex-row md:flex-col items-center gap-2 md:py-4 md:px-2 px-4 py-2 border border-outline-variant/30 shadow-2xl max-w-[95vw] overflow-x-auto hide-scrollbar">
+    <div className="flex fixed md:left-6 md:top-1/2 md:-translate-y-1/2 bottom-4 left-1/2 -translate-x-1/2 md:translate-x-0 z-50 bg-surface-container-highest/90 backdrop-blur-2xl md:rounded-full rounded-xl flex-row md:flex-col items-center gap-2 md:py-4 md:px-2 px-4 py-2 border border-outline-variant/30 shadow-2xl max-w-[95vw] overflow-x-auto md:overflow-visible hide-scrollbar">
       
       {/* Guide Button with Popup */}
       <div className="relative group flex-shrink-0">
