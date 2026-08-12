@@ -115,7 +115,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Workspace */}
-      <main className="flex-1 relative flex w-full h-[calc(100vh-64px)] overflow-hidden">
+      <main className="flex-1 relative flex w-full overflow-hidden">
         
         {/* Preset Sidebar (Desktop Modal/Drawer) */}
         {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
@@ -185,7 +185,7 @@ export const App: React.FC = () => {
         </div>
 
         {/* Mobile Floating Simulation Deck (Bottom, above controls) */}
-        <div className="md:hidden absolute bottom-[72px] left-2 right-2 z-40 pointer-events-none flex justify-center">
+        <div className="md:hidden absolute bottom-[68px] left-2 right-2 z-40 pointer-events-none flex justify-center">
           <div className="glass-panel rounded-xl p-2 flex flex-col gap-1 shadow-2xl pointer-events-auto w-full max-w-md bg-surface-container-highest/90 backdrop-blur-2xl">
             <SimulationDeck />
           </div>
