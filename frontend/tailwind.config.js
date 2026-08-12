@@ -19,18 +19,18 @@ export default {
         'outline-variant': 'var(--outline-variant)',
         'on-primary': 'var(--on-primary)',
         primary: {
-          DEFAULT: 'var(--primary)',
-          container: 'var(--primary-container)',
+          DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
+          container: 'rgb(var(--primary-container) / <alpha-value>)',
           glow: 'rgba(76, 215, 246, 0.5)',
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          container: 'var(--secondary-container)',
+          DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
+          container: 'rgb(var(--secondary-container) / <alpha-value>)',
           glow: 'rgba(221, 184, 255, 0.5)',
         },
         tertiary: {
-          DEFAULT: 'var(--tertiary)',
-          container: 'var(--tertiary-container)',
+          DEFAULT: 'rgb(var(--tertiary) / <alpha-value>)',
+          container: 'rgb(var(--tertiary-container) / <alpha-value>)',
         },
         cyan: {
           50: 'rgb(var(--cyan-50) / <alpha-value>)',
