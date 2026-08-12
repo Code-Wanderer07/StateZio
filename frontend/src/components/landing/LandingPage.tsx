@@ -80,7 +80,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
             </p>
             
             <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
-              <button onClick={() => onLaunchSimulator('DFA')} className="w-full md:w-auto flex justify-center items-center gap-2 bg-primary/90 text-on-primary px-6 py-3 rounded-md font-label-caps font-bold tracking-wider hover:bg-primary transition-all shadow-md hover:-translate-y-0.5 active:translate-y-0 duration-200">
+              <button onClick={() => onLaunchSimulator('DFA')} className="w-full md:w-auto flex justify-center items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-md font-label-caps font-bold tracking-wider hover:bg-primary-fixed transition-all shadow-md hover:-translate-y-0.5 active:translate-y-0 duration-200">
                 <span className="material-symbols-outlined text-[18px]">play_arrow</span> Start Simulating
               </button>
               <a href="https://github.com/Code-Wanderer07/StateZio" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto flex justify-center items-center gap-2 px-6 py-3 rounded-md font-label-caps font-bold tracking-wider border border-outline-variant/50 text-on-surface hover:bg-surface-container-high transition-all hover:-translate-y-0.5 active:translate-y-0 duration-200 shadow-sm">
