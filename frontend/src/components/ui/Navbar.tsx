@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm sticky top-0 z-50 flex justify-between items-center px-2 md:px-6 h-16 w-full">
-      <div className="flex items-center gap-2 md:gap-6">
+      <div className="flex items-center gap-2 md:gap-6 flex-1 min-w-0">
         <button onClick={onNavigateHome} className="flex items-center justify-center p-1 md:p-2 -ml-1 md:-ml-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all active:scale-95 group" title="Back to Home">
           <span className="material-symbols-outlined text-xl group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
         </button>
@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="bg-surface-variant/50 hover:bg-surface-bright/50 transition-all border border-outline-variant/50 text-on-surface px-3 py-2 rounded-lg text-sm flex items-center gap-2"
