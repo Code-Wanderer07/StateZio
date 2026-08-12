@@ -113,6 +113,12 @@ export const TOC_QUESTION_BANK: QuestionBankItem[] = [
   { id: 'qb_tm_marks_xor', title: 'TM: Bitwise XOR of Two Binary Strings', category: 'TM', module: 'Module 4', difficulty: 'Hard', question: 'Design a TM that computes bitwise XOR of two equal-length binary strings given as w1#w2 on the tape.', hint: 'For each pair of bits: (0,0)→0, (0,1)→1, (1,0)→1, (1,1)→0. Mark positions to sync.', sampleInputs: ['0#0','1#1','0#1','1#0','01#11','10#01','11#11','00#00'] },
   { id: 'qb_tm_prime_check', title: 'TM: Unary Prime Checker', category: 'TM', module: 'Module 4', difficulty: 'Hard', question: 'Design a TM that accepts L = { 1ᵖ | p is prime } in unary representation.', hint: 'Trial division: for d = 2 to sqrt(p), check if d divides p by marking groups of d.', sampleInputs: ['11','111','11111','1111111','1111','111111','1111111111111','1'] },
   // GENERATED 709 QUESTIONS
+  { id: 'qb_dfa_even_len_odd_1s', title: 'DFA: Even length and odd 1s', category: 'DFA', module: 'Module 1', difficulty: 'Hard', question: 'Design a DFA over {0,1} accepting strings of even length containing an odd number of 1s.', hint: 'Cross product of even/odd length (2 states) and even/odd 1s (2 states) = 4 states.', sampleInputs: ['01', '10', '1110', '0001', '0', '1', '11'] },
+  { id: 'qb_dfa_contains_111', title: 'DFA: Contains "111"', category: 'DFA', module: 'Module 1', difficulty: 'Easy', question: 'Construct a DFA over Σ = {0,1} accepting all strings containing "111" as a substring.', hint: '4 states tracking consecutive 1s.', sampleInputs: ['111', '01110', '1111', '11', '0101'] },
+  { id: 'qb_nfa_2nd_sym_0', title: 'NFA: 2nd symbol is 0', category: 'NFA', module: 'Module 1', difficulty: 'Easy', question: 'Design an NFA over {0,1} accepting strings where the 2nd symbol is 0.', hint: 'q0 -> q1 -> q2(accept)', sampleInputs: ['00', '10', '101', '0', '11'] },
+  { id: 'qb_pda_a2n_bn', title: 'PDA: L = { a²ⁿbⁿ | n ≥ 0 }', category: 'PDA', module: 'Module 3', difficulty: 'Medium', question: 'Construct a PDA for L = { a²ⁿbⁿ | n ≥ 0 } — two a\'s for each b.', hint: 'Push one symbol for every two a\'s, pop for each b.', sampleInputs: ['aab', 'aaaabb', 'ab', 'a'] },
+  { id: 'qb_tm_binary_add', title: 'TM: Binary Addition', category: 'TM', module: 'Module 4', difficulty: 'Hard', question: 'Design a Turing Machine that adds two binary numbers separated by +.', hint: 'Very complex. Repeatedly decrement one and increment the other.', sampleInputs: ['1+1', '10+1', '0+0'] },
+  { id: 'qb_tm_shift_left', title: 'TM: Shift Left', category: 'TM', module: 'Module 4', difficulty: 'Medium', question: 'Design a TM that shifts a binary string left by 1 position.', hint: 'Erase first symbol, shift all others left by 1.', sampleInputs: ['011', '10', '0'] },
   {"id":"qb_dfa_ends_00","title":"DFA: Ends with \"00\"","category":"DFA","module":"Module 1","difficulty":"Easy","question":"Construct a DFA that accepts all binary strings ending with \"00\".","hint":"Need 3 states.","sampleInputs":["00","10100","000"]},
   {"id":"qb_dfa_ends_10","title":"DFA: Ends with \"10\"","category":"DFA","module":"Module 1","difficulty":"Easy","question":"Construct a DFA that accepts all binary strings ending with \"10\".","hint":"Need 3 states.","sampleInputs":["10","10110","100"]},
   {"id":"qb_dfa_ends_01","title":"DFA: Ends with \"01\"","category":"DFA","module":"Module 1","difficulty":"Easy","question":"Construct a DFA that accepts all binary strings ending with \"01\".","hint":"Need 3 states.","sampleInputs":["01","10101","010"]},
@@ -823,7 +829,6 @@ export const TOC_QUESTION_BANK: QuestionBankItem[] = [
   {"id":"qb_nfa_ends_001000","title":"NFA: Ends with \"001000\"","category":"NFA","module":"Module 1","difficulty":"Easy","question":"Construct an NFA that accepts all binary strings ending with \"001000\".","hint":"Non-deterministically guess the start of the suffix.","sampleInputs":["001000","101001000","0010000"]},
   {"id":"qb_nfa_ends_101000","title":"NFA: Ends with \"101000\"","category":"NFA","module":"Module 1","difficulty":"Easy","question":"Construct an NFA that accepts all binary strings ending with \"101000\".","hint":"Non-deterministically guess the start of the suffix.","sampleInputs":["101000","101101000","1010000"]},
 ];
-
 // ============================================================================
 // AUTOMATA SYNTHESIZERS
 // ============================================================================
@@ -1494,6 +1499,44 @@ export function solveTOCQuestion(userPrompt: string): SolvedQuestionResult {
 // ============================================================================
 
 function generateFromQuestionBankItem(item: QuestionBankItem): SolvedQuestionResult {
+  const id = item.id;
+  // Dynamic Routing for the 800+ generated questions
+  if (id.startsWith('qb_dfa_ends_')) {
+    const p = id.replace('qb_dfa_ends_', '');
+    if (!['00', '01', '10', '11', '101', 'ba'].includes(p)) return synthesizeDFAEndsWith(p);
+  }
+  if (id.startsWith('qb_dfa_starts_')) {
+    const p = id.replace('qb_dfa_starts_', '');
+    if (!['01', '10', 'ab', 'and_ends_1', 'and_ends_0'].includes(p)) return synthesizeDFAStartsWith(p);
+  }
+  if (id.startsWith('qb_dfa_contains_')) {
+    const p = id.replace('qb_dfa_contains_', '');
+    if (!['101', '110', 'aba', '01_or_10', '111'].includes(p)) return synthesizeDFAContains(p);
+  }
+  if (id.startsWith('qb_dfa_len_mod_')) {
+    const parts = id.split('_');
+    return synthesizeDFALengthModN(parseInt(parts[4]), parseInt(parts[5]));
+  }
+  if (id.startsWith('qb_dfa_exactly_')) {
+    const parts = id.split('_');
+    return synthesizeDFAExactlyN(parts[4], parseInt(parts[3]));
+  }
+  if (id.startsWith('qb_dfa_atleast_')) {
+    const parts = id.split('_');
+    return synthesizeDFAAtLeastN(parts[4], parseInt(parts[3]));
+  }
+  if (id.startsWith('qb_dfa_atmost_')) {
+    const parts = id.split('_');
+    return synthesizeDFAAtMostN(parts[4], parseInt(parts[3]));
+  }
+  if (id.startsWith('qb_nfa_kth_')) {
+    const parts = id.split('_');
+    return synthesizeNFAKthFromEnd(parseInt(parts[3]), parts[4]);
+  }
+  if (id.startsWith('qb_nfa_ends_')) {
+    const p = id.replace('qb_nfa_ends_', '');
+    if (!['01', '10', '11', '00', '110', 'aa', 'ab', 'abc'].includes(p)) return synthesizeNFAEndsWith(p);
+  }
   // DFA direct synthesizers
   if (item.id === 'qb_dfa_ends_01') return synthesizeDFAEndsWith('01');
   if (item.id === 'qb_dfa_ends_00') return synthesizeDFAEndsWith('00');

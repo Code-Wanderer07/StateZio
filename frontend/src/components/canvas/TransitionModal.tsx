@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { X, ArrowRight, ArrowLeftRight } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { X, ArrowRight, ArrowLeftRight, Trash2, Edit3, Plus } from 'lucide-react';
 import { useAutomataStore } from '../../store/useAutomataStore';
-import { DFAMachine, NFAMachine, PDAMachine, TMMachine } from '../../types/automata';
+import { DFAMachine, NFAMachine, PDAMachine, TMMachine, DFATransition, NFATransition, PDATransition, TMTransition } from '../../types/automata';
 
 export const TransitionModal: React.FC = () => {
   const {
@@ -12,6 +12,8 @@ export const TransitionModal: React.FC = () => {
     machine,
     closeTransitionModal,
     saveTransition,
+    deleteTransition,
+    openTransitionModal,
   } = useAutomataStore();
 
   // DFA/NFA state
@@ -27,7 +29,32 @@ export const TransitionModal: React.FC = () => {
   const [writeSymbol, setWriteSymbol] = useState('0');
   const [direction, setDirection] = useState<'L' | 'R' | 'S'>('R');
 
-  // Initialize from editing transition if exists
+  // Mode: 'list', 'add', or 'edit'
+  const isEditingMode = !!editingTransitionId;
+  const [isAddingMode, setIsAddingMode] = useState(false);
+
+  // Compute existing bundled transitions between source and target
+  const bundledTransitions = useMemo(() => {
+    if (!machine || !transitionModalSourceId || !transitionModalTargetId) return [];
+    return (machine.transitions as Array<DFATransition | NFATransition | PDATransition | TMTransition>).filter(
+      (t) => t.from === transitionModalSourceId && t.to === transitionModalTargetId
+    );
+  }, [machine, transitionModalSourceId, transitionModalTargetId]);
+
+  // When opened, decide initial mode
+  useEffect(() => {
+    if (isTransitionModalOpen) {
+      if (editingTransitionId) {
+        setIsAddingMode(false);
+      } else if (bundledTransitions.length === 0) {
+        setIsAddingMode(true);
+      } else {
+        setIsAddingMode(false); // show list by default if transitions exist and not editing
+      }
+    }
+  }, [isTransitionModalOpen, editingTransitionId, bundledTransitions.length]);
+
+  // Initialize from editing transition if exists or reset
   useEffect(() => {
     if (editingTransitionId && machine) {
       if (machine.type === 'DFA') {
@@ -51,7 +78,7 @@ export const TransitionModal: React.FC = () => {
           setDirection(t.direction || 'R');
         }
       }
-    } else {
+    } else if (isAddingMode) {
       // Default reset
       if (machine.type === 'DFA') setSymbol('0');
       else if (machine.type === 'NFA') setSymbol('0');
@@ -65,7 +92,7 @@ export const TransitionModal: React.FC = () => {
         setDirection('R');
       }
     }
-  }, [editingTransitionId, machine, isTransitionModalOpen]);
+  }, [editingTransitionId, isAddingMode, machine]);
 
   if (!isTransitionModalOpen || !transitionModalSourceId || !transitionModalTargetId) {
     return null;
@@ -91,270 +118,269 @@ export const TransitionModal: React.FC = () => {
         direction,
       });
     }
+    setIsAddingMode(false);
+  };
+
+  const showForm = isEditingMode || isAddingMode;
+
+  const renderTransitionLabel = (t: any) => {
+    if (machine.type === 'DFA' || machine.type === 'NFA') return t.symbol || 'ε';
+    if (machine.type === 'PDA') return `${t.inputSymbol || 'ε'}, ${t.popSymbol || 'ε'} → ${t.pushSymbols || 'ε'}`;
+    if (machine.type === 'TM') return `${t.readSymbol || '_'} → ${t.writeSymbol || '_'}, ${t.direction || 'R'}`;
+    return '';
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-xs p-4 animate-fade-in">
-      <div className="bg-cyan-50 dark:bg-slate-950 border border-cyan-300 dark:border-cyan-500/30 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden text-cyan-100">
+      <div className="bg-surface-container border border-outline-variant/30 rounded-2xl w-full max-w-md shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden text-on-surface flex flex-col max-h-[90vh]">
+        
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-cyan-200 dark:border-cyan-500/20 bg-cyan-200 dark:bg-slate-800">
-          <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-outline-variant/30 bg-surface-container-high shrink-0">
+          <div className="flex items-center gap-2 text-primary">
             <ArrowLeftRight className="w-5 h-5" />
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm tracking-wide">
-              {editingTransitionId ? 'Edit Transition Rule' : 'Add Transition Rule'}
+            <h3 className="font-headline-sm text-on-surface text-lg tracking-wide">
+              {isEditingMode ? 'Edit Transition' : 'Connection Transitions'}
             </h3>
           </div>
           <button
             onClick={closeTransitionModal}
-            className="p-1 text-slate-600 dark:text-slate-400 hover:text-slate-200 rounded-lg hover:bg-cyan-300 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 text-on-surface-variant hover:text-error rounded-lg hover:bg-error/10 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Source -> Target banner */}
-        <div className="px-6 py-3 bg-cyan-50 dark:bg-slate-950 border-b border-cyan-200 dark:border-cyan-500/20 flex items-center justify-center gap-4 text-xs font-mono">
-          <span className="px-2.5 py-1 rounded bg-cyan-200 dark:bg-slate-800 text-emerald-400 font-semibold border border-emerald-500/40 shadow-xs">
+        <div className="px-6 py-4 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-center gap-4 text-xs font-mono shrink-0">
+          <span className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/30">
             {sourceLabel}
           </span>
-          <ArrowRight className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-          <span className="px-2.5 py-1 rounded bg-cyan-200 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 font-semibold border border-cyan-500/40 shadow-xs">
+          <ArrowRight className="w-4 h-4 text-on-surface-variant" />
+          <span className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary font-bold border border-primary/30">
             {targetLabel}
           </span>
-          <span className="text-slate-600 dark:text-slate-400 text-[11px] font-sans">({machine.type})</span>
+          <span className="text-on-surface-variant text-[11px] font-label-caps">({machine.type})</span>
         </div>
 
-        {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
-          {/* DFA / NFA form */}
-          {(machine.type === 'DFA' || machine.type === 'NFA') && (
-            <div className="space-y-3">
-              <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200">
-                Input Symbol (read)
-              </label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={symbol}
-                  onChange={(e) => setSymbol(e.target.value)}
-                  placeholder="e.g. 0, 1, a, or ε"
-                  className="w-full bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 rounded-lg px-3 py-2 text-sm font-mono text-slate-900 dark:text-slate-100 outline-none transition-all"
-                  autoFocus
-                />
-              </div>
-
-              {/* Quick Symbol Insertion buttons */}
-              <div className="flex items-center gap-1.5 pt-1">
-                <span className="text-[11px] text-slate-600 dark:text-slate-400 mr-1">Quick:</span>
-                {['0', '1', 'a', 'b', ...(machine.type === 'NFA' ? ['ε'] : [])].map((sym) => (
-                  <button
-                    key={sym}
-                    type="button"
-                    onClick={() => setSymbol(sym)}
-                    className="px-2.5 py-0.5 text-xs font-mono bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] text-cyan-800 dark:text-cyan-200 rounded border border-cyan-300 dark:border-cyan-500/30 transition-colors shadow-xs"
-                  >
-                    {sym}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* PDA form */}
-          {machine.type === 'PDA' && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-1">
-                    Input Symbol
-                  </label>
-                  <input
-                    type="text"
-                    value={inputSymbol}
-                    onChange={(e) => setInputSymbol(e.target.value)}
-                    placeholder="a or ε"
-                    className="w-full bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 focus:border-cyan-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none"
-                  />
-                  <div className="flex gap-1 mt-1">
-                    {['a', 'b', 'ε'].map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setInputSymbol(s)}
-                        className="text-[10px] px-1.5 py-0.5 bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] text-cyan-800 dark:text-cyan-200 rounded border border-cyan-300 dark:border-cyan-500/30"
-                      >
-                        {s}
-                      </button>
-                    ))}
+        {/* Scrollable Body */}
+        <div className="overflow-y-auto custom-scrollbar">
+          {!showForm && bundledTransitions.length > 0 && (
+            <div className="p-6 space-y-3">
+              <h4 className="text-xs font-label-caps text-on-surface-variant mb-2">Existing Rules</h4>
+              {bundledTransitions.map((t) => (
+                <div key={t.id} className="flex items-center justify-between p-3 rounded-xl bg-surface border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                  <span className="font-mono text-sm font-bold text-on-surface">
+                    {renderTransitionLabel(t)}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => openTransitionModal(transitionModalSourceId, transitionModalTargetId, t.id)}
+                      className="p-1.5 text-on-surface-variant hover:text-primary rounded-md hover:bg-primary/10 transition-colors"
+                      title="Edit Transition"
+                    >
+                      <Edit3 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteTransition(t.id);
+                        if (bundledTransitions.length === 1) closeTransitionModal();
+                      }}
+                      className="p-1.5 text-on-surface-variant hover:text-error rounded-md hover:bg-error/10 transition-colors"
+                      title="Delete Transition"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-1">
-                    Pop from Stack
-                  </label>
-                  <input
-                    type="text"
-                    value={popSymbol}
-                    onChange={(e) => setPopSymbol(e.target.value)}
-                    placeholder="Z0 or ε"
-                    className="w-full bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 focus:border-cyan-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none"
-                  />
-                  <div className="flex gap-1 mt-1">
-                    {['Z0', 'a', 'b', 'ε'].map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setPopSymbol(s)}
-                        className="text-[10px] px-1 py-0.5 bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] text-cyan-800 dark:text-cyan-200 rounded border border-cyan-300 dark:border-cyan-500/30"
-                      >
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-1">
-                    Push to Stack
-                  </label>
-                  <input
-                    type="text"
-                    value={pushSymbols}
-                    onChange={(e) => setPushSymbols(e.target.value)}
-                    placeholder="aZ0 or ε"
-                    className="w-full bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 focus:border-cyan-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none"
-                  />
-                  <div className="flex gap-1 mt-1">
-                    {['aZ0', 'aa', 'Z0', 'ε'].map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setPushSymbols(s)}
-                        className="text-[10px] px-1 py-0.5 bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] text-cyan-800 dark:text-cyan-200 rounded border border-cyan-300 dark:border-cyan-500/30"
-                      >
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-2.5 rounded-lg bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                <span className="text-slate-600 dark:text-slate-400">Rule notation:</span>
-                <span className="text-cyan-700 dark:text-cyan-300 font-bold">
-                  {inputSymbol || 'ε'}, {popSymbol || 'ε'} → {pushSymbols || 'ε'}
-                </span>
+              ))}
+              
+              <div className="pt-4 flex justify-center">
+                <button
+                  onClick={() => setIsAddingMode(true)}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/30 rounded-xl transition-all"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add Another Rule
+                </button>
               </div>
             </div>
           )}
 
-          {/* TM form */}
-          {machine.type === 'TM' && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-1">
-                    Read Tape Symbol
+          {showForm && (
+            <form onSubmit={handleSubmit} className="p-6 space-y-5">
+              {(machine.type === 'DFA' || machine.type === 'NFA') && (
+                <div className="space-y-3">
+                  <label className="block text-xs font-semibold text-on-surface-variant">
+                    Input Symbol (read)
                   </label>
-                  <input
-                    type="text"
-                    value={readSymbol}
-                    onChange={(e) => setReadSymbol(e.target.value)}
-                    placeholder="0, 1, _"
-                    className="w-full bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 focus:border-cyan-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none"
-                  />
-                  <div className="flex gap-1 mt-1">
-                    {['0', '1', '_', 'X', 'Y'].map((s) => (
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={symbol}
+                      onChange={(e) => setSymbol(e.target.value)}
+                      placeholder="e.g. 0, 1, a, or ε"
+                      className="w-full bg-surface border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-3 py-2 text-sm font-mono text-on-surface outline-none transition-all placeholder:text-on-surface-variant/30"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="flex items-center gap-1.5 pt-1">
+                    <span className="text-[11px] text-on-surface-variant mr-1 font-label-caps">Quick:</span>
+                    {['0', '1', 'a', 'b', ...(machine.type === 'NFA' ? ['ε'] : [])].map((sym) => (
                       <button
-                        key={s}
+                        key={sym}
                         type="button"
-                        onClick={() => setReadSymbol(s)}
-                        className="text-[10px] px-1.5 py-0.5 bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] text-cyan-800 dark:text-cyan-200 rounded border border-cyan-300 dark:border-cyan-500/30"
+                        onClick={() => setSymbol(sym)}
+                        className="px-3 py-1.5 text-xs font-mono font-bold bg-surface border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/10 hover:text-primary text-on-surface-variant rounded-lg transition-colors shadow-sm"
                       >
-                        {s}
+                        {sym}
                       </button>
                     ))}
                   </div>
                 </div>
+              )}
 
-                <div>
-                  <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-1">
-                    Write Symbol
-                  </label>
-                  <input
-                    type="text"
-                    value={writeSymbol}
-                    onChange={(e) => setWriteSymbol(e.target.value)}
-                    placeholder="0, 1, _"
-                    className="w-full bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 focus:border-cyan-400 rounded-lg px-2.5 py-1.5 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none"
-                  />
-                  <div className="flex gap-1 mt-1">
-                    {['0', '1', '_', 'X', 'Y'].map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setWriteSymbol(s)}
-                        className="text-[10px] px-1.5 py-0.5 bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-500 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] text-cyan-800 dark:text-cyan-200 rounded border border-cyan-300 dark:border-cyan-500/30"
-                      >
-                        {s}
-                      </button>
-                    ))}
+              {machine.type === 'PDA' && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Input Symbol</label>
+                      <input
+                        type="text"
+                        value={inputSymbol}
+                        onChange={(e) => setInputSymbol(e.target.value)}
+                        placeholder="a or ε"
+                        className="w-full bg-surface border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-3 py-2 text-sm font-mono text-on-surface outline-none transition-all placeholder:text-on-surface-variant/30"
+                        autoFocus
+                      />
+                      <div className="flex gap-1 mt-1">
+                        {['a', 'b', 'ε'].map((s) => (
+                          <button key={s} type="button" onClick={() => setInputSymbol(s)} className="text-[11px] px-2 py-1 font-bold bg-surface border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/10 hover:text-primary text-on-surface-variant rounded transition-colors">{s}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Pop from Stack</label>
+                      <input
+                        type="text"
+                        value={popSymbol}
+                        onChange={(e) => setPopSymbol(e.target.value)}
+                        placeholder="Z0 or ε"
+                        className="w-full bg-surface border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-3 py-2 text-sm font-mono text-on-surface outline-none transition-all placeholder:text-on-surface-variant/30"
+                      />
+                      <div className="flex gap-1 mt-1">
+                        {['Z0', 'a', 'b', 'ε'].map((s) => (
+                          <button key={s} type="button" onClick={() => setPopSymbol(s)} className="text-[11px] px-2 py-1 font-bold bg-surface border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/10 hover:text-primary text-on-surface-variant rounded transition-colors">{s}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Push to Stack</label>
+                      <input
+                        type="text"
+                        value={pushSymbols}
+                        onChange={(e) => setPushSymbols(e.target.value)}
+                        placeholder="aZ0 or ε"
+                        className="w-full bg-surface border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-3 py-2 text-sm font-mono text-on-surface outline-none transition-all placeholder:text-on-surface-variant/30"
+                      />
+                      <div className="flex gap-1 mt-1">
+                        {['aZ0', 'aa', 'Z0', 'ε'].map((s) => (
+                          <button key={s} type="button" onClick={() => setPushSymbols(s)} className="text-[11px] px-2 py-1 font-bold bg-surface border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/10 hover:text-primary text-on-surface-variant rounded transition-colors">{s}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-primary/5 border border-primary/20 text-xs font-mono flex items-center justify-between">
+                    <span className="text-on-surface-variant">Rule notation:</span>
+                    <span className="text-primary font-bold text-sm">{inputSymbol || 'ε'}, {popSymbol || 'ε'} → {pushSymbols || 'ε'}</span>
                   </div>
                 </div>
+              )}
 
-                <div>
-                  <label className="block text-xs font-semibold text-cyan-800 dark:text-cyan-200 mb-1">
-                    Head Movement
-                  </label>
-                  <div className="flex rounded-lg overflow-hidden border border-cyan-300 dark:border-cyan-500/30">
-                    {(['L', 'R', 'S'] as const).map((dir) => (
-                      <button
-                        key={dir}
-                        type="button"
-                        onClick={() => setDirection(dir)}
-                        className={`flex-1 py-1.5 text-xs font-mono font-bold transition-colors ${
-                          direction === dir
-                            ? 'bg-cyan-500 text-white dark:text-[#1C1313]'
-                            : 'bg-cyan-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-cyan-300 dark:hover:bg-slate-800'
-                        }`}
-                      >
-                        {dir}
-                      </button>
-                    ))}
+              {machine.type === 'TM' && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Read Symbol</label>
+                      <input
+                        type="text"
+                        value={readSymbol}
+                        onChange={(e) => setReadSymbol(e.target.value)}
+                        placeholder="0, 1, _"
+                        className="w-full bg-surface border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-3 py-2 text-sm font-mono text-on-surface outline-none transition-all placeholder:text-on-surface-variant/30"
+                        autoFocus
+                      />
+                      <div className="flex gap-1 mt-1">
+                        {['0', '1', '_', 'X', 'Y'].map((s) => (
+                          <button key={s} type="button" onClick={() => setReadSymbol(s)} className="text-[11px] px-2 py-1 font-bold bg-surface border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/10 hover:text-primary text-on-surface-variant rounded transition-colors">{s}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Write Symbol</label>
+                      <input
+                        type="text"
+                        value={writeSymbol}
+                        onChange={(e) => setWriteSymbol(e.target.value)}
+                        placeholder="0, 1, _"
+                        className="w-full bg-surface border border-outline-variant/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg px-3 py-2 text-sm font-mono text-on-surface outline-none transition-all placeholder:text-on-surface-variant/30"
+                      />
+                      <div className="flex gap-1 mt-1">
+                        {['0', '1', '_', 'X', 'Y'].map((s) => (
+                          <button key={s} type="button" onClick={() => setWriteSymbol(s)} className="text-[11px] px-2 py-1 font-bold bg-surface border border-outline-variant/30 hover:border-primary/50 hover:bg-primary/10 hover:text-primary text-on-surface-variant rounded transition-colors">{s}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Head Movement</label>
+                      <div className="flex rounded-lg overflow-hidden border border-outline-variant/30 p-0.5 bg-surface-container">
+                        {(['L', 'R', 'S'] as const).map((dir) => (
+                          <button
+                            key={dir}
+                            type="button"
+                            onClick={() => setDirection(dir)}
+                            className={`flex-1 py-1 text-xs font-mono font-bold transition-all rounded-md m-0.5 ${direction === dir ? 'bg-primary text-on-primary shadow-[0_0_10px_rgba(76,215,246,0.3)]' : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-bright'}`}
+                          >
+                            {dir}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="text-[10px] text-on-surface-variant mt-1 text-center font-medium">
+                        {direction === 'L' ? 'Left (←)' : direction === 'R' ? 'Right (→)' : 'Stay (•)'}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-[10px] text-slate-600 dark:text-slate-400 mt-1 text-center font-medium">
-                    {direction === 'L' ? 'Left (←)' : direction === 'R' ? 'Right (→)' : 'Stay (•)'}
+                  <div className="p-3 rounded-xl bg-primary/5 border border-primary/20 text-xs font-mono flex items-center justify-between">
+                    <span className="text-on-surface-variant">TM Transition:</span>
+                    <span className="text-primary font-bold text-sm">{readSymbol || '_'} → {writeSymbol || '_'}, {direction}</span>
                   </div>
                 </div>
+              )}
+
+              {/* Action buttons for form */}
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant/20">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (isAddingMode && bundledTransitions.length > 0) {
+                      setIsAddingMode(false); // go back to list
+                    } else {
+                      closeTransitionModal(); // close entirely
+                    }
+                  }}
+                  className="px-4 py-2 text-sm font-label-caps tracking-widest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-xl transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2.5 text-sm font-label-caps tracking-widest font-bold text-on-primary bg-primary hover:bg-primary-fixed rounded-xl shadow-[0_0_15px_rgba(76,215,246,0.3)] hover:shadow-[0_0_20px_rgba(76,215,246,0.5)] transition-all duration-200 active:scale-95"
+                >
+                  {isEditingMode ? 'Save Changes' : 'Add Transition'}
+                </button>
               </div>
-
-              <div className="p-2.5 rounded-lg bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 text-xs font-mono text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                <span className="text-slate-600 dark:text-slate-400">TM Transition:</span>
-                <span className="text-cyan-700 dark:text-cyan-300 font-bold">
-                  {readSymbol || '_'} → {writeSymbol || '_'}, {direction}
-                </span>
-              </div>
-            </div>
+            </form>
           )}
-
-          {/* Action buttons */}
-          <div className="flex items-center justify-end gap-3 pt-2">
-            <button
-              type="button"
-              onClick={closeTransitionModal}
-              className="px-4 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-cyan-200 dark:bg-slate-800 rounded-xl transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-5 py-2 text-xs font-bold text-white dark:text-[#1C1313] bg-cyan-400 hover:bg-cyan-300 rounded-xl shadow-md transition-all duration-200 cursor-pointer"
-            >
-              {editingTransitionId ? 'Save Changes' : 'Add Transition'}
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );

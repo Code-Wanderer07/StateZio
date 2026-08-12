@@ -220,26 +220,26 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
-      <div className="relative w-full max-w-6xl h-[90vh] bg-cyan-50 dark:bg-slate-950 border border-cyan-300 dark:border-cyan-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-900 dark:text-slate-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container/50 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
+      <div className="relative w-full max-w-6xl h-[90vh] bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-on-surface dark:text-on-surface">
 
         {/* ── Header ─────────────────────────────────────────────────────────── */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-cyan-200 dark:border-cyan-500/20 bg-cyan-200 dark:bg-slate-800 shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-outline-variant/30 bg-surface-container-high shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-950/50">
-              <Cpu className="w-5 h-5 text-slate-900 dark:text-white" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary via-blue-600 to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
+              <Cpu className="w-5 h-5 text-on-primary" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">TOC Question Solver</h2>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                <h2 className="text-base font-bold text-on-surface tracking-tight">TOC Question Solver</h2>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
                   ⚡ 100% Offline
                 </span>
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/40">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/40">
                   {TOC_QUESTION_BANK.length} Questions
                 </span>
               </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+              <p className="text-xs text-on-surface-variant mt-0.5">
                 Instantly synthesize verified automata — no API key, no internet required.
               </p>
             </div>
@@ -247,14 +247,14 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-cyan-50 dark:bg-slate-950 hover:bg-cyan-300 dark:hover:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white transition-colors cursor-pointer"
+            className="p-2 rounded-xl bg-surface-container hover:bg-surface-bright border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* ── Supported Patterns Collapsible Guide ───────────────────────────── */}
-        <div className="px-6 py-2.5 border-b border-cyan-200 dark:border-cyan-500/20 bg-slate-100 dark:bg-slate-950 shrink-0">
+        <div className="px-6 py-2.5 border-b border-outline-variant/30 dark:border-cyan-500/20 bg-surface-container dark:bg-background shrink-0">
           <button
             onClick={() => setShowGuide(!showGuide)}
             className="w-full flex items-center justify-between text-xs font-semibold text-cyan-700 dark:text-cyan-300 hover:text-cyan-800 dark:text-cyan-200 transition-colors cursor-pointer py-0.5"
@@ -280,8 +280,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                       {group.icon} {group.category}
                     </span>
                     {expandedGuideCategory === group.category
-                      ? <ChevronDown className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" />
-                      : <ChevronRight className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" />}
+                      ? <ChevronDown className="w-3.5 h-3.5 text-on-surface-variant dark:text-on-surface-variant" />
+                      : <ChevronRight className="w-3.5 h-3.5 text-on-surface-variant dark:text-on-surface-variant" />}
                   </button>
                   {expandedGuideCategory === group.category && (
                     <div className="px-3 pb-3 space-y-1.5">
@@ -294,7 +294,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                               setErrorMessage(null);
                               handleSolve(undefined, p.example);
                             }}
-                            className="text-[10px] text-slate-700 dark:text-slate-300 italic hover:text-slate-900 dark:text-white transition-colors text-left cursor-pointer leading-relaxed"
+                            className="text-[10px] text-on-surface-variant dark:text-on-surface-variant italic hover:text-slate-900 dark:text-on-surface transition-colors text-left cursor-pointer leading-relaxed"
                             title="Click to solve this example"
                           >
                             "{p.example}" →
@@ -310,22 +310,22 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         </div>
 
         {/* ── Search & Solve Bar ────────────────────────────────────────────── */}
-        <div className="px-6 py-3 border-b border-cyan-200 dark:border-cyan-500/20 bg-slate-50 dark:bg-slate-900 flex flex-col gap-2.5 shrink-0">
+        <div className="px-6 py-3 border-b border-outline-variant/30 dark:border-cyan-500/20 bg-surface dark:bg-surface-container flex flex-col gap-2.5 shrink-0">
           <form onSubmit={handleSolve} className="flex gap-2">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 dark:text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant dark:text-on-surface-variant" />
               <input
                 type="text"
                 value={customPrompt}
                 onChange={(e) => { setCustomPrompt(e.target.value); setErrorMessage(null); }}
                 placeholder="Type a TOC question e.g. 'DFA accepting strings ending with 01' or 'PDA for a^n b^n'..."
                 maxLength={500}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-950 border border-cyan-300 dark:border-cyan-500/30 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-surface dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-xl text-sm text-on-surface dark:text-on-surface placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
               />
             </div>
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl text-slate-900 dark:text-white text-xs font-bold shadow-md shadow-cyan-200 dark:shadow-cyan-950/40 flex items-center gap-2 transition-all shrink-0 cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 hover:scale-[1.02] active:scale-[0.98]"
+              className="px-5 py-2.5 rounded-xl text-on-surface dark:text-on-surface text-xs font-bold shadow-md shadow-cyan-200 dark:shadow-cyan-950/40 flex items-center gap-2 transition-all shrink-0 cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 hover:scale-[1.02] active:scale-[0.98]"
             >
               <Zap className="w-4 h-4" />
               <span>Solve</span>
@@ -345,7 +345,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
           {/* Quick Prompts */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs scrollbar-none">
-            <span className="text-[11px] font-medium text-slate-600 dark:text-slate-400 flex items-center gap-1 shrink-0">
+            <span className="text-[11px] font-medium text-on-surface-variant dark:text-on-surface-variant flex items-center gap-1 shrink-0">
               <Lightbulb className="w-3 h-3 text-amber-600 dark:text-amber-400" /> Quick:
             </span>
             {quickPrompts.map((p, idx) => (
@@ -356,7 +356,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   setErrorMessage(null);
                   handleSolve(undefined, p.q);
                 }}
-                className="px-2.5 py-1 rounded-lg bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-300 dark:hover:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 hover:border-cyan-400 text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white text-[11px] font-medium transition-colors shrink-0 whitespace-nowrap shadow-xs cursor-pointer"
+                className="px-2.5 py-1 rounded-lg bg-surface-container-high hover:bg-surface-bright border border-outline-variant/30 hover:border-primary/50 text-on-surface-variant hover:text-primary text-[11px] font-medium transition-colors shrink-0 whitespace-nowrap shadow-sm cursor-pointer"
               >
                 {p.label}
               </button>
@@ -368,9 +368,9 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
 
           {/* Left: Question Bank */}
-          <div className={`w-full md:w-[360px] border-b md:border-b-0 md:border-r border-cyan-200 dark:border-cyan-500/20 bg-slate-100 dark:bg-slate-900 shrink-0 ${activeSolution ? 'hidden md:flex' : 'flex'} flex-col`}>
+          <div className={`w-full md:w-[360px] border-b md:border-b-0 md:border-r border-outline-variant/30 dark:border-cyan-500/20 bg-surface-container dark:bg-surface-container shrink-0 ${activeSolution ? 'hidden md:flex' : 'flex'} flex-col`}>
             {/* Category Filter */}
-            <div className="p-3 border-b border-cyan-200 dark:border-cyan-500/20 flex gap-1 bg-cyan-50 dark:bg-slate-950 overflow-x-auto shrink-0">
+            <div className="p-3 border-b border-outline-variant/30 dark:border-cyan-500/20 flex gap-1 bg-surface-container dark:bg-background overflow-x-auto shrink-0">
               {(['ALL', 'DFA', 'NFA', 'PDA', 'TM'] as const).map((cat) => (
                 <button
                   key={cat}
@@ -378,12 +378,12 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   aria-pressed={selectedCategory === cat}
                   className={`px-3 py-1.5 rounded-lg text-[11px] font-bold transition-all shrink-0 cursor-pointer flex items-center gap-1 ${
                     selectedCategory === cat
-                      ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-xs'
-                      : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
+                      ? 'bg-cyan-400 text-on-surface dark:text-[#1C1313] shadow-xs'
+                      : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-on-surface hover:bg-slate-200 dark:hover:bg-slate-50/10'
                   }`}
                 >
                   {cat === 'ALL' ? 'All' : cat}
-                  <span className={`font-mono ${selectedCategory === cat ? 'text-white dark:text-[#1C1313]/70' : 'text-slate-500'}`}>
+                  <span className={`font-mono ${selectedCategory === cat ? 'text-on-surface dark:text-[#1C1313]/70' : 'text-slate-500'}`}>
                     {categoryStats[cat]}
                   </span>
                 </button>
@@ -399,7 +399,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   placeholder="Filter..."
                   aria-label="Filter questions"
                   role="searchbox"
-                  className="w-full pl-6 pr-2 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-white/10 focus:border-cyan-500 rounded-lg text-[11px] text-slate-900 dark:text-white placeholder-slate-600 outline-none"
+                  className="w-full pl-6 pr-2 py-1.5 bg-surface dark:bg-surface-container border border-outline-variant/30 dark:border-white/10 focus:border-cyan-500 rounded-lg text-[11px] text-on-surface dark:text-on-surface placeholder-slate-600 outline-none"
                 />
               </div>
             </div>
@@ -420,26 +420,26 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     aria-pressed={isSelected}
                     className={`w-full text-left p-3 rounded-xl border cursor-pointer transition-all ${
                       isSelected
-                        ? 'bg-cyan-200 dark:bg-slate-800 border-cyan-400 shadow-md ring-1 ring-cyan-400/60'
-                        : 'bg-cyan-50 dark:bg-slate-950 border-cyan-300 dark:border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-100 dark:bg-slate-800 shadow-xs'
+                        ? 'bg-primary/10 border-primary shadow-[0_0_15px_rgba(76,215,246,0.2)] ring-1 ring-primary/50'
+                        : 'bg-surface-container border-outline-variant/30 hover:border-primary/40 hover:bg-surface-variant shadow-none'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-bold text-slate-900 dark:text-white truncate pr-2">{item.title}</span>
+                      <span className="text-xs font-bold text-on-surface dark:text-on-surface truncate pr-2">{item.title}</span>
                       <span
-                        className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full shrink-0 ${
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${
                           item.difficulty === 'Easy'
-                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                            ? 'bg-emerald-500/10 text-emerald-400'
                             : item.difficulty === 'Medium'
-                            ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                            : 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                            ? 'bg-amber-500/10 text-amber-400'
+                            : 'bg-rose-500/10 text-rose-400'
                         }`}
                       >
                         {item.difficulty}
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-slate-600 dark:text-slate-400 line-clamp-2 mb-1.5 leading-relaxed">
+                    <p className="text-[11px] text-on-surface-variant dark:text-on-surface-variant line-clamp-2 mb-1.5 leading-relaxed">
                       {item.question}
                     </p>
 
@@ -463,11 +463,11 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
           </div>
 
           {/* Right: Solution Panel */}
-          <div className={`flex-1 overflow-y-auto p-4 md:p-6 space-y-5 bg-slate-50 dark:bg-slate-900 ${!activeSolution ? 'hidden md:block' : 'block'}`}>
+          <div className={`flex-1 overflow-y-auto p-4 md:p-6 space-y-5 bg-surface dark:bg-surface-container ${!activeSolution ? 'hidden md:block' : 'block'}`}>
             {activeSolution ? (
               <>
                 {/* Solution Header */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30 shadow-md">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl bg-surface-container-high/50 dark:bg-surface-container/30">
                   <div className="min-w-0 w-full sm:w-auto">
                     <button 
                       onClick={() => setActiveSolution(null)}
@@ -484,13 +484,13 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                         Formally Verified (Score: {Math.round((activeSolution.confidenceScore ?? 1) * 100)}%)
                       </span>
                     </div>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{activeSolution.title}</h3>
-                    <p className="text-xs text-slate-700 dark:text-slate-300 mt-0.5 font-mono">{activeSolution.formalDefinition}</p>
+                    <h3 className="text-sm font-bold text-on-surface dark:text-on-surface">{activeSolution.title}</h3>
+                    <p className="text-xs text-on-surface-variant dark:text-on-surface-variant mt-0.5 font-mono">{activeSolution.formalDefinition}</p>
                   </div>
 
                   <button
                     onClick={handleLoadOnCanvas}
-                    className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-900 dark:text-white text-xs font-bold shadow-md shadow-cyan-950/50 flex items-center gap-2 transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                    className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-on-surface dark:text-on-surface text-xs font-bold shadow-md shadow-cyan-950/50 flex items-center gap-2 transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                   >
                     <Play className="w-4 h-4 fill-white" />
                     <span>Load onto Canvas</span>
@@ -503,29 +503,29 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     <BookOpen className="w-3.5 h-3.5" /> Formal Mathematical Definition
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    <div className="p-3 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30">
-                      <div className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-semibold">States (Q)</div>
+                    <div className="p-3 rounded-xl bg-surface-container-high/50 dark:bg-surface-container/50">
+                      <div className="text-[10px] text-on-surface-variant dark:text-on-surface-variant uppercase font-semibold">States (Q)</div>
                       <div className="text-xs font-mono font-bold text-cyan-700 dark:text-cyan-300 mt-1 truncate" title={'{' + activeSolution.formalTuples.states.join(', ') + '}'}>
                         {'{' + activeSolution.formalTuples.states.join(', ') + '}'}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30">
-                      <div className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-semibold">Alphabet (Σ)</div>
+                    <div className="p-3 rounded-xl bg-surface-container-high/50 dark:bg-surface-container/50">
+                      <div className="text-[10px] text-on-surface-variant dark:text-on-surface-variant uppercase font-semibold">Alphabet (Σ)</div>
                       <div className="text-xs font-mono font-bold text-teal-300 mt-1 truncate">
                         {'{' + (activeSolution.formalTuples.alphabet || ['0', '1']).join(', ') + '}'}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30">
-                      <div className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-semibold">Start State (q₀)</div>
+                    <div className="p-3 rounded-xl bg-surface-container-high/50 dark:bg-surface-container/50">
+                      <div className="text-[10px] text-on-surface-variant dark:text-on-surface-variant uppercase font-semibold">Start State (q₀)</div>
                       <div className="text-xs font-mono font-bold text-amber-300 mt-1 truncate">
                         {activeSolution.formalTuples.startState}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-cyan-100 dark:bg-slate-900 border border-cyan-300 dark:border-cyan-500/30">
-                      <div className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-semibold">Accept States (F)</div>
+                    <div className="p-3 rounded-xl bg-surface-container-high/50 dark:bg-surface-container/50">
+                      <div className="text-[10px] text-on-surface-variant dark:text-on-surface-variant uppercase font-semibold">Accept States (F)</div>
                       <div className="text-xs font-mono font-bold text-emerald-300 mt-1 truncate">
                         {'{' + activeSolution.formalTuples.acceptStates.join(', ') + '}'}
                       </div>
@@ -534,11 +534,11 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 </div>
 
                 {/* Language Description */}
-                <div className="p-4 rounded-xl bg-slate-950 border border-cyan-200 dark:border-cyan-500/20">
-                  <div className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-semibold mb-1">Language Description</div>
+                <div className="p-4 rounded-xl bg-surface-container-low/30 dark:bg-background">
+                  <div className="text-[10px] text-on-surface-variant dark:text-on-surface-variant uppercase font-semibold mb-1">Language Description</div>
                   <div className="text-sm font-mono text-cyan-800 dark:text-cyan-200">{activeSolution.languageDescription}</div>
                   {activeSolution.regularExpressionOrGrammar && (
-                    <div className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
+                    <div className="text-[11px] text-on-surface-variant dark:text-on-surface-variant mt-1">
                       Regex / Grammar: <span className="font-mono text-teal-300">{activeSolution.regularExpressionOrGrammar}</span>
                     </div>
                   )}
@@ -550,9 +550,9 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">State Invariants</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {activeSolution.stateMeanings.map((sm) => (
-                        <div key={sm.stateId} className="p-2.5 rounded-xl bg-cyan-50 dark:bg-slate-950 border border-cyan-200 dark:border-cyan-500/20 flex gap-2.5">
+                        <div key={sm.stateId} className="p-2.5 rounded-xl bg-surface-container/50 dark:bg-surface-container/30 flex gap-2.5">
                           <span className="text-xs font-mono font-bold text-cyan-700 dark:text-cyan-300 shrink-0 mt-0.5">{sm.label}</span>
-                          <span className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">{sm.meaning}</span>
+                          <span className="text-[11px] text-on-surface-variant dark:text-on-surface-variant leading-relaxed">{sm.meaning}</span>
                         </div>
                       ))}
                     </div>
@@ -567,7 +567,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                     </h4>
                     <div className="space-y-1.5">
                       {activeSolution.constructionSteps.map((step, idx) => (
-                        <div key={idx} className="flex gap-3 text-[11px] text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <div key={idx} className="flex gap-3 text-[11px] text-on-surface-variant dark:text-on-surface-variant leading-relaxed">
                           <span className="text-cyan-600 dark:text-cyan-400 font-mono font-bold shrink-0 mt-0.5">{idx + 1}.</span>
                           <span>{step}</span>
                         </div>
@@ -581,7 +581,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                   <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Verification Test Cases</h4>
                   <div className="space-y-1.5">
                     {activeSolution.testCases.map((tc, idx) => (
-                      <div key={idx} className="flex items-center gap-3 p-2.5 rounded-xl bg-cyan-50 dark:bg-slate-950 border border-cyan-200 dark:border-cyan-500/20 text-xs font-mono">
+                      <div key={idx} className="flex items-center gap-3 p-2.5 rounded-xl bg-surface-container dark:bg-background border border-outline-variant/30 dark:border-cyan-500/20 text-xs font-mono">
                         <span className={`shrink-0 font-bold px-2 py-0.5 rounded-full text-[10px] border ${
                           tc.expected
                             ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
@@ -589,10 +589,10 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                         }`}>
                           {tc.expected ? 'ACCEPT' : 'REJECT'}
                         </span>
-                        <span className="text-slate-900 dark:text-white font-bold">
+                        <span className="text-on-surface dark:text-on-surface font-bold">
                           {tc.input === '' ? '(empty string ε)' : `"${tc.input}"`}
                         </span>
-                        <span className="text-slate-600 dark:text-slate-400 text-[11px] font-sans">{tc.reason}</span>
+                        <span className="text-on-surface-variant dark:text-on-surface-variant text-[11px] font-sans">{tc.reason}</span>
                       </div>
                     ))}
                   </div>
@@ -602,9 +602,9 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 {activeSolution.formalTuples.transitionTable && activeSolution.formalTuples.transitionTable.length > 0 && (
                   <div className="space-y-2">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400">Transition Function δ</h4>
-                    <div className="overflow-x-auto rounded-xl border border-cyan-200 dark:border-cyan-500/20">
+                    <div className="overflow-x-auto rounded-xl border border-outline-variant/30 dark:border-cyan-500/20">
                       <table className="w-full text-xs font-mono">
-                        <thead className="bg-cyan-100 dark:bg-slate-900 text-cyan-800 dark:text-cyan-200 uppercase text-[10px] tracking-wider">
+                        <thead className="bg-surface-container-high dark:bg-surface-container text-cyan-800 dark:text-cyan-200 uppercase text-[10px] tracking-wider">
                           <tr>
                             <th className="py-2 px-3 text-left">From State</th>
                             <th className="py-2 px-3 text-left">Read</th>
@@ -619,7 +619,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                         </thead>
                         <tbody className="divide-y divide-cyan-500/10">
                           {activeSolution.formalTuples.transitionTable.slice(0, 20).map((row, idx) => (
-                            <tr key={idx} className="hover:bg-slate-100 dark:hover:bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300">
+                            <tr key={idx} className="hover:bg-slate-100 dark:hover:bg-slate-200 dark:bg-surface/5 text-on-surface-variant dark:text-on-surface-variant">
                               <td className="py-1.5 px-3 text-cyan-700 dark:text-cyan-300 font-semibold">{row.from}</td>
                               <td className="py-1.5 px-3 text-teal-300">{row.read || 'ε'}</td>
                               <td className="py-1.5 px-3 text-cyan-700 dark:text-cyan-300 font-semibold">{row.to}</td>
@@ -643,7 +643,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
             ) : (
               <div className="h-full flex flex-col items-center justify-center text-center text-slate-500">
                 <Cpu className="w-12 h-12 mb-3 opacity-20" />
-                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Select a question or type a problem above</p>
+                <p className="text-sm font-medium text-on-surface-variant dark:text-on-surface-variant">Select a question or type a problem above</p>
                 <p className="text-xs mt-1">The formal solution will appear here</p>
               </div>
             )}

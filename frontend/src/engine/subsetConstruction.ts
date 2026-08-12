@@ -4,7 +4,15 @@ import { computeEpsilonClosure, isEpsilon } from './nfaEngine';
 /**
  * Converts any NFA (with or without ε-transitions) to an equivalent DFA using Powerset Construction
  */
-export function convertNFAToDFA(nfa: NFAMachine): SubsetConstructionResult {
+export function convertNFAToDFA(rawNfa: NFAMachine): SubsetConstructionResult {
+  const nfa = {
+    ...rawNfa,
+    states: rawNfa.states || [],
+    transitions: rawNfa.transitions || [],
+    acceptStates: rawNfa.acceptStates || [],
+    alphabet: rawNfa.alphabet || [],
+  };
+
   const stepsExplanation: string[] = [];
   
   // 1. Identify input alphabet excluding epsilon

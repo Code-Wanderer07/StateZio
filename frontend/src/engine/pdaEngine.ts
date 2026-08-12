@@ -26,7 +26,15 @@ interface PDAConfig {
   trace: SimulationStepTrace[];
 }
 
-export function simulatePDA(machine: PDAMachine, inputString: string, maxSteps = 500): SimulationResult {
+export function simulatePDA(rawMachine: PDAMachine, inputString: string, maxSteps = 500): SimulationResult {
+  const machine = {
+    ...rawMachine,
+    states: rawMachine.states || [],
+    transitions: rawMachine.transitions || [],
+    acceptStates: rawMachine.acceptStates || [],
+    inputAlphabet: rawMachine.inputAlphabet || [],
+    stackAlphabet: rawMachine.stackAlphabet || [],
+  };
   const initStack = machine.initialStackSymbol ? [machine.initialStackSymbol] : ['Z0'];
   const startState = machine.startState;
 

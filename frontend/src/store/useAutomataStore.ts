@@ -66,6 +66,7 @@ interface AutomataStateStore {
   transitionModalSourceId: string | null;
   transitionModalTargetId: string | null;
   editingTransitionId: string | null;
+  isGuideOpen: boolean;
 
   // Actions
   setMachine: (machine: AutomataMachine) => void;
@@ -76,6 +77,14 @@ interface AutomataStateStore {
   setPlaybackSpeed: (speed: number) => void;
   setIsPlaying: (playing: boolean) => void;
   toggleTheme: () => void;
+  setIsGuideOpen: (open: boolean) => void;
+
+  // History (Undo/Redo)
+  pastStates: { machine: AutomataMachine; nodes: Node[]; edges: Edge[] }[];
+  futureStates: { machine: AutomataMachine; nodes: Node[]; edges: Edge[] }[];
+  undo: () => void;
+  redo: () => void;
+  pushHistory: () => void;
 
   // Graph Manipulations
   onNodesChange: (changes: NodeChange[]) => void;
@@ -155,8 +164,72 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   transitionModalSourceId: null,
   transitionModalTargetId: null,
   editingTransitionId: null,
+  isGuideOpen: false,
 
   theme: 'dark', // Default theme
+
+  // History
+  pastStates: [],
+  futureStates: [],
+  pushHistory: () => {
+    const { pastStates, machine, nodes, edges } = get();
+    // Deep clone to prevent reference mutations
+    const snapshot = {
+      machine: JSON.parse(JSON.stringify(machine)),
+      nodes: JSON.parse(JSON.stringify(nodes)),
+      edges: JSON.parse(JSON.stringify(edges))
+    };
+    set({
+      pastStates: [...pastStates, snapshot].slice(-50),
+      futureStates: [],
+    });
+  },
+  undo: () => {
+    const { pastStates, futureStates, machine, nodes, edges } = get();
+    if (pastStates.length === 0) return;
+    const newPast = [...pastStates];
+    const prevState = newPast.pop()!;
+    const currentSnapshot = {
+      machine: JSON.parse(JSON.stringify(machine)),
+      nodes: JSON.parse(JSON.stringify(nodes)),
+      edges: JSON.parse(JSON.stringify(edges))
+    };
+    set({
+      machine: prevState.machine,
+      nodes: prevState.nodes,
+      edges: prevState.edges,
+      pastStates: newPast,
+      futureStates: [currentSnapshot, ...futureStates],
+      selectedNodeId: null,
+      selectedEdgeId: null,
+      simulationResult: null,
+      currentStepIndex: 0,
+      isPlaying: false,
+    });
+  },
+  redo: () => {
+    const { pastStates, futureStates, machine, nodes, edges } = get();
+    if (futureStates.length === 0) return;
+    const newFuture = [...futureStates];
+    const nextState = newFuture.shift()!;
+    const currentSnapshot = {
+      machine: JSON.parse(JSON.stringify(machine)),
+      nodes: JSON.parse(JSON.stringify(nodes)),
+      edges: JSON.parse(JSON.stringify(edges))
+    };
+    set({
+      machine: nextState.machine,
+      nodes: nextState.nodes,
+      edges: nextState.edges,
+      pastStates: [...pastStates, currentSnapshot],
+      futureStates: newFuture,
+      selectedNodeId: null,
+      selectedEdgeId: null,
+      simulationResult: null,
+      currentStepIndex: 0,
+      isPlaying: false,
+    });
+  },
 
   setMachine: (machine) => {
     const flow = machineToFlowElements(machine);
@@ -325,26 +398,56 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   setPlaybackSpeed: (playbackSpeed) => set({ playbackSpeed }),
   setIsPlaying: (isPlaying) => set({ isPlaying }),
+  setIsGuideOpen: (isOpen) => set({ isGuideOpen: isOpen }),
 
   onNodesChange: (changes) => {
+    // Only push history for structural changes (remove), ignore position changes to avoid blowing up history stack
+    const isStructural = changes.some(c => c.type === 'remove' || c.type === 'add');
+    if (isStructural) get().pushHistory();
+
     const nextNodes = applyNodeChanges(changes, get().nodes);
-    const updatedMachine = flowElementsToMachine(nextNodes, get().edges, get().machine);
-    set({ nodes: nextNodes, machine: updatedMachine });
+    
+    // Performance Fix: Do not rebuild the machine object if the change is just an active drag.
+    // Rebuilding the machine causes massive full-tree re-renders at 60fps.
+    const isDragging = changes.some((c) => c.type === 'position' && c.dragging);
+    
+    if (isDragging) {
+      set({ nodes: nextNodes });
+    } else {
+      const updatedMachine = flowElementsToMachine(nextNodes, get().edges, get().machine);
+      set({ nodes: nextNodes, machine: updatedMachine });
+    }
   },
 
   onEdgesChange: (changes) => {
+    const isStructural = changes.some(c => c.type === 'remove' || c.type === 'add');
+    if (isStructural) get().pushHistory();
+
     const nextEdges = applyEdgeChanges(changes, get().edges);
     const updatedMachine = flowElementsToMachine(get().nodes, nextEdges, get().machine);
     set({ edges: nextEdges, machine: updatedMachine });
   },
 
   onConnect: (connection) => {
-    if (connection.source && connection.target) {
-      get().openTransitionModal(connection.source, connection.target);
-    }
+    get().pushHistory();
+    const newEdge: Edge = {
+      id: `e-${connection.source}-${connection.target}-${Date.now()}`,
+      source: connection.source!,
+      target: connection.target!,
+      type: connection.source === connection.target ? 'selfLoopEdge' : 'customTransitionEdge',
+    };
+    const nextEdges = addEdge(newEdge, get().edges);
+    const updatedMachine = flowElementsToMachine(get().nodes, nextEdges, get().machine);
+    set({ edges: nextEdges, machine: updatedMachine });
+    
+    // Auto-open transition modal for the new connection
+    setTimeout(() => {
+      get().openTransitionModal(connection.source!, connection.target!);
+    }, 10);
   },
 
   addState: () => {
+    get().pushHistory();
     const { machine, nodes, edges } = get();
     const maxIndex = nodes.reduce((max, n) => {
       const match = n.id.match(/^q(\d+)$/);
@@ -369,6 +472,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   deleteState: (id) => {
+    get().pushHistory();
     const { machine, nodes, edges } = get();
     const nextNodes = nodes.filter((n) => n.id !== id);
     const nextEdges = edges.filter((e) => e.source !== id && e.target !== id);
@@ -377,6 +481,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   toggleInitialState: (id) => {
+    get().pushHistory();
     const { nodes, edges, machine } = get();
     const nextNodes = nodes.map((n) => ({
       ...n,
@@ -390,6 +495,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   toggleAcceptState: (id) => {
+    get().pushHistory();
     const { nodes, edges, machine } = get();
     const nextNodes = nodes.map((n) => ({
       ...n,
@@ -403,6 +509,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   renameState: (id, label) => {
+    get().pushHistory();
     const { nodes, edges, machine } = get();
     const nextNodes = nodes.map((n) => (n.id === id ? { ...n, data: { ...n.data, label } } : n));
     const updatedMachine = flowElementsToMachine(nextNodes, edges, machine);
@@ -428,6 +535,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   saveTransition: (data) => {
+    get().pushHistory();
     const {
       machine,
       nodes,
@@ -439,7 +547,6 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
     if (!transitionModalSourceId || !transitionModalTargetId) return;
 
-    const mType = machine.type;
     const transitionId = editingTransitionId || `t_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 
     let updatedMachine: AutomataMachine;
@@ -508,6 +615,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   deleteTransition: (id) => {
+    get().pushHistory();
     const { machine } = get();
     let updatedMachine: AutomataMachine;
 
@@ -531,12 +639,14 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   autoLayout: () => {
+    get().pushHistory();
     const { nodes, edges } = get();
     const layouted = getLayoutedElements(nodes, edges, 'LR');
     set({ nodes: layouted.nodes, edges: layouted.edges });
   },
 
   clearCanvas: () => {
+    get().pushHistory();
     const { machine } = get();
     let clearedMachine: AutomataMachine;
 
@@ -714,7 +824,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   },
 
   setIsSubsetDrawerOpen: (isSubsetDrawerOpen) => set({ isSubsetDrawerOpen }),
-  setIsExportImportOpen: (isExportImportOpen) => set({ isExportImportOpen }),
+  setIsExportImportOpen: (isOpen) => set({ isExportImportOpen: isOpen }),
   setSelectedNodeId: (selectedNodeId) => set({ selectedNodeId }),
   setSelectedEdgeId: (selectedEdgeId) => set({ selectedEdgeId }),
 

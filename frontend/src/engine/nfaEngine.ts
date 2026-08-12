@@ -1,7 +1,9 @@
 import { NFAMachine, NFATransition, SimulationResult, SimulationStepTrace } from '../types/automata';
 
 export const isEpsilon = (symbol: string): boolean => {
-  return !symbol || symbol === 'ε' || symbol === 'eps' || symbol === 'EPS' || symbol === 'E' || symbol === 'λ';
+  if (!symbol) return true;
+  const s = symbol.trim();
+  return s === '' || s === 'ε' || s === 'eps' || s === 'EPS' || s === 'λ';
 };
 
 /**
@@ -29,7 +31,14 @@ export function computeEpsilonClosure(states: string[], transitions: NFATransiti
 /**
  * Simulates an NFA on an input string
  */
-export function simulateNFA(machine: NFAMachine, inputString: string): SimulationResult {
+export function simulateNFA(rawMachine: NFAMachine, inputString: string): SimulationResult {
+  const machine = {
+    ...rawMachine,
+    states: rawMachine.states || [],
+    transitions: rawMachine.transitions || [],
+    acceptStates: rawMachine.acceptStates || [],
+    alphabet: rawMachine.alphabet || [],
+  };
   const traces: SimulationStepTrace[] = [];
 
   if (!machine.startState) {

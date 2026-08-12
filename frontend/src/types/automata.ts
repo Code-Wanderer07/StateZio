@@ -100,7 +100,7 @@ export interface TMMachine {
 
 export type AutomataMachine = DFAMachine | NFAMachine | PDAMachine | TMMachine;
 
-export type SimulationStatus = 'IDLE' | 'RUNNING' | 'ACCEPTED' | 'REJECTED' | 'HALTED_ACCEPT' | 'HALTED_REJECT' | 'ERROR';
+export type SimulationStatus = 'IDLE' | 'RUNNING' | 'ACCEPTED' | 'REJECTED' | 'HALTED_ACCEPT' | 'HALTED_REJECT' | 'ERROR' | 'TIMEOUT';
 
 export interface SimulationStepTrace {
   stepIndex: number;

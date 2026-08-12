@@ -3,9 +3,49 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Light Mode */
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --surface-container: #f1f5f9;
+    --surface-container-low: #ffffff;
+    --surface-bright: #e2e8f0;
+    --surface-variant: #e2e8f0;
+    --on-surface: #0f172a;
+    --on-surface-variant: #475569;
+    --outline-variant: #cbd5e1;
+    --primary: #0284c7;
+    --on-primary: #ffffff;
+    --primary-container: #bae6fd;
+    --secondary: #7e22ce;
+    --secondary-container: #f3e8ff;
+    --tertiary: #2563eb;
+    --tertiary-container: #dbeafe;
+  }
+
+  .dark {
+    /* Dark Mode (from Stitch) */
+    --background: #0c1324;
+    --surface: #0c1324;
+    --surface-container: #191f31;
+    --surface-container-low: #151b2d;
+    --surface-bright: #33394c;
+    --surface-variant: #2e3447;
+    --on-surface: #dce1fb;
+    --on-surface-variant: #bcc9cd;
+    --outline-variant: #3d494c;
+    --primary: #4cd7f6;
+    --on-primary: #003640;
+    --primary-container: #06b6d4;
+    --secondary: #ddb8ff;
+    --secondary-container: #7c03d3;
+    --tertiary: #b4c5ff;
+    --tertiary-container: #85a3ff;
+  }
+
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-[#1c1313] dark:text-[#f1f5f9];
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    @apply bg-background text-on-surface;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -21,77 +61,160 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100 dark:bg-[#1c1313];
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-[#3d2c2c];
+  background-color: var(--outline-variant);
+  opacity: 0.3;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-sky-400 dark:bg-[#38bdf8];
+  background-color: var(--primary);
 }
 
-/* React Flow customizations */
-.react-flow__background {
-  @apply bg-sky-50 dark:bg-[#1c1313] !important;
+/* Glass Panels */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.6);
+  @apply backdrop-blur-2xl border shadow-sm ring-1 ring-inset ring-black/5;
+  border-color: rgba(61, 73, 76, 0.15);
+}
+.dark .glass-panel {
+  background-color: rgba(15, 23, 42, 0.6);
+  @apply backdrop-blur-2xl ring-1 ring-inset ring-white/5 shadow-2xl;
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
-.react-flow__controls {
-  @apply shadow-lg border border-slate-200 dark:border-sky-400/30 rounded-xl overflow-hidden bg-white dark:bg-[#1c1313] !important;
+/* Dot Grid Background */
+.dot-grid {
+  background-image: radial-gradient(rgba(134, 147, 151, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
+.blueprint-bg {
+  background-image: linear-gradient(to right, rgba(76, 215, 246, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(76, 215, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* React Flow Controls Override */
 .react-flow__controls-button {
-  @apply bg-white dark:bg-[#1c1313] border-b border-slate-100 dark:border-[#3d2c2c] text-slate-500 dark:text-slate-400 fill-slate-500 dark:fill-slate-400 transition-all !important;
+  background-color: var(--surface-container) !important;
+  border-color: var(--outline-variant) !important;
+  fill: var(--on-surface-variant) !important;
+  opacity: 0.8;
+  transition: all 0.2s ease;
 }
 
 .react-flow__controls-button:hover {
-  @apply bg-slate-50 dark:bg-[#271c1c] text-sky-500 dark:text-[#38bdf8] fill-sky-500 dark:fill-[#38bdf8] !important;
+  background-color: var(--surface-bright) !important;
+  fill: var(--primary) !important;
+  opacity: 1;
 }
 
-.react-flow__minimap {
-  @apply bg-white dark:bg-[#1c1313] border border-slate-200 dark:border-sky-400/30 rounded-2xl shadow-lg !important;
-}
-
-/* Minimalist dark panels */
-.glass-panel-dark {
-  @apply bg-white/90 dark:bg-[#1c1313]/90 backdrop-blur-md border border-slate-200 dark:border-sky-400/25 shadow-lg;
-}
-
-/* Glow effects matching Light Blue & #1C1313 theme */
-.glow-cyan {
-  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8));
-}
-
-.glow-blue {
-  filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.8));
-}
-
-.glow-indigo {
-  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.7));
-}
-
-.glow-emerald {
-  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.7));
-}
-
-.glow-crimson {
-  filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
-}
-
-/* Tape slot & stack box animations */
-@keyframes tapeSlide {
+@keyframes dashdraw {
   from {
-    opacity: 0;
-    transform: scale(0.94);
+    stroke-dashoffset: 10;
   }
   to {
-    opacity: 1;
-    transform: scale(1);
+    stroke-dashoffset: 0;
   }
 }
 
-.tape-cell-enter {
-  animation: tapeSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes activeNodePulse {
+  0% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(56, 189, 248, 1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.7);
+  }
+}
+
+.node-active-pulse {
+  animation: activeNodePulse 1.5s ease-in-out infinite;
+}
+
+/* 
+ * Driver.js Custom Theme Overrides 
+ * Matching the app's dark neon glassmorphism aesthetic 
+ */
+.driver-popover {
+  background-color: rgb(28 27 31 / 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgb(76 215 246 / 0.3) !important;
+  border-radius: 1rem !important;
+  color: var(--color-on-surface) !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(76, 215, 246, 0.15) !important;
+  padding: 1.25rem !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.driver-popover-title {
+  color: rgb(76 215 246) !important;
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.driver-popover-description {
+  color: var(--color-on-surface-variant) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+}
+
+.driver-popover-footer {
+  margin-top: 1rem !important;
+}
+
+.driver-popover-progress-text {
+  color: var(--color-on-surface-variant) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+}
+
+.driver-popover-close-btn {
+  color: var(--color-on-surface-variant) !important;
+  transition: color 0.2s !important;
+}
+.driver-popover-close-btn:hover {
+  color: rgb(251 113 133) !important; /* Rose/Red on hover */
+}
+
+.driver-popover-navigation-btns {
+  gap: 0.5rem !important;
+}
+
+.driver-popover-prev-btn, .driver-popover-next-btn {
+  border-radius: 0.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 0.375rem 0.75rem !important;
+  text-shadow: none !important;
+  transition: all 0.2s !important;
+  border: 1px solid rgb(76 215 246 / 0.3) !important;
+}
+
+.driver-popover-prev-btn {
+  background-color: transparent !important;
+  color: var(--color-on-surface) !important;
+}
+.driver-popover-prev-btn:hover {
+  background-color: rgb(255 255 255 / 0.05) !important;
+}
+
+.driver-popover-next-btn {
+  background-color: rgb(76 215 246 / 0.15) !important;
+  color: rgb(76 215 246) !important;
+}
+.driver-popover-next-btn:hover {
+  background-color: rgb(76 215 246 / 0.25) !important;
+  box-shadow: 0 0 10px rgba(76, 215, 246, 0.4) !important;
+}
+
+.driver-popover-arrow {
+  display: none !important; /* The white arrow clashes with our glassy UI, so we hide it */
 }

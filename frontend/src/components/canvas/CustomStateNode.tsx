@@ -3,19 +3,18 @@ import { Handle, Position, NodeProps } from '@xyflow/react';
 import { Play, CheckCircle2, Trash2, Edit3 } from 'lucide-react';
 import { useAutomataStore } from '../../store/useAutomataStore';
 
-export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => {
+export const CustomStateNode = React.memo<NodeProps>(({ id, data, selected }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [labelValue, setLabelValue] = useState((data.label as string) || id);
 
-  const {
-    toggleInitialState,
-    toggleAcceptState,
-    deleteState,
-    renameState,
-  } = useAutomataStore();
+  const toggleInitialState = useAutomataStore(s => s.toggleInitialState);
+  const toggleAcceptState = useAutomataStore(s => s.toggleAcceptState);
+  const deleteState = useAutomataStore(s => s.deleteState);
+  const renameState = useAutomataStore(s => s.renameState);
 
   const isInitial = !!data.isInitial;
   const isAccept = !!data.isAccept;
+  const isReject = !!data.isReject;
   const isActive = !!data.isActive;
 
   const handleRenameSubmit = (e: React.FormEvent) => {
@@ -29,20 +28,25 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
   // Node Border & Background resolution according to #1C1313 and Light Blue Spec
   const getNodeStyling = () => {
     if (isActive) {
-      return 'bg-cyan-400 border-2 border-cyan-200 shadow-[0_0_25px_rgba(56,189,248,0.9)] ring-4 ring-cyan-300/60 text-white dark:text-[#1C1313] scale-105';
+      if (isReject) return 'bg-rose-500 border-2 border-outline-variant/30 node-active-pulse ring-4 ring-rose-400/60 text-white scale-105';
+      return 'bg-cyan-400 border-2 border-outline-variant/30 node-active-pulse ring-4 ring-cyan-300/60 text-on-surface dark:text-[#1C1313] scale-105';
     }
     if (selected) {
-      if (isAccept) return 'bg-cyan-50 dark:bg-slate-950 border-2 border-blue-400 text-slate-900 dark:text-slate-100 ring-2 ring-blue-400/60 shadow-lg';
-      if (isInitial) return 'bg-cyan-50 dark:bg-slate-950 border-2 border-emerald-400 text-slate-900 dark:text-slate-100 ring-2 ring-emerald-400/60 shadow-lg';
-      return 'bg-cyan-50 dark:bg-slate-950 border-2 border-cyan-400 text-slate-900 dark:text-slate-100 ring-2 ring-cyan-400/50 shadow-lg';
+      if (isReject) return 'bg-surface-container dark:bg-background border-2 border-rose-500 text-on-surface ring-2 ring-rose-500/60 shadow-[0_0_15px_rgba(244,63,94,0.4)]';
+      if (isAccept) return 'bg-surface-container dark:bg-background border-2 border-blue-400 text-on-surface dark:text-on-surface ring-2 ring-blue-400/60 shadow-lg';
+      if (isInitial) return 'bg-surface-container dark:bg-background border-2 border-emerald-400 text-on-surface dark:text-on-surface ring-2 ring-emerald-400/60 shadow-lg';
+      return 'bg-surface-container dark:bg-background border-2 border-cyan-400 text-on-surface dark:text-on-surface ring-2 ring-cyan-400/50 shadow-lg';
+    }
+    if (isReject) {
+      return 'bg-surface-container dark:bg-background border-2 border-rose-500/80 text-on-surface hover:border-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.2)]';
     }
     if (isAccept) {
-      return 'bg-cyan-50 dark:bg-slate-950 border-2 border-blue-400 text-slate-900 dark:text-slate-100 hover:border-blue-300 shadow-md';
+      return 'bg-surface-container dark:bg-background border-2 border-blue-400 text-on-surface dark:text-on-surface hover:border-blue-300 shadow-md';
     }
     if (isInitial) {
-      return 'bg-cyan-50 dark:bg-slate-950 border-2 border-emerald-400 text-slate-900 dark:text-slate-100 hover:border-emerald-300 shadow-md';
+      return 'bg-surface-container dark:bg-background border-2 border-emerald-400 text-on-surface dark:text-on-surface hover:border-emerald-300 shadow-md';
     }
-    return 'bg-cyan-50 dark:bg-slate-950 border-2 border-cyan-400/80 text-slate-900 dark:text-slate-100 hover:border-cyan-300 shadow-md';
+    return 'bg-surface-container dark:bg-background border-2 border-cyan-400/80 text-on-surface dark:text-on-surface hover:border-cyan-300 shadow-md';
   };
 
   return (
@@ -92,7 +96,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
               onChange={(e) => setLabelValue(e.target.value)}
               onBlur={handleRenameSubmit}
               autoFocus
-              className="w-12 bg-cyan-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 text-xs font-mono text-center border border-cyan-400 rounded px-1 py-0.5 outline-none shadow-xs"
+              className="w-12 bg-surface-container dark:bg-background text-on-surface dark:text-on-surface text-xs font-mono text-center border border-cyan-400 rounded px-1 py-0.5 outline-none shadow-xs"
             />
           </form>
         ) : (
@@ -100,7 +104,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             onDoubleClick={() => setIsEditing(true)}
             title="Double-click to rename"
             className={`z-10 font-mono font-bold tracking-wide text-xs truncate max-w-[50px] ${
-              isActive ? 'text-white dark:text-[#1C1313] font-extrabold' : 'text-slate-900 dark:text-slate-100'
+              isActive ? 'text-on-surface dark:text-[#1C1313] font-extrabold' : 'text-on-surface dark:text-on-surface'
             }`}
           >
             {(data.label as string) || id}
@@ -109,7 +113,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
       </div>
 
       {/* Floating Action Menu on Node Hover / Selection */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-cyan-50 dark:bg-slate-950 border border-cyan-300 dark:border-cyan-500/30 rounded-full px-2 py-0.5 shadow-2xl opacity-0 group-hover:opacity-100 hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-auto">
+      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-full px-2 py-0.5 shadow-2xl opacity-0 group-hover:opacity-100 hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-auto">
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -117,7 +121,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
           }}
           title={isInitial ? 'Remove Start State' : 'Set as Start State (Emerald)'}
           className={`p-1 rounded-full text-xs transition-colors ${
-            isInitial ? 'text-emerald-400 hover:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:text-emerald-400'
+            isInitial ? 'text-emerald-400 hover:text-emerald-300' : 'text-on-surface-variant dark:text-on-surface-variant hover:text-emerald-400'
           }`}
         >
           <Play className="w-3 h-3 fill-current" />
@@ -130,7 +134,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
           }}
           title={isAccept ? 'Remove Accept State' : 'Set as Accept State (Indigo Double Circle)'}
           className={`p-1 rounded-full text-xs transition-colors ${
-            isAccept ? 'text-blue-400 hover:text-blue-300' : 'text-slate-600 dark:text-slate-400 hover:text-blue-400'
+            isAccept ? 'text-blue-400 hover:text-blue-300' : 'text-on-surface-variant dark:text-on-surface-variant hover:text-blue-400'
           }`}
         >
           <CheckCircle2 className="w-3 h-3" />
@@ -142,7 +146,7 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             setIsEditing(true);
           }}
           title="Rename State"
-          className="p-1 rounded-full text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:text-cyan-400 transition-colors"
+          className="p-1 rounded-full text-on-surface-variant dark:text-on-surface-variant hover:text-cyan-600 dark:text-cyan-400 transition-colors"
         >
           <Edit3 className="w-3 h-3" />
         </button>
@@ -153,11 +157,11 @@ export const CustomStateNode: React.FC<NodeProps> = ({ id, data, selected }) => 
             deleteState(id);
           }}
           title="Delete State"
-          className="p-1 rounded-full text-slate-600 dark:text-slate-400 hover:text-rose-400 transition-colors"
+          className="p-1 rounded-full text-on-surface-variant dark:text-on-surface-variant hover:text-rose-400 transition-colors"
         >
           <Trash2 className="w-3 h-3" />
         </button>
       </div>
     </div>
   );
-};
+});

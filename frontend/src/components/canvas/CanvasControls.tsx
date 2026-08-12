@@ -1,12 +1,6 @@
-import React from 'react';
-import {
-  Plus,
-  Sparkles,
-  RotateCcw,
-  GitFork,
-  Download,
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { useAutomataStore } from '../../store/useAutomataStore';
+import { startTour } from '../../utils/tour';
 
 export const CanvasControls: React.FC = () => {
   const {
@@ -16,61 +10,102 @@ export const CanvasControls: React.FC = () => {
     clearCanvas,
     runSubsetConstruction,
     setIsExportImportOpen,
+    setIsGuideOpen,
+    undo,
+    redo,
+    pastStates,
+    futureStates,
   } = useAutomataStore();
 
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    // Show tooltip on initial load for a few seconds
+    setShowTooltip(true);
+    const timer = setTimeout(() => setShowTooltip(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-cyan-50 dark:bg-slate-950/95 border border-cyan-300 dark:border-cyan-500/30 p-1.5 rounded-2xl shadow-2xl backdrop-blur-md text-cyan-100">
-      {/* Add State */}
-      <button
-        onClick={addState}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-white dark:text-[#1C1313] text-xs font-bold transition-all duration-200 shadow-md cursor-pointer active:scale-95"
-        title="Add a new state to canvas"
-      >
-        <Plus className="w-4 h-4" />
-        <span>Add State</span>
-      </button>
-
-      {/* Auto Layout (Dagre) */}
-      <button
-        onClick={autoLayout}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-300 dark:hover:bg-slate-800 text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white border border-cyan-300 dark:border-cyan-500/30 text-xs font-medium transition-colors shadow-xs cursor-pointer"
-        title="Automatically organize graph layout using Dagre"
-      >
-        <Sparkles className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-        <span>Auto-Layout</span>
-      </button>
-
-      {/* NFA to DFA Converter Button (Only if NFA) */}
-      {machine.type === 'NFA' && (
-        <button
-          onClick={runSubsetConstruction}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-900 dark:text-white border border-blue-500 text-xs font-semibold transition-all duration-200 shadow-md cursor-pointer active:scale-95"
-          title="Convert NFA to DFA using Powerset Construction"
+    <div className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 bg-surface-container-highest/60 backdrop-blur-2xl rounded-full flex-col items-center gap-2 py-4 px-2 border border-outline-variant/30 shadow-2xl">
+      
+      {/* Guide Button with Popup */}
+      <div className="relative group">
+        <button 
+          onClick={startTour}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="p-1.5 rounded-full text-primary hover:text-primary-fixed hover:bg-primary/20 transition-all active:scale-95 shadow-[0_0_15px_rgba(76,215,246,0.2)] bg-primary/10" 
         >
-          <GitFork className="w-3.5 h-3.5 text-slate-900 dark:text-white" />
-          <span>Convert NFA → DFA</span>
+          <span className="material-symbols-outlined text-2xl font-bold animate-pulse">school</span>
+        </button>
+        
+        {/* Tooltip */}
+        <div className={`absolute left-14 top-1/2 -translate-y-1/2 whitespace-nowrap bg-primary text-on-primary text-xs font-bold px-3 py-1.5 rounded-md shadow-[0_0_15px_rgba(76,215,246,0.4)] pointer-events-none transition-all duration-300 ${(showTooltip || isHovered) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}>
+          Click this to know how to use the simulator!
+          <div className="absolute top-1/2 -left-1 -translate-y-1/2 border-t-4 border-t-transparent border-r-4 border-r-primary border-b-4 border-b-transparent"></div>
+        </div>
+      </div>
+
+      <div className="w-6 h-px bg-outline-variant/30 my-1"></div>
+
+      <button className="p-1.5 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/50 transition-all active:scale-95" title="Select">
+        <span className="material-symbols-outlined text-xl">near_me</span>
+      </button>
+      <button id="tour-add-state" onClick={addState} className="p-1.5 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/50 transition-all active:scale-95" title="Add State">
+        <span className="material-symbols-outlined text-xl">add_circle</span>
+      </button>
+      
+      <div className="w-6 h-px bg-outline-variant/30 my-1"></div>
+      
+      <button id="tour-auto-layout" onClick={autoLayout} className="p-1.5 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/50 transition-all active:scale-95" title="Auto-Layout">
+        <span className="material-symbols-outlined text-xl">auto_awesome</span>
+      </button>
+      <button onClick={clearCanvas} className="p-1.5 rounded-full text-on-surface-variant hover:text-error hover:bg-surface-bright/50 transition-all active:scale-95" title="Clear Canvas">
+        <span className="material-symbols-outlined text-xl">layers_clear</span>
+      </button>
+
+      {/* Export/Import was in the old toolbar, adding it here */}
+      <button onClick={() => setIsExportImportOpen(true)} className="p-1.5 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/50 transition-all active:scale-95" title="Export / Import">
+        <span className="material-symbols-outlined text-xl">download</span>
+      </button>
+
+      {/* Convert NFA to DFA if applicable */}
+      {machine.type === 'NFA' && (
+        <button onClick={runSubsetConstruction} className="p-1.5 rounded-full text-blue-400 hover:text-blue-300 hover:bg-blue-900/30 transition-all active:scale-95" title="Convert NFA to DFA">
+          <span className="material-symbols-outlined text-xl">fork_right</span>
         </button>
       )}
-
-      <div className="w-[1px] h-5 bg-cyan-500/30 mx-1"></div>
-
-      {/* Export / Import Modal */}
-      <button
-        onClick={() => setIsExportImportOpen(true)}
-        className="p-1.5 rounded-xl bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-300 dark:hover:bg-slate-800 text-cyan-700 dark:text-cyan-300 hover:text-slate-900 dark:text-white border border-cyan-300 dark:border-cyan-500/30 transition-colors shadow-xs cursor-pointer"
-        title="Import / Export Machine JSON & Images"
-      >
-        <Download className="w-4 h-4" />
-      </button>
-
-      {/* Clear Canvas */}
-      <button
-        onClick={clearCanvas}
-        className="p-1.5 rounded-xl bg-cyan-200 dark:bg-slate-800 hover:bg-rose-950/60 text-slate-600 dark:text-slate-400 hover:text-rose-400 border border-cyan-300 dark:border-cyan-500/30 hover:border-rose-800 transition-colors shadow-xs cursor-pointer"
-        title="Clear Canvas"
-      >
-        <RotateCcw className="w-4 h-4" />
-      </button>
+      
+      <div className="w-6 h-px bg-outline-variant/30 my-1"></div>
+      
+      <div id="tour-undo-redo" className="flex flex-col items-center gap-2">
+        <button 
+          onClick={undo}
+          disabled={pastStates.length === 0}
+          className={`p-1.5 rounded-full transition-all active:scale-95 ${
+            pastStates.length === 0 
+              ? 'text-on-surface-variant/30 cursor-not-allowed' 
+              : 'text-on-surface-variant hover:text-primary hover:bg-surface-bright/50'
+          }`}
+          title="Undo (Ctrl+Z)"
+        >
+          <span className="material-symbols-outlined text-xl">undo</span>
+        </button>
+        <button 
+          onClick={redo}
+          disabled={futureStates.length === 0}
+          className={`p-1.5 rounded-full transition-all active:scale-95 ${
+            futureStates.length === 0 
+              ? 'text-on-surface-variant/30 cursor-not-allowed' 
+              : 'text-on-surface-variant hover:text-primary hover:bg-surface-bright/50'
+          }`}
+          title="Redo (Ctrl+Y)"
+        >
+          <span className="material-symbols-outlined text-xl">redo</span>
+        </button>
+      </div>
     </div>
   );
 };

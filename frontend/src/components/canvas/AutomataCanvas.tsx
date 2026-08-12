@@ -61,7 +61,7 @@ export const AutomataCanvas: React.FC = () => {
   }), []);
 
   return (
-    <div className="relative w-full h-full bg-cyan-50 dark:bg-slate-950 overflow-hidden select-none">
+    <div className="relative w-full h-full bg-surface-container dark:bg-background overflow-hidden select-none">
       {/* Top Floating Action Bar */}
       <CanvasControls />
 
@@ -101,12 +101,12 @@ export const AutomataCanvas: React.FC = () => {
 
         <Controls
           position="bottom-left"
-          className="!m-4 !bg-cyan-50 dark:!bg-slate-950 !border-cyan-300 dark:!border-cyan-500/30 !shadow-2xl !rounded-xl overflow-hidden"
+          className="!m-4 !bg-surface-container !border-outline-variant/30 !shadow-2xl !rounded-xl overflow-hidden"
           showInteractive={false}
         />
 
         <MiniMap
-          position="bottom-right"
+          position="top-right"
           className="!m-4 !bg-cyan-50 dark:!bg-slate-950 !border-cyan-300 dark:!border-cyan-500/30 !rounded-2xl !shadow-2xl"
           nodeColor={(node) => {
             if (node.data?.isActive) return '#38BDF8'; // Light Blue / Cyan

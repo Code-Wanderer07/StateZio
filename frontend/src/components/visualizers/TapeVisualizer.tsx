@@ -11,17 +11,33 @@ export const TapeVisualizer: React.FC = () => {
   const blank = machine.blankSymbol || '_';
   const currentTrace = simulationResult?.traces?.[currentStepIndex];
 
-  // If simulation is running, use trace tape; otherwise initialize with inputString
-  let tape = currentTrace?.tape;
-  if (!tape) {
+  let tape = currentTrace?.tape ? [...currentTrace.tape] : [];
+  if (tape.length === 0) {
     tape = inputString.length > 0 ? inputString.split('') : [blank];
   }
-  const headIndex = currentTrace?.headIndex !== undefined ? currentTrace.headIndex : 0;
+  let headIndex = currentTrace?.headIndex !== undefined ? currentTrace.headIndex : 0;
+
+  // Dynamically pad the tape for visualization if head moves out of bounds
+  while (headIndex < 0) {
+    tape.unshift(blank);
+    headIndex++;
+  }
+  while (headIndex >= tape.length) {
+    tape.push(blank);
+  }
+  // Add a few extra blanks on either side for better infinite tape visual feel
+  const PADDING = 3;
+  const renderTape = [
+    ...Array(PADDING).fill(blank),
+    ...tape,
+    ...Array(PADDING).fill(blank),
+  ];
+  const renderHeadIndex = headIndex + PADDING;
 
   // Auto-scroll tape to keep head cell centered
   useEffect(() => {
     if (tapeScrollRef.current) {
-      const activeCell = tapeScrollRef.current.children[headIndex] as HTMLElement;
+      const activeCell = tapeScrollRef.current.children[renderHeadIndex] as HTMLElement;
       if (activeCell) {
         activeCell.scrollIntoView({
           behavior: 'smooth',
@@ -30,42 +46,41 @@ export const TapeVisualizer: React.FC = () => {
         });
       }
     }
-  }, [headIndex, currentStepIndex]);
+  }, [renderHeadIndex, currentStepIndex]);
 
   return (
-    <div className="flex flex-col bg-white dark:bg-slate-900 border border-slate-300 dark:border-white/10 rounded-2xl p-4 shadow-xl text-slate-900 dark:text-slate-100">
+    <div className="flex flex-col bg-surface-container/30 backdrop-blur-xl border border-outline-variant/20 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.1)] text-on-surface">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-300 dark:border-white/10">
+      <div className="flex items-center justify-between pb-3 border-b border-outline-variant/30 dark:border-white/10">
         <div className="flex items-center gap-2">
           <Disc3 className="w-4 h-4 text-cyan-400" />
-          <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-            Turing Machine Tape Visualizer
+          <h4 className="text-xs font-bold text-on-surface uppercase tracking-wider">
+            Tape Visualizer
           </h4>
         </div>
         <div className="flex items-center gap-2 text-[11px] font-mono">
-          <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold">
+          <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-semibold shadow-[inset_0_0_8px_rgba(34,211,238,0.1)]">
             Head Pos: [{headIndex}]
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/10">
+          <span className="px-2 py-0.5 rounded-full bg-surface-variant/50 text-on-surface-variant border border-outline-variant/20">
             Blank: '{blank}'
           </span>
         </div>
       </div>
 
-      {/* Tape Head Indicator Arrow */}
-      <div className="flex items-center justify-center pt-2 text-[11px] font-mono text-cyan-300 gap-1 animate-bounce">
-        <ArrowDown className="w-4 h-4" />
-        <span className="font-semibold tracking-wider">READ / WRITE HEAD</span>
-      </div>
+      {/* Tape Head Indicator Arrow (Removed in favor of scanner bracket below) */}
+      <div className="pt-3"></div>
 
       {/* Horizontal Tape Scroll Strip */}
-      <div className="relative my-2 py-3 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-white/10 rounded-xl overflow-x-auto shadow-inner">
+      <div className="relative my-2 py-3 px-2 bg-background/50 backdrop-blur-md border border-outline-variant/10 rounded-xl overflow-x-auto shadow-inner">
         <div
           ref={tapeScrollRef}
           className="flex items-center justify-start gap-2 min-w-max px-8"
         >
-          {tape.map((sym, idx) => {
-            const isHead = idx === headIndex;
+          {renderTape.map((sym, idx) => {
+            const isHead = idx === renderHeadIndex;
+            // Original index for display purposes (accounting for left padding and dynamic unshifts)
+            const displayIndex = headIndex - renderHeadIndex + idx;
             return (
               <div
                 key={`tape_cell_${idx}`}
@@ -77,17 +92,27 @@ export const TapeVisualizer: React.FC = () => {
                     isHead ? 'text-cyan-400 font-bold' : 'text-slate-500'
                   }`}
                 >
-                  {idx}
+                  {displayIndex}
                 </span>
 
                 {/* Tape Cell Box */}
                 <div
-                  className={`w-11 h-12 rounded-xl flex items-center justify-center font-mono text-sm font-bold transition-all duration-300 select-none shadow-md ${
+                  className={`relative w-11 h-12 rounded-xl flex items-center justify-center font-mono text-sm font-bold transition-all duration-300 select-none ${
                     isHead
-                      ? 'bg-cyan-500/25 border-2 border-cyan-400 text-slate-900 dark:text-white shadow-cyan-950/60 scale-110 ring-2 ring-cyan-400/30'
-                      : 'bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:border-white/20'
+                      ? 'bg-cyan-500/10 text-cyan-400 scale-110 z-10 shadow-[0_0_15px_rgba(34,211,238,0.2)]'
+                      : 'bg-surface-container/50 text-on-surface-variant border border-outline-variant/20 hover:border-outline-variant/40'
                   }`}
                 >
+                  {/* Glowing bracket for active cell */}
+                  {isHead && (
+                    <>
+                      <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-cyan-400 rounded-tl-xl" />
+                      <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-cyan-400 rounded-tr-xl" />
+                      <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-cyan-400 rounded-bl-xl" />
+                      <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-cyan-400 rounded-br-xl" />
+                      <div className="absolute inset-0 bg-cyan-400/5 rounded-xl animate-pulse" />
+                    </>
+                  )}
                   {sym === blank ? (
                     <span className="text-slate-500 text-xs font-normal">_</span>
                   ) : (
@@ -101,9 +126,9 @@ export const TapeVisualizer: React.FC = () => {
       </div>
 
       {/* Footer Info */}
-      <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 pt-1">
+      <div className="flex items-center justify-between text-[11px] text-on-surface-variant dark:text-on-surface-variant pt-1">
         <span>Infinite dynamic bidirectional tape</span>
-        <span className="font-mono text-slate-700 dark:text-slate-300">
+        <span className="font-mono text-on-surface-variant dark:text-on-surface-variant">
           Current Symbol: <strong className="text-cyan-300 font-bold">'{tape[headIndex] || blank}'</strong>
         </span>
       </div>

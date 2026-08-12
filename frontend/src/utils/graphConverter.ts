@@ -17,6 +17,7 @@ export interface StateNodeData {
   label: string;
   isInitial: boolean;
   isAccept: boolean;
+  isReject?: boolean;
   isActive: boolean;
   hasError?: boolean;
   onToggleInitial?: (id: string) => void;
@@ -86,6 +87,7 @@ export function machineToFlowElements(
         label: st.label || st.id,
         isInitial: st.isInitial || machine.startState === st.id,
         isAccept: st.isAccept || (machine.acceptStates || []).includes(st.id),
+        isReject: machine.type === 'TM' ? ((machine as TMMachine).rejectStates || []).includes(st.id) : false,
         isActive: activeStateIds.includes(st.id),
       },
     };

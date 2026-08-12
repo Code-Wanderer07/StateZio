@@ -1,6 +1,13 @@
 import { DFAMachine, SimulationResult, SimulationStepTrace } from '../types/automata';
 
-export function simulateDFA(machine: DFAMachine, inputString: string): SimulationResult {
+export function simulateDFA(rawMachine: DFAMachine, inputString: string): SimulationResult {
+  const machine = {
+    ...rawMachine,
+    states: rawMachine.states || [],
+    transitions: rawMachine.transitions || [],
+    acceptStates: rawMachine.acceptStates || [],
+    alphabet: rawMachine.alphabet || [],
+  };
   const traces: SimulationStepTrace[] = [];
   let currentState = machine.startState;
   

@@ -1,24 +1,16 @@
 import React from 'react';
-import {
-  Sparkles,
-  Layers,
-  Disc3,
-  HelpCircle,
-  FolderOpen,
-  Home,
-  Sun,
-  Moon,
-} from 'lucide-react';
-import { LinkedInIcon } from './LinkedInIcon';
+import { Menu, Sun, Moon, HelpCircle } from 'lucide-react';
 import { useAutomataStore } from '../../store/useAutomataStore';
 import { MachineType } from '../../types/automata';
 
 interface NavbarProps {
   isSidebarOpen: boolean;
-  setIsSidebarOpen: (open: boolean) => void;
+  setIsSidebarOpen: (isOpen: boolean) => void;
   onOpenHelp: () => void;
   onOpenSolver: () => void;
-  onNavigateHome?: () => void;
+  onNavigateHome: () => void;
+  mobileActiveTab?: 'canvas' | 'trace' | 'batch' | 'tuples';
+  setMobileActiveTab?: (tab: 'canvas' | 'trace' | 'batch' | 'tuples') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -27,167 +19,64 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenHelp,
   onOpenSolver,
   onNavigateHome,
+  mobileActiveTab,
+  setMobileActiveTab
 }) => {
   const { machine, setMachineType, theme, toggleTheme } = useAutomataStore();
 
-  const handleModuleClick = (type: MachineType) => {
-    setMachineType(type);
-  };
-
-  const linkedInUrl = "https://www.linkedin.com/in/shivakanth-m-701631380";
-
   return (
-    <header className="hidden md:flex min-h-[3.5rem] bg-slate-50 dark:bg-slate-900/95 border-b border-cyan-200 dark:border-cyan-500/20 px-2 sm:px-4 py-2 sm:py-0 items-center justify-between gap-2 z-30 shadow-md backdrop-blur-md text-slate-900 dark:text-slate-100 shrink-0 select-none flex-wrap sm:flex-nowrap">
-      {/* Brand & Logo (Clickable to return to Intro/Home) */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onNavigateHome}
-          title="Return to StateZio Intro & Tutorials"
-          className="flex items-center gap-2.5 text-left group cursor-pointer"
-        >
-          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform shrink-0">
-            <img
-              src="/statezio-logo.jpg"
-              alt="StateZio Logo"
-              className="w-full h-full object-cover scale-[1.2]"
-            />
+    <header className="bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm sticky top-0 z-50 flex justify-between items-center px-6 h-16 w-full">
+      <div className="flex items-center gap-6">
+        <button onClick={onNavigateHome} className="flex items-center justify-center p-2 -ml-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all active:scale-95 group" title="Back to Home">
+          <span className="material-symbols-outlined text-xl group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
+        </button>
+        <div className="flex items-center gap-2 cursor-pointer" onClick={onNavigateHome}>
+          <img src="/statezio-logo2.png" alt="StateZio Logo" className="w-9 h-9 dark:mix-blend-screen rounded-lg dark:rounded-none" />
+          <div className="flex items-start">
+            <span className="font-display-lg text-2xl text-primary tracking-tighter font-bold">StateZio</span>
+            <span className="ml-1 text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-md self-start mt-0.5">2.0</span>
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="font-extrabold text-sm tracking-tight text-slate-900 dark:text-white group-hover:text-cyan-700 dark:text-cyan-300 transition-colors">
-                StateZio
-              </h1>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/40 font-bold">
-                v1.0
-              </span>
-            </div>
-            <p className="text-[10px] text-slate-600 dark:text-slate-400 -mt-0.5">
-              Automata Theory Simulator
-            </p>
-          </div>
-        </button>
-
-        {/* Home quick button */}
-        {onNavigateHome && (
-          <button
-            onClick={onNavigateHome}
-            title="Go to StateZio Home"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-300 dark:hover:bg-slate-800 text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white text-xs font-semibold transition-colors cursor-pointer border border-cyan-300 dark:border-cyan-500/30 ml-2 shadow-xs"
-          >
-            <Home className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-            <span className="hidden sm:inline">Home</span>
-          </button>
-        )}
-      </div>
-
-      {/* Center: Automata Type Switcher Tabs (DFA, NFA, PDA, TM) */}
-      <div className="flex items-center gap-1 p-1 bg-cyan-100 dark:bg-slate-900 rounded-xl border border-cyan-300 dark:border-cyan-500/30 shadow-inner overflow-x-auto max-w-full hide-scrollbar">
-        <button
-          onClick={() => handleModuleClick('DFA')}
-          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-            machine.type === 'DFA'
-              ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-950/50 border border-cyan-200'
-              : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
-          }`}
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>DFA</span>
-        </button>
-
-        <button
-          onClick={() => handleModuleClick('NFA')}
-          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-            machine.type === 'NFA'
-              ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-950/50 border border-cyan-200'
-              : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
-          }`}
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>NFA</span>
-        </button>
-
-        <button
-          onClick={() => handleModuleClick('PDA')}
-          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-            machine.type === 'PDA'
-              ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-950/50 border border-cyan-200'
-              : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
-          }`}
-        >
-          <Layers className="w-3.5 h-3.5" />
-          <span>PDA</span>
-        </button>
-
-        <button
-          onClick={() => handleModuleClick('TM')}
-          className={`flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-            machine.type === 'TM'
-              ? 'bg-cyan-400 text-white dark:text-[#1C1313] shadow-md shadow-cyan-950/50 border border-cyan-200'
-              : 'text-cyan-800 dark:text-cyan-200 hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-50/10'
-          }`}
-        >
-          <Disc3 className="w-3.5 h-3.5" />
-          <span>TM</span>
-        </button>
-      </div>
-
-      {/* Right Controls & Author Credit */}
-      <div className="flex items-center gap-2">
-        {/* Author Credit Badge with LinkedIn Link */}
-        <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-cyan-200 dark:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 text-xs">
-          <span className="text-slate-700 dark:text-slate-300 flex items-center gap-1 text-[11px]">
-            Made by <strong className="text-slate-900 dark:text-white font-bold">Shivakanth</strong>
-          </span>
-          <a
-            href={linkedInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Connect with Shivakanth on LinkedIn"
-            className="p-1 rounded-lg bg-cyan-50 dark:bg-slate-950 hover:bg-cyan-500 text-cyan-600 dark:text-cyan-400 hover:text-slate-900 dark:hover:text-white dark:text-[#1C1313] border border-cyan-500/40 transition-all shadow-xs flex items-center justify-center cursor-pointer"
-          >
-            <LinkedInIcon className="w-3.5 h-3.5" />
-          </a>
         </div>
+        <nav className="hidden md:flex gap-6">
+          {(['DFA', 'NFA', 'PDA', 'TM'] as MachineType[]).map((type) => (
+            <button
+              key={type}
+              onClick={() => setMachineType(type)}
+              className={`${
+                machine.type === type
+                  ? 'text-primary font-bold border-b-2 border-primary pb-1'
+                  : 'text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 transition-all px-2 rounded'
+              } active:scale-95 duration-200`}
+            >
+              {type}
+            </button>
+          ))}
+        </nav>
+      </div>
 
-        {/* Question Solver Button */}
-        <button
-          onClick={onOpenSolver}
-          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-900 dark:text-white border border-cyan-300/40 text-xs font-bold shadow-md shadow-cyan-950/50 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-          title="TOC Question Solver"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-slate-900 dark:text-white" />
-          <span className="hidden sm:inline">Question Solver</span>
-        </button>
-
-        {/* Presets Toggle Button */}
-        {/* Theme Toggle Button */}
-        <button
-          onClick={toggleTheme}
-          title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-[11px] font-bold bg-slate-50 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-cyan-300 transition-colors shadow-xs border border-slate-200 dark:border-cyan-500/20 flex items-center gap-1.5 cursor-pointer"
-        >
-          {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </button>
-
+      <div className="flex items-center gap-4">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className={`p-1.5 sm:px-3 sm:py-1.5 rounded-lg text-[11px] font-bold transition-all shadow-xs border flex items-center gap-1.5 cursor-pointer ${
-            isSidebarOpen
-              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-700 dark:text-cyan-300 shadow-xs'
-              : 'bg-cyan-200 dark:bg-slate-800 border-cyan-300 dark:border-cyan-500/30 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white hover:bg-cyan-300 dark:hover:bg-slate-800'
-          }`}
+          className="bg-surface-variant/50 hover:bg-surface-bright/50 transition-all border border-outline-variant/50 text-on-surface px-4 py-2 rounded-lg text-sm flex items-center gap-2"
         >
-          <FolderOpen className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-          <span className="hidden sm:inline">Presets</span>
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
+          Preset Library
         </button>
-
-        {/* Theory Help Button */}
         <button
-          onClick={onOpenHelp}
-          className="p-2 rounded-xl bg-cyan-200 dark:bg-slate-800 hover:bg-cyan-300 dark:hover:bg-slate-800 border border-cyan-300 dark:border-cyan-500/30 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white transition-colors shadow-xs cursor-pointer"
-          title="Theory Guide & Reference"
+          onClick={onOpenSolver}
+          className="bg-primary hover:bg-primary-container text-on-primary font-medium px-6 py-2 rounded-lg transition-all active:scale-95 duration-200 hidden md:block"
         >
-          <HelpCircle className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+          Question Solver
+        </button>
+        <a href="https://www.linkedin.com/in/shivakanth-m-701631380" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-cyan-400 transition-colors p-2 rounded-full hover:bg-surface-bright/50 hidden lg:flex items-center gap-1 font-body-md" title="LinkedIn Profile">
+          Shivakanth
+          <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+        </a>
+        <button
+          onClick={toggleTheme}
+          className="text-on-surface hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-bright/50"
+        >
+          <span className="material-symbols-outlined">dark_mode</span>
         </button>
       </div>
     </header>

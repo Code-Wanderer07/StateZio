@@ -1,7 +1,9 @@
 import { BLANK, SimulationResult, SimulationStepTrace, TMMachine } from '../types/automata';
 
 export function isBlank(sym: string, blankSymbol: string): boolean {
-  return sym === blankSymbol || sym === '_' || sym === '␣' || sym === 'B' || sym === '';
+  if (sym === undefined || sym === null || sym === '') return true;
+  const targetBlank = blankSymbol || '_';
+  return sym === targetBlank || sym === '_' || sym === '␣';
 }
 
 export function normalizeTapeSymbol(sym: string, blankSymbol: string): string {
@@ -9,7 +11,16 @@ export function normalizeTapeSymbol(sym: string, blankSymbol: string): string {
   return sym;
 }
 
-export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1000): SimulationResult {
+export function simulateTM(rawMachine: TMMachine, inputString: string, maxSteps = 1000): SimulationResult {
+  const machine = {
+    ...rawMachine,
+    states: rawMachine.states || [],
+    transitions: rawMachine.transitions || [],
+    acceptStates: rawMachine.acceptStates || [],
+    rejectStates: rawMachine.rejectStates || [],
+    inputAlphabet: rawMachine.inputAlphabet || [],
+    tapeAlphabet: rawMachine.tapeAlphabet || [],
+  };
   const blank = machine.blankSymbol || '_';
   const startState = machine.startState;
   const traces: SimulationStepTrace[] = [];
@@ -37,6 +48,7 @@ export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1
   const inputChars = inputString.length > 0 ? inputString.split('') : [blank];
   const tape: string[] = [...inputChars];
   let headIndex = 0; // head starts at position 0
+  let virtualOffset = 0;
   let currentState = startState;
 
   // Add initial trace
@@ -48,6 +60,7 @@ export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1
     remainingInput: inputString,
     tape: [...tape],
     headIndex: headIndex,
+    tapeOffset: virtualOffset,
     actionSummary: `Initial Configuration: State ${currentState}, Head at index 0 reading '${tape[headIndex]}'`,
     status: 'RUNNING',
   });
@@ -90,6 +103,7 @@ export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1
         remainingInput: '',
         tape: [...tape],
         headIndex: headIndex,
+        tapeOffset: virtualOffset,
         actionSummary: `No transition found for (State: ${currentState}, Symbol: '${currentRead}'). Halted (${isAccept ? 'ACCEPT' : 'REJECT'}).`,
         status: haltStatus,
       });
@@ -115,6 +129,7 @@ export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1
       dirDesc = 'Move Left';
       if (headIndex === 0) {
         tape.unshift(blank);
+        virtualOffset -= 1;
         // headIndex remains 0
       } else {
         headIndex -= 1;
@@ -147,6 +162,7 @@ export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1
       remainingInput: '',
       tape: [...tape],
       headIndex: headIndex,
+      tapeOffset: virtualOffset,
       activeTransitionId: transition.id,
       actionSummary: actionDesc,
       status: stepStatus,
@@ -180,9 +196,9 @@ export function simulateTM(machine: TMMachine, inputString: string, maxSteps = 1
 
   return {
     accepted: false,
-    finalStatus: 'HALTED_REJECT',
+    finalStatus: 'TIMEOUT',
     traces,
     totalSteps: traces.length,
-    message: `Turing machine simulation exceeded maximum steps (${maxSteps}). Execution stopped.`,
+    message: `Simulation reached maximum step limit (${maxSteps}) and was terminated. This may indicate an infinite loop.`,
   };
 }
