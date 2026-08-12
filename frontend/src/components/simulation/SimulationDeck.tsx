@@ -118,8 +118,8 @@ export const SimulationDeck: React.FC = () => {
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-between border-t border-outline-variant/20 pt-2 pb-1">
-        <div id="tour-sim-input" className="flex items-center gap-4 w-1/3">
+      <div className="flex flex-col md:flex-row items-center justify-between border-t border-outline-variant/20 pt-2 pb-1 gap-2 md:gap-0">
+        <div id="tour-sim-input" className="flex items-center gap-4 w-full md:w-1/3">
           <input
             type="text"
             value={inputString}
@@ -132,7 +132,7 @@ export const SimulationDeck: React.FC = () => {
           />
         </div>
         
-        <div id="tour-sim-play" className="flex items-center justify-center">
+        <div id="tour-sim-play" className="flex items-center justify-center w-full md:w-auto">
           {!simulationResult ? (
               <button onClick={() => {
                 runSimulation();
@@ -141,7 +141,7 @@ export const SimulationDeck: React.FC = () => {
                 <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
               </button>
            ) : (
-              <div className="flex items-center gap-1 bg-surface-container/40 backdrop-blur-md rounded-full px-3 py-1 border border-outline-variant/20 shadow-inner">
+              <div className="flex items-center gap-1 bg-surface-container/40 backdrop-blur-md rounded-full px-3 py-1 border border-outline-variant/20 shadow-inner w-full md:w-auto justify-center">
                 <button onClick={stepBackward} disabled={currentStepIndex === 0} className="p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
                   <span className="material-symbols-outlined text-xl">skip_previous</span>
                 </button>
@@ -155,7 +155,7 @@ export const SimulationDeck: React.FC = () => {
                 <button onClick={stepForward} disabled={isFinalStep} className="p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
                   <span className="material-symbols-outlined text-xl">skip_next</span>
                 </button>
-                <div className="w-[1px] h-5 bg-outline-variant/30 mx-1"></div>
+                <div className="hidden md:block w-[1px] h-5 bg-outline-variant/30 mx-1"></div>
                 <button onClick={resetSimulation} className="p-1.5 rounded-full text-on-surface-variant hover:text-rose-400 hover:bg-surface-variant/50 transition-all" title="Reset Simulation">
                    <span className="material-symbols-outlined text-[18px]">replay</span>
                 </button>
@@ -163,9 +163,9 @@ export const SimulationDeck: React.FC = () => {
            )}
         </div>
 
-        <div id="tour-sim-speed" className="flex items-center gap-2 w-1/3 justify-end">
+        <div id="tour-sim-speed" className="flex items-center gap-2 w-full md:w-1/3 justify-center md:justify-end">
           <span className="material-symbols-outlined text-on-surface-variant text-sm">speed</span>
-          <div className="flex items-center bg-surface-container/40 backdrop-blur-md rounded-lg p-1 border border-outline-variant/20 mr-2 text-[10px] font-mono font-bold shadow-inner">
+          <div className="flex items-center bg-surface-container/40 backdrop-blur-md rounded-lg p-1 border border-outline-variant/20 md:mr-2 text-[10px] font-mono font-bold shadow-inner">
             <button onClick={() => setPlaybackSpeed(0.5)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 0.5 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>.5x</button>
             <button onClick={() => setPlaybackSpeed(1.0)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 1.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>1x</button>
             <button onClick={() => setPlaybackSpeed(2.0)} className={`px-2 py-1 rounded-md transition-all ${playbackSpeed === 2.0 ? 'bg-cyan-500/20 text-cyan-400 shadow-[inset_0_1px_4px_rgba(6,182,212,0.3)]' : 'text-on-surface-variant hover:text-on-surface'}`}>2x</button>

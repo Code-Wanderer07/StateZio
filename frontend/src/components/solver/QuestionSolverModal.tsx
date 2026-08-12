@@ -220,8 +220,8 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container/50 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
-      <div className="relative w-full max-w-6xl h-[90vh] bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-on-surface dark:text-on-surface">
+    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 bg-surface-container/50 dark:bg-black/80 backdrop-blur-xs animate-in fade-in duration-200 select-none">
+      <div className="relative w-full md:max-w-6xl h-[100dvh] md:h-[90vh] bg-surface-container dark:bg-background border-0 md:border md:border-cyan-300 dark:md:border-cyan-500/30 rounded-none md:rounded-2xl shadow-2xl flex flex-col overflow-hidden text-on-surface dark:text-on-surface">
 
         {/* ── Header ─────────────────────────────────────────────────────────── */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-outline-variant/30 bg-surface-container-high shrink-0">

@@ -120,8 +120,16 @@ export const App: React.FC = () => {
         {/* Preset Sidebar (Desktop Modal/Drawer) */}
         {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
 
-        {/* Center Canvas Area (Visible always on Desktop, visible on Mobile if tab is canvas) */}
-        <div className={`flex-1 relative ${mobileActiveTab !== 'canvas' ? 'hidden md:flex' : 'flex'} flex-col min-h-0 min-w-0 dot-grid z-0 md:mr-80`}>
+        {/* Mobile Top Pill Navigation */}
+        <div className="md:hidden absolute top-4 left-1/2 -translate-x-1/2 z-40 bg-surface-container-high/90 backdrop-blur-2xl rounded-xl border border-outline-variant/30 shadow-[0_0_20px_rgba(0,0,0,0.5)] p-1 flex gap-1 font-code text-xs">
+           <button onClick={() => setMobileActiveTab('canvas')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'canvas' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Canvas</button>
+           <button onClick={() => setMobileActiveTab('trace')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'trace' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Trace</button>
+           <button onClick={() => setMobileActiveTab('batch')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'batch' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Batch</button>
+           <button onClick={() => setMobileActiveTab('tuples')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'tuples' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Tuples</button>
+        </div>
+
+        {/* Center Canvas Area (Visible always on Desktop, visible on Mobile always as background) */}
+        <div className={`flex-1 relative flex flex-col min-h-0 min-w-0 dot-grid z-0 md:mr-80`}>
           <AutomataCanvas />
         </div>
 
@@ -176,33 +184,25 @@ export const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Views Content (When tab is not Canvas) */}
-        <div className={`md:hidden flex-1 relative flex-col ${mobileActiveTab === 'canvas' ? 'hidden' : 'flex'} bg-background p-4 overflow-y-auto`}>
-           {mobileActiveTab === 'trace' && (
-             <div className="space-y-4">
-                <SimulationDeck />
-                <ExecutionTraceTable />
-             </div>
-           )}
-           {mobileActiveTab === 'batch' && <BatchTester />}
-           {mobileActiveTab === 'tuples' && <MachineProperties />}
+        {/* Mobile Floating Simulation Deck (Bottom, above controls) */}
+        <div className="md:hidden absolute bottom-24 left-4 right-4 z-40 pointer-events-none flex justify-center">
+          <div className="glass-panel rounded-xl p-2 flex flex-col gap-2 shadow-2xl pointer-events-auto w-full max-w-md">
+            <SimulationDeck />
+          </div>
         </div>
 
-        {/* Mobile Floating Bottom Dock */}
-        <nav className="md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-6 py-2 mb-4 bg-surface-container-high/80 backdrop-blur-2xl rounded-full w-fit border border-primary/20 shadow-[0_0_20px_rgba(76,215,246,0.15)] font-label-caps text-[10px]">
-          <button onClick={handleNavigateHome} className="flex flex-col items-center gap-1 text-on-surface-variant p-2 hover:text-primary transition-transform active:scale-90">
-            <span className="material-symbols-outlined">home</span>
-            <span className="sr-only">Home</span>
-          </button>
-          <button onClick={handleOpenSolver} className="flex flex-col items-center gap-1 text-on-surface-variant p-2 hover:text-primary transition-transform active:scale-90">
-            <span className="material-symbols-outlined">psychology</span>
-            <span className="sr-only">Solver</span>
-          </button>
-          <button onClick={() => setIsSidebarOpen(true)} className="flex flex-col items-center gap-1 bg-primary text-on-primary rounded-full p-2.5 shadow-[0_0_15px_#4cd7f6] active:scale-90">
-            <span className="material-symbols-outlined">auto_stories</span>
-            <span className="sr-only">Presets</span>
-          </button>
-        </nav>
+        {/* Mobile Views Content Overlays */}
+        {mobileActiveTab !== 'canvas' && (
+          <div className="md:hidden absolute inset-0 z-30 bg-background/95 backdrop-blur-md pt-16 pb-32 px-4 overflow-y-auto">
+             {mobileActiveTab === 'trace' && (
+               <div className="space-y-4">
+                  <ExecutionTraceTable />
+               </div>
+             )}
+             {mobileActiveTab === 'batch' && <BatchTester />}
+             {mobileActiveTab === 'tuples' && <MachineProperties />}
+          </div>
+        )}
 
       </main>
 
