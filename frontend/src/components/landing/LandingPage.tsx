@@ -41,7 +41,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={toggleTheme} className="hidden md:flex text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 p-2 rounded-full items-center justify-center">
+          <button onClick={toggleTheme} className="flex text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 p-2 rounded-full items-center justify-center">
             <span className="material-symbols-outlined">{theme === 'dark' ? 'light_mode' : 'dark_mode'}</span>
           </button>
           <a className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-surface-container-low/30 text-on-surface-variant hover:text-cyan-400 hover:border-cyan-400/30 transition-all active:scale-95 duration-200 shadow-sm" href="https://www.linkedin.com/in/shivakanth-m-701631380" target="_blank" rel="noopener noreferrer" title="Shivakanth's LinkedIn">

@@ -77,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={toggleTheme}
           className="text-on-surface hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-bright/50"
         >
-          <span className="material-symbols-outlined">dark_mode</span>
+          <span className="material-symbols-outlined">{theme === 'dark' ? 'light_mode' : 'dark_mode'}</span>
         </button>
       </div>
     </header>
