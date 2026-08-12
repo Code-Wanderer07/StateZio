@@ -36,7 +36,7 @@ export const CanvasControls: React.FC = () => {
           onClick={startTour}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex flex-col items-center p-1.5 md:p-1.5 rounded-lg md:rounded-full text-primary hover:text-primary-fixed hover:bg-primary/20 transition-all active:scale-95 shadow-[0_0_15px_rgba(76,215,246,0.2)] bg-primary/10" 
+          className="flex flex-col items-center p-1.5 md:p-1.5 rounded-lg md:rounded-full text-primary hover:text-cyan-300 hover:bg-primary/20 transition-all active:scale-95 shadow-[0_0_15px_rgba(76,215,246,0.2)] bg-primary/10" 
         >
           <span className="material-symbols-outlined text-xl md:text-2xl font-bold animate-pulse">school</span>
           <span className="md:hidden text-[9px] font-label-caps mt-1">Guide</span>

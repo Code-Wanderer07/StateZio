@@ -48,7 +48,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
             <span>Shivakanth</span>
             <span className="material-symbols-outlined text-[16px]">link</span>
           </a>
-          <button onClick={() => onLaunchSimulator()} className="bg-primary text-on-primary px-3 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-full font-label-caps text-xs font-bold tracking-widest hover:bg-primary-fixed transition-colors active:scale-95 duration-200 shadow-sm shadow-primary/30 md:shadow-[0_0_15px_rgba(76,215,246,0.3)] whitespace-nowrap">
+          <button onClick={() => onLaunchSimulator()} className="bg-primary text-on-primary px-3 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-full font-label-caps text-xs font-bold tracking-widest hover:brightness-110 transition-colors active:scale-95 duration-200 shadow-sm shadow-primary/30 md:shadow-[0_0_15px_rgba(76,215,246,0.3)] whitespace-nowrap">
             Launch
           </button>
         </div>

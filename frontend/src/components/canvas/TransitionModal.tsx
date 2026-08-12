@@ -373,7 +373,7 @@ export const TransitionModal: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 text-sm font-label-caps tracking-widest font-bold text-on-primary bg-primary hover:bg-primary-fixed rounded-xl shadow-[0_0_15px_rgba(76,215,246,0.3)] hover:shadow-[0_0_20px_rgba(76,215,246,0.5)] transition-all duration-200 active:scale-95"
+                  className="px-6 py-2.5 text-sm font-label-caps tracking-widest font-bold text-on-primary bg-primary hover:brightness-110 rounded-xl shadow-[0_0_15px_rgba(76,215,246,0.3)] hover:shadow-[0_0_20px_rgba(76,215,246,0.5)] transition-all duration-200 active:scale-95"
                 >
                   {isEditingMode ? 'Save Changes' : 'Add Transition'}
                 </button>
