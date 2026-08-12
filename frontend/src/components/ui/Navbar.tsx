@@ -25,8 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { machine, setMachineType, theme, toggleTheme } = useAutomataStore();
 
   return (
-    <header className="bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm sticky top-0 z-50 flex justify-between items-center px-2 sm:px-6 h-16 w-full overflow-hidden">
-      <div className="flex items-center gap-2 md:gap-6 flex-shrink-0">
+    <header className="bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm sticky top-0 z-50 flex justify-between items-center px-2 md:px-6 h-16 w-full">
+      <div className="flex items-center gap-2 md:gap-6">
         <button onClick={onNavigateHome} className="flex items-center justify-center p-1 md:p-2 -ml-1 md:-ml-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-all active:scale-95 group" title="Back to Home">
           <span className="material-symbols-outlined text-xl group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
         </button>
