@@ -143,23 +143,23 @@ export const SimulationDeck: React.FC = () => {
                   <span className="material-symbols-outlined text-xl md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                 </button>
              ) : (
-                <div className="flex items-center gap-1 bg-surface-container/40 backdrop-blur-md rounded-full px-2 py-1 md:px-3 border border-outline-variant/20 shadow-inner">
-                  <button onClick={stepBackward} disabled={currentStepIndex === 0} className="p-1 md:p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
-                    <span className="material-symbols-outlined text-lg md:text-xl">skip_previous</span>
+                <div className="flex items-center gap-0.5 md:gap-1 bg-surface-container/40 backdrop-blur-md rounded-full px-1.5 py-0.5 md:py-1 md:px-3 border border-outline-variant/20 shadow-inner">
+                  <button onClick={stepBackward} disabled={currentStepIndex === 0} className="p-0.5 md:p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
+                    <span className="material-symbols-outlined text-base md:text-xl">skip_previous</span>
                   </button>
-                  <button onClick={() => setIsPlaying(!isPlaying)} disabled={isFinalStep} className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#1C1313] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:shadow-none mx-1 md:mx-2">
+                  <button onClick={() => setIsPlaying(!isPlaying)} disabled={isFinalStep} className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-[#1C1313] flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:shadow-none mx-0.5 md:mx-2">
                     {isPlaying ? (
-                      <span className="material-symbols-outlined text-lg md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>pause</span>
+                      <span className="material-symbols-outlined text-base md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>pause</span>
                     ) : (
-                      <span className="material-symbols-outlined text-lg md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+                      <span className="material-symbols-outlined text-base md:text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                     )}
                   </button>
-                  <button onClick={stepForward} disabled={isFinalStep} className="p-1 md:p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
-                    <span className="material-symbols-outlined text-lg md:text-xl">skip_next</span>
+                  <button onClick={stepForward} disabled={isFinalStep} className="p-0.5 md:p-1.5 rounded-full text-on-surface hover:text-cyan-400 hover:bg-surface-variant/50 transition-all disabled:opacity-30">
+                    <span className="material-symbols-outlined text-base md:text-xl">skip_next</span>
                   </button>
-                  <div className="w-[1px] h-4 md:h-5 bg-outline-variant/30 mx-1"></div>
-                  <button onClick={resetSimulation} className="p-1 md:p-1.5 rounded-full text-on-surface-variant hover:text-rose-400 hover:bg-surface-variant/50 transition-all" title="Reset Simulation">
-                     <span className="material-symbols-outlined text-base md:text-[18px]">replay</span>
+                  <div className="w-[1px] h-3 md:h-5 bg-outline-variant/30 mx-0.5 md:mx-1"></div>
+                  <button onClick={resetSimulation} className="p-0.5 md:p-1.5 rounded-full text-on-surface-variant hover:text-rose-400 hover:bg-surface-variant/50 transition-all" title="Reset Simulation">
+                     <span className="material-symbols-outlined text-sm md:text-[18px]">replay</span>
                   </button>
                 </div>
              )}
