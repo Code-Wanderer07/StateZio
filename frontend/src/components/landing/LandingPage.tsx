@@ -41,15 +41,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={toggleTheme} className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center">
+          <button onClick={toggleTheme} className="hidden md:flex text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 p-2 rounded-full items-center justify-center">
             <span className="material-symbols-outlined">{theme === 'dark' ? 'light_mode' : 'dark_mode'}</span>
           </button>
           <a className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-surface-container-low/30 text-on-surface-variant hover:text-cyan-400 hover:border-cyan-400/30 transition-all active:scale-95 duration-200 shadow-sm" href="https://www.linkedin.com/in/shivakanth-m-701631380" target="_blank" rel="noopener noreferrer" title="Shivakanth's LinkedIn">
             <span>Shivakanth</span>
             <span className="material-symbols-outlined text-[16px]">link</span>
           </a>
-          <button onClick={() => onLaunchSimulator()} className="bg-primary text-on-primary px-4 py-2 rounded-full font-label-caps text-xs font-bold tracking-widest hover:bg-primary-fixed transition-colors active:scale-95 duration-200 shadow-[0_0_15px_rgba(76,215,246,0.3)] hover:shadow-[0_0_20px_rgba(76,215,246,0.5)] whitespace-nowrap">
-            Launch Simulator
+          <button onClick={() => onLaunchSimulator()} className="bg-primary text-on-primary px-3 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-full font-label-caps text-xs font-bold tracking-widest hover:bg-primary-fixed transition-colors active:scale-95 duration-200 shadow-sm shadow-primary/30 md:shadow-[0_0_15px_rgba(76,215,246,0.3)] whitespace-nowrap">
+            Launch
           </button>
         </div>
       </nav>
@@ -65,7 +65,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
         <div id="about" className="relative z-10 w-full max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 scroll-mt-24 mt-8 md:mt-16">
           
           {/* Left Column: Text & Buttons */}
-          <div className="text-left flex flex-col items-start z-20">
+          <div className="text-center lg:text-left flex flex-col items-center lg:items-start z-20">
             {/* Badge */}
             <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary mb-6 text-sm font-code">
               <span className="material-symbols-outlined text-[16px]">science</span>
@@ -73,18 +73,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
             </div>
             
             <h1 className="font-display-lg text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface mb-6 leading-tight tracking-tight">
-              Master the <span className="text-primary">Theory of Computation</span>
+              Master the <br className="md:hidden" /><span className="text-primary">Theory of Computation</span>
             </h1>
-            <p className="font-body-lg text-lg text-on-surface-variant mb-8 max-w-lg">
-              A visual, interactive environment for designing, simulating, and analyzing automata. From finite states to Turing completeness, see logic come to life.
+            <p className="font-body-lg text-base md:text-lg text-on-surface-variant mb-8 max-w-lg">
+              Interactive automata simulator. Design, visualize, and debug deterministic and non-deterministic state machines in a high-performance Cyber-Educational environment.
             </p>
             
-            <div className="flex flex-wrap items-center gap-4">
-              <button onClick={() => onLaunchSimulator('DFA')} className="bg-primary/90 text-on-primary px-6 py-3 rounded-md font-label-caps font-bold tracking-wider hover:bg-primary transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 duration-200">
-                Start Simulating
+            <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+              <button onClick={() => onLaunchSimulator('DFA')} className="w-full md:w-auto flex justify-center items-center gap-2 bg-primary/90 text-on-primary px-6 py-3 rounded-md font-label-caps font-bold tracking-wider hover:bg-primary transition-all shadow-md hover:-translate-y-0.5 active:translate-y-0 duration-200">
+                <span className="material-symbols-outlined text-[18px]">play_arrow</span> Start Simulating
               </button>
-              <a href="https://github.com/Code-Wanderer07/StateZio" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-md font-label-caps font-bold tracking-wider border border-outline-variant/50 text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-2 hover:-translate-y-0.5 active:translate-y-0 duration-200 shadow-sm">
-                View Source Code <span className="material-symbols-outlined text-[18px]">code</span>
+              <a href="https://github.com/Code-Wanderer07/StateZio" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto flex justify-center items-center gap-2 px-6 py-3 rounded-md font-label-caps font-bold tracking-wider border border-outline-variant/50 text-on-surface hover:bg-surface-container-high transition-all hover:-translate-y-0.5 active:translate-y-0 duration-200 shadow-sm">
+                <span className="material-symbols-outlined text-[18px]">menu_book</span> Docs
               </a>
             </div>
           </div>
@@ -213,24 +213,44 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
         </div>
 
         {/* Capabilities Section */}
-        <div id="capabilities" className="relative z-10 w-full max-w-[1000px] mx-auto mt-24 md:mt-32 border-t border-outline-variant/20 pt-16">
-          <h2 className="font-headline-md text-3xl font-semibold text-on-surface mb-12 text-center">Platform Capabilities</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 hover:border-primary/50 transition-colors">
-              <h3 className="font-headline-sm text-xl font-semibold text-primary mb-2 flex items-center gap-2"><span className="material-symbols-outlined text-[20px]">draw</span> Interactive Canvas</h3>
-              <p className="font-body-md text-on-surface-variant">Drag, drop, and auto-layout complex state machines with a robust ReactFlow visual editor.</p>
+        <div id="capabilities" className="relative z-10 w-full max-w-[1000px] mx-auto mt-24 md:mt-32 border-t border-outline-variant/20 pt-16 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            {/* Card 1: Live Execution */}
+            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-2xl p-6 hover:border-primary/50 transition-colors shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-[20px] text-primary">visibility</span>
+              </div>
+              <h3 className="font-headline-sm text-lg font-bold text-on-surface mb-3">Live Execution</h3>
+              <p className="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                Watch your machine process strings character by character with glowing active state highlights.
+              </p>
             </div>
-            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 hover:border-secondary/50 transition-colors">
-              <h3 className="font-headline-sm text-xl font-semibold text-secondary mb-2 flex items-center gap-2"><span className="material-symbols-outlined text-[20px]">slow_motion_video</span> Real-Time Simulation</h3>
-              <p className="font-body-md text-on-surface-variant">Step through string evaluations node-by-node and watch state transitions light up dynamically.</p>
+            {/* Card 2: Graph Editor */}
+            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-2xl p-6 hover:border-secondary/50 transition-colors shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-[20px] text-secondary">account_tree</span>
+              </div>
+              <h3 className="font-headline-sm text-lg font-bold text-on-surface mb-3">Graph Editor</h3>
+              <p className="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                Drag and drop states. Connect edges smoothly with auto-routing bezier curves in a fluid canvas.
+              </p>
             </div>
-            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 hover:border-tertiary/50 transition-colors">
-              <h3 className="font-headline-sm text-xl font-semibold text-tertiary mb-2 flex items-center gap-2"><span className="material-symbols-outlined text-[20px]">fork_right</span> Algorithmic Conversion</h3>
-              <p className="font-body-md text-on-surface-variant">Instantly convert NFAs into their equivalent DFAs using built-in subset construction tools.</p>
-            </div>
-            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-xl p-6 hover:border-error/50 transition-colors">
-              <h3 className="font-headline-sm text-xl font-semibold text-error mb-2 flex items-center gap-2"><span className="material-symbols-outlined text-[20px]">quiz</span> TOC Question Bank</h3>
-              <p className="font-body-md text-on-surface-variant">Test your knowledge against a comprehensive library of theory questions covering DFA to Turing Machines.</p>
+            {/* Card 3: Formal Verification */}
+            <div className="bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/30 rounded-2xl p-6 hover:border-tertiary/50 transition-colors shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-[20px] text-tertiary">fact_check</span>
+              </div>
+              <h3 className="font-headline-sm text-lg font-bold text-on-surface mb-3">Formal Verification</h3>
+              <p className="font-body-md text-sm text-on-surface-variant leading-relaxed mb-6">
+                Automatically detect non-determinism, unreachable states, and test for language equivalency.
+              </p>
+              <div className="flex gap-2 p-2 bg-surface-container/50 border border-outline-variant/30 rounded-lg w-max">
+                <div className="w-6 h-8 bg-surface-container flex items-center justify-center rounded border border-outline-variant/50 text-on-surface-variant text-[10px] font-code">1</div>
+                <div className="w-6 h-8 bg-surface-container flex items-center justify-center rounded border border-outline-variant/50 text-on-surface-variant text-[10px] font-code">0</div>
+                <div className="w-6 h-8 bg-tertiary/20 flex items-center justify-center rounded border border-tertiary text-tertiary text-[10px] font-code shadow-[0_0_8px_rgba(45,212,191,0.3)]">0</div>
+                <div className="w-6 h-8 bg-surface-container flex items-center justify-center rounded border border-outline-variant/50 text-on-surface-variant text-[10px] font-code">1</div>
+                <div className="w-6 h-8 bg-surface-container flex items-center justify-center rounded border border-outline-variant/50 text-on-surface-variant text-[10px] font-code">0</div>
+              </div>
             </div>
           </div>
         </div>
