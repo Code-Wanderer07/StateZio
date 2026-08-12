@@ -76,25 +76,31 @@ export const ExportImportModal: React.FC = () => {
         if (xssRegex.test(parsed.name)) throw new Error('Automata name contains invalid characters (< or >).');
         if (parsed.name.length > 100) throw new Error('Automata name is too long (max 100 chars).');
       }
-      
       parsed.states.forEach(state => {
-        if (typeof state !== 'string') throw new Error('State names must be strings.');
-        if (xssRegex.test(state)) {
-          throw new Error(`State name "${state}" contains invalid characters (< or >).`);
+        if (!state || typeof state.id !== 'string') throw new Error('State IDs must be strings.');
+        if (xssRegex.test(state.id) || (state.label && xssRegex.test(state.label))) {
+          throw new Error(`State name "${state.id}" contains invalid characters (< or >).`);
         }
-        if (state.length > 50) throw new Error('State name is too long (max 50 chars).');
+        if (state.id.length > 50) throw new Error('State ID is too long (max 50 chars).');
       });
       
-      if (Array.isArray(parsed.alphabet)) {
-        parsed.alphabet.forEach(symbol => {
-          if (typeof symbol !== 'string') throw new Error('Alphabet symbols must be strings.');
-          if (xssRegex.test(symbol)) {
-            throw new Error(`Alphabet symbol "${symbol}" contains invalid characters (< or >).`);
-          }
-          if (symbol.length > 10) throw new Error('Alphabet symbol is too long (max 10 chars).');
-        });
-      }
+      const alphabetsToCheck = [];
+      if ('alphabet' in parsed) alphabetsToCheck.push(parsed.alphabet);
+      if ('inputAlphabet' in parsed) alphabetsToCheck.push(parsed.inputAlphabet);
+      if ('stackAlphabet' in parsed) alphabetsToCheck.push(parsed.stackAlphabet);
+      if ('tapeAlphabet' in parsed) alphabetsToCheck.push(parsed.tapeAlphabet);
 
+      alphabetsToCheck.forEach(alphabetArray => {
+        if (Array.isArray(alphabetArray)) {
+          alphabetArray.forEach((symbol: unknown) => {
+            if (typeof symbol !== 'string') throw new Error('Alphabet symbols must be strings.');
+            if (xssRegex.test(symbol)) {
+              throw new Error(`Alphabet symbol "${symbol}" contains invalid characters (< or >).`);
+            }
+            if (symbol.length > 10) throw new Error('Alphabet symbol is too long (max 10 chars).');
+          });
+        }
+      });
       setMachine(parsed);
       setIsExportImportOpen(false);
     } catch (err: unknown) {
