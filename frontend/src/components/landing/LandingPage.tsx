@@ -133,18 +133,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
           {/* Bento Grid layout */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             
-            {/* DFA Card (Wide, Top Left) */}
-            <div onClick={() => onLaunchSimulator('DFA')} className="col-span-1 md:col-span-8 group relative bg-[#1a1d24] border border-outline-variant/30 hover:border-primary/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(76,215,246,0.15)] cursor-pointer min-h-[240px] flex flex-col justify-end">
-              {/* Radial glow */}
-              <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 group-hover:bg-primary/30 transition-colors pointer-events-none"></div>
+            {/* DFA Card (Large) */}
+            <div onClick={() => onLaunchSimulator('DFA')} className="col-span-1 md:col-span-8 group relative bg-surface-container-low/90 dark:bg-[#1a1d24] border border-outline-variant/30 hover:border-primary/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(5,150,105,0.15)] dark:hover:shadow-[0_0_40px_rgba(76,215,246,0.15)] cursor-pointer min-h-[240px] flex flex-col justify-end shadow-sm">
+              <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 group-hover:bg-primary/30 transition-colors pointer-events-none"></div>
               
               <div className="absolute top-6 left-6 text-primary">
                 <span className="material-symbols-outlined text-[24px]">account_tree</span>
               </div>
               
-              <div className="relative z-10 mt-12 pr-12">
-                <h3 className="font-headline-sm text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Deterministic Finite Automata</h3>
-                <p className="font-body-md text-sm text-on-surface-variant/80 max-w-[400px]">Design strict state machines where every transition is explicitly defined. Perfect for lexical analysis and pattern matching.</p>
+              <div className="relative z-10 mt-12">
+                <h3 className="font-headline-sm text-3xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Deterministic Finite Automata</h3>
+                <p className="font-body-md text-base text-on-surface-variant/80 max-w-[450px]">Design strict state machines where every transition is explicitly defined. Perfect for lexical analysis and pattern matching.</p>
               </div>
               
               <div className="absolute bottom-6 right-6 text-on-surface-variant group-hover:text-primary transition-colors">
@@ -153,7 +152,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
             </div>
 
             {/* NFA Card (Narrow, Top Right) */}
-            <div onClick={() => onLaunchSimulator('NFA')} className="col-span-1 md:col-span-4 group relative bg-[#1a1d24] border border-outline-variant/30 hover:border-secondary/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(221,184,255,0.15)] cursor-pointer min-h-[240px] flex flex-col justify-end">
+            <div onClick={() => onLaunchSimulator('NFA')} className="col-span-1 md:col-span-4 group relative bg-surface-container-low/90 dark:bg-[#1a1d24] border border-outline-variant/30 hover:border-secondary/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(126,34,206,0.15)] dark:hover:shadow-[0_0_30px_rgba(221,184,255,0.15)] cursor-pointer min-h-[240px] flex flex-col justify-end shadow-sm">
               <div className="absolute top-0 right-0 w-[250px] h-[250px] bg-secondary/20 rounded-full blur-[80px] translate-x-1/3 -translate-y-1/3 group-hover:bg-secondary/30 transition-colors pointer-events-none"></div>
               
               <div className="absolute top-6 left-6 text-secondary">
@@ -167,10 +166,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
             </div>
 
             {/* PDA Card (Narrow, Bottom Left) */}
-            <div onClick={() => onLaunchSimulator('PDA')} className="col-span-1 md:col-span-4 group relative bg-[#1a1d24] border border-outline-variant/30 hover:border-tertiary/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,180,171,0.15)] cursor-pointer min-h-[240px] flex flex-col justify-end">
+            <div onClick={() => onLaunchSimulator('PDA')} className="col-span-1 md:col-span-4 group relative bg-surface-container-low/90 dark:bg-[#1a1d24] border border-outline-variant/30 hover:border-tertiary/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.15)] dark:hover:shadow-[0_0_30px_rgba(255,180,171,0.15)] cursor-pointer min-h-[240px] flex flex-col justify-end shadow-sm">
               <div className="absolute bottom-0 left-0 w-[250px] h-[250px] bg-tertiary/20 rounded-full blur-[80px] -translate-x-1/3 translate-y-1/3 group-hover:bg-tertiary/30 transition-colors pointer-events-none"></div>
               
-              <div className="absolute top-6 left-6 text-on-surface">
+              <div className="absolute top-6 left-6 text-tertiary">
                 <span className="material-symbols-outlined text-[24px]">layers</span>
               </div>
               
@@ -181,7 +180,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
             </div>
 
             {/* TM Card (Wide, Bottom Right) */}
-            <div onClick={() => onLaunchSimulator('TM')} className="col-span-1 md:col-span-8 group relative bg-[#1a1d24] border border-outline-variant/30 hover:border-warning/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,200,0,0.1)] cursor-pointer min-h-[240px] flex flex-col justify-end">
+            <div onClick={() => onLaunchSimulator('TM')} className="col-span-1 md:col-span-8 group relative bg-surface-container-low/90 dark:bg-[#1a1d24] border border-outline-variant/30 hover:border-warning/50 rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] dark:hover:shadow-[0_0_30px_rgba(255,200,0,0.1)] cursor-pointer min-h-[240px] flex flex-col justify-end shadow-sm">
               <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-warning/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 group-hover:bg-warning/20 transition-colors pointer-events-none"></div>
               
               <div className="absolute top-6 left-6 text-warning">
