@@ -69,6 +69,32 @@ export const ExportImportModal: React.FC = () => {
         throw new Error('Invalid automata format: "startState" must be a string.');
       }
 
+      // Guard: Sanitize strings to prevent injection (defense-in-depth)
+      const xssRegex = /[<>]/;
+      
+      if (parsed.name && typeof parsed.name === 'string') {
+        if (xssRegex.test(parsed.name)) throw new Error('Automata name contains invalid characters (< or >).');
+        if (parsed.name.length > 100) throw new Error('Automata name is too long (max 100 chars).');
+      }
+      
+      parsed.states.forEach(state => {
+        if (typeof state !== 'string') throw new Error('State names must be strings.');
+        if (xssRegex.test(state)) {
+          throw new Error(`State name "${state}" contains invalid characters (< or >).`);
+        }
+        if (state.length > 50) throw new Error('State name is too long (max 50 chars).');
+      });
+      
+      if (Array.isArray(parsed.alphabet)) {
+        parsed.alphabet.forEach(symbol => {
+          if (typeof symbol !== 'string') throw new Error('Alphabet symbols must be strings.');
+          if (xssRegex.test(symbol)) {
+            throw new Error(`Alphabet symbol "${symbol}" contains invalid characters (< or >).`);
+          }
+          if (symbol.length > 10) throw new Error('Alphabet symbol is too long (max 10 chars).');
+        });
+      }
+
       setMachine(parsed);
       setIsExportImportOpen(false);
     } catch (err: unknown) {
