@@ -32,12 +32,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchSimulator, onO
               <span className="ml-1 text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-md self-start mt-0.5">2.0</span>
             </div>
           </div>
-          <div className="hidden md:flex gap-6">
-            <a href="#about" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-3 py-1 rounded-md cursor-pointer">About</a>
-            <a href="#how-it-works" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-3 py-1 rounded-md cursor-pointer">How it Works</a>
-            <a href="#capabilities" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-3 py-1 rounded-md cursor-pointer">Capabilities</a>
-            <a href="#automata-models" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-3 py-1 rounded-md cursor-pointer">Automata Models</a>
-            <a href="#question-solver" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-3 py-1 rounded-md cursor-pointer">Question Solver</a>
+          <div className="hidden lg:flex gap-2 xl:gap-6 text-sm xl:text-base whitespace-nowrap">
+            <a href="#about" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-2 xl:px-3 py-1 rounded-md cursor-pointer">About</a>
+            <a href="#how-it-works" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-2 xl:px-3 py-1 rounded-md cursor-pointer">How it Works</a>
+            <a href="#capabilities" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-2 xl:px-3 py-1 rounded-md cursor-pointer">Capabilities</a>
+            <a href="#automata-models" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-2 xl:px-3 py-1 rounded-md cursor-pointer">Automata Models</a>
+            <a href="#question-solver" className="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-bright/50 active:scale-95 duration-200 px-2 xl:px-3 py-1 rounded-md cursor-pointer">Question Solver</a>
           </div>
         </div>
         <div className="flex items-center gap-4">
