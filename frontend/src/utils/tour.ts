@@ -15,6 +15,13 @@ export const startTour = () => {
       }
     },
     {
+      popover: {
+        title: 'Draw Transitions',
+        description: 'To connect states, simply hover over any state, click and drag from the small dot on its edge, and drop it onto another state!',
+        align: 'center'
+      }
+    },
+    {
       element: '#tour-auto-layout',
       popover: {
         title: 'Auto Layout',
