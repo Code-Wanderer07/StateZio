@@ -68,9 +68,9 @@ export const CanvasControls: React.FC = () => {
         <span className="material-symbols-outlined text-xl">auto_awesome</span>
         <span className="md:hidden text-[9px] font-label-caps mt-1">Layout</span>
       </button>
-      <button onClick={clearCanvas} className="flex flex-col items-center flex-shrink-0 p-1.5 rounded-lg md:rounded-full text-on-surface-variant hover:text-error hover:bg-surface-bright/50 transition-all active:scale-95" title="Clear Canvas">
-        <span className="material-symbols-outlined text-xl">layers_clear</span>
-        <span className="md:hidden text-[9px] font-label-caps mt-1">Clear</span>
+      <button onClick={clearCanvas} className="flex flex-col items-center flex-shrink-0 p-1.5 rounded-lg md:rounded-full text-on-surface-variant hover:text-error hover:bg-surface-bright/50 transition-all active:scale-95" title="Clear Graph">
+        <span className="material-symbols-outlined text-xl">delete_sweep</span>
+        <span className="md:hidden text-[9px] font-label-caps mt-1">Clear All</span>
       </button>
 
       {/* Export/Import was in the old toolbar, adding it here */}
