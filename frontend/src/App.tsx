@@ -128,7 +128,9 @@ export const App: React.FC = () => {
              <button onClick={() => setMobileActiveTab('batch')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'batch' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Batch</button>
              <button onClick={() => setMobileActiveTab('tuples')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'tuples' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Tuples</button>
           </div>
-          <span className="text-[9px] text-on-surface-variant/50 font-medium tracking-wide">For a richer experience, try our desktop site.</span>
+          {mobileActiveTab === 'canvas' && (
+            <span className="text-[9px] text-on-surface-variant/50 font-medium tracking-wide drop-shadow-sm">For a richer experience, try our desktop site.</span>
+          )}
         </div>
 
         {/* Center Canvas Area (Visible always on Desktop, visible on Mobile always as background) */}
