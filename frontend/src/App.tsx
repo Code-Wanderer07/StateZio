@@ -190,15 +190,17 @@ export const App: React.FC = () => {
         </div>
 
         {/* Mobile Floating Simulation Deck (Bottom, joined to controls) */}
-        <div className="md:hidden absolute bottom-[63px] left-0 right-0 z-40 pointer-events-none flex justify-center">
-          <div className="rounded-t-2xl p-2 pb-1 flex flex-col gap-1 shadow-[0_-15px_40px_rgba(0,0,0,0.5)] pointer-events-auto w-full bg-surface-container-highest/90 backdrop-blur-2xl border-t border-outline-variant/30">
-            <SimulationDeck />
+        {mobileActiveTab === 'canvas' && (
+          <div className="md:hidden absolute bottom-[63px] left-0 right-0 z-40 pointer-events-none flex justify-center">
+            <div className="rounded-t-2xl p-2 pb-1 flex flex-col gap-1 shadow-[0_-15px_40px_rgba(0,0,0,0.5)] pointer-events-auto w-full bg-surface-container-highest/90 backdrop-blur-2xl border-t border-outline-variant/30">
+              <SimulationDeck />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Mobile Views Content Overlays */}
         {mobileActiveTab !== 'canvas' && (
-          <div className="md:hidden absolute inset-0 z-30 bg-background/95 backdrop-blur-md pt-20 pb-[200px] px-4 overflow-y-auto">
+          <div className="md:hidden absolute inset-0 z-30 bg-background/95 backdrop-blur-md pt-20 pb-32 px-4 overflow-y-auto">
              {mobileActiveTab === 'trace' && (
                <div className="space-y-4">
                   <ExecutionTraceTable />
