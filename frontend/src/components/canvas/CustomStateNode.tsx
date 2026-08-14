@@ -113,7 +113,7 @@ export const CustomStateNode = React.memo<NodeProps>(({ id, data, selected }) =>
       </div>
 
       {/* Floating Action Menu on Node Hover / Selection */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-full px-2 py-0.5 shadow-2xl opacity-0 group-hover:opacity-100 hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-auto">
+      <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-full px-2 py-0.5 shadow-2xl transition-opacity duration-200 z-20 pointer-events-auto ${selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 hover:opacity-100'}`}>
         <button
           onClick={(e) => {
             e.stopPropagation();

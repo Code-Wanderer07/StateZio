@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { X, ArrowRight, ArrowLeftRight, Trash2, Edit3, Plus } from 'lucide-react';
+import { X, ArrowRight, ArrowLeftRight, Trash2, Edit3, Plus, Info } from 'lucide-react';
 import { useAutomataStore } from '../../store/useAutomataStore';
 import { DFAMachine, NFAMachine, PDAMachine, TMMachine, DFATransition, NFATransition, PDATransition, TMTransition } from '../../types/automata';
 
@@ -208,6 +208,10 @@ export const TransitionModal: React.FC = () => {
 
           {showForm && (
             <form onSubmit={handleSubmit} className="p-6 space-y-5">
+              <div className="text-[11px] text-primary/80 bg-primary/10 px-3 py-2 rounded-lg border border-primary/20 flex items-center gap-2">
+                <Info className="w-4 h-4 shrink-0" />
+                <span>Note: Multiple transitions between the same states are visually grouped into a single line.</span>
+              </div>
               {(machine.type === 'DFA' || machine.type === 'NFA') && (
                 <div className="space-y-3">
                   <label className="block text-xs font-semibold text-on-surface-variant">
@@ -243,7 +247,10 @@ export const TransitionModal: React.FC = () => {
                 <div className="space-y-4">
                   <div className="grid grid-cols-3 gap-3">
                     <div>
-                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Input Symbol</label>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">
+                        Input Symbol
+                        <span className="block text-[9px] font-normal opacity-70 mt-0.5">Read from string</span>
+                      </label>
                       <input
                         type="text"
                         value={inputSymbol}
@@ -259,7 +266,10 @@ export const TransitionModal: React.FC = () => {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Pop from Stack</label>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">
+                        Pop from Stack
+                        <span className="block text-[9px] font-normal opacity-70 mt-0.5">Top of stack</span>
+                      </label>
                       <input
                         type="text"
                         value={popSymbol}
@@ -274,7 +284,10 @@ export const TransitionModal: React.FC = () => {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Push to Stack</label>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">
+                        Push to Stack
+                        <span className="block text-[9px] font-normal opacity-70 mt-0.5">Add to stack</span>
+                      </label>
                       <input
                         type="text"
                         value={pushSymbols}
@@ -300,7 +313,10 @@ export const TransitionModal: React.FC = () => {
                 <div className="space-y-4">
                   <div className="grid grid-cols-3 gap-3">
                     <div>
-                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Read Symbol</label>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">
+                        Read Symbol
+                        <span className="block text-[9px] font-normal opacity-70 mt-0.5">Current tape cell</span>
+                      </label>
                       <input
                         type="text"
                         value={readSymbol}
@@ -316,7 +332,10 @@ export const TransitionModal: React.FC = () => {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Write Symbol</label>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">
+                        Write Symbol
+                        <span className="block text-[9px] font-normal opacity-70 mt-0.5">Update tape cell</span>
+                      </label>
                       <input
                         type="text"
                         value={writeSymbol}
@@ -331,7 +350,10 @@ export const TransitionModal: React.FC = () => {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">Head Movement</label>
+                      <label className="block text-xs font-semibold text-on-surface-variant mb-1">
+                        Head Movement
+                        <span className="block text-[9px] font-normal opacity-70 mt-0.5">Tape head direction</span>
+                      </label>
                       <div className="flex rounded-lg overflow-hidden border border-outline-variant/30 p-0.5 bg-surface-container">
                         {(['L', 'R', 'S'] as const).map((dir) => (
                           <button
