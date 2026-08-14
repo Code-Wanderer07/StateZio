@@ -62,7 +62,14 @@ export function convertNFAToDFA(rawNfa: NFAMachine): SubsetConstructionResult {
   const tableRows: SubsetRow[] = [];
   const dfaTransitions: DFATransition[] = [];
 
+  const MAX_STATES = 1024; // Guard against powerset explosion (2^N)
+
   while (queue.length > 0) {
+    if (stateMap.size >= MAX_STATES) {
+      stepsExplanation.push(`\n[WARNING] Subset construction halted early! Maximum state limit (${MAX_STATES}) reached to prevent browser crash.`);
+      break;
+    }
+
     const currentSet = queue.shift()!;
     const key = setKey(currentSet);
     if (visitedKeys.has(key)) continue;
