@@ -120,12 +120,15 @@ export const App: React.FC = () => {
         {/* Preset Sidebar (Desktop Modal/Drawer) */}
         {isSidebarOpen && <PresetSidebar onClose={() => setIsSidebarOpen(false)} />}
 
-        {/* Mobile Top Pill Navigation */}
-        <div id="mobile-tour-tabs" className="md:hidden absolute top-4 left-1/2 -translate-x-1/2 z-40 bg-surface-container-high/90 backdrop-blur-2xl rounded-xl border border-outline-variant/30 shadow-[0_0_20px_rgba(0,0,0,0.5)] p-1 flex gap-1 font-code text-xs">
-           <button onClick={() => setMobileActiveTab('canvas')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'canvas' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Canvas</button>
-           <button onClick={() => setMobileActiveTab('trace')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'trace' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Trace</button>
-           <button onClick={() => setMobileActiveTab('batch')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'batch' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Batch</button>
-           <button onClick={() => setMobileActiveTab('tuples')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'tuples' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Tuples</button>
+        {/* Mobile Top Pill Navigation & Desktop Hint */}
+        <div className="md:hidden absolute top-4 left-0 right-0 flex flex-col items-center gap-2 z-40 pointer-events-none">
+          <div id="mobile-tour-tabs" className="bg-surface-container-high/90 backdrop-blur-2xl rounded-xl border border-outline-variant/30 shadow-[0_0_20px_rgba(0,0,0,0.5)] p-1 flex gap-1 font-code text-xs pointer-events-auto">
+             <button onClick={() => setMobileActiveTab('canvas')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'canvas' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Canvas</button>
+             <button onClick={() => setMobileActiveTab('trace')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'trace' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Trace</button>
+             <button onClick={() => setMobileActiveTab('batch')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'batch' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Batch</button>
+             <button onClick={() => setMobileActiveTab('tuples')} className={`px-3 py-1.5 rounded-lg transition-colors ${mobileActiveTab === 'tuples' ? 'bg-primary/20 text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}>Tuples</button>
+          </div>
+          <span className="text-[9px] text-on-surface-variant/50 font-medium tracking-wide">For a richer experience, try our desktop site.</span>
         </div>
 
         {/* Center Canvas Area (Visible always on Desktop, visible on Mobile always as background) */}
