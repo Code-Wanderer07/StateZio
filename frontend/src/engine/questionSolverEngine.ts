@@ -828,6 +828,5455 @@ export const TOC_QUESTION_BANK: QuestionBankItem[] = [
   {"id":"qb_nfa_ends_110000","title":"NFA: Ends with \"110000\"","category":"NFA","module":"Module 1","difficulty":"Easy","question":"Construct an NFA that accepts all binary strings ending with \"110000\".","hint":"Non-deterministically guess the start of the suffix.","sampleInputs":["110000","101110000","1100000"]},
   {"id":"qb_nfa_ends_001000","title":"NFA: Ends with \"001000\"","category":"NFA","module":"Module 1","difficulty":"Easy","question":"Construct an NFA that accepts all binary strings ending with \"001000\".","hint":"Non-deterministically guess the start of the suffix.","sampleInputs":["001000","101001000","0010000"]},
   {"id":"qb_nfa_ends_101000","title":"NFA: Ends with \"101000\"","category":"NFA","module":"Module 1","difficulty":"Easy","question":"Construct an NFA that accepts all binary strings ending with \"101000\".","hint":"Non-deterministically guess the start of the suffix.","sampleInputs":["101000","101101000","1010000"]},
+{
+    "id": "qb_nfa_gen_ends_000",
+    "title": "NFA: Ends with \"000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"000\".",
+    "hint": "Need 4 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "000",
+      "101000",
+      "0000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_001",
+    "title": "NFA: Ends with \"001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"001\".",
+    "hint": "Need 4 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "001",
+      "101001",
+      "0001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_010",
+    "title": "NFA: Ends with \"010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"010\".",
+    "hint": "Need 4 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "010",
+      "101010",
+      "0010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_011",
+    "title": "NFA: Ends with \"011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"011\".",
+    "hint": "Need 4 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "011",
+      "101011",
+      "0011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_100",
+    "title": "NFA: Ends with \"100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"100\".",
+    "hint": "Need 4 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "100",
+      "101100",
+      "0100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_101",
+    "title": "NFA: Ends with \"101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"101\".",
+    "hint": "Need 4 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "101",
+      "101101",
+      "0101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_110",
+    "title": "NFA: Ends with \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"110\".",
+    "hint": "Need 4 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "110",
+      "101110",
+      "0110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_111",
+    "title": "NFA: Ends with \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"111\".",
+    "hint": "Need 4 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "111",
+      "101111",
+      "0111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0000",
+    "title": "NFA: Ends with \"0000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0000\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0000",
+      "1010000",
+      "00000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0001",
+    "title": "NFA: Ends with \"0001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0001\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0001",
+      "1010001",
+      "00001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0010",
+    "title": "NFA: Ends with \"0010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0010\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0010",
+      "1010010",
+      "00010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0011",
+    "title": "NFA: Ends with \"0011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0011\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0011",
+      "1010011",
+      "00011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0100",
+    "title": "NFA: Ends with \"0100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0100\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0100",
+      "1010100",
+      "00100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0101",
+    "title": "NFA: Ends with \"0101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0101\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0101",
+      "1010101",
+      "00101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0110",
+    "title": "NFA: Ends with \"0110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0110\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0110",
+      "1010110",
+      "00110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_0111",
+    "title": "NFA: Ends with \"0111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"0111\".",
+    "hint": "Need 5 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "0111",
+      "1010111",
+      "00111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1000",
+    "title": "NFA: Ends with \"1000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1000\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1000",
+      "1011000",
+      "01000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1001",
+    "title": "NFA: Ends with \"1001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1001\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1001",
+      "1011001",
+      "01001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1010",
+    "title": "NFA: Ends with \"1010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1010\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1010",
+      "1011010",
+      "01010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1011",
+    "title": "NFA: Ends with \"1011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1011\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1011",
+      "1011011",
+      "01011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1100",
+    "title": "NFA: Ends with \"1100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1100\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1100",
+      "1011100",
+      "01100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1101",
+    "title": "NFA: Ends with \"1101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1101\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1101",
+      "1011101",
+      "01101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1110",
+    "title": "NFA: Ends with \"1110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1110\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1110",
+      "1011110",
+      "01110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_1111",
+    "title": "NFA: Ends with \"1111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings ending with \"1111\".",
+    "hint": "Need 5 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "1111",
+      "1011111",
+      "01111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00000",
+    "title": "NFA: Ends with \"00000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00000\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00000",
+      "10100000",
+      "000000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00001",
+    "title": "NFA: Ends with \"00001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00001\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00001",
+      "10100001",
+      "000001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00010",
+    "title": "NFA: Ends with \"00010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00010\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00010",
+      "10100010",
+      "000010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00011",
+    "title": "NFA: Ends with \"00011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00011\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00011",
+      "10100011",
+      "000011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00100",
+    "title": "NFA: Ends with \"00100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00100\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00100",
+      "10100100",
+      "000100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00101",
+    "title": "NFA: Ends with \"00101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00101\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00101",
+      "10100101",
+      "000101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00110",
+    "title": "NFA: Ends with \"00110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00110\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00110",
+      "10100110",
+      "000110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_00111",
+    "title": "NFA: Ends with \"00111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"00111\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "00111",
+      "10100111",
+      "000111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01000",
+    "title": "NFA: Ends with \"01000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01000\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01000",
+      "10101000",
+      "001000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01001",
+    "title": "NFA: Ends with \"01001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01001\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01001",
+      "10101001",
+      "001001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01010",
+    "title": "NFA: Ends with \"01010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01010\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01010",
+      "10101010",
+      "001010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01011",
+    "title": "NFA: Ends with \"01011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01011\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01011",
+      "10101011",
+      "001011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01100",
+    "title": "NFA: Ends with \"01100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01100\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01100",
+      "10101100",
+      "001100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01101",
+    "title": "NFA: Ends with \"01101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01101\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01101",
+      "10101101",
+      "001101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01110",
+    "title": "NFA: Ends with \"01110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01110\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01110",
+      "10101110",
+      "001110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_01111",
+    "title": "NFA: Ends with \"01111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"01111\".",
+    "hint": "Need 6 states. q0 loops, branches on 0.",
+    "sampleInputs": [
+      "01111",
+      "10101111",
+      "001111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10000",
+    "title": "NFA: Ends with \"10000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10000\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10000",
+      "10110000",
+      "010000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10001",
+    "title": "NFA: Ends with \"10001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10001\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10001",
+      "10110001",
+      "010001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10010",
+    "title": "NFA: Ends with \"10010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10010\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10010",
+      "10110010",
+      "010010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10011",
+    "title": "NFA: Ends with \"10011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10011\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10011",
+      "10110011",
+      "010011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10100",
+    "title": "NFA: Ends with \"10100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10100\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10100",
+      "10110100",
+      "010100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10101",
+    "title": "NFA: Ends with \"10101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10101\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10101",
+      "10110101",
+      "010101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10110",
+    "title": "NFA: Ends with \"10110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10110\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10110",
+      "10110110",
+      "010110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_10111",
+    "title": "NFA: Ends with \"10111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"10111\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "10111",
+      "10110111",
+      "010111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11000",
+    "title": "NFA: Ends with \"11000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11000\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11000",
+      "10111000",
+      "011000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11001",
+    "title": "NFA: Ends with \"11001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11001\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11001",
+      "10111001",
+      "011001",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11010",
+    "title": "NFA: Ends with \"11010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11010\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11010",
+      "10111010",
+      "011010",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11011",
+    "title": "NFA: Ends with \"11011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11011\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11011",
+      "10111011",
+      "011011",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11100",
+    "title": "NFA: Ends with \"11100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11100\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11100",
+      "10111100",
+      "011100",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11101",
+    "title": "NFA: Ends with \"11101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11101\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11101",
+      "10111101",
+      "011101",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11110",
+    "title": "NFA: Ends with \"11110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11110\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11110",
+      "10111110",
+      "011110",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_ends_11111",
+    "title": "NFA: Ends with \"11111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings ending with \"11111\".",
+    "hint": "Need 6 states. q0 loops, branches on 1.",
+    "sampleInputs": [
+      "11111",
+      "10111111",
+      "011111",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_2th_from_end_0",
+    "title": "NFA: 2th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings where the 2th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 1 times.",
+    "sampleInputs": [
+      "00",
+      "1100",
+      "00"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_2th_from_end_1",
+    "title": "NFA: 2th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings where the 2th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 1 times.",
+    "sampleInputs": [
+      "01",
+      "1110",
+      "11"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_3th_from_end_0",
+    "title": "NFA: 3th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings where the 3th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 2 times.",
+    "sampleInputs": [
+      "000",
+      "11000",
+      "000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_3th_from_end_1",
+    "title": "NFA: 3th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings where the 3th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 2 times.",
+    "sampleInputs": [
+      "001",
+      "11100",
+      "111"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_4th_from_end_0",
+    "title": "NFA: 4th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings where the 4th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 3 times.",
+    "sampleInputs": [
+      "0000",
+      "110000",
+      "0000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_4th_from_end_1",
+    "title": "NFA: 4th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings where the 4th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 3 times.",
+    "sampleInputs": [
+      "0001",
+      "111000",
+      "1111"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_5th_from_end_0",
+    "title": "NFA: 5th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 5th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 4 times.",
+    "sampleInputs": [
+      "00000",
+      "1100000",
+      "00000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_5th_from_end_1",
+    "title": "NFA: 5th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 5th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 4 times.",
+    "sampleInputs": [
+      "00001",
+      "1110000",
+      "11111"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_6th_from_end_0",
+    "title": "NFA: 6th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 6th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 5 times.",
+    "sampleInputs": [
+      "000000",
+      "11000000",
+      "000000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_6th_from_end_1",
+    "title": "NFA: 6th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 6th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 5 times.",
+    "sampleInputs": [
+      "000001",
+      "11100000",
+      "111111"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_7th_from_end_0",
+    "title": "NFA: 7th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 7th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 6 times.",
+    "sampleInputs": [
+      "0000000",
+      "110000000",
+      "0000000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_7th_from_end_1",
+    "title": "NFA: 7th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 7th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 6 times.",
+    "sampleInputs": [
+      "0000001",
+      "111000000",
+      "1111111"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_8th_from_end_0",
+    "title": "NFA: 8th from end is 0",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 8th symbol from the end is 0.",
+    "hint": "Branch on 0, then transition unconditionally 7 times.",
+    "sampleInputs": [
+      "00000000",
+      "1100000000",
+      "00000000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_8th_from_end_1",
+    "title": "NFA: 8th from end is 1",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings where the 8th symbol from the end is 1.",
+    "hint": "Branch on 1, then transition unconditionally 7 times.",
+    "sampleInputs": [
+      "00000001",
+      "1110000000",
+      "11111111"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_00_or_01",
+    "title": "NFA: Contains \"00\" or \"01\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"00\" or \"01\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 00, the other detects 01.",
+    "sampleInputs": [
+      "00",
+      "01",
+      "00001",
+      "11010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_00_or_10",
+    "title": "NFA: Contains \"00\" or \"10\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"00\" or \"10\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 00, the other detects 10.",
+    "sampleInputs": [
+      "00",
+      "10",
+      "00001",
+      "11100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_00_or_11",
+    "title": "NFA: Contains \"00\" or \"11\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"00\" or \"11\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 00, the other detects 11.",
+    "sampleInputs": [
+      "00",
+      "11",
+      "00001",
+      "11110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_01_or_10",
+    "title": "NFA: Contains \"01\" or \"10\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"01\" or \"10\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 01, the other detects 10.",
+    "sampleInputs": [
+      "01",
+      "10",
+      "00011",
+      "11100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_01_or_11",
+    "title": "NFA: Contains \"01\" or \"11\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"01\" or \"11\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 01, the other detects 11.",
+    "sampleInputs": [
+      "01",
+      "11",
+      "00011",
+      "11110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_10_or_11",
+    "title": "NFA: Contains \"10\" or \"11\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"10\" or \"11\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 10, the other detects 11.",
+    "sampleInputs": [
+      "10",
+      "11",
+      "00101",
+      "11110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_001",
+    "title": "NFA: Contains \"000\" or \"001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"001\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 001.",
+    "sampleInputs": [
+      "000",
+      "001",
+      "000001",
+      "110010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_010",
+    "title": "NFA: Contains \"000\" or \"010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 010.",
+    "sampleInputs": [
+      "000",
+      "010",
+      "000001",
+      "110100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_011",
+    "title": "NFA: Contains \"000\" or \"011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 011.",
+    "sampleInputs": [
+      "000",
+      "011",
+      "000001",
+      "110110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_100",
+    "title": "NFA: Contains \"000\" or \"100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 100.",
+    "sampleInputs": [
+      "000",
+      "100",
+      "000001",
+      "111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_101",
+    "title": "NFA: Contains \"000\" or \"101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 101.",
+    "sampleInputs": [
+      "000",
+      "101",
+      "000001",
+      "111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_110",
+    "title": "NFA: Contains \"000\" or \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 110.",
+    "sampleInputs": [
+      "000",
+      "110",
+      "000001",
+      "111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_000_or_111",
+    "title": "NFA: Contains \"000\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"000\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 000, the other detects 111.",
+    "sampleInputs": [
+      "000",
+      "111",
+      "000001",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_001_or_010",
+    "title": "NFA: Contains \"001\" or \"010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"001\" or \"010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 001, the other detects 010.",
+    "sampleInputs": [
+      "001",
+      "010",
+      "000011",
+      "110100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_001_or_011",
+    "title": "NFA: Contains \"001\" or \"011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"001\" or \"011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 001, the other detects 011.",
+    "sampleInputs": [
+      "001",
+      "011",
+      "000011",
+      "110110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_001_or_100",
+    "title": "NFA: Contains \"001\" or \"100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"001\" or \"100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 001, the other detects 100.",
+    "sampleInputs": [
+      "001",
+      "100",
+      "000011",
+      "111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_001_or_101",
+    "title": "NFA: Contains \"001\" or \"101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"001\" or \"101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 001, the other detects 101.",
+    "sampleInputs": [
+      "001",
+      "101",
+      "000011",
+      "111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_001_or_110",
+    "title": "NFA: Contains \"001\" or \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"001\" or \"110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 001, the other detects 110.",
+    "sampleInputs": [
+      "001",
+      "110",
+      "000011",
+      "111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_001_or_111",
+    "title": "NFA: Contains \"001\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"001\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 001, the other detects 111.",
+    "sampleInputs": [
+      "001",
+      "111",
+      "000011",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_010_or_011",
+    "title": "NFA: Contains \"010\" or \"011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"010\" or \"011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 010, the other detects 011.",
+    "sampleInputs": [
+      "010",
+      "011",
+      "000101",
+      "110110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_010_or_100",
+    "title": "NFA: Contains \"010\" or \"100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"010\" or \"100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 010, the other detects 100.",
+    "sampleInputs": [
+      "010",
+      "100",
+      "000101",
+      "111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_010_or_101",
+    "title": "NFA: Contains \"010\" or \"101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"010\" or \"101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 010, the other detects 101.",
+    "sampleInputs": [
+      "010",
+      "101",
+      "000101",
+      "111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_010_or_110",
+    "title": "NFA: Contains \"010\" or \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"010\" or \"110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 010, the other detects 110.",
+    "sampleInputs": [
+      "010",
+      "110",
+      "000101",
+      "111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_010_or_111",
+    "title": "NFA: Contains \"010\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"010\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 010, the other detects 111.",
+    "sampleInputs": [
+      "010",
+      "111",
+      "000101",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_011_or_100",
+    "title": "NFA: Contains \"011\" or \"100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"011\" or \"100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 011, the other detects 100.",
+    "sampleInputs": [
+      "011",
+      "100",
+      "000111",
+      "111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_011_or_101",
+    "title": "NFA: Contains \"011\" or \"101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"011\" or \"101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 011, the other detects 101.",
+    "sampleInputs": [
+      "011",
+      "101",
+      "000111",
+      "111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_011_or_110",
+    "title": "NFA: Contains \"011\" or \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"011\" or \"110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 011, the other detects 110.",
+    "sampleInputs": [
+      "011",
+      "110",
+      "000111",
+      "111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_011_or_111",
+    "title": "NFA: Contains \"011\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"011\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 011, the other detects 111.",
+    "sampleInputs": [
+      "011",
+      "111",
+      "000111",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_100_or_101",
+    "title": "NFA: Contains \"100\" or \"101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"100\" or \"101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 100, the other detects 101.",
+    "sampleInputs": [
+      "100",
+      "101",
+      "001001",
+      "111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_100_or_110",
+    "title": "NFA: Contains \"100\" or \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"100\" or \"110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 100, the other detects 110.",
+    "sampleInputs": [
+      "100",
+      "110",
+      "001001",
+      "111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_100_or_111",
+    "title": "NFA: Contains \"100\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"100\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 100, the other detects 111.",
+    "sampleInputs": [
+      "100",
+      "111",
+      "001001",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_101_or_110",
+    "title": "NFA: Contains \"101\" or \"110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"101\" or \"110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 101, the other detects 110.",
+    "sampleInputs": [
+      "101",
+      "110",
+      "001011",
+      "111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_101_or_111",
+    "title": "NFA: Contains \"101\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"101\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 101, the other detects 111.",
+    "sampleInputs": [
+      "101",
+      "111",
+      "001011",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_110_or_111",
+    "title": "NFA: Contains \"110\" or \"111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Medium",
+    "question": "Construct an NFA that accepts all binary strings containing \"110\" or \"111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 110, the other detects 111.",
+    "sampleInputs": [
+      "110",
+      "111",
+      "001101",
+      "111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0001",
+    "title": "NFA: Contains \"0000\" or \"0001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0001\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0001.",
+    "sampleInputs": [
+      "0000",
+      "0001",
+      "0000001",
+      "1100010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0010",
+    "title": "NFA: Contains \"0000\" or \"0010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0010.",
+    "sampleInputs": [
+      "0000",
+      "0010",
+      "0000001",
+      "1100100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0011",
+    "title": "NFA: Contains \"0000\" or \"0011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0011.",
+    "sampleInputs": [
+      "0000",
+      "0011",
+      "0000001",
+      "1100110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0100",
+    "title": "NFA: Contains \"0000\" or \"0100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0100.",
+    "sampleInputs": [
+      "0000",
+      "0100",
+      "0000001",
+      "1101000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0101",
+    "title": "NFA: Contains \"0000\" or \"0101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0101.",
+    "sampleInputs": [
+      "0000",
+      "0101",
+      "0000001",
+      "1101010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0110",
+    "title": "NFA: Contains \"0000\" or \"0110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0110.",
+    "sampleInputs": [
+      "0000",
+      "0110",
+      "0000001",
+      "1101100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_0111",
+    "title": "NFA: Contains \"0000\" or \"0111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"0111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 0111.",
+    "sampleInputs": [
+      "0000",
+      "0111",
+      "0000001",
+      "1101110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1000",
+    "title": "NFA: Contains \"0000\" or \"1000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1000\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1000.",
+    "sampleInputs": [
+      "0000",
+      "1000",
+      "0000001",
+      "1110000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1001",
+    "title": "NFA: Contains \"0000\" or \"1001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1001\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1001.",
+    "sampleInputs": [
+      "0000",
+      "1001",
+      "0000001",
+      "1110010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1010",
+    "title": "NFA: Contains \"0000\" or \"1010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1010.",
+    "sampleInputs": [
+      "0000",
+      "1010",
+      "0000001",
+      "1110100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1011",
+    "title": "NFA: Contains \"0000\" or \"1011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1011.",
+    "sampleInputs": [
+      "0000",
+      "1011",
+      "0000001",
+      "1110110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1100",
+    "title": "NFA: Contains \"0000\" or \"1100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1100.",
+    "sampleInputs": [
+      "0000",
+      "1100",
+      "0000001",
+      "1111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1101",
+    "title": "NFA: Contains \"0000\" or \"1101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1101.",
+    "sampleInputs": [
+      "0000",
+      "1101",
+      "0000001",
+      "1111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1110",
+    "title": "NFA: Contains \"0000\" or \"1110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1110.",
+    "sampleInputs": [
+      "0000",
+      "1110",
+      "0000001",
+      "1111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0000_or_1111",
+    "title": "NFA: Contains \"0000\" or \"1111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0000\" or \"1111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0000, the other detects 1111.",
+    "sampleInputs": [
+      "0000",
+      "1111",
+      "0000001",
+      "1111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_0010",
+    "title": "NFA: Contains \"0001\" or \"0010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"0010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 0010.",
+    "sampleInputs": [
+      "0001",
+      "0010",
+      "0000011",
+      "1100100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_0011",
+    "title": "NFA: Contains \"0001\" or \"0011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"0011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 0011.",
+    "sampleInputs": [
+      "0001",
+      "0011",
+      "0000011",
+      "1100110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_0100",
+    "title": "NFA: Contains \"0001\" or \"0100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"0100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 0100.",
+    "sampleInputs": [
+      "0001",
+      "0100",
+      "0000011",
+      "1101000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_0101",
+    "title": "NFA: Contains \"0001\" or \"0101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"0101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 0101.",
+    "sampleInputs": [
+      "0001",
+      "0101",
+      "0000011",
+      "1101010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_0110",
+    "title": "NFA: Contains \"0001\" or \"0110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"0110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 0110.",
+    "sampleInputs": [
+      "0001",
+      "0110",
+      "0000011",
+      "1101100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_0111",
+    "title": "NFA: Contains \"0001\" or \"0111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"0111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 0111.",
+    "sampleInputs": [
+      "0001",
+      "0111",
+      "0000011",
+      "1101110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1000",
+    "title": "NFA: Contains \"0001\" or \"1000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1000\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1000.",
+    "sampleInputs": [
+      "0001",
+      "1000",
+      "0000011",
+      "1110000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1001",
+    "title": "NFA: Contains \"0001\" or \"1001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1001\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1001.",
+    "sampleInputs": [
+      "0001",
+      "1001",
+      "0000011",
+      "1110010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1010",
+    "title": "NFA: Contains \"0001\" or \"1010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1010.",
+    "sampleInputs": [
+      "0001",
+      "1010",
+      "0000011",
+      "1110100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1011",
+    "title": "NFA: Contains \"0001\" or \"1011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1011.",
+    "sampleInputs": [
+      "0001",
+      "1011",
+      "0000011",
+      "1110110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1100",
+    "title": "NFA: Contains \"0001\" or \"1100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1100.",
+    "sampleInputs": [
+      "0001",
+      "1100",
+      "0000011",
+      "1111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1101",
+    "title": "NFA: Contains \"0001\" or \"1101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1101.",
+    "sampleInputs": [
+      "0001",
+      "1101",
+      "0000011",
+      "1111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1110",
+    "title": "NFA: Contains \"0001\" or \"1110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1110.",
+    "sampleInputs": [
+      "0001",
+      "1110",
+      "0000011",
+      "1111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0001_or_1111",
+    "title": "NFA: Contains \"0001\" or \"1111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0001\" or \"1111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0001, the other detects 1111.",
+    "sampleInputs": [
+      "0001",
+      "1111",
+      "0000011",
+      "1111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_0011",
+    "title": "NFA: Contains \"0010\" or \"0011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"0011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 0011.",
+    "sampleInputs": [
+      "0010",
+      "0011",
+      "0000101",
+      "1100110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_0100",
+    "title": "NFA: Contains \"0010\" or \"0100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"0100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 0100.",
+    "sampleInputs": [
+      "0010",
+      "0100",
+      "0000101",
+      "1101000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_0101",
+    "title": "NFA: Contains \"0010\" or \"0101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"0101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 0101.",
+    "sampleInputs": [
+      "0010",
+      "0101",
+      "0000101",
+      "1101010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_0110",
+    "title": "NFA: Contains \"0010\" or \"0110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"0110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 0110.",
+    "sampleInputs": [
+      "0010",
+      "0110",
+      "0000101",
+      "1101100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_0111",
+    "title": "NFA: Contains \"0010\" or \"0111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"0111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 0111.",
+    "sampleInputs": [
+      "0010",
+      "0111",
+      "0000101",
+      "1101110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1000",
+    "title": "NFA: Contains \"0010\" or \"1000\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1000\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1000.",
+    "sampleInputs": [
+      "0010",
+      "1000",
+      "0000101",
+      "1110000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1001",
+    "title": "NFA: Contains \"0010\" or \"1001\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1001\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1001.",
+    "sampleInputs": [
+      "0010",
+      "1001",
+      "0000101",
+      "1110010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1010",
+    "title": "NFA: Contains \"0010\" or \"1010\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1010\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1010.",
+    "sampleInputs": [
+      "0010",
+      "1010",
+      "0000101",
+      "1110100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1011",
+    "title": "NFA: Contains \"0010\" or \"1011\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1011\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1011.",
+    "sampleInputs": [
+      "0010",
+      "1011",
+      "0000101",
+      "1110110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1100",
+    "title": "NFA: Contains \"0010\" or \"1100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1100.",
+    "sampleInputs": [
+      "0010",
+      "1100",
+      "0000101",
+      "1111000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1101",
+    "title": "NFA: Contains \"0010\" or \"1101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1101.",
+    "sampleInputs": [
+      "0010",
+      "1101",
+      "0000101",
+      "1111010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1110",
+    "title": "NFA: Contains \"0010\" or \"1110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1110.",
+    "sampleInputs": [
+      "0010",
+      "1110",
+      "0000101",
+      "1111100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0010_or_1111",
+    "title": "NFA: Contains \"0010\" or \"1111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0010\" or \"1111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0010, the other detects 1111.",
+    "sampleInputs": [
+      "0010",
+      "1111",
+      "0000101",
+      "1111110"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0011_or_0100",
+    "title": "NFA: Contains \"0011\" or \"0100\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0011\" or \"0100\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0011, the other detects 0100.",
+    "sampleInputs": [
+      "0011",
+      "0100",
+      "0000111",
+      "1101000"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0011_or_0101",
+    "title": "NFA: Contains \"0011\" or \"0101\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0011\" or \"0101\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0011, the other detects 0101.",
+    "sampleInputs": [
+      "0011",
+      "0101",
+      "0000111",
+      "1101010"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0011_or_0110",
+    "title": "NFA: Contains \"0011\" or \"0110\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0011\" or \"0110\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0011, the other detects 0110.",
+    "sampleInputs": [
+      "0011",
+      "0110",
+      "0000111",
+      "1101100"
+    ]
+  },
+  {
+    "id": "qb_nfa_gen_contains_0011_or_0111",
+    "title": "NFA: Contains \"0011\" or \"0111\"",
+    "category": "NFA",
+    "module": "Module 1",
+    "difficulty": "Hard",
+    "question": "Construct an NFA that accepts all binary strings containing \"0011\" or \"0111\" as a substring.",
+    "hint": "Branch at the start to two parallel paths: one detects 0011, the other detects 0111.",
+    "sampleInputs": [
+      "0011",
+      "0111",
+      "0000111",
+      "1101110"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_1",
+    "title": "PDA: L = { a^n b^{n+1} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+1} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 1 more b's to read.",
+    "sampleInputs": [
+      "b",
+      "abb",
+      "aabbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_2",
+    "title": "PDA: L = { a^n b^{n+2} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+2} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 2 more b's to read.",
+    "sampleInputs": [
+      "bb",
+      "abbb",
+      "aabbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_3",
+    "title": "PDA: L = { a^n b^{n+3} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+3} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 3 more b's to read.",
+    "sampleInputs": [
+      "bbb",
+      "abbbb",
+      "aabbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_4",
+    "title": "PDA: L = { a^n b^{n+4} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+4} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 4 more b's to read.",
+    "sampleInputs": [
+      "bbbb",
+      "abbbbb",
+      "aabbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_5",
+    "title": "PDA: L = { a^n b^{n+5} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+5} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 5 more b's to read.",
+    "sampleInputs": [
+      "bbbbb",
+      "abbbbbb",
+      "aabbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_6",
+    "title": "PDA: L = { a^n b^{n+6} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+6} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 6 more b's to read.",
+    "sampleInputs": [
+      "bbbbbb",
+      "abbbbbbb",
+      "aabbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_7",
+    "title": "PDA: L = { a^n b^{n+7} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+7} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 7 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbb",
+      "abbbbbbbb",
+      "aabbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_8",
+    "title": "PDA: L = { a^n b^{n+8} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+8} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 8 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbb",
+      "abbbbbbbbb",
+      "aabbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_9",
+    "title": "PDA: L = { a^n b^{n+9} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+9} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 9 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbb",
+      "abbbbbbbbbb",
+      "aabbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_10",
+    "title": "PDA: L = { a^n b^{n+10} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+10} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 10 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbb",
+      "abbbbbbbbbbb",
+      "aabbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_11",
+    "title": "PDA: L = { a^n b^{n+11} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+11} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 11 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbb",
+      "abbbbbbbbbbbb",
+      "aabbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_12",
+    "title": "PDA: L = { a^n b^{n+12} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+12} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 12 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbb",
+      "abbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_13",
+    "title": "PDA: L = { a^n b^{n+13} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+13} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 13 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_14",
+    "title": "PDA: L = { a^n b^{n+14} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+14} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 14 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_15",
+    "title": "PDA: L = { a^n b^{n+15} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+15} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 15 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_16",
+    "title": "PDA: L = { a^n b^{n+16} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+16} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 16 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_17",
+    "title": "PDA: L = { a^n b^{n+17} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+17} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 17 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_18",
+    "title": "PDA: L = { a^n b^{n+18} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+18} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 18 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_19",
+    "title": "PDA: L = { a^n b^{n+19} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+19} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 19 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_20",
+    "title": "PDA: L = { a^n b^{n+20} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+20} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 20 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_21",
+    "title": "PDA: L = { a^n b^{n+21} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+21} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 21 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_22",
+    "title": "PDA: L = { a^n b^{n+22} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+22} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 22 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_23",
+    "title": "PDA: L = { a^n b^{n+23} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+23} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 23 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_24",
+    "title": "PDA: L = { a^n b^{n+24} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+24} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 24 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_25",
+    "title": "PDA: L = { a^n b^{n+25} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+25} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 25 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_26",
+    "title": "PDA: L = { a^n b^{n+26} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+26} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 26 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_27",
+    "title": "PDA: L = { a^n b^{n+27} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+27} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 27 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_28",
+    "title": "PDA: L = { a^n b^{n+28} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+28} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 28 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_29",
+    "title": "PDA: L = { a^n b^{n+29} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+29} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 29 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_plus_30",
+    "title": "PDA: L = { a^n b^{n+30} | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^n b^{n+30} | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when stack is empty but input has 30 more b's to read.",
+    "sampleInputs": [
+      "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_1",
+    "title": "PDA: L = { a^n b^{n-1} | n >= 1 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-1} | n >= 1 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 1 a's.",
+    "sampleInputs": [
+      "a",
+      "aab",
+      "aaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_2",
+    "title": "PDA: L = { a^n b^{n-2} | n >= 2 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-2} | n >= 2 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 2 a's.",
+    "sampleInputs": [
+      "aa",
+      "aaab",
+      "aaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_3",
+    "title": "PDA: L = { a^n b^{n-3} | n >= 3 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-3} | n >= 3 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 3 a's.",
+    "sampleInputs": [
+      "aaa",
+      "aaaab",
+      "aaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_4",
+    "title": "PDA: L = { a^n b^{n-4} | n >= 4 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-4} | n >= 4 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 4 a's.",
+    "sampleInputs": [
+      "aaaa",
+      "aaaaab",
+      "aaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_5",
+    "title": "PDA: L = { a^n b^{n-5} | n >= 5 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-5} | n >= 5 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 5 a's.",
+    "sampleInputs": [
+      "aaaaa",
+      "aaaaaab",
+      "aaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_6",
+    "title": "PDA: L = { a^n b^{n-6} | n >= 6 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-6} | n >= 6 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 6 a's.",
+    "sampleInputs": [
+      "aaaaaa",
+      "aaaaaaab",
+      "aaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_7",
+    "title": "PDA: L = { a^n b^{n-7} | n >= 7 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-7} | n >= 7 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 7 a's.",
+    "sampleInputs": [
+      "aaaaaaa",
+      "aaaaaaaab",
+      "aaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_8",
+    "title": "PDA: L = { a^n b^{n-8} | n >= 8 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-8} | n >= 8 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 8 a's.",
+    "sampleInputs": [
+      "aaaaaaaa",
+      "aaaaaaaaab",
+      "aaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_9",
+    "title": "PDA: L = { a^n b^{n-9} | n >= 9 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-9} | n >= 9 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 9 a's.",
+    "sampleInputs": [
+      "aaaaaaaaa",
+      "aaaaaaaaaab",
+      "aaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_10",
+    "title": "PDA: L = { a^n b^{n-10} | n >= 10 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-10} | n >= 10 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 10 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaa",
+      "aaaaaaaaaaab",
+      "aaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_11",
+    "title": "PDA: L = { a^n b^{n-11} | n >= 11 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-11} | n >= 11 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 11 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaa",
+      "aaaaaaaaaaaab",
+      "aaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_12",
+    "title": "PDA: L = { a^n b^{n-12} | n >= 12 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-12} | n >= 12 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 12 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaa",
+      "aaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_13",
+    "title": "PDA: L = { a^n b^{n-13} | n >= 13 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-13} | n >= 13 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 13 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_14",
+    "title": "PDA: L = { a^n b^{n-14} | n >= 14 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-14} | n >= 14 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 14 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_15",
+    "title": "PDA: L = { a^n b^{n-15} | n >= 15 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-15} | n >= 15 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 15 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_16",
+    "title": "PDA: L = { a^n b^{n-16} | n >= 16 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-16} | n >= 16 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 16 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_17",
+    "title": "PDA: L = { a^n b^{n-17} | n >= 17 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-17} | n >= 17 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 17 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_18",
+    "title": "PDA: L = { a^n b^{n-18} | n >= 18 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-18} | n >= 18 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 18 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_19",
+    "title": "PDA: L = { a^n b^{n-19} | n >= 19 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-19} | n >= 19 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 19 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_20",
+    "title": "PDA: L = { a^n b^{n-20} | n >= 20 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-20} | n >= 20 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 20 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_21",
+    "title": "PDA: L = { a^n b^{n-21} | n >= 21 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-21} | n >= 21 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 21 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_22",
+    "title": "PDA: L = { a^n b^{n-22} | n >= 22 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-22} | n >= 22 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 22 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_23",
+    "title": "PDA: L = { a^n b^{n-23} | n >= 23 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-23} | n >= 23 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 23 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_24",
+    "title": "PDA: L = { a^n b^{n-24} | n >= 24 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-24} | n >= 24 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 24 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_25",
+    "title": "PDA: L = { a^n b^{n-25} | n >= 25 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-25} | n >= 25 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 25 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_26",
+    "title": "PDA: L = { a^n b^{n-26} | n >= 26 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-26} | n >= 26 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 26 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_27",
+    "title": "PDA: L = { a^n b^{n-27} | n >= 27 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-27} | n >= 27 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 27 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_28",
+    "title": "PDA: L = { a^n b^{n-28} | n >= 28 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-28} | n >= 28 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 28 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_29",
+    "title": "PDA: L = { a^n b^{n-29} | n >= 29 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-29} | n >= 29 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 29 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bn_minus_30",
+    "title": "PDA: L = { a^n b^{n-30} | n >= 30 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^{n-30} | n >= 30 } over Σ = {a,b}.",
+    "hint": "Push a for each a; pop a for each b. Accept when input is empty but stack still has 30 a's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a2n_bn",
+    "title": "PDA: L = { a^{2n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{2n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 2 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aab",
+      "aaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a3n_bn",
+    "title": "PDA: L = { a^{3n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{3n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 3 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaab",
+      "aaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a4n_bn",
+    "title": "PDA: L = { a^{4n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{4n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 4 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaab",
+      "aaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a5n_bn",
+    "title": "PDA: L = { a^{5n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{5n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 5 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaab",
+      "aaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a6n_bn",
+    "title": "PDA: L = { a^{6n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{6n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 6 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaab",
+      "aaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a7n_bn",
+    "title": "PDA: L = { a^{7n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{7n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 7 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaab",
+      "aaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a8n_bn",
+    "title": "PDA: L = { a^{8n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{8n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 8 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaab",
+      "aaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a9n_bn",
+    "title": "PDA: L = { a^{9n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{9n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 9 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a10n_bn",
+    "title": "PDA: L = { a^{10n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{10n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 10 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a11n_bn",
+    "title": "PDA: L = { a^{11n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{11n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 11 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a12n_bn",
+    "title": "PDA: L = { a^{12n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{12n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 12 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a13n_bn",
+    "title": "PDA: L = { a^{13n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{13n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 13 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a14n_bn",
+    "title": "PDA: L = { a^{14n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{14n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 14 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a15n_bn",
+    "title": "PDA: L = { a^{15n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{15n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 15 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a16n_bn",
+    "title": "PDA: L = { a^{16n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{16n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 16 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a17n_bn",
+    "title": "PDA: L = { a^{17n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{17n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 17 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a18n_bn",
+    "title": "PDA: L = { a^{18n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{18n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 18 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a19n_bn",
+    "title": "PDA: L = { a^{19n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{19n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 19 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a20n_bn",
+    "title": "PDA: L = { a^{20n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{20n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 20 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a21n_bn",
+    "title": "PDA: L = { a^{21n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{21n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 21 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a22n_bn",
+    "title": "PDA: L = { a^{22n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{22n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 22 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a23n_bn",
+    "title": "PDA: L = { a^{23n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{23n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 23 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a24n_bn",
+    "title": "PDA: L = { a^{24n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{24n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 24 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a25n_bn",
+    "title": "PDA: L = { a^{25n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{25n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 25 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a26n_bn",
+    "title": "PDA: L = { a^{26n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{26n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 26 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a27n_bn",
+    "title": "PDA: L = { a^{27n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{27n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 27 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a28n_bn",
+    "title": "PDA: L = { a^{28n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{28n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 28 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a29n_bn",
+    "title": "PDA: L = { a^{29n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{29n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 29 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_a30n_bn",
+    "title": "PDA: L = { a^{30n} b^n | n >= 0 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Medium",
+    "question": "Construct a PDA for L = { a^{30n} b^n | n >= 0 } over Σ = {a,b}.",
+    "hint": "Push 1 symbol for every 30 a's. Pop 1 symbol for each b.",
+    "sampleInputs": [
+      "",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_1",
+    "title": "PDA: L = { a^n b^m | n <= m + 1 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 1 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 1 a's left.",
+    "sampleInputs": [
+      "a",
+      "aab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_2",
+    "title": "PDA: L = { a^n b^m | n <= m + 2 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 2 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 2 a's left.",
+    "sampleInputs": [
+      "aa",
+      "aaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_3",
+    "title": "PDA: L = { a^n b^m | n <= m + 3 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 3 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 3 a's left.",
+    "sampleInputs": [
+      "aaa",
+      "aaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_4",
+    "title": "PDA: L = { a^n b^m | n <= m + 4 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 4 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 4 a's left.",
+    "sampleInputs": [
+      "aaaa",
+      "aaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_5",
+    "title": "PDA: L = { a^n b^m | n <= m + 5 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 5 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 5 a's left.",
+    "sampleInputs": [
+      "aaaaa",
+      "aaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_6",
+    "title": "PDA: L = { a^n b^m | n <= m + 6 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 6 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 6 a's left.",
+    "sampleInputs": [
+      "aaaaaa",
+      "aaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_7",
+    "title": "PDA: L = { a^n b^m | n <= m + 7 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 7 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 7 a's left.",
+    "sampleInputs": [
+      "aaaaaaa",
+      "aaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_8",
+    "title": "PDA: L = { a^n b^m | n <= m + 8 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 8 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 8 a's left.",
+    "sampleInputs": [
+      "aaaaaaaa",
+      "aaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_9",
+    "title": "PDA: L = { a^n b^m | n <= m + 9 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 9 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 9 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaa",
+      "aaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_10",
+    "title": "PDA: L = { a^n b^m | n <= m + 10 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 10 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 10 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaa",
+      "aaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_11",
+    "title": "PDA: L = { a^n b^m | n <= m + 11 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 11 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 11 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaa",
+      "aaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_12",
+    "title": "PDA: L = { a^n b^m | n <= m + 12 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 12 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 12 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaa",
+      "aaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_13",
+    "title": "PDA: L = { a^n b^m | n <= m + 13 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 13 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 13 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_14",
+    "title": "PDA: L = { a^n b^m | n <= m + 14 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 14 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 14 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_15",
+    "title": "PDA: L = { a^n b^m | n <= m + 15 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 15 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 15 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_16",
+    "title": "PDA: L = { a^n b^m | n <= m + 16 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 16 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 16 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_17",
+    "title": "PDA: L = { a^n b^m | n <= m + 17 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 17 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 17 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_18",
+    "title": "PDA: L = { a^n b^m | n <= m + 18 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 18 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 18 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_19",
+    "title": "PDA: L = { a^n b^m | n <= m + 19 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 19 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 19 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_20",
+    "title": "PDA: L = { a^n b^m | n <= m + 20 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 20 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 20 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_21",
+    "title": "PDA: L = { a^n b^m | n <= m + 21 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 21 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 21 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_22",
+    "title": "PDA: L = { a^n b^m | n <= m + 22 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 22 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 22 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_23",
+    "title": "PDA: L = { a^n b^m | n <= m + 23 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 23 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 23 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_24",
+    "title": "PDA: L = { a^n b^m | n <= m + 24 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 24 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 24 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_25",
+    "title": "PDA: L = { a^n b^m | n <= m + 25 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 25 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 25 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_26",
+    "title": "PDA: L = { a^n b^m | n <= m + 26 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 26 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 26 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_27",
+    "title": "PDA: L = { a^n b^m | n <= m + 27 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 27 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 27 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_28",
+    "title": "PDA: L = { a^n b^m | n <= m + 28 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 28 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 28 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_29",
+    "title": "PDA: L = { a^n b^m | n <= m + 29 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 29 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 29 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_pda_gen_an_bm_leq_plus_30",
+    "title": "PDA: L = { a^n b^m | n <= m + 30 }",
+    "category": "PDA",
+    "module": "Module 3",
+    "difficulty": "Hard",
+    "question": "Construct a PDA for L = { a^n b^m | n <= m + 30 }.",
+    "hint": "Push a for each a. Pop a for each b. Accept if stack empties, even if you have up to 30 a's left.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "b"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_1_cn",
+    "title": "TM: L = { a^n b^{n+1} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+1} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 1 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababc",
+      "aabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_2_cn",
+    "title": "TM: L = { a^n b^{n+2} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+2} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 2 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababc",
+      "aabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_3_cn",
+    "title": "TM: L = { a^n b^{n+3} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+3} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 3 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababc",
+      "aabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_4_cn",
+    "title": "TM: L = { a^n b^{n+4} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+4} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 4 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababc",
+      "aabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_5_cn",
+    "title": "TM: L = { a^n b^{n+5} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+5} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 5 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_6_cn",
+    "title": "TM: L = { a^n b^{n+6} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+6} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 6 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_7_cn",
+    "title": "TM: L = { a^n b^{n+7} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+7} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 7 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_8_cn",
+    "title": "TM: L = { a^n b^{n+8} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+8} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 8 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_9_cn",
+    "title": "TM: L = { a^n b^{n+9} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+9} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 9 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_10_cn",
+    "title": "TM: L = { a^n b^{n+10} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+10} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 10 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_11_cn",
+    "title": "TM: L = { a^n b^{n+11} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+11} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 11 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_12_cn",
+    "title": "TM: L = { a^n b^{n+12} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+12} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 12 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_13_cn",
+    "title": "TM: L = { a^n b^{n+13} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+13} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 13 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_14_cn",
+    "title": "TM: L = { a^n b^{n+14} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+14} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 14 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_15_cn",
+    "title": "TM: L = { a^n b^{n+15} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+15} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 15 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_16_cn",
+    "title": "TM: L = { a^n b^{n+16} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+16} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 16 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_17_cn",
+    "title": "TM: L = { a^n b^{n+17} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+17} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 17 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_18_cn",
+    "title": "TM: L = { a^n b^{n+18} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+18} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 18 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_19_cn",
+    "title": "TM: L = { a^n b^{n+19} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+19} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 19 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_20_cn",
+    "title": "TM: L = { a^n b^{n+20} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+20} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 20 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_21_cn",
+    "title": "TM: L = { a^n b^{n+21} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+21} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 21 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_22_cn",
+    "title": "TM: L = { a^n b^{n+22} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+22} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 22 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_23_cn",
+    "title": "TM: L = { a^n b^{n+23} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+23} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 23 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_24_cn",
+    "title": "TM: L = { a^n b^{n+24} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+24} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 24 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_25_cn",
+    "title": "TM: L = { a^n b^{n+25} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+25} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 25 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_26_cn",
+    "title": "TM: L = { a^n b^{n+26} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+26} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 26 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_27_cn",
+    "title": "TM: L = { a^n b^{n+27} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+27} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 27 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_28_cn",
+    "title": "TM: L = { a^n b^{n+28} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+28} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 28 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_29_cn",
+    "title": "TM: L = { a^n b^{n+29} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+29} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 29 extra b's to verify at the end.",
+    "sampleInputs": [
+      "ababababababababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_plus_30_cn",
+    "title": "TM: L = { a^n b^{n+30} c^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^{n+30} c^n | n >= 1 }.",
+    "hint": "Match a, b, c. Remember there are 30 extra b's to verify at the end.",
+    "sampleInputs": [
+      "abababababababababababababababababababababababababababababababc",
+      "aabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbcc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_02n_1n",
+    "title": "TM: L = { 0^{2n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{2n} 1^n | n >= 1 }.",
+    "hint": "Cross off 2 0's for every 1.",
+    "sampleInputs": [
+      "001",
+      "000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_03n_1n",
+    "title": "TM: L = { 0^{3n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{3n} 1^n | n >= 1 }.",
+    "hint": "Cross off 3 0's for every 1.",
+    "sampleInputs": [
+      "0001",
+      "00000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_04n_1n",
+    "title": "TM: L = { 0^{4n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{4n} 1^n | n >= 1 }.",
+    "hint": "Cross off 4 0's for every 1.",
+    "sampleInputs": [
+      "00001",
+      "0000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_05n_1n",
+    "title": "TM: L = { 0^{5n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{5n} 1^n | n >= 1 }.",
+    "hint": "Cross off 5 0's for every 1.",
+    "sampleInputs": [
+      "000001",
+      "000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_06n_1n",
+    "title": "TM: L = { 0^{6n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{6n} 1^n | n >= 1 }.",
+    "hint": "Cross off 6 0's for every 1.",
+    "sampleInputs": [
+      "0000001",
+      "00000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_07n_1n",
+    "title": "TM: L = { 0^{7n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{7n} 1^n | n >= 1 }.",
+    "hint": "Cross off 7 0's for every 1.",
+    "sampleInputs": [
+      "00000001",
+      "0000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_08n_1n",
+    "title": "TM: L = { 0^{8n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{8n} 1^n | n >= 1 }.",
+    "hint": "Cross off 8 0's for every 1.",
+    "sampleInputs": [
+      "000000001",
+      "000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_09n_1n",
+    "title": "TM: L = { 0^{9n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{9n} 1^n | n >= 1 }.",
+    "hint": "Cross off 9 0's for every 1.",
+    "sampleInputs": [
+      "0000000001",
+      "00000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_010n_1n",
+    "title": "TM: L = { 0^{10n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{10n} 1^n | n >= 1 }.",
+    "hint": "Cross off 10 0's for every 1.",
+    "sampleInputs": [
+      "00000000001",
+      "0000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_011n_1n",
+    "title": "TM: L = { 0^{11n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{11n} 1^n | n >= 1 }.",
+    "hint": "Cross off 11 0's for every 1.",
+    "sampleInputs": [
+      "000000000001",
+      "000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_012n_1n",
+    "title": "TM: L = { 0^{12n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{12n} 1^n | n >= 1 }.",
+    "hint": "Cross off 12 0's for every 1.",
+    "sampleInputs": [
+      "0000000000001",
+      "00000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_013n_1n",
+    "title": "TM: L = { 0^{13n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{13n} 1^n | n >= 1 }.",
+    "hint": "Cross off 13 0's for every 1.",
+    "sampleInputs": [
+      "00000000000001",
+      "0000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_014n_1n",
+    "title": "TM: L = { 0^{14n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{14n} 1^n | n >= 1 }.",
+    "hint": "Cross off 14 0's for every 1.",
+    "sampleInputs": [
+      "000000000000001",
+      "000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_015n_1n",
+    "title": "TM: L = { 0^{15n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{15n} 1^n | n >= 1 }.",
+    "hint": "Cross off 15 0's for every 1.",
+    "sampleInputs": [
+      "0000000000000001",
+      "00000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_016n_1n",
+    "title": "TM: L = { 0^{16n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{16n} 1^n | n >= 1 }.",
+    "hint": "Cross off 16 0's for every 1.",
+    "sampleInputs": [
+      "00000000000000001",
+      "0000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_017n_1n",
+    "title": "TM: L = { 0^{17n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{17n} 1^n | n >= 1 }.",
+    "hint": "Cross off 17 0's for every 1.",
+    "sampleInputs": [
+      "000000000000000001",
+      "000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_018n_1n",
+    "title": "TM: L = { 0^{18n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{18n} 1^n | n >= 1 }.",
+    "hint": "Cross off 18 0's for every 1.",
+    "sampleInputs": [
+      "0000000000000000001",
+      "00000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_019n_1n",
+    "title": "TM: L = { 0^{19n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{19n} 1^n | n >= 1 }.",
+    "hint": "Cross off 19 0's for every 1.",
+    "sampleInputs": [
+      "00000000000000000001",
+      "0000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_020n_1n",
+    "title": "TM: L = { 0^{20n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{20n} 1^n | n >= 1 }.",
+    "hint": "Cross off 20 0's for every 1.",
+    "sampleInputs": [
+      "000000000000000000001",
+      "000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_021n_1n",
+    "title": "TM: L = { 0^{21n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{21n} 1^n | n >= 1 }.",
+    "hint": "Cross off 21 0's for every 1.",
+    "sampleInputs": [
+      "0000000000000000000001",
+      "00000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_022n_1n",
+    "title": "TM: L = { 0^{22n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{22n} 1^n | n >= 1 }.",
+    "hint": "Cross off 22 0's for every 1.",
+    "sampleInputs": [
+      "00000000000000000000001",
+      "0000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_023n_1n",
+    "title": "TM: L = { 0^{23n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{23n} 1^n | n >= 1 }.",
+    "hint": "Cross off 23 0's for every 1.",
+    "sampleInputs": [
+      "000000000000000000000001",
+      "000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_024n_1n",
+    "title": "TM: L = { 0^{24n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{24n} 1^n | n >= 1 }.",
+    "hint": "Cross off 24 0's for every 1.",
+    "sampleInputs": [
+      "0000000000000000000000001",
+      "00000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_025n_1n",
+    "title": "TM: L = { 0^{25n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{25n} 1^n | n >= 1 }.",
+    "hint": "Cross off 25 0's for every 1.",
+    "sampleInputs": [
+      "00000000000000000000000001",
+      "0000000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_026n_1n",
+    "title": "TM: L = { 0^{26n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{26n} 1^n | n >= 1 }.",
+    "hint": "Cross off 26 0's for every 1.",
+    "sampleInputs": [
+      "000000000000000000000000001",
+      "000000000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_027n_1n",
+    "title": "TM: L = { 0^{27n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{27n} 1^n | n >= 1 }.",
+    "hint": "Cross off 27 0's for every 1.",
+    "sampleInputs": [
+      "0000000000000000000000000001",
+      "00000000000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_028n_1n",
+    "title": "TM: L = { 0^{28n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{28n} 1^n | n >= 1 }.",
+    "hint": "Cross off 28 0's for every 1.",
+    "sampleInputs": [
+      "00000000000000000000000000001",
+      "0000000000000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_029n_1n",
+    "title": "TM: L = { 0^{29n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{29n} 1^n | n >= 1 }.",
+    "hint": "Cross off 29 0's for every 1.",
+    "sampleInputs": [
+      "000000000000000000000000000001",
+      "000000000000000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_030n_1n",
+    "title": "TM: L = { 0^{30n} 1^n | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { 0^{30n} 1^n | n >= 1 }.",
+    "hint": "Cross off 30 0's for every 1.",
+    "sampleInputs": [
+      "0000000000000000000000000000001",
+      "00000000000000000000000000000000000000000000000000000000000011"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_1",
+    "title": "TM: Unary Add 1^n + 1^{m+1}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+1}. Given 1^n+1^m, produce 1^{n+m+1}.",
+    "hint": "Replace + with 1, then append 1 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_2",
+    "title": "TM: Unary Add 1^n + 1^{m+2}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+2}. Given 1^n+1^m, produce 1^{n+m+2}.",
+    "hint": "Replace + with 1, then append 2 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_3",
+    "title": "TM: Unary Add 1^n + 1^{m+3}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+3}. Given 1^n+1^m, produce 1^{n+m+3}.",
+    "hint": "Replace + with 1, then append 3 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_4",
+    "title": "TM: Unary Add 1^n + 1^{m+4}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+4}. Given 1^n+1^m, produce 1^{n+m+4}.",
+    "hint": "Replace + with 1, then append 4 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_5",
+    "title": "TM: Unary Add 1^n + 1^{m+5}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+5}. Given 1^n+1^m, produce 1^{n+m+5}.",
+    "hint": "Replace + with 1, then append 5 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_6",
+    "title": "TM: Unary Add 1^n + 1^{m+6}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+6}. Given 1^n+1^m, produce 1^{n+m+6}.",
+    "hint": "Replace + with 1, then append 6 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_7",
+    "title": "TM: Unary Add 1^n + 1^{m+7}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+7}. Given 1^n+1^m, produce 1^{n+m+7}.",
+    "hint": "Replace + with 1, then append 7 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_8",
+    "title": "TM: Unary Add 1^n + 1^{m+8}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+8}. Given 1^n+1^m, produce 1^{n+m+8}.",
+    "hint": "Replace + with 1, then append 8 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_9",
+    "title": "TM: Unary Add 1^n + 1^{m+9}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+9}. Given 1^n+1^m, produce 1^{n+m+9}.",
+    "hint": "Replace + with 1, then append 9 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_10",
+    "title": "TM: Unary Add 1^n + 1^{m+10}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+10}. Given 1^n+1^m, produce 1^{n+m+10}.",
+    "hint": "Replace + with 1, then append 10 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_11",
+    "title": "TM: Unary Add 1^n + 1^{m+11}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+11}. Given 1^n+1^m, produce 1^{n+m+11}.",
+    "hint": "Replace + with 1, then append 11 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_12",
+    "title": "TM: Unary Add 1^n + 1^{m+12}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+12}. Given 1^n+1^m, produce 1^{n+m+12}.",
+    "hint": "Replace + with 1, then append 12 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_13",
+    "title": "TM: Unary Add 1^n + 1^{m+13}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+13}. Given 1^n+1^m, produce 1^{n+m+13}.",
+    "hint": "Replace + with 1, then append 13 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_14",
+    "title": "TM: Unary Add 1^n + 1^{m+14}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+14}. Given 1^n+1^m, produce 1^{n+m+14}.",
+    "hint": "Replace + with 1, then append 14 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_15",
+    "title": "TM: Unary Add 1^n + 1^{m+15}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+15}. Given 1^n+1^m, produce 1^{n+m+15}.",
+    "hint": "Replace + with 1, then append 15 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_16",
+    "title": "TM: Unary Add 1^n + 1^{m+16}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+16}. Given 1^n+1^m, produce 1^{n+m+16}.",
+    "hint": "Replace + with 1, then append 16 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_17",
+    "title": "TM: Unary Add 1^n + 1^{m+17}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+17}. Given 1^n+1^m, produce 1^{n+m+17}.",
+    "hint": "Replace + with 1, then append 17 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_18",
+    "title": "TM: Unary Add 1^n + 1^{m+18}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+18}. Given 1^n+1^m, produce 1^{n+m+18}.",
+    "hint": "Replace + with 1, then append 18 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_19",
+    "title": "TM: Unary Add 1^n + 1^{m+19}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+19}. Given 1^n+1^m, produce 1^{n+m+19}.",
+    "hint": "Replace + with 1, then append 19 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_20",
+    "title": "TM: Unary Add 1^n + 1^{m+20}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+20}. Given 1^n+1^m, produce 1^{n+m+20}.",
+    "hint": "Replace + with 1, then append 20 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_21",
+    "title": "TM: Unary Add 1^n + 1^{m+21}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+21}. Given 1^n+1^m, produce 1^{n+m+21}.",
+    "hint": "Replace + with 1, then append 21 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_22",
+    "title": "TM: Unary Add 1^n + 1^{m+22}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+22}. Given 1^n+1^m, produce 1^{n+m+22}.",
+    "hint": "Replace + with 1, then append 22 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_23",
+    "title": "TM: Unary Add 1^n + 1^{m+23}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+23}. Given 1^n+1^m, produce 1^{n+m+23}.",
+    "hint": "Replace + with 1, then append 23 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_24",
+    "title": "TM: Unary Add 1^n + 1^{m+24}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+24}. Given 1^n+1^m, produce 1^{n+m+24}.",
+    "hint": "Replace + with 1, then append 24 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_25",
+    "title": "TM: Unary Add 1^n + 1^{m+25}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+25}. Given 1^n+1^m, produce 1^{n+m+25}.",
+    "hint": "Replace + with 1, then append 25 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_26",
+    "title": "TM: Unary Add 1^n + 1^{m+26}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+26}. Given 1^n+1^m, produce 1^{n+m+26}.",
+    "hint": "Replace + with 1, then append 26 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_27",
+    "title": "TM: Unary Add 1^n + 1^{m+27}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+27}. Given 1^n+1^m, produce 1^{n+m+27}.",
+    "hint": "Replace + with 1, then append 27 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_28",
+    "title": "TM: Unary Add 1^n + 1^{m+28}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+28}. Given 1^n+1^m, produce 1^{n+m+28}.",
+    "hint": "Replace + with 1, then append 28 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_29",
+    "title": "TM: Unary Add 1^n + 1^{m+29}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+29}. Given 1^n+1^m, produce 1^{n+m+29}.",
+    "hint": "Replace + with 1, then append 29 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_unary_add_plus_30",
+    "title": "TM: Unary Add 1^n + 1^{m+30}",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Medium",
+    "question": "Design a TM that computes 1^n + 1^{m+30}. Given 1^n+1^m, produce 1^{n+m+30}.",
+    "hint": "Replace + with 1, then append 30 1's to the end.",
+    "sampleInputs": [
+      "1+1",
+      "11+111"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_1",
+    "title": "TM: L = { a^n b^n c^{n-1} | n >= 1 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-1} | n >= 1 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 1 fewer c's.",
+    "sampleInputs": [
+      "ab",
+      "aabbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_2",
+    "title": "TM: L = { a^n b^n c^{n-2} | n >= 2 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-2} | n >= 2 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 2 fewer c's.",
+    "sampleInputs": [
+      "aabb",
+      "aaabbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_3",
+    "title": "TM: L = { a^n b^n c^{n-3} | n >= 3 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-3} | n >= 3 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 3 fewer c's.",
+    "sampleInputs": [
+      "aaabbb",
+      "aaaabbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_4",
+    "title": "TM: L = { a^n b^n c^{n-4} | n >= 4 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-4} | n >= 4 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 4 fewer c's.",
+    "sampleInputs": [
+      "aaaabbbb",
+      "aaaaabbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_5",
+    "title": "TM: L = { a^n b^n c^{n-5} | n >= 5 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-5} | n >= 5 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 5 fewer c's.",
+    "sampleInputs": [
+      "aaaaabbbbb",
+      "aaaaaabbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_6",
+    "title": "TM: L = { a^n b^n c^{n-6} | n >= 6 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-6} | n >= 6 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 6 fewer c's.",
+    "sampleInputs": [
+      "aaaaaabbbbbb",
+      "aaaaaaabbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_7",
+    "title": "TM: L = { a^n b^n c^{n-7} | n >= 7 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-7} | n >= 7 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 7 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaabbbbbbb",
+      "aaaaaaaabbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_8",
+    "title": "TM: L = { a^n b^n c^{n-8} | n >= 8 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-8} | n >= 8 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 8 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaabbbbbbbb",
+      "aaaaaaaaabbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_9",
+    "title": "TM: L = { a^n b^n c^{n-9} | n >= 9 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-9} | n >= 9 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 9 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaabbbbbbbbb",
+      "aaaaaaaaaabbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_10",
+    "title": "TM: L = { a^n b^n c^{n-10} | n >= 10 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-10} | n >= 10 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 10 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaabbbbbbbbbb",
+      "aaaaaaaaaaabbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_11",
+    "title": "TM: L = { a^n b^n c^{n-11} | n >= 11 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-11} | n >= 11 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 11 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaabbbbbbbbbbb",
+      "aaaaaaaaaaaabbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_12",
+    "title": "TM: L = { a^n b^n c^{n-12} | n >= 12 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-12} | n >= 12 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 12 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaabbbbbbbbbbbb",
+      "aaaaaaaaaaaaabbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_13",
+    "title": "TM: L = { a^n b^n c^{n-13} | n >= 13 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-13} | n >= 13 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 13 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaabbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaabbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_14",
+    "title": "TM: L = { a^n b^n c^{n-14} | n >= 14 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-14} | n >= 14 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 14 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaabbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaabbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_15",
+    "title": "TM: L = { a^n b^n c^{n-15} | n >= 15 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-15} | n >= 15 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 15 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaabbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_16",
+    "title": "TM: L = { a^n b^n c^{n-16} | n >= 16 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-16} | n >= 16 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 16 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_17",
+    "title": "TM: L = { a^n b^n c^{n-17} | n >= 17 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-17} | n >= 17 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 17 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_18",
+    "title": "TM: L = { a^n b^n c^{n-18} | n >= 18 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-18} | n >= 18 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 18 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_19",
+    "title": "TM: L = { a^n b^n c^{n-19} | n >= 19 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-19} | n >= 19 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 19 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_20",
+    "title": "TM: L = { a^n b^n c^{n-20} | n >= 20 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-20} | n >= 20 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 20 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_21",
+    "title": "TM: L = { a^n b^n c^{n-21} | n >= 21 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-21} | n >= 21 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 21 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_22",
+    "title": "TM: L = { a^n b^n c^{n-22} | n >= 22 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-22} | n >= 22 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 22 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_23",
+    "title": "TM: L = { a^n b^n c^{n-23} | n >= 23 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-23} | n >= 23 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 23 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_24",
+    "title": "TM: L = { a^n b^n c^{n-24} | n >= 24 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-24} | n >= 24 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 24 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_25",
+    "title": "TM: L = { a^n b^n c^{n-25} | n >= 25 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-25} | n >= 25 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 25 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_26",
+    "title": "TM: L = { a^n b^n c^{n-26} | n >= 26 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-26} | n >= 26 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 26 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_27",
+    "title": "TM: L = { a^n b^n c^{n-27} | n >= 27 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-27} | n >= 27 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 27 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_28",
+    "title": "TM: L = { a^n b^n c^{n-28} | n >= 28 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-28} | n >= 28 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 28 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_29",
+    "title": "TM: L = { a^n b^n c^{n-29} | n >= 29 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-29} | n >= 29 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 29 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  },
+  {
+    "id": "qb_tm_gen_an_bn_cn_minus_30",
+    "title": "TM: L = { a^n b^n c^{n-30} | n >= 30 }",
+    "category": "TM",
+    "module": "Module 4",
+    "difficulty": "Hard",
+    "question": "Construct a TM recognizing L = { a^n b^n c^{n-30} | n >= 30 }.",
+    "hint": "Cross off a, b, c. Verify that there are exactly 30 fewer c's.",
+    "sampleInputs": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc"
+    ]
+  }
 ];
 // ============================================================================
 // AUTOMATA SYNTHESIZERS
