@@ -62,6 +62,7 @@ interface AutomataStateStore {
 
   // Modals & UI
   isExportImportOpen: boolean;
+  isSolverOpen: boolean;
   isTransitionModalOpen: boolean;
   transitionModalSourceId: string | null;
   transitionModalTargetId: string | null;
@@ -129,6 +130,7 @@ interface AutomataStateStore {
 
   // Modals
   setIsExportImportOpen: (open: boolean) => void;
+  setIsSolverOpen: (open: boolean) => void;
   setSelectedNodeId: (id: string | null) => void;
   setSelectedEdgeId: (id: string | null) => void;
 }
@@ -160,6 +162,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
   subsetResult: null,
   isSubsetDrawerOpen: false,
   isExportImportOpen: false,
+  isSolverOpen: false,
   isTransitionModalOpen: false,
   transitionModalSourceId: null,
   transitionModalTargetId: null,
@@ -825,6 +828,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
 
   setIsSubsetDrawerOpen: (isSubsetDrawerOpen) => set({ isSubsetDrawerOpen }),
   setIsExportImportOpen: (isOpen) => set({ isExportImportOpen: isOpen }),
+  setIsSolverOpen: (isOpen) => set({ isSolverOpen: isOpen }),
   setSelectedNodeId: (selectedNodeId) => set({ selectedNodeId }),
   setSelectedEdgeId: (selectedEdgeId) => set({ selectedEdgeId }),
 

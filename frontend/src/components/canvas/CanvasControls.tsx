@@ -10,6 +10,7 @@ export const CanvasControls: React.FC = () => {
     clearCanvas,
     runSubsetConstruction,
     setIsExportImportOpen,
+    setIsSolverOpen,
     setIsGuideOpen,
     undo,
     redo,
@@ -77,6 +78,12 @@ export const CanvasControls: React.FC = () => {
       <button onClick={() => setIsExportImportOpen(true)} className="flex flex-col items-center flex-shrink-0 p-1.5 rounded-lg md:rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/50 transition-all active:scale-95" title="Export / Import">
         <span className="material-symbols-outlined text-xl">download</span>
         <span className="md:hidden text-[9px] font-label-caps mt-1">Export</span>
+      </button>
+
+      {/* Solver (Mobile Only) */}
+      <button onClick={() => setIsSolverOpen(true)} className="md:hidden flex flex-col items-center flex-shrink-0 p-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-bright/50 transition-all active:scale-95" title="Question Solver">
+        <span className="material-symbols-outlined text-xl">quiz</span>
+        <span className="text-[9px] font-label-caps mt-1">Solver</span>
       </button>
 
       {/* Convert NFA to DFA if applicable */}

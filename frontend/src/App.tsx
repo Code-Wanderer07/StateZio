@@ -24,13 +24,12 @@ export const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'landing' | 'simulator'>('landing');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const [isSolverOpen, setIsSolverOpen] = useState(false);
   
   // Mobile active tab logic (Canvas, Trace, Batch, Tuples)
   const [mobileActiveTab, setMobileActiveTab] = useState<'canvas' | 'trace' | 'batch' | 'tuples'>('canvas');
   const [activeInspectorTab, setActiveInspectorTab] = useState<'engine' | 'trace' | 'batch' | 'tuples'>('engine');
 
-  const { machine, setMachineType, batchTestCases, theme, toggleTheme, undo, redo } = useAutomataStore(
+  const { machine, setMachineType, batchTestCases, theme, toggleTheme, undo, redo, isSolverOpen, setIsSolverOpen } = useAutomataStore(
     useShallow((state) => ({
       machine: state.machine,
       setMachineType: state.setMachineType,
@@ -39,6 +38,8 @@ export const App: React.FC = () => {
       toggleTheme: state.toggleTheme,
       undo: state.undo,
       redo: state.redo,
+      isSolverOpen: state.isSolverOpen,
+      setIsSolverOpen: state.setIsSolverOpen,
     }))
   );
 
