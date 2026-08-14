@@ -198,7 +198,7 @@ export const App: React.FC = () => {
 
         {/* Mobile Views Content Overlays */}
         {mobileActiveTab !== 'canvas' && (
-          <div className="md:hidden absolute inset-0 z-30 bg-background/95 backdrop-blur-md pt-16 pb-32 px-4 overflow-y-auto">
+          <div className="md:hidden absolute inset-0 z-30 bg-background/95 backdrop-blur-md pt-20 pb-[200px] px-4 overflow-y-auto">
              {mobileActiveTab === 'trace' && (
                <div className="space-y-4">
                   <ExecutionTraceTable />
