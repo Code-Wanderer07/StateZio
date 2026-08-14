@@ -96,7 +96,7 @@ export const AutomataCanvas: React.FC = () => {
           variant={BackgroundVariant.Dots}
           gap={24}
           size={1.5}
-          color="rgba(56, 189, 248, 0.25)"
+          color={theme === 'light' ? 'rgba(34, 197, 94, 0.4)' : 'rgba(56, 189, 248, 0.25)'}
         />
 
         <Controls
