@@ -17,6 +17,8 @@ import { CustomTransitionEdge } from './CustomTransitionEdge';
 import { SelfLoopEdge } from './SelfLoopEdge';
 import { CanvasControls } from './CanvasControls';
 import { TransitionModal } from './TransitionModal';
+import { validateMachine } from '../../utils/machineValidator';
+import { MachineWarnings } from './MachineWarnings';
 
 export const AutomataCanvas: React.FC = () => {
   const {
@@ -28,6 +30,7 @@ export const AutomataCanvas: React.FC = () => {
     setSelectedNodeId,
     setSelectedEdgeId,
     theme,
+    machine,
   } = useAutomataStore(
     useShallow((state) => ({
       nodes: state.nodes,
@@ -38,8 +41,11 @@ export const AutomataCanvas: React.FC = () => {
       setSelectedNodeId: state.setSelectedNodeId,
       setSelectedEdgeId: state.setSelectedEdgeId,
       theme: state.theme,
+      machine: state.machine,
     }))
   );
+
+  const warnings = useMemo(() => validateMachine(machine), [machine]);
 
   const nodeTypes = useMemo(() => ({
     customState: CustomStateNode,
@@ -64,6 +70,9 @@ export const AutomataCanvas: React.FC = () => {
     <div className="relative w-full h-full bg-surface-container dark:bg-background overflow-hidden select-none">
       {/* Top Floating Action Bar */}
       <CanvasControls />
+
+      {/* Warnings Panel */}
+      <MachineWarnings warnings={warnings} />
 
       {/* Main React Flow Graph Viewport */}
       <ReactFlow
