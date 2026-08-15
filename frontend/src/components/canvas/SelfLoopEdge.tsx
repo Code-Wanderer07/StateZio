@@ -13,6 +13,7 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   target,
   sourceX,
   sourceY,
+  sourceHandleId,
   data,
   markerEnd,
   style,
@@ -34,15 +35,37 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   const endX = sourceX;
   const endY = sourceY;
 
-  // Control points pull the curve upwards and outwards to form a teardrop shape
-  const cp1X = startX - radiusX;
-  const cp1Y = startY - radiusY;
-  const cp2X = endX + radiusX;
-  const cp2Y = endY - radiusY;
+  // Determine direction based on sourceHandleId
+  let cp1X = startX - radiusX;
+  let cp1Y = startY - radiusY;
+  let cp2X = endX + radiusX;
+  let cp2Y = endY - radiusY;
+  let labelX = sourceX;
+  let labelY = sourceY - 45 - (parallelIndex * 25);
+
+  if (sourceHandleId === 'bottom-src' || sourceHandleId === 'bottom') {
+    cp1X = startX - radiusX;
+    cp1Y = startY + radiusY;
+    cp2X = endX + radiusX;
+    cp2Y = endY + radiusY;
+    labelY = sourceY + 45 + (parallelIndex * 25);
+  } else if (sourceHandleId === 'left-src' || sourceHandleId === 'left') {
+    cp1X = startX - radiusY; // Swapped to extend leftwards
+    cp1Y = startY - radiusX;
+    cp2X = endX - radiusY;
+    cp2Y = endY + radiusX;
+    labelX = sourceX - 45 - (parallelIndex * 25);
+    labelY = sourceY;
+  } else if (sourceHandleId === 'right-src' || sourceHandleId === 'right') {
+    cp1X = startX + radiusY; // Swapped to extend rightwards
+    cp1Y = startY - radiusX;
+    cp2X = endX + radiusY;
+    cp2Y = endY + radiusX;
+    labelX = sourceX + 45 + (parallelIndex * 25);
+    labelY = sourceY;
+  }
 
   const edgePath = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
-  const labelX = sourceX;
-  const labelY = sourceY - 45 - (parallelIndex * 25);
 
   // Light Blue & #1C1313 Edge Styling
   const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : style?.stroke || '#38BDF8';
