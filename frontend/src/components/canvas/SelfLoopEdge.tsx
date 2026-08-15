@@ -24,18 +24,23 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   const labelText = edgeData?.combinedLabel || 'ε';
 
   // Construct an upward looping arc SVG path for self loop
-  // Ensure the loop starts and ends strictly outside the node boundary.
-  // The node has radius 32px.
-  const radiusX = 35;
-  const radiusY = 45;
-  const startX = sourceX - 15;
-  const startY = sourceY - 35; // Start just above the node
-  const endX = sourceX + 15;
-  const endY = sourceY - 35; // End just above the node
+  // The path must start exactly at sourceX, sourceY so it visually connects to the node handle.
+  const radiusX = 40;
+  const radiusY = 50;
+  const startX = sourceX;
+  const startY = sourceY;
+  const endX = sourceX;
+  const endY = sourceY;
 
-  const edgePath = `M ${startX} ${startY} C ${startX - radiusX} ${startY - radiusY}, ${endX + radiusX} ${endY - radiusY}, ${endX} ${endY}`;
+  // Control points pull the curve upwards and outwards to form a teardrop shape
+  const cp1X = startX - radiusX;
+  const cp1Y = startY - radiusY;
+  const cp2X = endX + radiusX;
+  const cp2Y = endY - radiusY;
+
+  const edgePath = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
   const labelX = sourceX;
-  const labelY = sourceY - 50;
+  const labelY = sourceY - 45;
 
   // Light Blue & #1C1313 Edge Styling
   const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : style?.stroke || '#38BDF8';

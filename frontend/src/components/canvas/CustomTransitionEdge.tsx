@@ -22,15 +22,30 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
   markerEnd,
   style,
 }) => {
-  const [edgePath, labelX, labelY] = getBezierPath({
-    sourceX,
-    sourceY,
-    sourcePosition,
-    targetX,
-    targetY,
-    targetPosition,
-    curvature: 0.25,
-  });
+  // Calculate a custom quadratic bezier curve that bows out perpendicularly.
+  // This ensures that A->B and B->A bow out in opposite directions, preventing overlap.
+  const dx = targetX - sourceX;
+  const dy = targetY - sourceY;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  
+  // Normal vector (perpendicular to the line)
+  const nx = dist === 0 ? 0 : -dy / dist;
+  const ny = dist === 0 ? 0 : dx / dist;
+  
+  // Base offset to make the line curve slightly
+  const offset = 25;
+  
+  // Control point in the middle, pushed outwards by the offset
+  const midX = sourceX + dx / 2;
+  const midY = sourceY + dy / 2;
+  const cpX = midX + nx * offset;
+  const cpY = midY + ny * offset;
+  
+  const edgePath = `M ${sourceX} ${sourceY} Q ${cpX} ${cpY} ${targetX} ${targetY}`;
+  
+  // Label position at t = 0.5 of the quadratic bezier curve
+  const labelX = 0.25 * sourceX + 0.5 * cpX + 0.25 * targetX;
+  const labelY = 0.25 * sourceY + 0.5 * cpY + 0.25 * targetY;
 
   const openTransitionModal = useAutomataStore(s => s.openTransitionModal);
   const deleteTransition = useAutomataStore(s => s.deleteTransition);
