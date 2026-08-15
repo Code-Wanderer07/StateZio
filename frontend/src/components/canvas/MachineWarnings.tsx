@@ -14,7 +14,7 @@ export const MachineWarnings: React.FC<MachineWarningsProps> = ({ warnings }) =>
   const hasErrors = errors.length > 0;
 
   return (
-    <div className="absolute bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+    <div className="absolute bottom-[140px] right-6 z-[60] flex flex-col items-end pointer-events-none">
       {isExpanded && (
         <div className="bg-surface-container-highest/95 backdrop-blur-md border border-outline-variant/30 shadow-lg rounded-xl p-4 mb-3 w-80 max-h-64 overflow-y-auto pointer-events-auto origin-bottom-right animate-in fade-in zoom-in-95 duration-200 hide-scrollbar">
           <div className="flex justify-between items-center mb-3">
