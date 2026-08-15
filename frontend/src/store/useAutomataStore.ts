@@ -439,6 +439,8 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
       id: `e-${connection.source}-${connection.target}-${Date.now()}`,
       source: connection.source!,
       target: connection.target!,
+      sourceHandle: connection.sourceHandle,
+      targetHandle: connection.targetHandle,
       type: connection.source === connection.target ? 'selfLoopEdge' : 'customTransitionEdge',
     };
     const nextEdges = addEdge(newEdge, get().edges);
@@ -447,7 +449,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     
     // Auto-open transition modal for the new connection
     setTimeout(() => {
-      get().openTransitionModal(connection.source!, connection.target!);
+      get().openTransitionModal(connection.source!, connection.target!, newEdge.id);
     }, 10);
   },
 
@@ -553,6 +555,9 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     if (!transitionModalSourceId || !transitionModalTargetId) return;
 
     const transitionId = editingTransitionId || `t_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+    const existingTransition = editingTransitionId ? machine.transitions.find(t => t.id === editingTransitionId) : undefined;
+    const sourceHandle = existingTransition?.sourceHandle;
+    const targetHandle = existingTransition?.targetHandle;
 
     let updatedMachine: AutomataMachine;
 
@@ -563,6 +568,8 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
           id: transitionId,
           from: transitionModalSourceId,
           to: transitionModalTargetId,
+          sourceHandle,
+          targetHandle,
           symbol: data.symbol || '0',
         };
         updatedMachine = { ...machine, transitions: [...filtered, newT] };
@@ -574,6 +581,8 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
           id: transitionId,
           from: transitionModalSourceId,
           to: transitionModalTargetId,
+          sourceHandle,
+          targetHandle,
           symbol: data.symbol || 'ε',
         };
         updatedMachine = { ...machine, transitions: [...filtered, newT] };
@@ -585,6 +594,8 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
           id: transitionId,
           from: transitionModalSourceId,
           to: transitionModalTargetId,
+          sourceHandle,
+          targetHandle,
           inputSymbol: data.inputSymbol || 'ε',
           popSymbol: data.popSymbol || 'Z0',
           pushSymbols: data.pushSymbols || 'Z0',
@@ -598,6 +609,8 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
           id: transitionId,
           from: transitionModalSourceId,
           to: transitionModalTargetId,
+          sourceHandle,
+          targetHandle,
           readSymbol: data.readSymbol || '_',
           writeSymbol: data.writeSymbol || '_',
           direction: (data.direction as 'L'|'R'|'S') || 'R',

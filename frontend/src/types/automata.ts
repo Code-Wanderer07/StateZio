@@ -20,6 +20,8 @@ export interface BaseTransition {
   id: string;
   from: string;
   to: string;
+  sourceHandle?: string;
+  targetHandle?: string;
 }
 
 export interface DFATransition extends BaseTransition {

@@ -129,10 +129,10 @@ export function machineToFlowElements(
     
     const isBidirectional = bidirectionalPairs.has(key);
 
-    let sourceHandle: string | undefined = undefined;
-    let targetHandle: string | undefined = undefined;
+    let sourceHandle: string | undefined = t.sourceHandle;
+    let targetHandle: string | undefined = t.targetHandle;
 
-    if (!isSelfLoop) {
+    if (!sourceHandle && !targetHandle && !isSelfLoop) {
       if (isBidirectional) {
         if (t.from < t.to) {
           const options = [
@@ -251,12 +251,16 @@ export function flowElementsToMachine(
     edges.forEach((e) => {
       const d = e.data as (TransitionEdgeData & { allTransitions?: DFATransition[] });
       if (d?.allTransitions && d.allTransitions.length > 0) {
-        transitions.push(...d.allTransitions);
+        d.allTransitions.forEach(t => {
+          transitions.push({ ...t, sourceHandle: e.sourceHandle || undefined, targetHandle: e.targetHandle || undefined });
+        });
       } else {
         transitions.push({
           id: e.id,
           from: e.source,
           to: e.target,
+          sourceHandle: e.sourceHandle || undefined,
+          targetHandle: e.targetHandle || undefined,
           symbol: d?.symbol || '0',
         });
       }
@@ -275,12 +279,16 @@ export function flowElementsToMachine(
     edges.forEach((e) => {
       const d = e.data as (TransitionEdgeData & { allTransitions?: NFATransition[] });
       if (d?.allTransitions && d.allTransitions.length > 0) {
-        transitions.push(...d.allTransitions);
+        d.allTransitions.forEach(t => {
+          transitions.push({ ...t, sourceHandle: e.sourceHandle || undefined, targetHandle: e.targetHandle || undefined });
+        });
       } else {
         transitions.push({
           id: e.id,
           from: e.source,
           to: e.target,
+          sourceHandle: e.sourceHandle || undefined,
+          targetHandle: e.targetHandle || undefined,
           symbol: d?.symbol || 'ε',
         });
       }
@@ -299,12 +307,16 @@ export function flowElementsToMachine(
     edges.forEach((e) => {
       const d = e.data as (TransitionEdgeData & { allTransitions?: PDATransition[] });
       if (d?.allTransitions && d.allTransitions.length > 0) {
-        transitions.push(...d.allTransitions);
+        d.allTransitions.forEach(t => {
+          transitions.push({ ...t, sourceHandle: e.sourceHandle || undefined, targetHandle: e.targetHandle || undefined });
+        });
       } else {
         transitions.push({
           id: e.id,
           from: e.source,
           to: e.target,
+          sourceHandle: e.sourceHandle || undefined,
+          targetHandle: e.targetHandle || undefined,
           inputSymbol: d?.inputSymbol || 'ε',
           popSymbol: d?.popSymbol || 'Z0',
           pushSymbols: d?.pushSymbols || 'Z0',
@@ -325,12 +337,16 @@ export function flowElementsToMachine(
   edges.forEach((e) => {
     const d = e.data as (TransitionEdgeData & { allTransitions?: TMTransition[] });
     if (d?.allTransitions && d.allTransitions.length > 0) {
-      transitions.push(...d.allTransitions);
+      d.allTransitions.forEach(t => {
+        transitions.push({ ...t, sourceHandle: e.sourceHandle || undefined, targetHandle: e.targetHandle || undefined });
+      });
     } else {
       transitions.push({
         id: e.id,
         from: e.source,
         to: e.target,
+        sourceHandle: e.sourceHandle || undefined,
+        targetHandle: e.targetHandle || undefined,
         readSymbol: d?.readSymbol || '_',
         writeSymbol: d?.writeSymbol || '_',
         direction: d?.direction || 'R',
