@@ -16,6 +16,7 @@ export const CustomStateNode = React.memo<NodeProps>(({ id, data, selected }) =>
   const isAccept = !!data.isAccept;
   const isReject = !!data.isReject;
   const isActive = !!data.isActive;
+  const traceStatus = data.traceStatus as string | undefined;
 
   const handleRenameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +29,12 @@ export const CustomStateNode = React.memo<NodeProps>(({ id, data, selected }) =>
   // Node Border & Background resolution according to #1C1313 and Light Blue Spec
   const getNodeStyling = () => {
     if (isActive) {
-      if (isReject) return 'bg-rose-500 border-2 border-outline-variant/30 node-active-pulse ring-4 ring-rose-400/60 text-white scale-105';
+      if (traceStatus === 'ACCEPTED' || traceStatus === 'HALTED_ACCEPT') {
+        return 'bg-emerald-400 border-2 border-outline-variant/30 node-active-pulse ring-4 ring-emerald-400/80 text-[#1C1313] scale-110 shadow-[0_0_30px_rgba(52,211,153,0.8)]';
+      }
+      if (traceStatus === 'REJECTED' || traceStatus === 'HALTED_REJECT' || traceStatus === 'TIMEOUT' || isReject) {
+        return 'bg-rose-500 border-2 border-outline-variant/30 node-active-pulse ring-4 ring-rose-400/80 text-white scale-110 shadow-[0_0_30px_rgba(244,63,94,0.8)]';
+      }
       return 'bg-cyan-400 border-2 border-outline-variant/30 node-active-pulse ring-4 ring-cyan-300/60 text-on-surface dark:text-[#1C1313] scale-105';
     }
     if (selected) {

@@ -746,7 +746,7 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     if (!simulationResult || !simulationResult.traces[stepIndex]) return;
 
     const trace = simulationResult.traces[stepIndex];
-    const flow = machineToFlowElements(machine, trace.activeStates, trace.activeTransitionId);
+    const flow = machineToFlowElements(machine, trace.activeStates, trace.activeTransitionId, undefined, trace.status);
 
     set({
       currentStepIndex: stepIndex,

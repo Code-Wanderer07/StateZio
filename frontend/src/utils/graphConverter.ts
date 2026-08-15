@@ -19,6 +19,7 @@ export interface StateNodeData {
   isAccept: boolean;
   isReject?: boolean;
   isActive: boolean;
+  traceStatus?: string;
   hasError?: boolean;
   onToggleInitial?: (id: string) => void;
   onToggleAccept?: (id: string) => void;
@@ -73,7 +74,8 @@ export function machineToFlowElements(
   machine: AutomataMachine,
   activeStateIds: string[] = [],
   activeEdgeId?: string,
-  errorEdgeId?: string
+  errorEdgeId?: string,
+  traceStatus?: string
 ): { nodes: Node[]; edges: Edge[] } {
   const nodes: Node[] = machine.states.map((st, index) => {
     return {
@@ -89,6 +91,7 @@ export function machineToFlowElements(
         isAccept: st.isAccept || (machine.acceptStates || []).includes(st.id),
         isReject: machine.type === 'TM' ? ((machine as TMMachine).rejectStates || []).includes(st.id) : false,
         isActive: activeStateIds.includes(st.id),
+        traceStatus: activeStateIds.includes(st.id) ? traceStatus : undefined,
       },
     };
   });
