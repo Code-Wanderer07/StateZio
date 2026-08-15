@@ -154,8 +154,8 @@ export function machineToFlowElements(
       markerEnd: {
         type: MarkerType.ArrowClosed,
         color: edgeColor,
-        width: 14,
-        height: 14,
+        width: 24,
+        height: 24,
       },
       data: {
         ...dataPayload,

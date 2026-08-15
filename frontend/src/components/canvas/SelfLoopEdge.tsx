@@ -24,12 +24,14 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   const labelText = edgeData?.combinedLabel || 'ε';
 
   // Construct an upward looping arc SVG path for self loop
-  const radiusX = 30;
-  const radiusY = 38;
-  const startX = sourceX - 12;
-  const startY = sourceY - 20;
-  const endX = sourceX + 12;
-  const endY = sourceY - 20;
+  // Ensure the loop starts and ends strictly outside the node boundary.
+  // The node has radius 32px.
+  const radiusX = 35;
+  const radiusY = 45;
+  const startX = sourceX - 15;
+  const startY = sourceY - 35; // Start just above the node
+  const endX = sourceX + 15;
+  const endY = sourceY - 35; // End just above the node
 
   const edgePath = `M ${startX} ${startY} C ${startX - radiusX} ${startY - radiusY}, ${endX + radiusX} ${endY - radiusY}, ${endX} ${endY}`;
   const labelX = sourceX;

@@ -55,8 +55,8 @@ export const AutomataCanvas: React.FC = () => {
     markerEnd: {
       type: MarkerType.ArrowClosed,
       color: '#38BDF8', // Light Blue for idle transitions
-      width: 14,
-      height: 14,
+      width: 24,
+      height: 24,
     },
   }), []);
 
