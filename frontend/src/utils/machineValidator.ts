@@ -221,7 +221,7 @@ function validateTM(machine: TMMachine, warnings: ValidationWarning[]) {
   });
 
   const acceptStates = machine.states.filter(s => s.isAccept);
-  const rejectStates = machine.states.filter(s => s.isReject);
+  const rejectStates = machine.rejectStates || [];
   if (acceptStates.length === 0) {
     warnings.push({ id: 'tm-no-accept', message: 'TM has no accept state.', severity: 'warning' });
   }
