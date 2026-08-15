@@ -31,6 +31,12 @@ export function validateMachine(machine: AutomataMachine): ValidationWarning[] {
     warnings.push({ id: 'multiple-initial', message: 'Machine cannot have multiple initial states.', severity: 'error' });
   }
 
+  const acceptStates = machine.states.filter(s => s.isAccept);
+  if (acceptStates.length === 0 && machine.type !== 'TM') {
+    // TM usually halts explicitly, but DFA/NFA/PDA generally need accept states to accept anything
+    warnings.push({ id: 'no-accept', message: 'Machine has no accept states. It will reject all inputs.', severity: 'warning' });
+  }
+
   // 2. Type-Specific Checks
   switch (machine.type) {
     case 'DFA':
@@ -133,6 +139,41 @@ function validatePDA(machine: PDAMachine, warnings: ValidationWarning[]) {
   if (machine.stackAlphabet.length === 0) {
     warnings.push({ id: 'pda-no-stack-alpha', message: 'Stack alphabet is empty.', severity: 'warning' });
   }
+
+  machine.transitions.forEach(t => {
+    // Input symbol check
+    if (!machine.inputAlphabet.includes(t.inputSymbol) && t.inputSymbol !== EPSILON && t.inputSymbol !== 'eps') {
+      warnings.push({ 
+        id: `pda-invalid-input-sym-${t.id}`, 
+        message: `Transition uses input symbol '${t.inputSymbol}' not in input alphabet.`, 
+        severity: 'error' 
+      });
+    }
+
+    // Pop symbol check
+    if (!machine.stackAlphabet.includes(t.popSymbol) && t.popSymbol !== EPSILON && t.popSymbol !== 'eps') {
+      warnings.push({ 
+        id: `pda-invalid-pop-sym-${t.id}`, 
+        message: `Transition pops symbol '${t.popSymbol}' not in stack alphabet.`, 
+        severity: 'error' 
+      });
+    }
+
+    // Push symbols check
+    if (t.pushSymbols !== EPSILON && t.pushSymbols !== 'eps') {
+      // pushSymbols could be multiple symbols (e.g. "AB") depending on PDA implementation. 
+      // We will check if each character is in the stack alphabet.
+      for (const char of t.pushSymbols) {
+        if (!machine.stackAlphabet.includes(char)) {
+          warnings.push({ 
+            id: `pda-invalid-push-sym-${t.id}-${char}`, 
+            message: `Transition pushes symbol '${char}' not in stack alphabet.`, 
+            severity: 'error' 
+          });
+        }
+      }
+    }
+  });
 }
 
 function validateTM(machine: TMMachine, warnings: ValidationWarning[]) {
@@ -143,12 +184,31 @@ function validateTM(machine: TMMachine, warnings: ValidationWarning[]) {
     warnings.push({ id: 'tm-no-tape-alpha', message: 'Tape alphabet is empty.', severity: 'warning' });
   }
 
-  // Check determinism (standard TM is deterministic)
+  // Check determinism (standard TM is deterministic) and tape alphabet
   machine.states.forEach(state => {
     const transitionsFromState = machine.transitions.filter(t => t.from === state.id);
     const readSymbols = new Set<string>();
 
     transitionsFromState.forEach(t => {
+      // Check Read Symbol
+      if (!machine.tapeAlphabet.includes(t.readSymbol) && t.readSymbol !== machine.blankSymbol) {
+        warnings.push({ 
+          id: `tm-invalid-read-${t.id}`, 
+          message: `Transition reads '${t.readSymbol}', which is not in tape alphabet or blank symbol.`, 
+          severity: 'error' 
+        });
+      }
+
+      // Check Write Symbol
+      if (!machine.tapeAlphabet.includes(t.writeSymbol) && t.writeSymbol !== machine.blankSymbol) {
+        warnings.push({ 
+          id: `tm-invalid-write-${t.id}`, 
+          message: `Transition writes '${t.writeSymbol}', which is not in tape alphabet or blank symbol.`, 
+          severity: 'error' 
+        });
+      }
+
+      // Check determinism
       if (readSymbols.has(t.readSymbol)) {
         warnings.push({ 
           id: `tm-nondet-${state.id}-${t.readSymbol}`, 
@@ -159,4 +219,13 @@ function validateTM(machine: TMMachine, warnings: ValidationWarning[]) {
       readSymbols.add(t.readSymbol);
     });
   });
+
+  const acceptStates = machine.states.filter(s => s.isAccept);
+  const rejectStates = machine.states.filter(s => s.isReject);
+  if (acceptStates.length === 0) {
+    warnings.push({ id: 'tm-no-accept', message: 'TM has no accept state.', severity: 'warning' });
+  }
+  if (rejectStates.length === 0) {
+    warnings.push({ id: 'tm-no-reject', message: 'TM has no explicit reject state.', severity: 'warning' });
+  }
 }
