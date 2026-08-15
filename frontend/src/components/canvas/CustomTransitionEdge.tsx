@@ -18,6 +18,8 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
   targetY,
   sourcePosition,
   targetPosition,
+  sourceHandleId,
+  targetHandleId,
   data,
   markerEnd,
   style,
@@ -25,17 +27,30 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
   const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; allTransitions?: unknown[]; hasError?: boolean; parallelIndex?: number });
   const parallelIndex = edgeData?.parallelIndex || 0;
 
-  // Use React Flow's native getBezierPath which will route cleanly based on the assigned source/target handles.
+  // React Flow sometimes defaults sourcePosition/targetPosition to Left/Right if handles are unmapped or dynamically added.
+  // We explicitly override them based on our known handle IDs to guarantee getBezierPath arches correctly.
+  let computedSourcePos = sourcePosition;
+  if (sourceHandleId?.includes('top')) computedSourcePos = 'top' as any;
+  if (sourceHandleId?.includes('bottom')) computedSourcePos = 'bottom' as any;
+  if (sourceHandleId?.includes('left')) computedSourcePos = 'left' as any;
+  if (sourceHandleId?.includes('right')) computedSourcePos = 'right' as any;
+
+  let computedTargetPos = targetPosition;
+  if (targetHandleId?.includes('top')) computedTargetPos = 'top' as any;
+  if (targetHandleId?.includes('bottom')) computedTargetPos = 'bottom' as any;
+  if (targetHandleId?.includes('left')) computedTargetPos = 'left' as any;
+  if (targetHandleId?.includes('right')) computedTargetPos = 'right' as any;
+
   // We increase the base curvature so that routes from top/bottom have a more pronounced, visible bend.
-  const extraCurvature = parallelIndex > 4 ? 0.6 + (parallelIndex - 4) * 0.25 : 0.6;
+  const extraCurvature = parallelIndex > 4 ? 0.8 + (parallelIndex - 4) * 0.25 : 0.8;
 
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
-    sourcePosition,
+    sourcePosition: computedSourcePos,
     targetX,
     targetY,
-    targetPosition,
+    targetPosition: computedTargetPos,
     curvature: extraCurvature,
   });
 
