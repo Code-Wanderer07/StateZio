@@ -18,15 +18,17 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   style,
 }) => {
   const { openTransitionModal, deleteTransition } = useAutomataStore();
-  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; hasError?: boolean });
+  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; hasError?: boolean; parallelIndex?: number });
+  const parallelIndex = edgeData?.parallelIndex || 0;
   const isActive = !!edgeData?.isActive;
   const hasError = !!edgeData?.hasError;
   const labelText = edgeData?.combinedLabel || 'ε';
 
   // Construct an upward looping arc SVG path for self loop
   // The path must start exactly at sourceX, sourceY so it visually connects to the node handle.
-  const radiusX = 40;
-  const radiusY = 50;
+  // Increase control point distance based on parallelIndex to make larger concentric loops
+  const radiusX = 40 + (parallelIndex * 20);
+  const radiusY = 50 + (parallelIndex * 25);
   const startX = sourceX;
   const startY = sourceY;
   const endX = sourceX;
@@ -40,7 +42,7 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
 
   const edgePath = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
   const labelX = sourceX;
-  const labelY = sourceY - 45;
+  const labelY = sourceY - 45 - (parallelIndex * 25);
 
   // Light Blue & #1C1313 Edge Styling
   const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : style?.stroke || '#38BDF8';
@@ -78,7 +80,7 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                openTransitionModal(source, target, undefined); // Open for connection
+                openTransitionModal(source, target, id); // Open for this specific transition ID
               }}
               title="Click to edit self-loop rules"
               className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 border shadow-md cursor-pointer ${

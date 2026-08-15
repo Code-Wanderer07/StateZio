@@ -22,34 +22,25 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
   markerEnd,
   style,
 }) => {
-  // Calculate a custom quadratic bezier curve that bows out perpendicularly.
-  // This ensures that A->B and B->A bow out in opposite directions, preventing overlap.
-  const dx = targetX - sourceX;
-  const dy = targetY - sourceY;
-  const dist = Math.sqrt(dx * dx + dy * dy);
-  
-  // Normal vector (perpendicular to the line)
-  const nx = dist === 0 ? 0 : -dy / dist;
-  const ny = dist === 0 ? 0 : dx / dist;
-  
-  // Base offset to make the line curve slightly
-  const offset = 25;
-  
-  // Control point in the middle, pushed outwards by the offset
-  const midX = sourceX + dx / 2;
-  const midY = sourceY + dy / 2;
-  const cpX = midX + nx * offset;
-  const cpY = midY + ny * offset;
-  
-  const edgePath = `M ${sourceX} ${sourceY} Q ${cpX} ${cpY} ${targetX} ${targetY}`;
-  
-  // Label position at t = 0.5 of the quadratic bezier curve
-  const labelX = 0.25 * sourceX + 0.5 * cpX + 0.25 * targetX;
-  const labelY = 0.25 * sourceY + 0.5 * cpY + 0.25 * targetY;
+  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; allTransitions?: unknown[]; hasError?: boolean; parallelIndex?: number });
+  const parallelIndex = edgeData?.parallelIndex || 0;
+
+  // Use React Flow's native getBezierPath which will route cleanly based on the assigned source/target handles.
+  // We only add extra curvature if the parallel index exceeds the available handles (4 sides) to ensure they still don't overlap.
+  const extraCurvature = parallelIndex > 4 ? (parallelIndex - 4) * 0.25 : 0.25;
+
+  const [edgePath, labelX, labelY] = getBezierPath({
+    sourceX,
+    sourceY,
+    sourcePosition,
+    targetX,
+    targetY,
+    targetPosition,
+    curvature: extraCurvature,
+  });
 
   const openTransitionModal = useAutomataStore(s => s.openTransitionModal);
   const deleteTransition = useAutomataStore(s => s.deleteTransition);
-  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; allTransitions?: unknown[]; hasError?: boolean });
   const isActive = !!edgeData?.isActive;
   const hasError = !!edgeData?.hasError;
   const labelText = edgeData?.combinedLabel || 'ε';
@@ -93,7 +84,7 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                openTransitionModal(source, target, undefined); // Open for the connection, not a specific ID
+                openTransitionModal(source, target, id); // Open for this specific ID
               }}
               title="Click to edit transition rules"
               className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 border shadow-md cursor-pointer ${

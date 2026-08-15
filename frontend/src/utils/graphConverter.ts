@@ -98,57 +98,112 @@ export function machineToFlowElements(
 
   const edges: Edge[] = [];
 
-  // Group transitions by (from, to) to consolidate multiple parallel transitions or self-loops cleanly
-  const edgeGroups = new Map<string, Array<DFATransition | NFATransition | PDATransition | TMTransition>>();
+  const allTransitions = machine.transitions as Array<DFATransition | NFATransition | PDATransition | TMTransition>;
 
-  (machine.transitions as Array<DFATransition | NFATransition | PDATransition | TMTransition>).forEach((t) => {
+  // Detect bidirectional pairs and count total transitions per edge key
+  const bidirectionalPairs = new Set<string>();
+  const parallelCounts = new Map<string, number>();
+
+  allTransitions.forEach((t) => {
     const key = `${t.from}->${t.to}`;
-    if (!edgeGroups.has(key)) {
-      edgeGroups.set(key, []);
+    const reverseKey = `${t.to}->${t.from}`;
+    parallelCounts.set(key, (parallelCounts.get(key) || 0) + 1);
+    
+    if (t.from !== t.to && parallelCounts.has(reverseKey)) {
+      bidirectionalPairs.add(key);
+      bidirectionalPairs.add(reverseKey);
     }
-    edgeGroups.get(key)!.push(t);
   });
 
+  const currentParallelIndex = new Map<string, number>();
   let edgeIdx = 0;
-  edgeGroups.forEach((transitions, key) => {
-    const [from, to] = key.split('->');
-    const isSelfLoop = from === to;
-    const isEdgeActive = transitions.some((t) => t.id === activeEdgeId);
-    const isEdgeError = transitions.some((t) => t.id === errorEdgeId);
 
-    // Form combined label
-    const labels = transitions.map((t) => {
-      if (machine.type === 'DFA' || machine.type === 'NFA') {
-        return (t as DFATransition | NFATransition).symbol || 'ε';
-      } else if (machine.type === 'PDA') {
-        const pt = t as PDATransition;
-        return `${pt.inputSymbol || 'ε'}, ${pt.popSymbol || 'ε'} → ${pt.pushSymbols || 'ε'}`;
+  allTransitions.forEach((t) => {
+    const key = `${t.from}->${t.to}`;
+    const isSelfLoop = t.from === t.to;
+    const isEdgeActive = t.id === activeEdgeId;
+    const isEdgeError = t.id === errorEdgeId;
+
+    const pIndex = currentParallelIndex.get(key) || 0;
+    currentParallelIndex.set(key, pIndex + 1);
+    
+    const isBidirectional = bidirectionalPairs.has(key);
+
+    let sourceHandle: string | undefined = undefined;
+    let targetHandle: string | undefined = undefined;
+
+    if (!isSelfLoop) {
+      if (isBidirectional) {
+        if (t.from < t.to) {
+          const options = [
+            { s: 'top-src', t: 'top' },
+            { s: 'right-src', t: 'right' },
+            { s: undefined, t: undefined },
+            { s: 'left-src', t: 'left' }
+          ];
+          const opt = options[pIndex % options.length];
+          sourceHandle = opt.s;
+          targetHandle = opt.t;
+        } else {
+          const options = [
+            { s: 'bottom-src', t: 'bottom' },
+            { s: 'left-src', t: 'left' },
+            { s: undefined, t: undefined },
+            { s: 'right-src', t: 'right' }
+          ];
+          const opt = options[pIndex % options.length];
+          sourceHandle = opt.s;
+          targetHandle = opt.t;
+        }
       } else {
-        const tt = t as TMTransition;
-        return `${tt.readSymbol || '_'} → ${tt.writeSymbol || '_'}, ${tt.direction || 'R'}`;
+        const options = [
+          { s: undefined, t: undefined },
+          { s: 'top-src', t: 'top' },
+          { s: 'bottom-src', t: 'bottom' },
+          { s: 'right-src', t: 'right' },
+          { s: 'left-src', t: 'left' }
+        ];
+        const opt = options[pIndex % options.length];
+        sourceHandle = opt.s;
+        targetHandle = opt.t;
       }
-    });
+    }
 
-    const firstT = transitions[0];
+    let combinedLabel = '';
+    if (machine.type === 'DFA' || machine.type === 'NFA') {
+      combinedLabel = (t as DFATransition).symbol || 'ε';
+    } else if (machine.type === 'PDA') {
+      const pt = t as PDATransition;
+      combinedLabel = `${pt.inputSymbol || 'ε'}, ${pt.popSymbol || 'ε'} → ${pt.pushSymbols || 'ε'}`;
+    } else {
+      const tt = t as TMTransition;
+      combinedLabel = `${tt.readSymbol || '_'} → ${tt.writeSymbol || '_'}, ${tt.direction || 'R'}`;
+    }
+
     const dataPayload: TransitionEdgeData = {
       machineType: machine.type,
       isActive: isEdgeActive,
       hasError: isEdgeError,
-      symbol: (firstT as DFATransition).symbol,
-      inputSymbol: (firstT as PDATransition).inputSymbol,
-      popSymbol: (firstT as PDATransition).popSymbol,
-      pushSymbols: (firstT as PDATransition).pushSymbols,
-      readSymbol: (firstT as TMTransition).readSymbol,
-      writeSymbol: (firstT as TMTransition).writeSymbol,
-      direction: (firstT as TMTransition).direction,
+      symbol: (t as DFATransition).symbol,
+      inputSymbol: (t as PDATransition).inputSymbol,
+      popSymbol: (t as PDATransition).popSymbol,
+      pushSymbols: (t as PDATransition).pushSymbols,
+      readSymbol: (t as TMTransition).readSymbol,
+      writeSymbol: (t as TMTransition).writeSymbol,
+      direction: (t as TMTransition).direction,
+      parallelIndex: pIndex,
+      combinedLabel,
+      allTransitions: [t] // Maintain array format for compatibility with other parts
     };
 
     const edgeColor = isEdgeError ? '#EF4444' : isEdgeActive ? '#38BDF8' : '#38BDF8';
 
     edges.push({
-      id: firstT.id || `edge_${from}_${to}_${edgeIdx++}`,
-      source: from,
-      target: to,
+      id: t.id || `edge_${t.from}_${t.to}_${edgeIdx++}`,
+      source: t.from,
+      target: t.to,
+      sourceHandle,
+      targetHandle,
       type: isSelfLoop ? 'selfLoopEdge' : 'customTransitionEdge',
       animated: isEdgeActive,
       markerEnd: {
@@ -157,11 +212,7 @@ export function machineToFlowElements(
         width: 24,
         height: 24,
       },
-      data: {
-        ...dataPayload,
-        combinedLabel: labels.join(' | '),
-        allTransitions: transitions,
-      },
+      data: dataPayload,
       style: {
         stroke: edgeColor,
         strokeWidth: isEdgeActive || isEdgeError ? 3 : 2,
