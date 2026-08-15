@@ -26,8 +26,8 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
   const parallelIndex = edgeData?.parallelIndex || 0;
 
   // Use React Flow's native getBezierPath which will route cleanly based on the assigned source/target handles.
-  // We only add extra curvature if the parallel index exceeds the available handles (4 sides) to ensure they still don't overlap.
-  const extraCurvature = parallelIndex > 4 ? (parallelIndex - 4) * 0.25 : 0.25;
+  // We increase the base curvature so that routes from top/bottom have a more pronounced, visible bend.
+  const extraCurvature = parallelIndex > 4 ? 0.6 + (parallelIndex - 4) * 0.25 : 0.6;
 
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
