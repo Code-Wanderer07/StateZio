@@ -135,29 +135,31 @@ interface AutomataStateStore {
   setSelectedEdgeId: (id: string | null) => void;
 }
 
-const initialPreset = dfaEndsWith01;
-const initialFlow = machineToFlowElements(initialPreset.machine);
+const emptyMachine: AutomataMachine = {
+  type: 'DFA',
+  name: 'New DFA',
+  alphabet: ['0', '1'],
+  startState: '',
+  acceptStates: [],
+  states: [],
+  transitions: [],
+};
 
 export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
-  machine: initialPreset.machine,
-  nodes: initialFlow.nodes,
-  edges: initialFlow.edges,
+  machine: emptyMachine,
+  nodes: [],
+  edges: [],
   selectedNodeId: null,
   selectedEdgeId: null,
-  activePresetId: initialPreset.id,
+  activePresetId: null,
 
-  inputString: '1001',
+  inputString: '',
   simulationResult: null,
   currentStepIndex: 0,
   isPlaying: false,
   playbackSpeed: 1.0,
 
-  batchTestCases: initialPreset.testCases.map((tc, idx) => ({
-    id: `batch_${idx}`,
-    input: tc.input,
-    expected: tc.expected,
-    status: 'PENDING',
-  })),
+  batchTestCases: [],
 
   subsetResult: null,
   isSubsetDrawerOpen: false,
