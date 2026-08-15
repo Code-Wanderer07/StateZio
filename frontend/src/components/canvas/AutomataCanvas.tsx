@@ -85,6 +85,7 @@ export const AutomataCanvas: React.FC = () => {
         edgeTypes={edgeTypes}
         defaultEdgeOptions={defaultEdgeOptions}
         connectionMode={ConnectionMode.Loose}
+        isValidConnection={() => true}
         fitView
         fitViewOptions={{ padding: 0.25 }}
         minZoom={0.2}
