@@ -5,9 +5,9 @@ import {
   PDAMachine,
   TMMachine,
   DFATransition,
-  TMTransition
+  TMTransition,
+  EPSILON
 } from '../types/automata';
-import { EPSILON } from '../engine/nfaEngine';
 import { tokenizeStackSymbols } from '../engine/pdaEngine';
 
 export interface ValidationWarning {

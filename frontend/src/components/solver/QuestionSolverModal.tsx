@@ -16,10 +16,8 @@ import {
   Cpu,
   FlaskConical,
 } from 'lucide-react';
-import {
-  TOC_QUESTION_BANK,
-  solveTOCQuestion,
-} from '../../engine/questionSolverEngine';
+import { TOC_QUESTION_BANK } from '../../data/questionBank';
+import { solveTOCQuestion } from '../../engine/questionSolverEngine';
 import {
   SolvedQuestionResult,
   QuestionBankItem,
@@ -142,17 +140,17 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
       query.includes('tm') || query.includes('turing') ||
       query.includes('increment') || query.includes('complement') ||
       query.includes('a^n') || query.includes('an bn') || query.includes('0^n') ||
-      TOC_QUESTION_BANK.some(q =>
+      TOC_QUESTION_BANK.some((q: QuestionBankItem) =>
         q.id === prompt || q.question.toLowerCase() === query || q.title.toLowerCase() === query
       ) ||
-      TOC_QUESTION_BANK.some(q =>
-        q.question.toLowerCase().split(/\s+/).filter(w => w.length > 3 && query.includes(w)).length >= 2
+      TOC_QUESTION_BANK.some((q: QuestionBankItem) =>
+        q.question.toLowerCase().split(/\s+/).filter((w: string) => w.length > 3 && query.includes(w)).length >= 2
       )
     );
   };
 
   const filteredQuestions = useMemo(() => {
-    return TOC_QUESTION_BANK.filter((item) => {
+    return TOC_QUESTION_BANK.filter((item: QuestionBankItem) => {
       const matchCat = selectedCategory === 'ALL' || item.category === selectedCategory;
       const matchSearch =
         !debouncedSearch ||
@@ -213,10 +211,10 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
 
   const categoryStats = {
     ALL: TOC_QUESTION_BANK.length,
-    DFA: TOC_QUESTION_BANK.filter(q => q.category === 'DFA').length,
-    NFA: TOC_QUESTION_BANK.filter(q => q.category === 'NFA').length,
-    PDA: TOC_QUESTION_BANK.filter(q => q.category === 'PDA').length,
-    TM: TOC_QUESTION_BANK.filter(q => q.category === 'TM').length,
+    DFA: TOC_QUESTION_BANK.filter((q: QuestionBankItem) => q.category === 'DFA').length,
+    NFA: TOC_QUESTION_BANK.filter((q: QuestionBankItem) => q.category === 'NFA').length,
+    PDA: TOC_QUESTION_BANK.filter((q: QuestionBankItem) => q.category === 'PDA').length,
+    TM: TOC_QUESTION_BANK.filter((q: QuestionBankItem) => q.category === 'TM').length,
   };
 
   return (
@@ -410,7 +408,7 @@ export const QuestionSolverModal: React.FC<QuestionSolverModalProps> = ({
                 {filteredQuestions.length} question{filteredQuestions.length !== 1 ? 's' : ''}
               </div>
 
-              {filteredQuestions.map((item) => {
+              {filteredQuestions.map((item: QuestionBankItem) => {
                 const isSelected = activeSolution?.id === 'sol_' + item.id.replace('qb_', '') || activeSolution?.id === item.id;
                 return (
                   <button
