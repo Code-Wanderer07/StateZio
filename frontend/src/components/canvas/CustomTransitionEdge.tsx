@@ -117,12 +117,12 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
             pointerEvents: 'all',
           }}
-          className="nodrag nopan group"
+          className="nodrag nopan group/label flex items-center gap-0.5"
         >
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                openTransitionModal(source, target, id); // Open for this specific ID
+                openTransitionModal(source, target, id);
               }}
               title="Click to edit transition rules"
               className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 border shadow-md cursor-pointer ${
@@ -134,6 +134,16 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
               }`}
             >
               {labelText}
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteTransition(id);
+              }}
+              title="Delete transition"
+              className="opacity-0 group-hover/label:opacity-100 transition-opacity duration-150 w-5 h-5 flex items-center justify-center rounded-full bg-rose-500/90 hover:bg-rose-400 text-white text-[10px] font-bold shadow-md border border-rose-400/50 cursor-pointer hover:scale-110 active:scale-95"
+            >
+              ×
             </button>
         </div>
       </EdgeLabelRenderer>
