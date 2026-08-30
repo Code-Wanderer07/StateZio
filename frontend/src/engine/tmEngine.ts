@@ -126,12 +126,18 @@ export function simulateTM(rawMachine: TMMachine, inputString: string, maxSteps 
     // Direction move
     let dirDesc = 'Stay';
     if (transition.direction === 'L') {
-      dirDesc = 'Move Left';
       if (headIndex === 0) {
-        tape.unshift(blank);
-        virtualOffset -= 1;
-        // headIndex remains 0
+        if (machine.singlyInfiniteTape) {
+           dirDesc = 'Move Left (Blocked at bound)';
+           // headIndex remains 0, tape does not expand
+        } else {
+           dirDesc = 'Move Left';
+           tape.unshift(blank);
+           virtualOffset -= 1;
+           // headIndex remains 0
+        }
       } else {
+        dirDesc = 'Move Left';
         headIndex -= 1;
       }
     } else if (transition.direction === 'R') {

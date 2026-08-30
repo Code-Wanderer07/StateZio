@@ -98,6 +98,7 @@ export interface TMMachine {
   acceptStates: string[];
   rejectStates: string[];
   transitions: TMTransition[];
+  singlyInfiniteTape?: boolean; // If true, moving left at index 0 fails or stays
 }
 
 export type AutomataMachine = DFAMachine | NFAMachine | PDAMachine | TMMachine;

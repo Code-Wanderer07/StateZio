@@ -73,6 +73,25 @@ export const MachineProperties: React.FC = () => {
                 '{(machine as TMMachine).blankSymbol || '_'}'
               </span>
             </div>
+            {/* Singly Infinite Tape Toggle */}
+            <div 
+              className="flex items-center justify-between gap-2 p-3 rounded-lg bg-surface-container border border-outline-variant/30 cursor-pointer hover:border-primary/50 transition-colors"
+              onClick={() => {
+                const tmMachine = machine as TMMachine;
+                useAutomataStore.getState().setMachine({
+                  ...tmMachine,
+                  singlyInfiniteTape: !tmMachine.singlyInfiniteTape
+                });
+              }}
+            >
+              <div className="flex flex-col">
+                <span className="text-on-surface font-bold text-sm">Strict Tape Mode</span>
+                <span className="text-on-surface-variant text-[10px]">Singly-infinite tape (blocks L at index 0)</span>
+              </div>
+              <div className={`relative w-8 h-4 rounded-full border transition-colors ${(machine as TMMachine).singlyInfiniteTape ? 'bg-primary border-primary' : 'bg-surface-variant border-outline-variant/50'}`}>
+                <div className={`absolute top-0.5 w-3 h-3 bg-surface rounded-full transition-transform ${(machine as TMMachine).singlyInfiniteTape ? 'left-4' : 'left-0.5'}`}></div>
+              </div>
+            </div>
           </>
         )}
 
