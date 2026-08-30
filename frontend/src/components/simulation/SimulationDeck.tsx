@@ -86,9 +86,7 @@ export const SimulationDeck: React.FC = () => {
           )}
           {simulationResult ? (
             inputString.split('').map((char, index) => {
-              const isActive = (machine.type === 'DFA' || machine.type === 'NFA') 
-                ? (index === currentStepIndex - (currentStepIndex === totalSteps - 1 ? 2 : 1)) 
-                : false;
+              const isActive = index === currentStepIndex - (currentStepIndex === totalSteps - 1 ? 2 : 1);
 
               return (
                 <div 

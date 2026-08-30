@@ -65,18 +65,18 @@ export const CustomStateNode = React.memo<NodeProps>(({ id, data, selected }) =>
         </div>
       )}
 
-      {/* Target and Source Handles */}
-      <Handle type="target" position={Position.Top} id="top" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-      <Handle type="source" position={Position.Top} id="top-src" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+      {/* Target and Source Handles — 12px with subtle always-visible ring */}
+      <Handle type="target" position={Position.Top} id="top" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
+      <Handle type="source" position={Position.Top} id="top-src" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
 
-      <Handle type="target" position={Position.Right} id="right" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-      <Handle type="source" position={Position.Right} id="right-src" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <Handle type="target" position={Position.Right} id="right" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
+      <Handle type="source" position={Position.Right} id="right-src" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
 
-      <Handle type="target" position={Position.Bottom} id="bottom" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-      <Handle type="source" position={Position.Bottom} id="bottom-src" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <Handle type="target" position={Position.Bottom} id="bottom" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
+      <Handle type="source" position={Position.Bottom} id="bottom-src" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
 
-      <Handle type="target" position={Position.Left} id="left" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-      <Handle type="source" position={Position.Left} id="left-src" className="!w-2 !h-2 !bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <Handle type="target" position={Position.Left} id="left" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
+      <Handle type="source" position={Position.Left} id="left-src" className="!w-3 !h-3 !bg-cyan-400/80 !border-2 !border-cyan-300/40 opacity-40 group-hover:opacity-100 transition-opacity" />
 
       {/* Outer State Circle Container */}
       <div
@@ -118,8 +118,8 @@ export const CustomStateNode = React.memo<NodeProps>(({ id, data, selected }) =>
         )}
       </div>
 
-      {/* Floating Action Menu on Node Hover / Selection */}
-      <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-full px-2 py-0.5 shadow-2xl transition-opacity duration-200 z-20 pointer-events-auto ${selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 hover:opacity-100'}`}>
+      {/* Floating Action Menu — positioned to the right of the node to avoid overlapping bottom handle */}
+      <div className={`absolute -right-[120px] top-1/2 -translate-y-1/2 flex items-center gap-1 bg-surface-container dark:bg-background border border-cyan-300 dark:border-cyan-500/30 rounded-full px-2 py-0.5 shadow-2xl transition-opacity duration-200 z-20 pointer-events-auto ${selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 hover:opacity-100'}`}>
         <button
           onClick={(e) => {
             e.stopPropagation();

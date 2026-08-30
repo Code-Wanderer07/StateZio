@@ -64,6 +64,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span className="hidden sm:inline">Preset Library</span>
         </button>
         <button
+          onClick={onOpenHelp}
+          className="bg-surface-variant/50 hover:bg-surface-bright/50 transition-all border border-outline-variant/50 text-on-surface px-3 py-2 rounded-lg text-sm flex items-center gap-2"
+          title="Theory Help & Reference"
+        >
+          <HelpCircle className="w-4 h-4" />
+          <span className="hidden sm:inline">Theory</span>
+        </button>
+        <button
           onClick={onOpenSolver}
           className="bg-primary hover:bg-primary-container text-on-primary font-medium px-6 py-2 rounded-lg transition-all active:scale-95 duration-200 hidden md:block"
         >
