@@ -4,10 +4,11 @@ import {
   NFAMachine,
   PDAMachine,
   TMMachine,
-  EPSILON,
   DFATransition,
   TMTransition
 } from '../types/automata';
+import { EPSILON } from '../engine/nfaEngine';
+import { tokenizeStackSymbols } from '../engine/pdaEngine';
 
 export interface ValidationWarning {
   id: string;
@@ -161,13 +162,12 @@ function validatePDA(machine: PDAMachine, warnings: ValidationWarning[]) {
 
     // Push symbols check
     if (t.pushSymbols !== EPSILON && t.pushSymbols !== 'eps') {
-      // pushSymbols could be multiple symbols (e.g. "AB") depending on PDA implementation. 
-      // We will check if each character is in the stack alphabet.
-      for (const char of t.pushSymbols) {
-        if (!machine.stackAlphabet.includes(char)) {
+      const tokens = tokenizeStackSymbols(t.pushSymbols, machine.stackAlphabet);
+      for (const token of tokens) {
+        if (!machine.stackAlphabet.includes(token)) {
           warnings.push({ 
-            id: `pda-invalid-push-sym-${t.id}-${char}`, 
-            message: `Transition pushes symbol '${char}' not in stack alphabet.`, 
+            id: `pda-invalid-push-sym-${t.id}-${token}`, 
+            message: `Transition pushes symbol '${token}' not in stack alphabet.`, 
             severity: 'error' 
           });
         }

@@ -13,6 +13,10 @@ export function convertNFAToDFA(rawNfa: NFAMachine): SubsetConstructionResult {
     alphabet: rawNfa.alphabet || [],
   };
 
+  if (!nfa.startState) {
+    throw new Error("Cannot convert NFA to DFA: No start state defined.");
+  }
+
   const stepsExplanation: string[] = [];
   
   // 1. Identify input alphabet excluding epsilon
