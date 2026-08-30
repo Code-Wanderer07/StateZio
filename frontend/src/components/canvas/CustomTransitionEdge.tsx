@@ -79,20 +79,24 @@ export const CustomTransitionEdge = React.memo<EdgeProps>(({
 
   const openTransitionModal = useAutomataStore(s => s.openTransitionModal);
   const deleteTransition = useAutomataStore(s => s.deleteTransition);
+  const selectedNodeId = useAutomataStore(s => s.selectedNodeId);
   const isActive = !!edgeData?.isActive;
   const hasError = !!edgeData?.hasError;
+  const isSourceSelected = source === selectedNodeId;
   const labelText = edgeData?.combinedLabel || 'ε';
 
   // Light Blue & #1C1313 Edge Styling:
   // Active: Bright Light Blue #38BDF8 (3px)
   // Error/Dead: Crimson Red #EF4444 (3px)
   // Idle: Light Blue #38BDF8 (2px)
-  const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : style?.stroke || '#38BDF8';
-  const edgeWidth = hasError || isActive ? 3 : 2;
+  const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : isSourceSelected ? '#A855F7' : style?.stroke || '#38BDF8';
+  const edgeWidth = hasError || isActive || isSourceSelected ? 3 : 2;
   const edgeFilter = hasError
     ? 'drop-shadow(0 0 8px rgba(239, 68, 68, 0.7))'
     : isActive
     ? 'drop-shadow(0 0 10px rgba(56, 189, 248, 0.9))'
+    : isSourceSelected
+    ? 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.8))'
     : undefined;
 
   return (

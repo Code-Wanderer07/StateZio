@@ -68,12 +68,16 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   const edgePath = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
 
   // Light Blue & #1C1313 Edge Styling
-  const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : style?.stroke || '#38BDF8';
-  const edgeWidth = hasError || isActive ? 3 : 2;
+  const selectedNodeId = useAutomataStore(s => s.selectedNodeId);
+  const isSourceSelected = source === selectedNodeId;
+  const edgeStroke = hasError ? '#EF4444' : isActive ? '#38BDF8' : isSourceSelected ? '#A855F7' : style?.stroke || '#38BDF8';
+  const edgeWidth = hasError || isActive || isSourceSelected ? 3 : 2;
   const edgeFilter = hasError
     ? 'drop-shadow(0 0 8px rgba(239, 68, 68, 0.7))'
     : isActive
     ? 'drop-shadow(0 0 10px rgba(56, 189, 248, 0.9))'
+    : isSourceSelected
+    ? 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.8))'
     : undefined;
 
   return (
