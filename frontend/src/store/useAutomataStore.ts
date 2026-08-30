@@ -107,7 +107,7 @@ interface AutomataStateStore {
     writeSymbol?: string;
     direction?: 'L' | 'R' | 'S';
   }) => void;
-  deleteTransition: (id: string) => void;
+  deleteTransition: (id: string | string[]) => void;
   autoLayout: () => void;
   clearCanvas: () => void;
 
@@ -632,23 +632,25 @@ export const useAutomataStore = create<AutomataStateStore>((set, get) => ({
     });
   },
 
-  deleteTransition: (id) => {
+  deleteTransition: (ids) => {
     get().pushHistory();
     const { machine } = get();
     let updatedMachine: AutomataMachine;
 
+    const idsToDelete = Array.isArray(ids) ? ids : [ids];
+
     switch (machine.type) {
       case 'DFA':
-        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => !idsToDelete.includes(t.id)) };
         break;
       case 'NFA':
-        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => !idsToDelete.includes(t.id)) };
         break;
       case 'PDA':
-        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => !idsToDelete.includes(t.id)) };
         break;
       case 'TM':
-        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => t.id !== id) };
+        updatedMachine = { ...machine, transitions: machine.transitions.filter((t) => !idsToDelete.includes(t.id)) };
         break;
     }
 

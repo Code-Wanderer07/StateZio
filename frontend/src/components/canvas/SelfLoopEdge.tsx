@@ -19,7 +19,7 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
   style,
 }) => {
   const { openTransitionModal, deleteTransition } = useAutomataStore();
-  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; hasError?: boolean; parallelIndex?: number });
+  const edgeData = data as (TransitionEdgeData & { combinedLabel?: string; hasError?: boolean; parallelIndex?: number; allTransitions?: any[] });
   const parallelIndex = edgeData?.parallelIndex || 0;
   const isActive = !!edgeData?.isActive;
   const hasError = !!edgeData?.hasError;
@@ -103,7 +103,7 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                openTransitionModal(source, target, id);
+                openTransitionModal(source, target);
               }}
               title="Click to edit self-loop rules"
               className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold tracking-wider transition-all duration-200 border shadow-md cursor-pointer ${
@@ -119,7 +119,9 @@ export const SelfLoopEdge: React.FC<EdgeProps> = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                deleteTransition(id);
+                if (edgeData.allTransitions) {
+                  deleteTransition((edgeData.allTransitions as any[]).map(t => t.id));
+                }
               }}
               title="Delete transition"
               className="opacity-0 group-hover/label:opacity-100 transition-opacity duration-150 w-5 h-5 flex items-center justify-center rounded-full bg-rose-500/90 hover:bg-rose-400 text-white text-[10px] font-bold shadow-md border border-rose-400/50 cursor-pointer hover:scale-110 active:scale-95"
